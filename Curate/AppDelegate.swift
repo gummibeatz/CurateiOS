@@ -13,12 +13,45 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
-
+    var segmentsController: SegmentsController = SegmentsController()
+    var segmentedControl: UISegmentedControl = UISegmentedControl()
+    var navigationController: UINavigationController = UINavigationController()
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
+        var viewControllers: NSArray = self.segmentViewControllers()
+        var tempSegController = SegmentsController()
+        self.segmentsController.setNavigationController(navigationController)
+        self.segmentsController.setViewControllers(viewControllers)
+        let titles: NSArray = ["WardrobeBuilder", "OutfitBuilder", "Outfits"]
+        self.segmentedControl = UISegmentedControl(items: titles)
+        self.segmentedControl.addTarget(self.segmentsController, action: "indexDidChangeForSegmentedControl:", forControlEvents: UIControlEvents.ValueChanged)
+        self.firstUserExperience()
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.backgroundColor = UIColor.whiteColor()
+        window?.makeKeyAndVisible()
+        self.window?.rootViewController = self.navigationController
         return true
     }
+
+    
+    func segmentViewControllers() -> NSArray {
+        let myVC1 = WardrobeBuilderVC()
+        let myVC2 = OutfitBuilderVC()
+        let myVC3 = OutfitsVC()
+        
+        var viewControllers: NSArray = NSArray(objects: myVC1, myVC2, myVC3)
+        return viewControllers
+    }
+
+    func firstUserExperience() {
+        self.segmentedControl.selectedSegmentIndex = 0
+        self.segmentsController.indexDidChangeForSegmentedControl(self.segmentedControl)
+    }
+
+
+
+
 
     func applicationWillResignActive(application: UIApplication!) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
