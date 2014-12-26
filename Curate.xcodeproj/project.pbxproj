@@ -26,6 +26,7 @@
 		1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5AE1A46035A008C732C /* measureTape.jpg */; };
 		1AA3C5B11A46035A008C732C /* tshirtIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5AF1A46035A008C732C /* tshirtIcon.jpg */; };
 		1AA3C5B71A461003008C732C /* SegmentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C5B61A461003008C732C /* SegmentsController.swift */; };
+		1ABDC6641A4D0AB4007D0BE1 /* PropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDC6631A4D0AB4007D0BE1 /* PropertiesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		1AA3C5AE1A46035A008C732C /* measureTape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = measureTape.jpg; sourceTree = "<group>"; };
 		1AA3C5AF1A46035A008C732C /* tshirtIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tshirtIcon.jpg; sourceTree = "<group>"; };
 		1AA3C5B61A461003008C732C /* SegmentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentsController.swift; sourceTree = "<group>"; };
+		1ABDC6631A4D0AB4007D0BE1 /* PropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +150,7 @@
 				1AA3C59C1A460234008C732C /* OutfitsVC.swift */,
 				1AA3C59D1A460234008C732C /* WardrobeAdderVC.swift */,
 				1AA3C59E1A460234008C732C /* MeasurementsVC.swift */,
-				1AA3C59F1A460234008C732C /* OutfitBuilderVC.swift */,
+				1ABDC6621A4D0A8C007D0BE1 /* OutfitBuilder */,
 				1AA3C5B41A4603BD008C732C /* Icons */,
 			);
 			name = ViewControllers;
@@ -181,6 +183,15 @@
 				1AA3C5AB1A46034C008C732C /* tshirt2.jpg */,
 			);
 			name = Tshirts;
+			sourceTree = "<group>";
+		};
+		1ABDC6621A4D0A8C007D0BE1 /* OutfitBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				1AA3C59F1A460234008C732C /* OutfitBuilderVC.swift */,
+				1ABDC6631A4D0AB4007D0BE1 /* PropertiesView.swift */,
+			);
+			name = OutfitBuilder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +305,7 @@
 				1AA3C5A01A460234008C732C /* WardrobeBuilderVC.swift in Sources */,
 				1AA3C5971A46021A008C732C /* RBResizer.swift in Sources */,
 				1AA3C5A61A460234008C732C /* MeasurementsVC.swift in Sources */,
+				1ABDC6641A4D0AB4007D0BE1 /* PropertiesView.swift in Sources */,
 				1AA3C57A1A4601B2008C732C /* Curate.xcdatamodeld in Sources */,
 				1AA3C5B71A461003008C732C /* SegmentsController.swift in Sources */,
 				1AA3C5A51A460234008C732C /* WardrobeAdderVC.swift in Sources */,
