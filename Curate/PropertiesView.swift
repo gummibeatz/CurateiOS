@@ -8,11 +8,14 @@
 
 import UIKit
 
-
+protocol PropertiesViewDelegate {
+    func popoutViewWasTapped()
+}
 
 class PropertiesView: UIView {
     
     var popoutImageView: UIImageView = UIImageView()
+    var delegate: PropertiesViewDelegate?
     
     required init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
@@ -42,7 +45,7 @@ class PropertiesView: UIView {
     }
     
     func wasTapped(gestureRecognizer: UIGestureRecognizer) {
-        var timeInterval: NSTimeInterval = 2
+        var timeInterval: NSTimeInterval = 0.7
         var delay: NSTimeInterval = 0
         if(gestureRecognizer.state == UIGestureRecognizerState.Ended) {
             UIView.animateWithDuration(timeInterval, delay: delay, options: nil, animations: {
@@ -52,7 +55,7 @@ class PropertiesView: UIView {
                 })
                 }, completion: nil)
         }
-        
+        delegate?.popoutViewWasTapped()
     }
     
     
