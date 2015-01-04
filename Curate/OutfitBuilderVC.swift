@@ -8,7 +8,11 @@
 
 import UIKit
 
-class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate, PropertiesViewDelegate {
+protocol OutfitBuilderVCDelegate {
+    func pickerViewWasTapped(image: UIImage)
+}
+
+class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate {
     
     let shirtPicker = UIPickerView()
     let sweaterPicker = UIPickerView()
@@ -22,12 +26,11 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     var pantsPickerData = [String]()
     var shoePickerData = [String]()
     
+    var outfitBuilderVCDelegate: OutfitBuilderVCDelegate?
+    
     var blurEffectView: UIVisualEffectView =  UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
     
-    var popoutExists = false
-    
     let POPOUTSIZE = CGSize(width: 270, height: 320)
-    
     let screenWidth = UIScreen.mainScreen().bounds.size.width
     
     override func viewDidLoad() {
@@ -72,7 +75,6 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         var jacketDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewDoubleTapGestureRecognized")
         var pantsDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewDoubleTapGestureRecognized")
         var shoeDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewDoubleTapGestureRecognized")
-        
         
         shirtDoubleTapRecognizer.numberOfTapsRequired = 2
         sweaterDoubleTapRecognizer.numberOfTapsRequired = 2
@@ -163,78 +165,46 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         scrollView.addSubview(pantsPicker)
         scrollView.addSubview(shoePicker)
         
-        //        self.view.addSubview(shirtPicker)
-        //        self.view.addSubview(sweaterPicker)
-        //        self.view.addSubview(jacketPicker)
-        //        self.view.addSubview(pantsPicker)
-        //        self.view.addSubview(shoePicker)
-        
+    }
+    
+    func removeBlurEffectView() {
+        blurEffectView.removeFromSuperview()
     }
     
     func shirtPickerViewTapGestureRecognized() {
-        println("was tapped")
-        if !popoutExists{
-            popoutExists = true
-            println(shirtPicker.selectedRowInComponent(0))
-            var image = UIImage(named: shirtPickerData[shirtPicker.selectedRowInComponent(0)])
-            UIView.transitionWithView(self.view, duration: 0.7, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-                self.view.addSubview(self.blurEffectView)
-                self.view.addSubview(self.createPropertiesView(image))
-                }, completion: nil)
-        }
+        println("shirtPicker was tapped")
+        var image = UIImage(named:shirtPickerData[shirtPicker.selectedRowInComponent(0)])
+        self.view.addSubview(self.blurEffectView)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
     }
     
-    ///////////%%%%%%%%%%%% working on this protion right now
+    
     func sweaterPickerViewTapGestureRecognized() {
-        println("sweaterpicker was tapped")
-        if !popoutExists{
-            popoutExists = true
-            println(sweaterPicker.selectedRowInComponent(0))
-            var image = UIImage(named: sweaterPickerData[sweaterPicker.selectedRowInComponent(0)])
-            UIView.transitionWithView(self.view, duration: 0.7, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-                self.view.addSubview(self.blurEffectView)
-                self.view.addSubview(self.createPropertiesView(image))
-                }, completion: nil)
-        }
+        println("sweaterPicker was tapped")
+        var image = UIImage(named: sweaterPickerData[sweaterPicker.selectedRowInComponent(0)])
+        self.view.addSubview(self.blurEffectView)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
     }
     
     func jacketPickerViewTapGestureRecognized() {
         println("jacketPicker was tapped")
-        if !popoutExists{
-            popoutExists = true
-            println(jacketPicker.selectedRowInComponent(0))
-            var image = UIImage(named: jacketPickerData[jacketPicker.selectedRowInComponent(0)])
-            UIView.transitionWithView(self.view, duration: 0.7, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-                self.view.addSubview(self.blurEffectView)
-                self.view.addSubview(self.createPropertiesView(image))
-                }, completion: nil)
-        }
+        var image = UIImage(named: jacketPickerData[jacketPicker.selectedRowInComponent(0)])
+        self.view.addSubview(self.blurEffectView)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
     }
     
     func pantsPickerViewTapGestureRecognized() {
-        println("was tapped")
-        if !popoutExists{
-            popoutExists = true
-            println(pantsPicker.selectedRowInComponent(0))
-            var image = UIImage(named: pantsPickerData[pantsPicker.selectedRowInComponent(0)])
-            UIView.transitionWithView(self.view, duration: 0.7, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-                self.view.addSubview(self.blurEffectView)
-                self.view.addSubview(self.createPropertiesView(image))
-                }, completion: nil)
-        }
+        println("pantsPicker was tapped")
+        var image = UIImage(named: pantsPickerData[pantsPicker.selectedRowInComponent(0)])
+        self.view.addSubview(self.blurEffectView)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
     }
     
     func shoePickerViewTapGestureRecognized() {
-        println("was tapped")
-        if !popoutExists{
-            popoutExists = true
-            println(shoePicker.selectedRowInComponent(0))
-            var image = UIImage(named: shoePickerData[shoePicker.selectedRowInComponent(0)])
-            UIView.transitionWithView(self.view, duration: 0.7, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-                self.view.addSubview(self.blurEffectView)
-                self.view.addSubview(self.createPropertiesView(image))
-                }, completion: nil)
-        }
+        println("shoePicker was tapped")
+        var image = UIImage(named:shoePickerData[shoePicker.selectedRowInComponent(0)])
+        self.view.addSubview(self.blurEffectView)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
     }
     
     func pickerViewDoubleTapGestureRecognized() {
@@ -242,17 +212,9 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         
     }
     
-    func createPropertiesView(image: UIImage) -> PropertiesView {
-        var propertiesView: PropertiesView = PropertiesView(frame: CGRect(x: (screenWidth -  POPOUTSIZE.width)/2, y: self.view.frame.height/2 - POPOUTSIZE.height/2, width: POPOUTSIZE.width, height: POPOUTSIZE.height))
-        propertiesView.popoutImageView.image = image
-        propertiesView.delegate = self
-        return propertiesView
-    }
-    
-    func popoutViewWasTapped() {
-        println("delegated to popoutViewWasTapped")
-        popoutExists = false
-        blurEffectView.removeFromSuperview()
+    func blurEffectWasTapped(VC: UIViewController) {
+        println("blur effect recognized")
+        self.blurEffectView.removeFromSuperview()
     }
 }
 

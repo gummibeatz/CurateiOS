@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func segmentViewControllers() -> NSArray {
         let myVC1 = WardrobeBuilderVC()
-        let myVC2 = OutfitBuilderVC()
+        let myVC2 = OutfitBuilderContainerVC()
         let myVC3 = OutfitsVC()
         
         var viewControllers: NSArray = NSArray(objects: myVC1, myVC2, myVC3)
