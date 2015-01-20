@@ -1,15 +1,118 @@
 //
-//  OutifitVC.swift
-//  tabBarTest
+//  ViewController.swift
+//  Outfits
 //
-//  Created by Kenneth Kuo on 12/3/14.
-//  Copyright (c) 2014 Kenneth Kuo. All rights reserved.
+//  Created by Kenneth Kuo on 1/5/15.
+//  Copyright (c) 2015 Kenneth Kuo. All rights reserved.
 //
 
 import UIKit
 
-class OutfitsVC: UIViewController {
-    override func viewWillAppear(animated: Bool) {
-        self.view.backgroundColor = UIColor.whiteColor()
+protocol OutfitsVCDelegate {
+    func editButtonTapped()
+}
+
+class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    let cellIdentifier = "cellIdentfier"
+    
+    var tableData = ["Minecraft", "facebook", "tweetbot", "instagram"]
+    let cellRowHeight: CGFloat = 50
+    var outfitsDelegate:OutfitsVCDelegate?
+    
+    override func loadView() {
+        super.loadView()
+        
+        var outfitsTableView: UITableView = UITableView(frame: UIScreen.mainScreen().bounds)
+        outfitsTableView.rowHeight = cellRowHeight
+        outfitsTableView.delegate = self
+        outfitsTableView.dataSource = self
+        outfitsTableView.tableFooterView = UIView(frame: CGRectZero)
+        
+        
+        outfitsTableView.registerClass(OutfitCell.self, forCellReuseIdentifier: self.cellIdentifier)
+        
+        self.view.addSubview(outfitsTableView)
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+}
+
+//MARK: Data Source TableView
+extension OutfitsVC: UITableViewDataSource {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableData.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as OutfitCell
+        cell.outfitName.text = self.tableData[indexPath.row]
+        
+        //modify for actual outfit image
+        var img = UIImage(named: "tshirt1.jpg")
+        cell.outfitImage.image = img
+        return cell
+    }
+    
+    
+    
+}
+
+//MARK: Delegates TableView
+extension OutfitsVC: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        
+        //        let alert = UIAlertController(title: "Item selected", message: "You selected item \(indexPath.row)", preferredStyle: UIAlertControllerStyle.Alert)
+        //
+        //        alert.addAction(UIAlertAction(title: "OK",
+        //            style: UIAlertActionStyle.Default,
+        //            handler: {
+        //                (alert: UIAlertAction!) in println("An alert of type \(alert.style.hashValue) was tapped!")
+        //        }))
+        //
+        //        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    func tableView(tableView: UITableView!, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject]! {
+        let deleteClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            self.tableData.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            println("Delete closure called")
+        }
+        
+        let editClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            //add in delegate to send info of the current outfit
+            self.outfitsDelegate?.editButtonTapped()
+            println("edit closure called")
+        }
+        
+        var deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: deleteClosure)
+        var editAction = UITableViewRowAction(style: .Normal, title: "Edit", handler: editClosure)
+        deleteAction.backgroundColor = UIColor.blueColor()
+        
+        return [deleteAction, editAction]
+    }
+    
+    func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+        
+    }
+    
+    //    func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+    //        return true
+    //    }
+    
+    
+    
 }

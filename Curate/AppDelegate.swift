@@ -10,17 +10,20 @@ import UIKit
 import CoreData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
                             
     var window: UIWindow?
     var segmentsController: SegmentsController = SegmentsController()
     var segmentedControl: UISegmentedControl = UISegmentedControl()
     var navigationController: UINavigationController = UINavigationController()
 
+    let WARDROBEBUILDERINDEX = 0
+    let OUTFITBUILDERINDEX = 1
+    let OUTFITSINDEX = 2
+
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
         var viewControllers: NSArray = self.segmentViewControllers()
-        var tempSegController = SegmentsController()
         self.segmentsController.setNavigationController(navigationController)
         self.segmentsController.setViewControllers(viewControllers)
         let titles: NSArray = ["WardrobeBuilder", "OutfitBuilder", "Outfits"]
@@ -38,20 +41,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func segmentViewControllers() -> NSArray {
         let myVC1 = WardrobeBuilderVC()
         let myVC2 = OutfitBuilderContainerVC()
-        let myVC3 = OutfitsVC()
+        let myVC3 = OutfitsContainerVC()
+        
+        myVC3.setOutfitsVCDelegate(self)
         
         var viewControllers: NSArray = NSArray(objects: myVC1, myVC2, myVC3)
         return viewControllers
     }
 
     func firstUserExperience() {
-        self.segmentedControl.selectedSegmentIndex = 0
+        self.segmentedControl.selectedSegmentIndex = WARDROBEBUILDERINDEX
         self.segmentsController.indexDidChangeForSegmentedControl(self.segmentedControl)
     }
 
-
-
-
+    func editButtonTapped() {
+        println("editButtonTappedDelegated")
+        self.segmentedControl.selectedSegmentIndex = OUTFITBUILDERINDEX
+        self.segmentsController.indexDidChangeForSegmentedControl(self.segmentedControl)
+    }
 
     func applicationWillResignActive(application: UIApplication!) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
