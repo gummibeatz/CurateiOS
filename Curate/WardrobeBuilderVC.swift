@@ -15,6 +15,7 @@ class WardrobeBuilderVC: UIViewController {
         super.viewDidLoad()
         let draggableBackground:DraggableViewBackground = DraggableViewBackground(frame: self.view.frame)
         self.view.addSubview(draggableBackground)
+        
     }
     
     override func didReceiveMemoryWarning() {

@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     var segmentsController: SegmentsController = SegmentsController()
     var segmentedControl: UISegmentedControl = UISegmentedControl()
     var navigationController: UINavigationController = UINavigationController()
+    var measurementsController: UIViewController = MeasurementsVC()
+    var measurementsButton: UIButton = UIButton()
+    
 
     let WARDROBEBUILDERINDEX = 0
     let OUTFITBUILDERINDEX = 1
@@ -23,17 +26,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
+        
+    
+
+        // Setting up segmented view control
         var viewControllers: NSArray = self.segmentViewControllers()
         self.segmentsController.setNavigationController(navigationController)
         self.segmentsController.setViewControllers(viewControllers)
         let titles: NSArray = ["WardrobeBuilder", "OutfitBuilder", "Outfits"]
         self.segmentedControl = UISegmentedControl(items: titles)
         self.segmentedControl.addTarget(self.segmentsController, action: "indexDidChangeForSegmentedControl:", forControlEvents: UIControlEvents.ValueChanged)
+
+
+        self.segmentedControl.setWidth(50, forSegmentAtIndex: 0)
+        self.segmentedControl.setWidth(50, forSegmentAtIndex: 1)
+        self.segmentedControl.setWidth(50, forSegmentAtIndex: 2)
+        
+        
         self.firstUserExperience()
+
+        
+        //Setting up FBLoginView
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.backgroundColor = UIColor.whiteColor()
         window?.makeKeyAndVisible()
-        self.window?.rootViewController = self.navigationController
+        window?.rootViewController = FBLoginVC()
+        FBLoginView.self
+        FBProfilePictureView.self
+
+        setupMeasurementsButton()
         return true
     }
 
@@ -58,6 +79,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         println("editButtonTappedDelegated")
         self.segmentedControl.selectedSegmentIndex = OUTFITBUILDERINDEX
         self.segmentsController.indexDidChangeForSegmentedControl(self.segmentedControl)
+    }
+
+    func setupMeasurementsButton() {
+        measurementsButton = UIButton(frame: CGRect(x: 17, y: 34, width: 22, height: 15))
+        measurementsButton.addTarget(self, action: "measurementsButtonTapped", forControlEvents: .TouchUpInside)
+        measurementsButton.setImage(UIImage(named: "menuButton"), forState: .Normal)
+        self.window?.addSubview(measurementsButton)
+    }
+
+    func measurementsButtonTapped() {
+        println("measurementsButtonTapped")
+        self.measurementsButton.removeFromSuperview()
+        window?.rootViewController = measurementsController
     }
 
     func applicationWillResignActive(application: UIApplication!) {
@@ -145,6 +179,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
                 abort()
             }
         }
+    }
+
+    // MARK: - FB STUFF
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+    
+        // Logs 'install' and 'app activate' App Events.
+        FBAppEvents.activateApp()
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String, annotation: AnyObject?) -> Bool {
+        return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
     }
 
 }

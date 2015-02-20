@@ -167,6 +167,7 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.view.addSubview(shirtSizeTextField)
         self.view.addSubview(preferredFitTextField)
         self.view.addSubview(shoeSizeTextField)
+        self.view.addSubview(setupReturnButton())
     }
     
     //hides the inputView for a UITextField
@@ -192,8 +193,19 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // Dispose of any resources that can be recreated.
     }
     
+    func setupReturnButton() -> UIButton {
+        var returnButton:UIButton = UIButton(frame: CGRect(x: 17, y: 34, width: 22, height: 15))
+        returnButton.addTarget(self, action: "returnButtonTapped", forControlEvents: .TouchUpInside)
+        returnButton.setImage(UIImage(named: "menuButton"), forState: .Normal)
+        return returnButton
+    }
     
-    
+    func returnButtonTapped() {
+        var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        self.view.removeFromSuperview()
+        appDelegate.window?.rootViewController = appDelegate.navigationController
+        appDelegate.setupMeasurementsButton()
+    }
 }
 
 //MARK: Data Sources UIPickerView

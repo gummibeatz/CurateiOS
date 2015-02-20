@@ -220,40 +220,47 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     //%%% when you hit the right button, this is called and substitutes the swipe
     func swipeRight(){
-        var dragView: DraggableView = loadedCards.firstObject as DraggableView
-        dragView.overlayView?.mode = GGOverlayViewMode.Right
-        UIView.animateWithDuration(0.2, animations: {
-            dragView.overlayView?.alpha = 1
-            var temp = 0 // may need to fix this
-        })
-        dragView.rightClickAction()
-        println("swipedRight")
+        if (loadedCards.count > 0) {
+            var dragView: DraggableView = loadedCards.firstObject as DraggableView
+            dragView.overlayView?.mode = GGOverlayViewMode.Right
+            UIView.animateWithDuration(0.2, animations: {
+                dragView.overlayView?.alpha = 1
+                var temp = 0 // may need to fix this
+            })
+            dragView.rightClickAction()
+            println("swipedRight")
+        }
     }
     
     //%%% when you hit the left button, this is called and substitutes the swipe
     func swipeLeft(){
-        var dragView: DraggableView = loadedCards.firstObject as DraggableView
-        dragView.overlayView?.mode = GGOverlayViewMode.Left
-        UIView.animateWithDuration(0.2, animations: {
-            dragView.overlayView?.alpha = 1
-            var temp = 0 // may need to fix this
-        })
-        dragView.leftClickAction()
-        println("swipedLeft")
+        if (loadedCards.count > 0) {
+            var dragView: DraggableView = loadedCards.firstObject as DraggableView
+            dragView.overlayView?.mode = GGOverlayViewMode.Left
+            UIView.animateWithDuration(0.2, animations: {
+                dragView.overlayView?.alpha = 1
+                var temp = 0 // may need to fix this
+            })
+            dragView.leftClickAction()
+            println("swipedLeft")
+        }
     }
     
     
     //%%% when you hit the have button, this is called and substitutes the double tap
     func doubleTapped(){
-        var dragView: DraggableView = loadedCards.firstObject as DraggableView
-        dragView.overlayView?.mode = GGOverlayViewMode.Tap
-        UIView.animateWithDuration(0.2, animations: {
-            dragView.overlayView?.alpha = 1
-            var temp = 0 // may need to fix this
-        })
-        dragView.haveClickAction()
-        println("doubleTapped")
+        if (loadedCards.count > 0) {
+            var dragView: DraggableView = loadedCards.firstObject as DraggableView
+            dragView.overlayView?.mode = GGOverlayViewMode.Tap
+            UIView.animateWithDuration(0.2, animations: {
+                dragView.overlayView?.alpha = 1
+                var temp = 0 // may need to fix this
+            })
+            dragView.haveClickAction()
+            println("doubleTapped")
+        }
     }
+    
     
     
     
