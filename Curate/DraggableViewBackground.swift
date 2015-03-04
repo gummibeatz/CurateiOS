@@ -190,30 +190,59 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     }
     
     //%%% action to be called when undo button is clicked.
+    //Gonna have to fix the indexing at some point to account for different buffer sizes
+    //mostly just look for the allcards.count places
     func undoAction(){
+        println("================")
+        println("allCards.count: \(allCards.count)")
+        println("cardsLoadedIndex: \(cardsLoadedIndex)")
+        println("loadedCards.count: \(loadedCards.count)")
+        var restoredCard:DraggableView?
+        
+        //%%% can't undo if you are on your first card
         if cardsLoadedIndex > MAX_BUFFER_SIZE {
-            var lastBufferCard: DraggableView = loadedCards[MAX_BUFFER_SIZE-1] as DraggableView
-            lastBufferCard.removeFromSuperview()
-            //%%% fix the deletion from ARC from removeFromeSuperview to add back
-            var restoreLastBufferCard:DraggableView = self.createDraggableViewWithDataAtIndex(cardsLoadedIndex-1)
-            allCards.replaceObjectAtIndex(cardsLoadedIndex-1, withObject: restoreLastBufferCard)
+            //%%% check Edge case when no more loaded Cards
+            var lastBufferCard: DraggableView = DraggableView(frame: CGRect())
+            var restoreLastBufferCard: DraggableView = DraggableView(frame: CGRect())
+            if(loadedCards.count == MAX_BUFFER_SIZE) {
+                lastBufferCard = loadedCards[MAX_BUFFER_SIZE-1] as DraggableView
+                loadedCards.removeObjectAtIndex(MAX_BUFFER_SIZE-1)
+                //%%% fix the deletion by ARC from removeFromSuperview to add back
+                restoreLastBufferCard = self.createDraggableViewWithDataAtIndex(cardsLoadedIndex-1)
+                
+                
+                lastBufferCard.removeFromSuperview()
+                
+                allCards.replaceObjectAtIndex(cardsLoadedIndex-1, withObject: restoreLastBufferCard)
+                
+                //%%% create the card again, since ARC removed it
+                restoredCard = self.createDraggableViewWithDataAtIndex(cardsLoadedIndex - (MAX_BUFFER_SIZE+1))
+                cardsLoadedIndex--
+                
+            } else if (loadedCards.count == 1) {
+                restoreLastBufferCard = self.createDraggableViewWithDataAtIndex(allCards.count-1)
+                allCards.replaceObjectAtIndex(allCards.count-1, withObject: restoreLastBufferCard)
+                restoredCard = self.createDraggableViewWithDataAtIndex(allCards.count-2)
+                
+            } else {
+                restoredCard = self.createDraggableViewWithDataAtIndex(allCards.count - 1)
+            }
             
-            loadedCards.removeObjectAtIndex(MAX_BUFFER_SIZE-1)
             
-            //%%% create the card again, since ARC removed it
-            var restoredCard: DraggableView = self.createDraggableViewWithDataAtIndex(cardsLoadedIndex - (MAX_BUFFER_SIZE+1))
-            loadedCards.insertObject(restoredCard, atIndex: 0) // put restored card at front of array
             
-            //%%% return animation
-            restoredCard.alpha = 0
-            self.addSubview(restoredCard)
+            
+            // put restored card at front of array
+            loadedCards.insertObject(restoredCard, atIndex: 0)
+            
+            println("loadedCards.count now \(loadedCards.count)")
+            //%%% undo animation
+            restoredCard!.alpha = 0
+            self.addSubview(restoredCard!)
             UIView.animateWithDuration(1.3, animations: {
-                restoredCard.alpha = 1
+                restoredCard!.alpha = 1
                 }, completion: { animationFinished in
                 }
             )
-            
-            cardsLoadedIndex--
             println("cardUndone \(cardsLoadedIndex)")
         }
     }

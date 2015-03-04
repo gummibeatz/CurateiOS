@@ -29,6 +29,7 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
             //Maybe make a method for switching root viewcontrollers
             var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             appDelegate.window?.rootViewController = appDelegate.navigationController
+            appDelegate.setupMeasurementsButton()
             
         }
         
