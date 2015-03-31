@@ -29,7 +29,7 @@ func RBSquareImage(image: UIImage) -> UIImage {
     var cropSquare = CGRectMake(posX, posY, edge, edge)
     
     var imageRef = CGImageCreateWithImageInRect(image.CGImage, cropSquare);
-    return UIImage(CGImage: imageRef, scale: UIScreen.mainScreen().scale, orientation: image.imageOrientation)
+    return UIImage(CGImage: imageRef, scale: UIScreen.mainScreen().scale, orientation: image.imageOrientation)!
 }
 
 func RBResizeImage(image: UIImage, targetSize: CGSize) -> UIImage {

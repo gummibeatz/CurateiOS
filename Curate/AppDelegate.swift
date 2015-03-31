@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     var segmentsController: SegmentsController = SegmentsController()
     var segmentedControl: UISegmentedControl = UISegmentedControl()
     var navigationController: UINavigationController = UINavigationController()
-    var measurementsController: UIViewController = MeasurementsVC()
+    var measurementsController: MeasurementsVC?
     var measurementsButton: UIButton = UIButton()
     
 
@@ -41,7 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         self.segmentedControl.setWidth(50, forSegmentAtIndex: 0)
         self.segmentedControl.setWidth(50, forSegmentAtIndex: 1)
         self.segmentedControl.setWidth(50, forSegmentAtIndex: 2)
-        
+
+        self.segmentedControl.tintColor = UIColor.blackColor()
+
+        self.segmentedControl.setImage(UIImage(named: "Shirt")!.imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 0)
+        self.segmentedControl.setImage(UIImage(named: "Wardrobe")!.imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 1)
+        self.segmentedControl.setImage(UIImage(named: "CurateBowtie")!.imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 2)
+
         
         self.firstUserExperience()
 
@@ -54,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         FBLoginView.self
         FBProfilePictureView.self
 
+        measurementsController = MeasurementsVC()
         setupMeasurementsButton()
         return true
     }
@@ -91,6 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     func measurementsButtonTapped() {
         println("measurementsButtonTapped")
         self.measurementsButton.removeFromSuperview()
+        measurementsController?.setupReturnButton()
         window?.rootViewController = measurementsController
     }
 
@@ -129,7 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
         let modelURL = NSBundle.mainBundle().URLForResource("Curate", withExtension: "momd")
-        return NSManagedObjectModel(contentsOfURL: modelURL)
+        return NSManagedObjectModel(contentsOfURL: modelURL!)!
     }()
 
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
@@ -146,7 +154,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
-            error = NSError.errorWithDomain("YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(error), \(error!.userInfo)")
@@ -158,6 +165,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
 
     lazy var managedObjectContext: NSManagedObjectContext? = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
+        println("inside creating managedObjectContext")
+        
         let coordinator = self.persistentStoreCoordinator
         if coordinator == nil {
             return nil

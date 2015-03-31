@@ -1,4 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Batch" representedClassName="Curate.Batch" syncable="YES">
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Tokens" representedClassName="Curate.Tokens" syncable="YES">
+        <attribute name="curateAuthToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fbAuthToken" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Top" representedClassName="Curate.Top" syncable="YES">
+        <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="clothingType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="clothingType2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="collarType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="color1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="color2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fit" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="material" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="Curate.User" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="height" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inseam" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="preferredPantsFit" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="preferredShirtFit" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shirtSize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shoeSize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="waistSize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Batch" positionX="-63" positionY="-18" width="128" height="58"/>
+        <element name="Tokens" positionX="-54" positionY="0" width="128" height="73"/>
+        <element name="Top" positionX="-36" positionY="27" width="128" height="163"/>
+        <element name="User" positionX="-18" positionY="36" width="128" height="178"/>
+    </elements>
 </model>

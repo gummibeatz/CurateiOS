@@ -10,6 +10,11 @@ import UIKit
 
 class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
+    // Retreive the managedObjectContext from AppDelegate
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
+    
+
+    
     //initialization constants
     let heightPicker = UIPickerView()
     let weightPicker = UIPickerView()
@@ -39,10 +44,12 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let shoeSizePickerData = ["7.5","8.0","8.5","9.0","9.5","10","10.5","11.0","11.5","12.0","12.5","13.0","13.5","14.0"]
     
     var activeTextField:UITextField?
+    var returnButton: UIButton?
     
     // Do any additional setup after loading the view, typically from a nib.
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         
         //creating labels
@@ -167,7 +174,7 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.view.addSubview(shirtSizeTextField)
         self.view.addSubview(preferredFitTextField)
         self.view.addSubview(shoeSizeTextField)
-        self.view.addSubview(setupReturnButton())
+        setupReturnButton()
     }
     
     //hides the inputView for a UITextField
@@ -193,16 +200,16 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // Dispose of any resources that can be recreated.
     }
     
-    func setupReturnButton() -> UIButton {
-        var returnButton:UIButton = UIButton(frame: CGRect(x: 17, y: 34, width: 22, height: 15))
-        returnButton.addTarget(self, action: "returnButtonTapped", forControlEvents: .TouchUpInside)
-        returnButton.setImage(UIImage(named: "menuButton"), forState: .Normal)
-        return returnButton
+    func setupReturnButton() {
+        returnButton = UIButton(frame: CGRect(x: 17, y: 34, width: 22, height: 15))
+        returnButton!.addTarget(self, action: "returnButtonTapped", forControlEvents: .TouchUpInside)
+        returnButton!.setImage(UIImage(named: "menuButton"), forState: .Normal)
+        self.view.addSubview(returnButton!)
     }
     
     func returnButtonTapped() {
         var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        self.view.removeFromSuperview()
+        self.returnButton!.removeFromSuperview()
         appDelegate.window?.rootViewController = appDelegate.navigationController
         appDelegate.setupMeasurementsButton()
     }
@@ -214,7 +221,7 @@ extension MeasurementsVC: UIPickerViewDataSource {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView.tag{
         case heightPicker.tag:
             return heightPickerData.count

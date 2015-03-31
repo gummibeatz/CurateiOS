@@ -20,10 +20,13 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     var clothingCardLabels: NSMutableArray = NSMutableArray()
     var allCards: NSMutableArray = NSMutableArray()
     var loadedCards: NSMutableArray = NSMutableArray()
-    var cardsLoadedIndex: Int = Int()
+    var cardsLoadedIndex: Int = Int() //keeps track of where loaded cards are
+    var cardsIndex: Int = Int() // keeps track of where you are in cards Index for loading more swipebatches
     var previousAction: Int = Int()
+    var currentBatchIndex: Int = Int()
+    var swipeBatch: [[String]] = [[String]]()
     
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: (NSCoder!)) {
         super.init(coder: aDecoder)
         // ...
     }
@@ -32,22 +35,25 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         super.init(frame: frame)
         super.layoutSubviews()
         self.setupView()
+    }
+    
+    init(frame: CGRect, swipeBatch: [[String]], batchIndex: Int) {
+        super.init(frame: frame)
+        super.layoutSubviews()
+        self.setupView()
+        self.currentBatchIndex = batchIndex
+        self.swipeBatch = swipeBatch
+        let currentBatch: [String] = swipeBatch[batchIndex] as [String]
         
-        //loading pictures from file EDIT LATER FOR CORE DATA
-        let resourcePath: NSString = NSBundle.mainBundle().resourcePath
-        let filePath: NSString = resourcePath.stringByAppendingPathComponent("VNeck")
-        let imagePaths: NSArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(filePath, error: nil)
-        let enumerator: NSEnumerator = imagePaths.objectEnumerator()
-        while let imagePath = enumerator.nextObject() as? NSString {
-            //add in images
-            clothingCardLabels.addObject(filePath.stringByAppendingPathComponent(imagePath))
-            
-            //checks to see if images are there
-            //            println(imagePath)
-            //            println(clothingCardLabels.count)
+        //loading urls of pictures into clothingCardLabels
+        for link in currentBatch {
+            clothingCardLabels.addObject(link)
         }
+        println(clothingCardLabels.count)
+        
         // loading finished
         cardsLoadedIndex = 0
+        cardsIndex = 0
         self.loadCards()
     }
     
@@ -89,8 +95,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     func createDraggableViewWithDataAtIndex(index:Int) -> DraggableView{
         var draggableView: DraggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 30, width: CARD_WIDTH, height: CARD_HEIGHT))
-        let imageName: String = clothingCardLabels.objectAtIndex(index) as String
-        draggableView.information.image = UIImage(named: imageName)
+        let imageData: NSData = getImage(clothingCardLabels.objectAtIndex(index) as String)
+        draggableView.information.image = UIImage(data: imageData)
         draggableView.delegate = self
         return draggableView
     }
@@ -132,8 +138,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     //%%% action called when the card goes to the left.
     // This should be customized with your own action
     func cardSwipedLeft(card:UIView){
-        //do whatever you want with the card that was swiped
-        //    DraggableView *c = (DraggableView *)card;
+        
+        println("allcards.count = \(allCards.count)")
         
         loadedCards.removeObjectAtIndex(0) //%%% card was swiped, so it's no longer a "loaded card"
         
@@ -141,14 +147,24 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             //%%% if we haven't reached the end of all cards, put another into the loaded cards
             loadedCards.addObject(allCards.objectAtIndex(cardsLoadedIndex))
             cardsLoadedIndex++ //%%% loaded a card, so have to increment count
+            cardsIndex++
             self.insertSubview(loadedCards.objectAtIndex(MAX_BUFFER_SIZE-1) as UIView, belowSubview: loadedCards.objectAtIndex(MAX_BUFFER_SIZE-2) as UIView)
             
             //%%% keep track of previous action
             previousAction = LEFT_SWIPE
             
+        } else if(cardsIndex <= allCards.count) {
+            cardsIndex++
         }
         
         println("CardSwipedLeft \(cardsLoadedIndex)")
+        println("cardsIndex \(cardsIndex)")
+        println("~~~~~~~~~~~~~~~")
+        
+        if(cardsIndex == allCards.count) {
+            println("loading new cards")
+            self.loadNextBatch()
+        }
         
     }
     
@@ -163,13 +179,25 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             //%%% if we haven't reached the end of all cards, put another into the loaded cards
             loadedCards.addObject(allCards.objectAtIndex(cardsLoadedIndex))
             cardsLoadedIndex++//%%% loaded a card, so have to increment count
+            cardsIndex++
+            
             self.insertSubview(loadedCards.objectAtIndex(MAX_BUFFER_SIZE-1) as UIView, belowSubview: loadedCards.objectAtIndex(MAX_BUFFER_SIZE-2) as UIView)
             
             //%%% keep track of previous action
             previousAction = RIGHT_SWIPE
+        } else if(cardsIndex <= allCards.count) {
+            cardsIndex++
         }
         
         println("CardSwipedRight \(cardsLoadedIndex)")
+        println("cardsIndex \(cardsIndex)")
+        println("~~~~~~~~~~~~~~~")
+        
+        if(cardsIndex == allCards.count) {
+            println("loading new cards")
+            self.loadNextBatch()
+        }
+        
     }
     
     //%%% action called when the card is double tapped.
@@ -180,13 +208,24 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             //%%% if we haven't reached the end of all cards, put another into the loaded cards
             loadedCards.addObject(allCards.objectAtIndex(cardsLoadedIndex))
             cardsLoadedIndex++ //%%% loaded a card, so have to increment count
+            cardsIndex++
+            
             self.insertSubview(loadedCards.objectAtIndex(MAX_BUFFER_SIZE-1) as UIView, belowSubview: loadedCards.objectAtIndex(MAX_BUFFER_SIZE-2) as UIView)
             
             //%%% keep track of previous action
             previousAction = DOUBLE_TAP
+        } else if(cardsIndex <= allCards.count) {
+            cardsIndex++
         }
         
         println("CardDoubleTapped \(cardsLoadedIndex)")
+        println("cardsIndex \(cardsIndex)")
+        println("~~~~~~~~~~~~~~~")
+        
+        if(cardsIndex == allCards.count) {
+            println("loading new cards")
+            self.loadNextBatch()
+        }
     }
     
     //%%% action to be called when undo button is clicked.
@@ -218,11 +257,14 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
                 //%%% create the card again, since ARC removed it
                 restoredCard = self.createDraggableViewWithDataAtIndex(cardsLoadedIndex - (MAX_BUFFER_SIZE+1))
                 cardsLoadedIndex--
+                // can't think might break fix this later!!!!
+                cardsIndex--
                 
             } else if (loadedCards.count == 1) {
                 restoreLastBufferCard = self.createDraggableViewWithDataAtIndex(allCards.count-1)
                 allCards.replaceObjectAtIndex(allCards.count-1, withObject: restoreLastBufferCard)
                 restoredCard = self.createDraggableViewWithDataAtIndex(allCards.count-2)
+                cardsIndex--
                 
             } else {
                 restoredCard = self.createDraggableViewWithDataAtIndex(allCards.count - 1)
@@ -232,7 +274,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             
             
             // put restored card at front of array
-            loadedCards.insertObject(restoredCard, atIndex: 0)
+            loadedCards.insertObject(restoredCard!, atIndex: 0)
             
             println("loadedCards.count now \(loadedCards.count)")
             //%%% undo animation
@@ -244,6 +286,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
                 }
             )
             println("cardUndone \(cardsLoadedIndex)")
+            println("cardIndex = \(cardsIndex)")
         }
     }
     
@@ -288,6 +331,28 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             dragView.haveClickAction()
             println("doubleTapped")
         }
+    }
+    
+    //%% loads next batch by adding in links from the next batch and deleting the previous cards
+    func loadNextBatch() {
+        println("=====in loadnextBatch=====")
+        self.currentBatchIndex++
+        let currentBatch: [String] = self.swipeBatch[self.currentBatchIndex] as [String]
+        
+        clothingCardLabels.removeAllObjects()
+        allCards.removeAllObjects()
+        
+        //loading urls of pictures into clothingCardLabels
+        for link in currentBatch {
+            clothingCardLabels.addObject(link)
+        }
+        println("clothingCard Label count = \(clothingCardLabels.count)")
+        
+        // loading finished
+        cardsLoadedIndex = 0
+        cardsIndex = 0
+        self.loadCards()
+        
     }
     
     

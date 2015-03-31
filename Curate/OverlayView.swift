@@ -19,7 +19,7 @@ class OverlayView: UIView {
     var imageView: UIImageView = UIImageView()
     var mode = GGOverlayViewMode?()
     
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: (NSCoder!)) {
         super.init(coder: aDecoder)
         // ...
     }

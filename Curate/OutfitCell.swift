@@ -18,7 +18,7 @@ class OutfitCell: UITableViewCell {
         , y: 10, width: 200, height: 40))
     var img: UIImage?
     
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

@@ -34,7 +34,7 @@ class DraggableView: UIView {
     var yFromCenter: CGFloat = CGFloat()
     var originalPoint: CGPoint = CGPoint()
     
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: (NSCoder!)) {
         super.init(coder: aDecoder)
         // ...
     }

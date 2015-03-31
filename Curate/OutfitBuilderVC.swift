@@ -175,7 +175,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         println("shirtPicker was tapped")
         var image = UIImage(named:shirtPickerData[shirtPicker.selectedRowInComponent(0)])
         self.view.addSubview(self.blurEffectView)
-        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image!)
     }
     
     
@@ -183,28 +183,28 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         println("sweaterPicker was tapped")
         var image = UIImage(named: sweaterPickerData[sweaterPicker.selectedRowInComponent(0)])
         self.view.addSubview(self.blurEffectView)
-        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image!)
     }
     
     func jacketPickerViewTapGestureRecognized() {
         println("jacketPicker was tapped")
         var image = UIImage(named: jacketPickerData[jacketPicker.selectedRowInComponent(0)])
         self.view.addSubview(self.blurEffectView)
-        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image!)
     }
     
     func pantsPickerViewTapGestureRecognized() {
         println("pantsPicker was tapped")
         var image = UIImage(named: pantsPickerData[pantsPicker.selectedRowInComponent(0)])
         self.view.addSubview(self.blurEffectView)
-        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image!)
     }
     
     func shoePickerViewTapGestureRecognized() {
         println("shoePicker was tapped")
         var image = UIImage(named:shoePickerData[shoePicker.selectedRowInComponent(0)])
         self.view.addSubview(self.blurEffectView)
-        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image!)
     }
     
     func pickerViewDoubleTapGestureRecognized() {
@@ -230,7 +230,7 @@ extension OutfitBuilderVC: UIPickerViewDataSource {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView.tag{
         case shirtPicker.tag:
             return shirtPickerData.count
