@@ -15,13 +15,13 @@ class WardrobeBuilderVC: UIViewController {
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
     var user: User?
     var batches = [[String]]()
-    var batchIndex: NSNumber?
-    var currentBatch: Batch?
+    var indexes: Indexes?
     var draggableBackground: DraggableViewBackground?
     
     //should change where the token is located in the larger project
     //also should change the place to getUser to the login screen.
-    let curateAuthToken = "mXa3EtKdNyr3guJ6iHfr"
+    
+//    let curateAuthToken = "mXa3EtKdNyr3guJ6iHfr"
     
     
     override func viewDidLoad() {
@@ -29,25 +29,52 @@ class WardrobeBuilderVC: UIViewController {
         //added in as a buffer updated after dispatch async
         self.draggableBackground = DraggableViewBackground(frame: self.view.frame)
         
-        batchIndex = getBatchIndex()
-        getUser(curateAuthToken) {
-            currentUser in
-            self.user = currentUser
+        indexes = getBatchIndex()
+//        getUser(curateAuthToken) {
+//            currentUser in
+//            self.user = currentUser
+//            
+//            getSwipeBatch(currentUser) {
+//                swipeBatch in
+//                self.batches = swipeBatch
+//                
+//                // only add in the draggable background view after we have the swipe batches
+//                // so that we can load up the images
+//                // I gotta ask somebody about setting up these concurrency dealios
+//                dispatch_async(dispatch_get_main_queue(), {
+//                    self.draggableBackground!.removeFromSuperview()
+//                    self.draggableBackground  = DraggableViewBackground(frame: self.view.frame, swipeBatch: swipeBatch, indexes: self.indexes!)
+//                    self.view.addSubview(self.draggableBackground!)
+//                })
+//            }
+//        }
+        
+        var fbAuthToken:String = getFbAuthToken()
+        println("fbAuthToken in WardrobeBuilderVC = \(fbAuthToken)")
+        
+        getCurateAuthToken(fbAuthToken) {
+            curateAuthToken in
             
-            getSwipeBatch(currentUser) {
-                swipeBatch in
-                self.batches = swipeBatch
+            getUser(curateAuthToken) {
+                currentUser in
+                self.user = currentUser
                 
-                // only add in the draggable background view after we have the swipe batches
-                // so that we can load up the images
-                // I gotta ask somebody about setting up these concurrency dealios
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.draggableBackground!.removeFromSuperview()
-                    self.draggableBackground  = DraggableViewBackground(frame: self.view.frame, swipeBatch: swipeBatch, batchIndex: Int(self.batchIndex!))
-                    self.view.addSubview(self.draggableBackground!)
-                })
+                getSwipeBatch(currentUser) {
+                    swipeBatch in
+                    self.batches = swipeBatch
+                    
+                    // only add in the draggable background view after we have the swipe batches
+                    // so that we can load up the images
+                    // I gotta ask somebody about setting up these concurrency dealios
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.draggableBackground!.removeFromSuperview()
+                        self.draggableBackground  = DraggableViewBackground(frame: self.view.frame, swipeBatch: swipeBatch, indexes: self.indexes!)
+                        self.view.addSubview(self.draggableBackground!)
+                    })
+                }
             }
         }
+    
         self.view.addSubview(self.draggableBackground!)
     }
     
@@ -56,30 +83,31 @@ class WardrobeBuilderVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getBatchIndex() -> NSNumber {
+    func getBatchIndex() -> Indexes {
         // Retrieves BatchIndex if it is already saved, otherwise saves new batchIndex starting at index 0
-        var batch:Batch?
+        var indexes: Indexes?
         if(hasBatchIndex()) {
             // gets tokens from persistent storage
             // Create a new fetch request using the Tokens entity
-            let fetchRequest = NSFetchRequest(entityName: "Batch")
+            let fetchRequest = NSFetchRequest(entityName: "Indexes")
             
             // Execute the fetch request, and cast the results to an array of Tokens objects
-            let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as [Batch]
-            batch = fetchResults[0]
+            let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as [Indexes]
+            indexes = fetchResults[0]
         } else {
-            batch = NSEntityDescription.insertNewObjectForEntityForName("Batch", inManagedObjectContext: self.managedObjectContext!) as? Batch
-            batch?.index = 0
+            indexes = NSEntityDescription.insertNewObjectForEntityForName("Indexes", inManagedObjectContext: self.managedObjectContext!) as? Indexes
+            indexes?.batchIndex = 0
+            indexes?.cardsIndex = 0
         }
         var error: NSError?
         self.managedObjectContext?.save(&error)
-        return batch!.index
+        return indexes!
     }
     
     func hasBatchIndex() ->Bool {
-        let fetchRequest = NSFetchRequest(entityName: "Batch")
+        let fetchRequest = NSFetchRequest(entityName: "Indexes")
         let count = managedObjectContext?.countForFetchRequest(fetchRequest, error: nil)
-        println("BatchIndex = \(count!)")
+        println("Indexes = \(count!)")
         return (count != 0) ? true:false
     }
     

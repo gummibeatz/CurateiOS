@@ -20,13 +20,14 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     let pantsPicker = UIPickerView()
     let shoePicker = UIPickerView()
     
-    var shirtPickerData = [String]()
-    var sweaterPickerData = [String]()
-    var jacketPickerData = [String]()
-    var pantsPickerData = [String]()
-    var shoePickerData = [String]()
+    var shirtPickerData:[Top] = [Top]()
+    var sweaterPickerData:[Sweater] = [Sweater]()
+    var jacketPickerData:[Jacket] = [Jacket]()
+    var pantsPickerData:[Bottom] = [Bottom]()
+    var shoePickerData:[Shoes] = [Shoes]()
     
     var outfitBuilderVCDelegate: OutfitBuilderVCDelegate?
+    var ownedOutfits: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as [Outfit]
     
     var blurEffectView: UIVisualEffectView =  UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
     
@@ -39,23 +40,27 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         //set up pickers
         setupPickerViewers()
         
-        //add in picker data
-        shirtPickerData.append("tshirt1.jpg")
-        shirtPickerData.append("tshirt2.jpg")
-        sweaterPickerData.append("tshirt1.jpg")
-        sweaterPickerData.append("tshirt2.jpg")
-        jacketPickerData = ["tshirt2.jpg","tshirt1.jpg"]
-        pantsPickerData.append("tshirt2.jpg")
-        pantsPickerData.append("tshirt1.jpg")
-        shoePickerData.append("tshirt2.jpg")
-        //        shoePickerData.append("tshirt1.jpg")
-        
-        
         //add in gesture recognizer for pickers
         setupGestureRecognizers()
         
         //setup ScrollView and add in subviews
         setupView()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        println("AYYYY")
+        shirtPickerData = readCustomObjArrayFromUserDefaults("ownedTops") as [Top]
+        sweaterPickerData = readCustomObjArrayFromUserDefaults("ownedSweaters") as [Sweater]
+        jacketPickerData = readCustomObjArrayFromUserDefaults("ownedJackets") as [Jacket]
+        pantsPickerData = readCustomObjArrayFromUserDefaults("ownedBottoms") as [Bottom]
+        shoePickerData = readCustomObjArrayFromUserDefaults("ownedShoes") as [Shoes]
+        
+        shirtPicker.reloadAllComponents()
+        sweaterPicker.reloadAllComponents()
+        jacketPicker.reloadAllComponents()
+        pantsPicker.reloadAllComponents()
+        shoePicker.reloadAllComponents()
     }
     
     override func didReceiveMemoryWarning() {
@@ -134,11 +139,11 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         
         
         let pickerWidth = screenWidth*3/4
-        shirtPicker.frame = CGRectMake(40, 20, pickerWidth, 180)
-        sweaterPicker.frame = CGRectMake(40, 170, pickerWidth, 180)
-        jacketPicker.frame = CGRectMake(40, 320, pickerWidth, 180)
-        pantsPicker.frame = CGRectMake(40, 470, pickerWidth, 180)
-        shoePicker.frame = CGRectMake(40, 620, pickerWidth, 180)
+        shirtPicker.frame = CGRectMake(40, 0, pickerWidth, 180)
+        sweaterPicker.frame = CGRectMake(40, 150, pickerWidth, 180)
+        jacketPicker.frame = CGRectMake(40, 300, pickerWidth, 180)
+        pantsPicker.frame = CGRectMake(40, 450, pickerWidth, 180)
+        shoePicker.frame = CGRectMake(40, 600, pickerWidth, 180)
         
         
         let rotate = CGAffineTransformScale(CGAffineTransformMakeRotation(-3.14/2), 0.25, 2.0)
@@ -150,7 +155,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     }
     
     func setupView() {
-        var fullScreenRect: CGRect = UIScreen.mainScreen().applicationFrame
+        var fullScreenRect: CGRect = UIScreen.mainScreen().bounds
         var scrollView = UIScrollView(frame: fullScreenRect)
         //        self.view = scrollView
         
@@ -164,47 +169,92 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         scrollView.addSubview(jacketPicker)
         scrollView.addSubview(pantsPicker)
         scrollView.addSubview(shoePicker)
-        
+        setupToolBar()
+    }
+    
+    func setupToolBar() {
+        var toolBar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.size.height - 44, width: UIScreen.mainScreen().bounds.size.width, height: 44))
+        var items: Array<UIBarButtonItem> =  []
+        var addImage: UIImage = UIImage(named: "addButton")!
+        addImage = RBResizeImage(addImage, CGSize(width: 35, height: 35))
+        items.append(UIBarButtonItem(image: addImage.imageWithRenderingMode(.AlwaysOriginal), style: .Plain, target: self, action: "addOutfit"))
+        toolBar.setItems(items, animated: false)
+        self.view.addSubview(toolBar)
     }
     
     func removeBlurEffectView() {
         blurEffectView.removeFromSuperview()
     }
     
+    func addOutfit() {
+        println("addOutfit Button hit")
+        var outfit: Outfit = Outfit()
+        //write an alertview controller for adding in titles and tags
+        outfit.title = "test"
+        outfit.top = shirtPickerData[shirtPicker.selectedRowInComponent(0)]
+//        outfit.sweater = sweaterPickerData[sweaterPicker.selectedRowInComponent(0)]
+//        outfit.jacket = jacketPickerData[jacketPicker.selectedRowInComponent(0)]
+//        outfit.bottom = pantsPickerData[pantsPicker.selectedRowInComponent(0)]
+//        outfit.shoes = shoePickerData[shoePicker.selectedRowInComponent(0)]
+        // need to find some other way to double check outfit
+        if( find(ownedOutfits, outfit) != nil) {
+            println("outfit already exists")
+        } else if (outfitWithTitleExists(outfit.title!)) {
+            println("title already exists")
+        } else {
+            ownedOutfits.append(outfit)
+            writeCustomObjArraytoUserDefaults(ownedOutfits, "ownedOutfits")
+            
+            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            appDelegate.segmentedControl.selectedSegmentIndex = appDelegate.OUTFITSINDEX
+            appDelegate.segmentsController.indexDidChangeForSegmentedControl(appDelegate.segmentedControl)
+            
+        }
+    }
+    
+    func outfitWithTitleExists(title: String) -> Bool {
+        for outfit in ownedOutfits {
+            if(outfit.title == title) {
+                return true
+            }
+        }
+        return false
+    }
+    
     func shirtPickerViewTapGestureRecognized() {
         println("shirtPicker was tapped")
-        var image = UIImage(named:shirtPickerData[shirtPicker.selectedRowInComponent(0)])
+        var image:UIImage = UIImage(data: shirtPickerData[shirtPicker.selectedRowInComponent(0)].image!)!
         self.view.addSubview(self.blurEffectView)
-        outfitBuilderVCDelegate?.pickerViewWasTapped(image!)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
     }
     
     
     func sweaterPickerViewTapGestureRecognized() {
         println("sweaterPicker was tapped")
-        var image = UIImage(named: sweaterPickerData[sweaterPicker.selectedRowInComponent(0)])
+        var image:UIImage = UIImage(data: sweaterPickerData[sweaterPicker.selectedRowInComponent(0)].image!)!
         self.view.addSubview(self.blurEffectView)
-        outfitBuilderVCDelegate?.pickerViewWasTapped(image!)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
     }
     
     func jacketPickerViewTapGestureRecognized() {
         println("jacketPicker was tapped")
-        var image = UIImage(named: jacketPickerData[jacketPicker.selectedRowInComponent(0)])
+        var image:UIImage = UIImage(data: jacketPickerData[jacketPicker.selectedRowInComponent(0)].image!)!
         self.view.addSubview(self.blurEffectView)
-        outfitBuilderVCDelegate?.pickerViewWasTapped(image!)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
     }
     
     func pantsPickerViewTapGestureRecognized() {
         println("pantsPicker was tapped")
-        var image = UIImage(named: pantsPickerData[pantsPicker.selectedRowInComponent(0)])
+        var image:UIImage = UIImage(data: pantsPickerData[pantsPicker.selectedRowInComponent(0)].image!)!
         self.view.addSubview(self.blurEffectView)
-        outfitBuilderVCDelegate?.pickerViewWasTapped(image!)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
     }
     
     func shoePickerViewTapGestureRecognized() {
         println("shoePicker was tapped")
-        var image = UIImage(named:shoePickerData[shoePicker.selectedRowInComponent(0)])
+        var image:UIImage = UIImage(data:shoePickerData[shoePicker.selectedRowInComponent(0)].image!)!
         self.view.addSubview(self.blurEffectView)
-        outfitBuilderVCDelegate?.pickerViewWasTapped(image!)
+        outfitBuilderVCDelegate?.pickerViewWasTapped(image)
     }
     
     func pickerViewDoubleTapGestureRecognized() {
@@ -255,15 +305,15 @@ extension OutfitBuilderVC: UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         switch pickerView.tag {
         case shirtPicker.tag:
-            return shirtPickerData[row]
+            return "MUST CHANGE LATER"
         case sweaterPicker.tag:
-            return sweaterPickerData[row]
+            return "MUST CHANGE LATER"
         case jacketPicker.tag:
-            return jacketPickerData[row]
+            return "MUST CHANGE LATER"
         case pantsPicker.tag:
-            return pantsPickerData[row]
+            return "MUST CHANGE LATER"
         case shoePicker.tag:
-            return shoePickerData[row]
+            return "MUST CHANGE LATER"
         default:
             return "nothing"
         }
@@ -288,21 +338,21 @@ extension OutfitBuilderVC: UIPickerViewDelegate {
         var img: UIImage?
         switch pickerView.tag {
         case shirtPicker.tag:
-            img = UIImage(named:shirtPickerData[row])
+            img = UIImage(data:shirtPickerData[row].image!)
         case sweaterPicker.tag:
-            img = UIImage(named: sweaterPickerData[row])
+            img = UIImage(data: sweaterPickerData[row].image!)
         case jacketPicker.tag:
-            img = UIImage(named: jacketPickerData[row])
+            img = UIImage(data: jacketPickerData[row].image!)
         case pantsPicker.tag:
-            img = UIImage(named: pantsPickerData[row])
+            img = UIImage(data: pantsPickerData[row].image!)
         case shoePicker.tag:
-            img = UIImage(named: shoePickerData[row])
+            img = UIImage(data: shoePickerData[row].image!)
         default:
             img = nil
         }
-        let resizedImg = RBResizeImage(img!, CGSize(width: 70, height: 70))
+        let resizedImg = RBResizeImage(img!, CGSize(width: 120, height: 100))
         let imageView = UIImageView(image: resizedImg)
-        let tmpView = UIView(frame: CGRectMake(0, 0, 80, 80))
+        let tmpView = UIView(frame: CGRectMake(0, 0, 130, 130))
         let rotate = CGAffineTransformScale(CGAffineTransformMakeRotation(3.14/2), 0.25, 2.0)
         tmpView.transform = rotate
         tmpView.insertSubview(imageView, atIndex: 0)

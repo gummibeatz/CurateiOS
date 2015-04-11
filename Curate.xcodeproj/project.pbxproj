@@ -11,6 +11,14 @@
 		1A12D9031A6EE18400DA3617 /* OutfitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A12D9021A6EE18300DA3617 /* OutfitCell.swift */; };
 		1A5F4B8F1A93DE82000B9705 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5F4B8E1A93DE82000B9705 /* FacebookSDK.framework */; };
 		1A5F4B921A93E22F000B9705 /* FBLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5F4B911A93E22F000B9705 /* FBLoginVC.swift */; };
+		1A8CCC1A1ACB1E77001E3AF0 /* Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC191ACB1E77001E3AF0 /* Top.swift */; };
+		1A8CCC1C1ACB22F3001E3AF0 /* ReadWriteCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC1B1ACB22F3001E3AF0 /* ReadWriteCalls.swift */; };
+		1A8CCC1F1AD05406001E3AF0 /* StackStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC1E1AD05406001E3AF0 /* StackStruct.swift */; };
+		1A8CCC211AD05F72001E3AF0 /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC201AD05F72001E3AF0 /* Outfit.swift */; };
+		1A8CCC231AD0600F001E3AF0 /* Sweater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC221AD0600F001E3AF0 /* Sweater.swift */; };
+		1A8CCC251AD06017001E3AF0 /* Jacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC241AD06017001E3AF0 /* Jacket.swift */; };
+		1A8CCC271AD0601C001E3AF0 /* Bottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC261AD0601C001E3AF0 /* Bottom.swift */; };
+		1A8CCC291AD06024001E3AF0 /* Shoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC281AD06024001E3AF0 /* Shoes.swift */; };
 		1A96E9A61A58C66200C23C0E /* OutfitBuilderContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A96E9A51A58C66200C23C0E /* OutfitBuilderContainerVC.swift */; };
 		1A96E9A81A58C67E00C23C0E /* PropertiesViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A96E9A71A58C67E00C23C0E /* PropertiesViewVC.swift */; };
 		1AA3C5771A4601B2008C732C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C5761A4601B2008C732C /* AppDelegate.swift */; };
@@ -34,9 +42,8 @@
 		1ACC8B101A58C82200093290 /* PropertiesBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */; };
 		1ACC8B111A58C82200093290 /* PropertiesFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */; };
 		1AF1A2731ACA3FFF006770D6 /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2721ACA3FFF006770D6 /* APICalls.swift */; };
-		1AF1A27C1ACA41E1006770D6 /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2781ACA41E1006770D6 /* Batch.swift */; };
+		1AF1A27C1ACA41E1006770D6 /* Indexes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2781ACA41E1006770D6 /* Indexes.swift */; };
 		1AF1A27D1ACA41E1006770D6 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2791ACA41E1006770D6 /* Tokens.swift */; };
-		1AF1A27E1ACA41E1006770D6 /* Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A27A1ACA41E1006770D6 /* Top.swift */; };
 		1AF1A27F1ACA41E1006770D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A27B1ACA41E1006770D6 /* User.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +63,14 @@
 		1A5F4B8E1A93DE82000B9705 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		1A5F4B901A93E015000B9705 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		1A5F4B911A93E22F000B9705 /* FBLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginVC.swift; sourceTree = "<group>"; };
+		1A8CCC191ACB1E77001E3AF0 /* Top.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Top.swift; path = Curate/Top.swift; sourceTree = "<group>"; };
+		1A8CCC1B1ACB22F3001E3AF0 /* ReadWriteCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteCalls.swift; sourceTree = "<group>"; };
+		1A8CCC1E1AD05406001E3AF0 /* StackStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackStruct.swift; path = Curate/StackStruct.swift; sourceTree = "<group>"; };
+		1A8CCC201AD05F72001E3AF0 /* Outfit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
+		1A8CCC221AD0600F001E3AF0 /* Sweater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sweater.swift; sourceTree = "<group>"; };
+		1A8CCC241AD06017001E3AF0 /* Jacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jacket.swift; sourceTree = "<group>"; };
+		1A8CCC261AD0601C001E3AF0 /* Bottom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bottom.swift; sourceTree = "<group>"; };
+		1A8CCC281AD06024001E3AF0 /* Shoes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shoes.swift; sourceTree = "<group>"; };
 		1A96E9A51A58C66200C23C0E /* OutfitBuilderContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitBuilderContainerVC.swift; sourceTree = "<group>"; };
 		1A96E9A71A58C67E00C23C0E /* PropertiesViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesViewVC.swift; sourceTree = "<group>"; };
 		1AA3C5711A4601B2008C732C /* Curate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Curate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,9 +98,8 @@
 		1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesBackView.swift; sourceTree = "<group>"; };
 		1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesFrontView.swift; sourceTree = "<group>"; };
 		1AF1A2721ACA3FFF006770D6 /* APICalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
-		1AF1A2781ACA41E1006770D6 /* Batch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
+		1AF1A2781ACA41E1006770D6 /* Indexes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Indexes.swift; sourceTree = "<group>"; };
 		1AF1A2791ACA41E1006770D6 /* Tokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
-		1AF1A27A1ACA41E1006770D6 /* Top.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Top.swift; sourceTree = "<group>"; };
 		1AF1A27B1ACA41E1006770D6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +140,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1A8CCC1D1ACB2832001E3AF0 /* GlobalFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				1AA3C5961A46021A008C732C /* RBResizer.swift */,
+				1AF1A2721ACA3FFF006770D6 /* APICalls.swift */,
+				1A8CCC1B1ACB22F3001E3AF0 /* ReadWriteCalls.swift */,
+			);
+			name = GlobalFunctions;
+			sourceTree = "<group>";
+		};
 		1AA3C5681A4601B2008C732C = {
 			isa = PBXGroup;
 			children = (
@@ -150,14 +174,13 @@
 			children = (
 				1AA3C5761A4601B2008C732C /* AppDelegate.swift */,
 				1AA3C5B61A461003008C732C /* SegmentsController.swift */,
-				1AF1A2721ACA3FFF006770D6 /* APICalls.swift */,
-				1AA3C5961A46021A008C732C /* RBResizer.swift */,
+				1A8CCC1D1ACB2832001E3AF0 /* GlobalFunctions */,
 				1AA3C5B21A460376008C732C /* ViewControllers */,
 				1AA3C5B51A4603EF008C732C /* Tshirts */,
 				1AA3C5A81A460316008C732C /* VNeck */,
 				1AA3C5801A4601B2008C732C /* Images.xcassets */,
 				1AA3C5781A4601B2008C732C /* Curate.xcdatamodeld */,
-				1AF1A2751ACA4042006770D6 /* CoreDataModels */,
+				1AF1A2751ACA4042006770D6 /* DataModelsAndStructures */,
 				1AA3C5741A4601B2008C732C /* Supporting Files */,
 			);
 			path = Curate;
@@ -195,8 +218,8 @@
 				1A5F4B911A93E22F000B9705 /* FBLoginVC.swift */,
 				1AA3C59E1A460234008C732C /* MeasurementsVC.swift */,
 				1AA3C5B31A46039A008C732C /* WardrobeBuilder */,
-				1A12D8FF1A6EE04500DA3617 /* Outfits */,
 				1ABDC6621A4D0A8C007D0BE1 /* OutfitBuilder */,
+				1A12D8FF1A6EE04500DA3617 /* Outfits */,
 				1AA3C5B41A4603BD008C732C /* Icons */,
 			);
 			name = ViewControllers;
@@ -205,10 +228,10 @@
 		1AA3C5B31A46039A008C732C /* WardrobeBuilder */ = {
 			isa = PBXGroup;
 			children = (
+				1AA3C5981A460234008C732C /* WardrobeBuilderVC.swift */,
 				1AA3C5991A460234008C732C /* DraggableViewBackground.swift */,
 				1AA3C59A1A460234008C732C /* DraggableView.swift */,
 				1AA3C59B1A460234008C732C /* OverlayView.swift */,
-				1AA3C5981A460234008C732C /* WardrobeBuilderVC.swift */,
 			);
 			name = WardrobeBuilder;
 			sourceTree = "<group>";
@@ -235,23 +258,29 @@
 			isa = PBXGroup;
 			children = (
 				1A96E9A51A58C66200C23C0E /* OutfitBuilderContainerVC.swift */,
+				1AA3C59F1A460234008C732C /* OutfitBuilderVC.swift */,
 				1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */,
 				1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */,
-				1AA3C59F1A460234008C732C /* OutfitBuilderVC.swift */,
 				1A96E9A71A58C67E00C23C0E /* PropertiesViewVC.swift */,
 			);
 			name = OutfitBuilder;
 			sourceTree = "<group>";
 		};
-		1AF1A2751ACA4042006770D6 /* CoreDataModels */ = {
+		1AF1A2751ACA4042006770D6 /* DataModelsAndStructures */ = {
 			isa = PBXGroup;
 			children = (
-				1AF1A2781ACA41E1006770D6 /* Batch.swift */,
+				1A8CCC1E1AD05406001E3AF0 /* StackStruct.swift */,
+				1AF1A2781ACA41E1006770D6 /* Indexes.swift */,
 				1AF1A2791ACA41E1006770D6 /* Tokens.swift */,
-				1AF1A27A1ACA41E1006770D6 /* Top.swift */,
 				1AF1A27B1ACA41E1006770D6 /* User.swift */,
+				1A8CCC201AD05F72001E3AF0 /* Outfit.swift */,
+				1A8CCC191ACB1E77001E3AF0 /* Top.swift */,
+				1A8CCC221AD0600F001E3AF0 /* Sweater.swift */,
+				1A8CCC241AD06017001E3AF0 /* Jacket.swift */,
+				1A8CCC261AD0601C001E3AF0 /* Bottom.swift */,
+				1A8CCC281AD06024001E3AF0 /* Shoes.swift */,
 			);
-			name = CoreDataModels;
+			name = DataModelsAndStructures;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -304,6 +333,7 @@
 				TargetAttributes = {
 					1AA3C5701A4601B2008C732C = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = JJVKDT7MQK;
 					};
 					1AA3C5851A4601B2008C732C = {
 						CreatedOnToolsVersion = 6.0;
@@ -358,27 +388,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A8CCC1F1AD05406001E3AF0 /* StackStruct.swift in Sources */,
 				1AA3C5A21A460234008C732C /* DraggableView.swift in Sources */,
 				1AA3C5A31A460234008C732C /* OverlayView.swift in Sources */,
 				1A5F4B921A93E22F000B9705 /* FBLoginVC.swift in Sources */,
 				1ACC8B101A58C82200093290 /* PropertiesBackView.swift in Sources */,
 				1AA3C5A11A460234008C732C /* DraggableViewBackground.swift in Sources */,
+				1A8CCC211AD05F72001E3AF0 /* Outfit.swift in Sources */,
 				1AA3C5A41A460234008C732C /* OutfitsVC.swift in Sources */,
 				1A12D9031A6EE18400DA3617 /* OutfitCell.swift in Sources */,
+				1A8CCC251AD06017001E3AF0 /* Jacket.swift in Sources */,
+				1A8CCC271AD0601C001E3AF0 /* Bottom.swift in Sources */,
 				1ACC8B111A58C82200093290 /* PropertiesFrontView.swift in Sources */,
+				1A8CCC291AD06024001E3AF0 /* Shoes.swift in Sources */,
 				1AA3C5771A4601B2008C732C /* AppDelegate.swift in Sources */,
 				1AA3C5A01A460234008C732C /* WardrobeBuilderVC.swift in Sources */,
 				1AF1A2731ACA3FFF006770D6 /* APICalls.swift in Sources */,
 				1AA3C5971A46021A008C732C /* RBResizer.swift in Sources */,
 				1A96E9A61A58C66200C23C0E /* OutfitBuilderContainerVC.swift in Sources */,
+				1A8CCC231AD0600F001E3AF0 /* Sweater.swift in Sources */,
 				1AA3C5A61A460234008C732C /* MeasurementsVC.swift in Sources */,
 				1AA3C57A1A4601B2008C732C /* Curate.xcdatamodeld in Sources */,
 				1AA3C5B71A461003008C732C /* SegmentsController.swift in Sources */,
-				1AF1A27C1ACA41E1006770D6 /* Batch.swift in Sources */,
+				1AF1A27C1ACA41E1006770D6 /* Indexes.swift in Sources */,
 				1A12D9011A6EE16000DA3617 /* OutfitsContainerVC.swift in Sources */,
 				1AA3C5A71A460234008C732C /* OutfitBuilderVC.swift in Sources */,
-				1AF1A27E1ACA41E1006770D6 /* Top.swift in Sources */,
+				1A8CCC1A1ACB1E77001E3AF0 /* Top.swift in Sources */,
 				1A96E9A81A58C67E00C23C0E /* PropertiesViewVC.swift in Sources */,
+				1A8CCC1C1ACB22F3001E3AF0 /* ReadWriteCalls.swift in Sources */,
 				1AF1A27D1ACA41E1006770D6 /* Tokens.swift in Sources */,
 				1AF1A27F1ACA41E1006770D6 /* User.swift in Sources */,
 			);
@@ -485,6 +522,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -493,6 +532,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Curate/Bridging-Header.h";
 			};
 			name = Debug;
@@ -502,6 +542,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -510,6 +552,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Curate/Bridging-Header.h";
 			};
 			name = Release;

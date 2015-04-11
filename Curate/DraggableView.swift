@@ -11,8 +11,8 @@ import UIKit
 protocol DraggableViewDelegate {
     func cardSwipedLeft(card:UIView)
     func cardSwipedRight(card:UIView)
-    func cardDoubleTapped(card:UIView)
-    func doubleTapped()
+//    func cardDoubleTapped(card:UIView)
+//    func doubleTapped()
 }
 
 let ACTION_MARGIN: CGFloat = 120 //%%% distance from center where the action applies. Higher = swipe
@@ -47,11 +47,11 @@ class DraggableView: UIView {
         
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: Selector("beingDragged:"))
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("beingTapped:"))
-        tapGestureRecognizer.numberOfTapsRequired = 2
-        
+//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("beingTapped:"))
+//        tapGestureRecognizer.numberOfTapsRequired = 2
+//        
         self.addGestureRecognizer(panGestureRecognizer)
-        self.addGestureRecognizer(tapGestureRecognizer)
+//        self.addGestureRecognizer(tapGestureRecognizer)
         self.addSubview(information)
         
         overlayView = OverlayView(frame: CGRectMake(self.frame.size.width/2-50, 50, 100, 100))
@@ -117,12 +117,12 @@ class DraggableView: UIView {
     }
     
     
-    func beingTapped(tapGestureRecognizer: UITapGestureRecognizer){
-        //checks if gesture is finished
-        if(tapGestureRecognizer.state == UIGestureRecognizerState.Ended) {
-            delegate?.doubleTapped()
-        }
-    }
+//    func beingTapped(tapGestureRecognizer: UITapGestureRecognizer){
+//        //checks if gesture is finished
+//        if(tapGestureRecognizer.state == UIGestureRecognizerState.Ended) {
+//            delegate?.doubleTapped()
+//        }
+//    }
     
     func updateOverlay(distance: CGFloat){
         if (distance > 0){
@@ -156,18 +156,18 @@ class DraggableView: UIView {
     //called when swipe exceeds the ACTION_MARGIN to the right
     func rightAction(){
         var finishPoint: CGPoint = CGPoint(x: 500, y: (2 * yFromCenter + self.originalPoint.y))
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animateWithDuration(0.5, animations: {
             self.center = finishPoint
             }, completion: { animationFinished in
                 self.removeFromSuperview()
         })
-        delegate?.cardSwipedRight(self)
+        self.delegate?.cardSwipedRight(self)
     }
     
     //called when swipe exceeds the ACTION_MARGIN to the left
     func leftAction(){
         var finishPoint: CGPoint = CGPoint(x: -500, y: (2 * yFromCenter + self.originalPoint.y))
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animateWithDuration(0.5, animations: {
             self.center = finishPoint
             }, completion: { animationFinished in
                 self.removeFromSuperview()
@@ -176,45 +176,48 @@ class DraggableView: UIView {
     }
     
     
-    func rightClickAction(){
+    func rightClickAction(completion: (actionCompleted: Bool) -> Void ) {
         overlayView!.setMode(GGOverlayViewMode.Right)
         overlayView!.alpha = 0
         var finishPoint: CGPoint = CGPointMake(600, self.center.y);
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animateWithDuration(0.7, animations: {
             self.center = finishPoint
             self.transform = CGAffineTransformMakeRotation(1)
             self.overlayView!.alpha = 1
             }, completion: { animationFinished in
                 self.removeFromSuperview()
+                self.delegate?.cardSwipedRight(self)
+                completion(actionCompleted: true)
         })
-        delegate?.cardSwipedRight(self)
     }
     
-    func leftClickAction(){
+    func leftClickAction(completion: (actionCompleted: Bool) -> Void) {
         overlayView!.setMode(GGOverlayViewMode.Left)
         overlayView!.alpha = 0
         var finishPoint: CGPoint = CGPointMake(-600, self.center.y);
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animateWithDuration(0.7, animations: {
             self.center = finishPoint
             self.transform = CGAffineTransformMakeRotation(-1)
             self.overlayView!.alpha = 1
             }, completion: { animationFinished in
                 self.removeFromSuperview()
+                self.delegate?.cardSwipedLeft(self)
+                completion(actionCompleted: true)
         })
-        delegate?.cardSwipedLeft(self)
+        
     }
     
-    func haveClickAction(){
-        overlayView!.setMode(GGOverlayViewMode.Tap)
-        overlayView!.alpha = 0
-        var finishPoint: CGPoint = CGPointMake(self.center.x,-100);
-        UIView.animateWithDuration(0.3, animations: {
-            self.center = finishPoint
-            self.overlayView!.alpha = 1
-            }, completion: { animationFinished in
-                self.removeFromSuperview()
-        })
-        delegate?.cardDoubleTapped(self)
-    }
+//    func haveClickAction(){
+//        overlayView!.setMode(GGOverlayViewMode.Tap)
+//        overlayView!.alpha = 0
+//        var finishPoint: CGPoint = CGPointMake(self.center.x,-100);
+//        UIView.animateWithDuration(0.7, animations: {
+//            self.center = finishPoint
+//            self.overlayView!.alpha = 1
+//            }, completion: { animationFinished in
+//                self.removeFromSuperview()
+//        })
+//        delegate?.cardDoubleTapped(self)
+//    }
     
 }

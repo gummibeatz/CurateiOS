@@ -9,8 +9,9 @@
 import Foundation
 import CoreData
 
-class Batch: NSManagedObject {
+class Indexes: NSManagedObject {
 
-    @NSManaged var index: NSNumber
+    @NSManaged var batchIndex: NSNumber
+    @NSManaged var cardsIndex: NSNumber
 
 }

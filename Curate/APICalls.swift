@@ -26,8 +26,11 @@ func getUser(curateAuthToken: String, completionHandler:(currentUser:User) ->())
     let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
         var error:NSError?
         if let userDict: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? NSDictionary{
-            var preferencesDict: NSDictionary = userDict["preferences"] as NSDictionary
             
+            println(curateAuthToken)
+            println(userDict)
+            var preferencesDict: NSDictionary = userDict.valueForKey("preferences") as NSDictionary
+        
             
             /// MUST TAKE THESE OUT LATER!!!!!!!!!
             ///
@@ -156,6 +159,7 @@ func getCurateAuthToken(fbAuthToken: String,completionHandler:(curateAuthToken:S
             println("error=\(error)")
             return
         }
+        println(data)
         var jsonResult:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &err) as NSDictionary
         
         if let authentication_token: String = jsonResult["authentication_token"] as? String {
@@ -174,17 +178,18 @@ func getCurateAuthToken(fbAuthToken: String,completionHandler:(curateAuthToken:S
 
 // accesses FB API and
 // gets fbAuthToken and stores it into the field Tokens.fbAuthToken
-func getFbAuthToken(authTokens: Tokens) {
+func getFbAuthToken() -> String {
     var fbAuthToken = String()
     if (FBSession.activeSession().isOpen) {
         fbAuthToken = FBSession.activeSession().accessTokenData.accessToken
         //manually overridden
         // added in because APP ID and secret aren't set to CurateAnalytics but are set to loginTest
-        fbAuthToken = "CAAKsfqnOlxMBAKsZC08WBPRpG8s8MOQx99kZAeb5TnvCtftPOFZCieBatdjSDuZAljZBHnNcgwE2DBa0Fh9gHUyHsHGKTGIoa8DzI9a82290GUBDbMSd26rIgnvytNUpThT3q1AFGOZCevZBMhVW9eydizPW0aPL9xPqu1DZAQiOMWNPR0PuGMYmL5ZBFRrAUCgN2iXzGd9qdugnbZAaYXveEThrZAnT5vW6aqsqziqqKFIywZDZD"
         
-        authTokens.fbAuthToken = fbAuthToken
+//        fbAuthToken = "CAAKsfqnOlxMBAKsZC08WBPRpG8s8MOQx99kZAeb5TnvCtftPOFZCieBatdjSDuZAljZBHnNcgwE2DBa0Fh9gHUyHsHGKTGIoa8DzI9a82290GUBDbMSd26rIgnvytNUpThT3q1AFGOZCevZBMhVW9eydizPW0aPL9xPqu1DZAQiOMWNPR0PuGMYmL5ZBFRrAUCgN2iXzGd9qdugnbZAaYXveEThrZAnT5vW6aqsqziqqKFIywZDZD"
         
+        return fbAuthToken
     } else {
         println("not logged into FB")
     }
+    return "not logged into FB"
 }

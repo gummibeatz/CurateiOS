@@ -16,14 +16,23 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let cellIdentifier = "cellIdentfier"
     
-    var tableData = ["Minecraft", "facebook", "tweetbot", "instagram"]
+    var tableData:[String] = []
     let cellRowHeight: CGFloat = 50
     var outfitsDelegate:OutfitsVCDelegate?
+    var outfitsTableView: UITableView = UITableView(frame: UIScreen.mainScreen().bounds)
     
     override func loadView() {
         super.loadView()
         
-        var outfitsTableView: UITableView = UITableView(frame: UIScreen.mainScreen().bounds)
+        var bufferData: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as [Outfit]
+        for outfit in bufferData {
+            if let bufftitle: String = outfit.title {
+                tableData.append(outfit.title!)
+            } else {
+                tableData.append("no title")
+            }
+        }
+        
         outfitsTableView.rowHeight = cellRowHeight
         outfitsTableView.delegate = self
         outfitsTableView.dataSource = self
@@ -35,9 +44,32 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.view.addSubview(outfitsTableView)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        var bufferData:[Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as [Outfit]
+        
+        //gotta change eventually
+        println("tableData.count = \(tableData.count)")
+        println("bufferData.count = \(bufferData.count)")
+        
+        if(bufferData.count != tableData.count) {
+            tableData.append(bufferData.last!.title!)
+            outfitsTableView.reloadData()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func createTableDataFromOutfits(outfits: [Outfit]) -> [String] {
+        var temp: [String] = []
+        for outfit in outfits {
+            println(outfit)
+//            temp.append(outfit.title!)
+        }
+        return temp
     }
     
     

@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     var segmentedControl: UISegmentedControl = UISegmentedControl()
     var navigationController: UINavigationController = UINavigationController()
     var measurementsController: MeasurementsVC?
+    var fbLoginVC: FBLoginVC = FBLoginVC()
     var measurementsButton: UIButton = UIButton()
     
 
@@ -57,11 +58,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         window?.backgroundColor = UIColor.whiteColor()
         window?.makeKeyAndVisible()
         window?.rootViewController = FBLoginVC()
+//        window?.rootViewController = fbLoginVC
         FBLoginView.self
         FBProfilePictureView.self
 
         measurementsController = MeasurementsVC()
-        setupMeasurementsButton()
         return true
     }
 
@@ -98,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     func measurementsButtonTapped() {
         println("measurementsButtonTapped")
         self.measurementsButton.removeFromSuperview()
-        measurementsController?.setupReturnButton()
+        measurementsController?.setupOkButton()
         window?.rootViewController = measurementsController
     }
 
@@ -196,9 +197,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     
         // Logs 'install' and 'app activate' App Events.
         FBAppEvents.activateApp()
+        
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String, annotation: AnyObject?) -> Bool {
+        println("in application FB")
+        self.window?.rootViewController = self.measurementsController
+        self.fbLoginVC.resignFirstResponder()
         return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
     }
 

@@ -44,13 +44,15 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let shoeSizePickerData = ["7.5","8.0","8.5","9.0","9.5","10","10.5","11.0","11.5","12.0","12.5","13.0","13.5","14.0"]
     
     var activeTextField:UITextField?
-    var returnButton: UIButton?
+    var okButton: UIButton?
     
     // Do any additional setup after loading the view, typically from a nib.
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.fbLoginVC.setFBAuthToken()
         
         //creating labels
         let measurementLabel = UILabel()
@@ -174,7 +176,7 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.view.addSubview(shirtSizeTextField)
         self.view.addSubview(preferredFitTextField)
         self.view.addSubview(shoeSizeTextField)
-        setupReturnButton()
+        setupOkButton()
     }
     
     //hides the inputView for a UITextField
@@ -200,16 +202,16 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // Dispose of any resources that can be recreated.
     }
     
-    func setupReturnButton() {
-        returnButton = UIButton(frame: CGRect(x: 17, y: 34, width: 22, height: 15))
-        returnButton!.addTarget(self, action: "returnButtonTapped", forControlEvents: .TouchUpInside)
-        returnButton!.setImage(UIImage(named: "menuButton"), forState: .Normal)
-        self.view.addSubview(returnButton!)
+    func setupOkButton() {
+        okButton = UIButton(frame: CGRect(x: UIScreen.mainScreen().bounds.midX - 20, y: 500, width: 50, height: 32))
+        okButton!.addTarget(self, action: "returnButtonTapped", forControlEvents: .TouchUpInside)
+        okButton!.setImage(UIImage(named: "okButton"), forState: .Normal)
+        self.view.addSubview(okButton!)
     }
     
     func returnButtonTapped() {
         var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        self.returnButton!.removeFromSuperview()
+        self.okButton!.removeFromSuperview()
         appDelegate.window?.rootViewController = appDelegate.navigationController
         appDelegate.setupMeasurementsButton()
     }

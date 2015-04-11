@@ -19,10 +19,14 @@ class PropertiesBackView: UIView {
         super.init(frame: frame)
         setupView()
         
+        var image: UIImage = UIImage(named: "notAvailable")!
+        image = RBResizeImage(image, CGSize(width: frame.width, height: frame.height))
+        var imageView: UIImageView = UIImageView(image: image)
+        self.addSubview(imageView)
     }
     
     func setupView() {
-        self.backgroundColor = UIColor.blackColor()
+        self.backgroundColor = UIColor.whiteColor()
         self.layer.cornerRadius = 4
         self.layer.shadowRadius = 3
         self.layer.shadowOpacity = 0.2
