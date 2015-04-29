@@ -9,8 +9,11 @@
 import Foundation
 import CoreData
 
-class Top: NSObject, NSCoding {
+class Top: Clothing {
 
+//    var fileName: String?
+//    var url: String?
+//    var mainCategory: String?
     var brand: String?
     var clothingType: String?
     var clothingType2: String?
@@ -19,14 +22,33 @@ class Top: NSObject, NSCoding {
     var color2: String?
     var fit: String?
     var material: String?
-    var image: NSData?
+//    var imageData: NSData?
     
     override init() {
         super.init()
     }
     
+    init(top: NSDictionary, url: String) {
+        super.init()
+        self.fileName = top.objectForKey("file_name") as? String
+        self.url = url
+        self.mainCategory = top.objectForKey("main_category") as? String
+        self.brand = top.objectForKey("brand") as? String
+        self.clothingType = top.objectForKey("clothing_type") as? String
+        self.clothingType2 = top.objectForKey("clothing_type_2") as? String
+        self.collarType = top.objectForKey("collar_type") as? String
+        self.color1 = top.objectForKey("color_1") as? String
+        self.color2 = top.objectForKey("color_2") as? String
+        self.fit = top.objectForKey("fit") as? String
+        self.material = top.objectForKey("material") as? String
+        self.imageData = getImageData(url)
+    }
+    
     required convenience init(coder aDecoder: NSCoder) {
         self.init()
+        self.fileName = aDecoder.decodeObjectForKey("fileName") as String?
+        self.url = aDecoder.decodeObjectForKey("url") as String?
+        self.mainCategory = aDecoder.decodeObjectForKey("mainCategory") as String?
         self.brand = aDecoder.decodeObjectForKey("brand") as String?
         self.clothingType = aDecoder.decodeObjectForKey("clothingType") as String?
         self.clothingType2 = aDecoder.decodeObjectForKey("clothingType2") as String?
@@ -35,10 +57,13 @@ class Top: NSObject, NSCoding {
         self.color2 = aDecoder.decodeObjectForKey("color2") as String?
         self.fit = aDecoder.decodeObjectForKey("fit") as String?
         self.material = aDecoder.decodeObjectForKey("material") as String?
-        self.image = aDecoder.decodeObjectForKey("image") as NSData?
+        self.imageData = aDecoder.decodeObjectForKey("imageData") as NSData?
     }
     
-    func encodeWithCoder(coder: NSCoder) {
+    override func encodeWithCoder(coder: NSCoder) {
+        coder.encodeObject(self.fileName, forKey: "fileName")
+        coder.encodeObject(self.url, forKey: "url")
+        coder.encodeObject(self.mainCategory, forKey: "mainCategory")
         coder.encodeObject(self.brand, forKey: "brand")
         coder.encodeObject(self.clothingType, forKey: "clothingType")
         coder.encodeObject(self.clothingType2, forKey: "clothingType2")
@@ -47,7 +72,7 @@ class Top: NSObject, NSCoding {
         coder.encodeObject(self.color2, forKey: "color2")
         coder.encodeObject(self.fit, forKey: "fit")
         coder.encodeObject(self.material, forKey: "material")
-        coder.encodeObject(self.image, forKey: "image")
+        coder.encodeObject(self.imageData, forKey: "imageData")
 
     }
 }

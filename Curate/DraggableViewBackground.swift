@@ -26,7 +26,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     var cardsIndex: Int = Int() // keeps track of where you are in cards Index for loading more swipebatches
     var previousActions: Stack<Int> = Stack<Int>()
     var currentBatchIndex: Int = Int()
-    var swipeBatch: [[String]] = [[String]]()
+    var swipeBatch: Array<Array<Clothing>> = Array<Array<Clothing>>()
+    var currentUser: User?
 
     var ownedTops:[Top]?
     var ownedSweaters: [Sweater]?
@@ -45,7 +46,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         self.setupView()
     }
     
-    init(frame: CGRect, swipeBatch: [[String]], indexes: Indexes) {
+    init(frame: CGRect, swipeBatch: Array<Array<Clothing>>, indexes: Indexes, currentUser: User) {
         super.init(frame: frame)
         super.layoutSubviews()
         
@@ -55,12 +56,13 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         self.setupView()
         self.currentBatchIndex = indexes.batchIndex as Int
         self.swipeBatch = swipeBatch
-        let currentBatch: [String] = swipeBatch[self.currentBatchIndex] as [String]
+        self.currentUser = currentUser
         
         //loading urls of pictures into clothingCardLabels
-        for link in currentBatch {
-            clothingCardLabels.addObject(link)
+        for clothes in swipeBatch[self.currentBatchIndex] {
+            clothingCardLabels.addObject(clothes)
         }
+        println("loading finished")
         println(clothingCardLabels.count)
         
         // loading finished
@@ -79,9 +81,11 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         ownedBottoms = readCustomObjArrayFromUserDefaults("ownedBottoms") as? [Bottom]
         ownedShoes = readCustomObjArrayFromUserDefaults("ownedShoes") as? [Shoes]
         
+        println("ownedBottoms = \(ownedBottoms)")
+        
         if(ownedTops!.count == 0) {
             var emptyTop = Top()
-            emptyTop.image =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            emptyTop.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
             ownedTops!.append(emptyTop)
             writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
         }
@@ -99,7 +103,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         }
         if(ownedBottoms!.count == 0) {
             var emptyBottom = Bottom()
-            emptyBottom.image =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            emptyBottom.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
             ownedBottoms!.append(emptyBottom)
             writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")
         }
@@ -150,7 +154,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     func createDraggableViewWithDataAtIndex(index:Int) -> DraggableView{
         var draggableView: DraggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 30, width: CARD_WIDTH, height: CARD_HEIGHT))
-        let imageData: NSData = getImage(clothingCardLabels.objectAtIndex(index) as String)
+        println(clothingCardLabels.objectAtIndex(index))
+        let imageData: NSData = getImageData((clothingCardLabels.objectAtIndex(index) as Clothing).url!)
         draggableView.information.image = UIImage(data: imageData)
         draggableView.delegate = self
         return draggableView
@@ -262,15 +267,16 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     //%%% action called when the card is double tapped.
     func cardSwipedRight(card:UIView){
         // Begin Edit ********
-        // gonna add to the correct clothingCategory Array
-        // MUST CHANGE LATER TO INCLUDE PROPERTIES!!!!!!
-        var top: Top = Top()
-        var topImageData: NSData = UIImageJPEGRepresentation(loadedCards.objectAtIndex(0).information.image!, 0.0)
-        top.image = topImageData
+        var clothingArticle: Clothing = swipeBatch[self.currentBatchIndex][cardsIndex]
+        saveClothingArticle(clothingArticle)
         
-        ownedTops!.append(top) //%%% add top to ownedTops if swiped right
-        
-        writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
+//        var top: Top = Top()
+//        var topImageData: NSData = UIImageJPEGRepresentation(loadedCards.objectAtIndex(0).information.image!, 0.0)
+//        top.imageData = topImageData
+//
+//        ownedTops!.append(top) //%%% add top to ownedTops if swiped right
+//        
+//        writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
         //End edit ********
         
         loadedCards.removeObjectAtIndex(0) //%%% card was swiped, so it's no longer a "loaded card"
@@ -435,22 +441,19 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         self.currentBatchIndex++
         saveBatchIndex()
         
-        let currentBatch: [String] = self.swipeBatch[self.currentBatchIndex] as [String]
+        self.clothingCardLabels.removeAllObjects()
+        self.allCards.removeAllObjects()
         
-        clothingCardLabels.removeAllObjects()
-        allCards.removeAllObjects()
-        
-        //loading urls of pictures into clothingCardLabels
-        for link in currentBatch {
-            clothingCardLabels.addObject(link)
+        //loading tops into clothingCardLabels
+        for clothes in swipeBatch[currentBatchIndex] {
+            self.clothingCardLabels.addObject(clothes)
         }
-        println("clothingCard Label count = \(clothingCardLabels.count)")
+        println("clothingCard Label count = \(self.clothingCardLabels.count)")
         
         // loading finished
-        cardsLoadedIndex = 0
-        cardsIndex = 0
+        self.cardsLoadedIndex = 0
+        self.cardsIndex = 0
         self.loadCards()
-        
     }
     
     func saveBatchIndex() {
@@ -469,6 +472,21 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         var indexes = fetchResults[0]
         indexes.cardsIndex = self.cardsIndex
         (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
+    }
+    
+    func saveClothingArticle(clothingArticle: Clothing) {
+        clothingArticle.imageData = UIImageJPEGRepresentation(loadedCards.objectAtIndex(0).information.image!, 0.0)
+        println(clothingArticle.mainCategory)
+        switch clothingArticle.mainCategory! as String {
+        case "Tops":
+            ownedTops!.append(clothingArticle as Top) //%%% add top to ownedTops if swiped right
+            writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
+        case "Bottoms":
+            ownedBottoms!.append(clothingArticle as Bottom) //%%% add bottom to ownedBottoms if swiped right
+            writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")
+        default:
+            println("not anything")
+        }
     }
     
     

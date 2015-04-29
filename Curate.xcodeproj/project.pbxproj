@@ -34,8 +34,6 @@
 		1AA3C5A61A460234008C732C /* MeasurementsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C59E1A460234008C732C /* MeasurementsVC.swift */; };
 		1AA3C5A71A460234008C732C /* OutfitBuilderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C59F1A460234008C732C /* OutfitBuilderVC.swift */; };
 		1AA3C5A91A460316008C732C /* VNeck in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5A81A460316008C732C /* VNeck */; };
-		1AA3C5AC1A46034C008C732C /* tshirt1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5AA1A46034C008C732C /* tshirt1.jpg */; };
-		1AA3C5AD1A46034C008C732C /* tshirt2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5AB1A46034C008C732C /* tshirt2.jpg */; };
 		1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5AE1A46035A008C732C /* measureTape.jpg */; };
 		1AA3C5B11A46035A008C732C /* tshirtIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5AF1A46035A008C732C /* tshirtIcon.jpg */; };
 		1AA3C5B71A461003008C732C /* SegmentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C5B61A461003008C732C /* SegmentsController.swift */; };
@@ -45,6 +43,7 @@
 		1AF1A27C1ACA41E1006770D6 /* Indexes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2781ACA41E1006770D6 /* Indexes.swift */; };
 		1AF1A27D1ACA41E1006770D6 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2791ACA41E1006770D6 /* Tokens.swift */; };
 		1AF1A27F1ACA41E1006770D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A27B1ACA41E1006770D6 /* User.swift */; };
+		1AF4B8E51AED30E40007C526 /* Clothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B8E41AED30E40007C526 /* Clothing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,8 +89,6 @@
 		1AA3C59E1A460234008C732C /* MeasurementsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementsVC.swift; sourceTree = "<group>"; };
 		1AA3C59F1A460234008C732C /* OutfitBuilderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitBuilderVC.swift; sourceTree = "<group>"; };
 		1AA3C5A81A460316008C732C /* VNeck */ = {isa = PBXFileReference; lastKnownFileType = folder; path = VNeck; sourceTree = "<group>"; };
-		1AA3C5AA1A46034C008C732C /* tshirt1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tshirt1.jpg; sourceTree = "<group>"; };
-		1AA3C5AB1A46034C008C732C /* tshirt2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tshirt2.jpg; sourceTree = "<group>"; };
 		1AA3C5AE1A46035A008C732C /* measureTape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = measureTape.jpg; sourceTree = "<group>"; };
 		1AA3C5AF1A46035A008C732C /* tshirtIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tshirtIcon.jpg; sourceTree = "<group>"; };
 		1AA3C5B61A461003008C732C /* SegmentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentsController.swift; sourceTree = "<group>"; };
@@ -101,6 +98,7 @@
 		1AF1A2781ACA41E1006770D6 /* Indexes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Indexes.swift; sourceTree = "<group>"; };
 		1AF1A2791ACA41E1006770D6 /* Tokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		1AF1A27B1ACA41E1006770D6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1AF4B8E41AED30E40007C526 /* Clothing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clothing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +174,6 @@
 				1AA3C5B61A461003008C732C /* SegmentsController.swift */,
 				1A8CCC1D1ACB2832001E3AF0 /* GlobalFunctions */,
 				1AA3C5B21A460376008C732C /* ViewControllers */,
-				1AA3C5B51A4603EF008C732C /* Tshirts */,
 				1AA3C5A81A460316008C732C /* VNeck */,
 				1AA3C5801A4601B2008C732C /* Images.xcassets */,
 				1AA3C5781A4601B2008C732C /* Curate.xcdatamodeld */,
@@ -245,15 +242,6 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
-		1AA3C5B51A4603EF008C732C /* Tshirts */ = {
-			isa = PBXGroup;
-			children = (
-				1AA3C5AA1A46034C008C732C /* tshirt1.jpg */,
-				1AA3C5AB1A46034C008C732C /* tshirt2.jpg */,
-			);
-			name = Tshirts;
-			sourceTree = "<group>";
-		};
 		1ABDC6621A4D0A8C007D0BE1 /* OutfitBuilder */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +262,7 @@
 				1AF1A2791ACA41E1006770D6 /* Tokens.swift */,
 				1AF1A27B1ACA41E1006770D6 /* User.swift */,
 				1A8CCC201AD05F72001E3AF0 /* Outfit.swift */,
+				1AF4B8E41AED30E40007C526 /* Clothing.swift */,
 				1A8CCC191ACB1E77001E3AF0 /* Top.swift */,
 				1A8CCC221AD0600F001E3AF0 /* Sweater.swift */,
 				1A8CCC241AD06017001E3AF0 /* Jacket.swift */,
@@ -366,10 +355,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AA3C5B11A46035A008C732C /* tshirtIcon.jpg in Resources */,
-				1AA3C5AC1A46034C008C732C /* tshirt1.jpg in Resources */,
 				1AA3C5A91A460316008C732C /* VNeck in Resources */,
 				1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */,
-				1AA3C5AD1A46034C008C732C /* tshirt2.jpg in Resources */,
 				1AA3C5811A4601B2008C732C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +402,7 @@
 				1AA3C5A71A460234008C732C /* OutfitBuilderVC.swift in Sources */,
 				1A8CCC1A1ACB1E77001E3AF0 /* Top.swift in Sources */,
 				1A96E9A81A58C67E00C23C0E /* PropertiesViewVC.swift in Sources */,
+				1AF4B8E51AED30E40007C526 /* Clothing.swift in Sources */,
 				1A8CCC1C1ACB22F3001E3AF0 /* ReadWriteCalls.swift in Sources */,
 				1AF1A27D1ACA41E1006770D6 /* Tokens.swift in Sources */,
 				1AF1A27F1ACA41E1006770D6 /* User.swift in Sources */,

@@ -14,14 +14,12 @@ class WardrobeBuilderVC: UIViewController {
     
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
     var user: User?
-    var batches = [[String]]()
+    var batches = Array<AnyObject>()
     var indexes: Indexes?
     var draggableBackground: DraggableViewBackground?
     
     //should change where the token is located in the larger project
     //also should change the place to getUser to the login screen.
-    
-//    let curateAuthToken = "mXa3EtKdNyr3guJ6iHfr"
     
     
     override func viewDidLoad() {
@@ -57,18 +55,17 @@ class WardrobeBuilderVC: UIViewController {
             
             getUser(curateAuthToken) {
                 currentUser in
-                self.user = currentUser
                 
                 getSwipeBatch(currentUser) {
                     swipeBatch in
+                    println("getSwipeBatch finished")
                     self.batches = swipeBatch
-                    
                     // only add in the draggable background view after we have the swipe batches
                     // so that we can load up the images
                     // I gotta ask somebody about setting up these concurrency dealios
                     dispatch_async(dispatch_get_main_queue(), {
                         self.draggableBackground!.removeFromSuperview()
-                        self.draggableBackground  = DraggableViewBackground(frame: self.view.frame, swipeBatch: swipeBatch, indexes: self.indexes!)
+                        self.draggableBackground  = DraggableViewBackground(frame: self.view.frame, swipeBatch: swipeBatch, indexes: self.indexes!, currentUser: currentUser)
                         self.view.addSubview(self.draggableBackground!)
                     })
                 }

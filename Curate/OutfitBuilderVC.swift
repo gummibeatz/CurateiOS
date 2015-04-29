@@ -54,6 +54,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         sweaterPickerData = readCustomObjArrayFromUserDefaults("ownedSweaters") as [Sweater]
         jacketPickerData = readCustomObjArrayFromUserDefaults("ownedJackets") as [Jacket]
         pantsPickerData = readCustomObjArrayFromUserDefaults("ownedBottoms") as [Bottom]
+        println("pantspickerdatacount = \(pantsPickerData.count)")
         shoePickerData = readCustomObjArrayFromUserDefaults("ownedShoes") as [Shoes]
         
         shirtPicker.reloadAllComponents()
@@ -223,7 +224,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     
     func shirtPickerViewTapGestureRecognized() {
         println("shirtPicker was tapped")
-        var image:UIImage = UIImage(data: shirtPickerData[shirtPicker.selectedRowInComponent(0)].image!)!
+        var image:UIImage = UIImage(data: shirtPickerData[shirtPicker.selectedRowInComponent(0)].imageData!)!
         self.view.addSubview(self.blurEffectView)
         outfitBuilderVCDelegate?.pickerViewWasTapped(image)
     }
@@ -245,7 +246,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     
     func pantsPickerViewTapGestureRecognized() {
         println("pantsPicker was tapped")
-        var image:UIImage = UIImage(data: pantsPickerData[pantsPicker.selectedRowInComponent(0)].image!)!
+        var image:UIImage = UIImage(data: pantsPickerData[pantsPicker.selectedRowInComponent(0)].imageData!)!
         self.view.addSubview(self.blurEffectView)
         outfitBuilderVCDelegate?.pickerViewWasTapped(image)
     }
@@ -338,13 +339,13 @@ extension OutfitBuilderVC: UIPickerViewDelegate {
         var img: UIImage?
         switch pickerView.tag {
         case shirtPicker.tag:
-            img = UIImage(data:shirtPickerData[row].image!)
+            img = UIImage(data:shirtPickerData[row].imageData!)
         case sweaterPicker.tag:
             img = UIImage(data: sweaterPickerData[row].image!)
         case jacketPicker.tag:
             img = UIImage(data: jacketPickerData[row].image!)
         case pantsPicker.tag:
-            img = UIImage(data: pantsPickerData[row].image!)
+            img = UIImage(data: pantsPickerData[row].imageData!)
         case shoePicker.tag:
             img = UIImage(data: shoePickerData[row].image!)
         default:

@@ -28,7 +28,6 @@ func getUser(curateAuthToken: String, completionHandler:(currentUser:User) ->())
         if let userDict: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? NSDictionary{
             
             println(curateAuthToken)
-            println(userDict)
             var preferencesDict: NSDictionary = userDict.valueForKey("preferences") as NSDictionary
         
             
@@ -38,6 +37,8 @@ func getUser(curateAuthToken: String, completionHandler:(currentUser:User) ->())
             preferencesDict.setValue("9", forKey: "age")
             preferencesDict.setValue("Extra Slim", forKey: "preferred_shirt_fit")
             preferencesDict.setValue("Regular", forKey: "preferred_pants_fit")
+            
+//            println("preferencesDict = \(preferencesDict)")
             
             if let moc = WardrobeBuilderVC().managedObjectContext {
                 var user: User = User.createInManagedObjectContext(moc, preferences: preferencesDict)
@@ -51,32 +52,42 @@ func getUser(curateAuthToken: String, completionHandler:(currentUser:User) ->())
     task.resume()
 }
 
-//returns the dictionary of swipeBatches.
-func getSwipeBatch(user: User, completionHandler:(swipeBatch:[[String]]) ->()) {
+//returns the dictionary of swipeBatches as a completion handler
+func getSwipeBatch(user: User, completionHandler:(swipeBatch:Array<Array<Clothing>>) ->()) {
+    println("in getSwipeBatch")
     var swipeBatch  = chooseSwipeBatch(user)
-    println("going to http://curateanalytics.herokuapp.com/api/v1/user.json/\(swipeBatch.id)")
-    let request = NSMutableURLRequest(URL: NSURL(string: "http://curateanalytics.herokuapp.com/api/v1/batch/\(swipeBatch.id)")!)
+    println("going to http://curateanalytics.herokuapp.com/api/v1/batch?batch_folder=\(swipeBatch.folder)")
+    let request = NSMutableURLRequest(URL: NSURL(string: "http://curateanalytics.herokuapp.com/api/v1/batch?batch_folder=\(swipeBatch.folder)")!)
     request.HTTPMethod = "GET"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     
-    println("just before task")
+    println("just before task in getSwipeBatch")
     
     let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
         var error: NSError?
-        if let batchDict: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? NSDictionary {
+        if let batchArr: Array<Array<AnyObject>> = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? Array<Array<AnyObject>> {
             
             // hard coded in should make a function to create this string
             // auto make the extra_slim_shirt_regular_pant part
             
-            
-            completionHandler(swipeBatch: formatSwipeBatch(batchDict.objectForKey("folder")?.objectForKey(swipeBatch.folder) as NSDictionary))
+            println("before completion handler in getswipebatch")
+//            println(batchDict.objectForKey("folder")?.objectForKey(swipeBatch.folder) as Array<Array<NSDictionary>> )
+            completionHandler(swipeBatch: formatSwipeBatch(batchArr))
+            println("after completion handler in get swipebatch")
         }
         
     }
     task.resume()
 }
 
-func getImage(imagePath: String) -> NSData {
+//func getFormattedBatchIndex(batchIndex: NSNumber) -> String {
+//    let formatter = NSNumberFormatter()
+//    let num:Int = batchIndex.integerValue + 1
+//    formatter.minimumIntegerDigits = 2
+//    return formatter.stringFromNumber(NSNumber(integer: num))!
+//}
+
+func getImageData(imagePath: String) -> NSData {
     let url = NSURL(string: imagePath)
     let data = NSData(contentsOfURL: url!)
     return data!
@@ -110,20 +121,44 @@ func chooseSwipeBatch(user:User) -> (id: Int, folder: String) {
     }
 }
 
-//formats swipeBatches into a 2D array with row number corresponding to batch number
-func formatSwipeBatch(batchDict: NSDictionary) -> [[String]] {
-    var batches = Array<Array<String>>()
-    for var row = 0; row < 18; row++ {
-        if row < 9 {
+//formats swipeBatch by returning an array of Tops should probably choose if its bottoms or not later
+// index    |  field
+// 0        |  id
+// 1        |  user preference
+// 2        |  batch number
+// 3        |  filename
+// 4        |  url
+// 5        |  Top properties
+func formatSwipeBatch(batchArr: Array<Array<AnyObject>>) -> Array<Array<Clothing>> {
+    println("in formatSwipeBatch")
+    var batches: Array<Array<Clothing>> = Array<Array<Clothing>>()
+    var batchRow: Array<Clothing> = Array<Clothing>()
+    for var row = 0; row < batchArr.count; row++ {
+        batchRow.removeAll(keepCapacity: false)
+        for var col = 0; col < (batchArr[row]).count; col++ {
+            let tempDict: NSDictionary = batchArr[row][col] as NSDictionary
+            let url: String = tempDict.objectForKey("url") as String
+            let clothingDict:NSDictionary = tempDict.objectForKey("properties") as NSDictionary
+            var clothing: Clothing = Clothing()
             
-            let filename:[String] = batchDict.objectForKey("batch_0\(row+1)")!.objectForKey("filenames")! as [String]
-            batches.append(filename)
-
-        } else {
-            let filename:[String] = batchDict.objectForKey("batch_\(row+1)")!.objectForKey("filenames")! as [String]
-            batches.append(filename)
+            /// THIS IS SUPER SLOW CHANGE LATER???
+            switch clothingDict.objectForKey("main_category") as String {
+            case "Tops":
+                println("making it a top")
+                clothing = Top(top: clothingDict, url: url)
+            case "Bottoms":
+                println("making it a bottom")
+                clothing = Bottom(bottom: clothingDict, url: url)
+            default:
+                println("not anything")
+            }
+            batchRow.append(clothing)
         }
+        batches.append(batchRow)
     }
+    println("finished formatting swipebatch")
+    println("number of batch rows = \(batches.count)")
+    println("number of batch col for first row = \(batches[1].count)")
     return batches
 }
 
@@ -159,9 +194,9 @@ func getCurateAuthToken(fbAuthToken: String,completionHandler:(curateAuthToken:S
             println("error=\(error)")
             return
         }
-        println(data)
+        println(response)
         var jsonResult:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &err) as NSDictionary
-        
+        println(jsonResult)
         if let authentication_token: String = jsonResult["authentication_token"] as? String {
             println("curateAuthToken given")
             completionHandler(curateAuthToken: authentication_token)
