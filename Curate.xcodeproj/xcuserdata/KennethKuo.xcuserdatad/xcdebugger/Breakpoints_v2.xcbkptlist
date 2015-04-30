@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "452013426.704988"
+            timestampString = "452023370.010617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "443"
-            endingLineNumber = "443"
+            startingLineNumber = "450"
+            endingLineNumber = "450"
             landmarkName = "loadNextBatch()"
             landmarkType = "5">
          </BreakpointContent>
@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "452013852.647639"
+            timestampString = "452023370.010617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
+            startingLineNumber = "453"
+            endingLineNumber = "453"
             landmarkName = "loadNextBatch()"
             landmarkType = "5">
          </BreakpointContent>
@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/APICalls.swift"
-            timestampString = "452013652.062948"
+            timestampString = "452021044.165554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "formatSwipeBatch(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -296,11 +296,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "452012912.94449"
+            timestampString = "452023370.010617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "init(frame:swipeBatch:indexes:currentUser:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -312,11 +312,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "452012912.94449"
+            timestampString = "452023370.010617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "createDraggableViewWithDataAtIndex(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -328,29 +328,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "452013852.647639"
+            timestampString = "452023370.010617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
+            startingLineNumber = "492"
+            endingLineNumber = "492"
             landmarkName = "saveClothingArticle(_:)"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Curate/APICalls.swift"
-            timestampString = "452013652.062948"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "formatSwipeBatch(_:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

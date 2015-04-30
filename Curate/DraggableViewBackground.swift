@@ -58,10 +58,17 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         self.swipeBatch = swipeBatch
         self.currentUser = currentUser
         
+        //take this out later when batches are fixed
+        while(swipeBatch[currentBatchIndex].count == 0) {
+            self.currentBatchIndex++
+        }
+        
         //loading urls of pictures into clothingCardLabels
         for clothes in swipeBatch[self.currentBatchIndex] {
             clothingCardLabels.addObject(clothes)
         }
+        println(swipeBatch[8].count)
+        println("batchindex = \(currentBatchIndex)")
         println("loading finished")
         println(clothingCardLabels.count)
         
@@ -444,6 +451,11 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         self.clothingCardLabels.removeAllObjects()
         self.allCards.removeAllObjects()
         
+        //take this out later when batches are fixed
+        while(swipeBatch[currentBatchIndex].count == 0) {
+            self.currentBatchIndex++
+        }
+        
         //loading tops into clothingCardLabels
         for clothes in swipeBatch[currentBatchIndex] {
             self.clothingCardLabels.addObject(clothes)
@@ -479,10 +491,13 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         println(clothingArticle.mainCategory)
         switch clothingArticle.mainCategory! as String {
         case "Tops":
-            ownedTops!.append(clothingArticle as Top) //%%% add top to ownedTops if swiped right
+            let top: Top = Top(top: clothingArticle.properties!, url: clothingArticle.url!)
+            ownedTops!.append(top) //%%% add top to ownedTops if swiped right
             writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
         case "Bottoms":
-            ownedBottoms!.append(clothingArticle as Bottom) //%%% add bottom to ownedBottoms if swiped right
+            let bottom: Bottom = Bottom(bottom: clothingArticle.properties!, url: clothingArticle.url!)
+            println(bottom)
+            ownedBottoms!.append(bottom) //%%% add bottom to ownedBottoms if swiped right
             writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")
         default:
             println("not anything")

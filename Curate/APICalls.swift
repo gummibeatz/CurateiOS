@@ -139,19 +139,7 @@ func formatSwipeBatch(batchArr: Array<Array<AnyObject>>) -> Array<Array<Clothing
             let tempDict: NSDictionary = batchArr[row][col] as NSDictionary
             let url: String = tempDict.objectForKey("url") as String
             let clothingDict:NSDictionary = tempDict.objectForKey("properties") as NSDictionary
-            var clothing: Clothing = Clothing()
-            
-            /// THIS IS SUPER SLOW CHANGE LATER???
-            switch clothingDict.objectForKey("main_category") as String {
-            case "Tops":
-                println("making it a top")
-                clothing = Top(top: clothingDict, url: url)
-            case "Bottoms":
-                println("making it a bottom")
-                clothing = Bottom(bottom: clothingDict, url: url)
-            default:
-                println("not anything")
-            }
+            var clothing = Clothing(clothing: clothingDict, url: url)
             batchRow.append(clothing)
         }
         batches.append(batchRow)

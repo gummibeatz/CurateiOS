@@ -193,10 +193,10 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         //write an alertview controller for adding in titles and tags
         outfit.title = "test"
         outfit.top = shirtPickerData[shirtPicker.selectedRowInComponent(0)]
-//        outfit.sweater = sweaterPickerData[sweaterPicker.selectedRowInComponent(0)]
-//        outfit.jacket = jacketPickerData[jacketPicker.selectedRowInComponent(0)]
-//        outfit.bottom = pantsPickerData[pantsPicker.selectedRowInComponent(0)]
-//        outfit.shoes = shoePickerData[shoePicker.selectedRowInComponent(0)]
+        outfit.sweater = sweaterPickerData[sweaterPicker.selectedRowInComponent(0)]
+        outfit.jacket = jacketPickerData[jacketPicker.selectedRowInComponent(0)]
+        outfit.bottom = pantsPickerData[pantsPicker.selectedRowInComponent(0)]
+        outfit.shoes = shoePickerData[shoePicker.selectedRowInComponent(0)]
         // need to find some other way to double check outfit
         if( find(ownedOutfits, outfit) != nil) {
             println("outfit already exists")

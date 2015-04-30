@@ -160,8 +160,9 @@ class DraggableView: UIView {
             self.center = finishPoint
             }, completion: { animationFinished in
                 self.removeFromSuperview()
+                self.delegate?.cardSwipedRight(self)
         })
-        self.delegate?.cardSwipedRight(self)
+        
     }
     
     //called when swipe exceeds the ACTION_MARGIN to the left

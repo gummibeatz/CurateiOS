@@ -15,6 +15,8 @@ class Clothing: NSObject, NSCoding {
     var url: String?
     var mainCategory: String?
     var imageData: NSData?
+    
+    var properties: NSDictionary?
 
     
     override init() {
@@ -26,6 +28,8 @@ class Clothing: NSObject, NSCoding {
         self.fileName = clothing.objectForKey("file_name") as? String
         self.url = url
         self.mainCategory = clothing.objectForKey("main_category") as? String
+        
+        self.properties = clothing
     }
     
     required convenience init(coder aDecoder: NSCoder) {
@@ -33,11 +37,14 @@ class Clothing: NSObject, NSCoding {
         self.fileName = aDecoder.decodeObjectForKey("fileName") as String?
         self.url = aDecoder.decodeObjectForKey("url") as String?
         self.mainCategory = aDecoder.decodeObjectForKey("mainCategory") as String?
+        
+        self.properties = aDecoder.decodeObjectForKey("properties") as NSDictionary?
     }
     
     func encodeWithCoder(coder: NSCoder) {
         coder.encodeObject(self.fileName, forKey: "fileName")
         coder.encodeObject(self.url, forKey: "url")
         coder.encodeObject(self.mainCategory, forKey: "mainCategory")
+        coder.encodeObject(self.properties, forKey: "properties")
     }
 }
