@@ -94,7 +94,9 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         heightTextField.inputAccessoryView = toolbar
         heightTextField.inputView = heightPicker
         heightTextField.frame = CGRectMake(200, 55, 100, 35)
-        heightTextField.backgroundColor = UIColor.blueColor()
+        heightTextField.borderStyle = UITextBorderStyle.RoundedRect
+        heightTextField.layer.borderColor = UIColor.grayColor().CGColor;
+        heightTextField.layer.cornerRadius = CGFloat(5.0)
         
         weightPicker.delegate = self
         weightPicker.dataSource = self
@@ -104,9 +106,10 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         weightTextField.inputAccessoryView = toolbar
         weightTextField.inputView = weightPicker
         weightTextField.frame = CGRectMake(200, 105, 100, 35)
-        weightTextField.backgroundColor = UIColor.blueColor()
-        weightTextField.text = "120"
-        
+        weightTextField.borderStyle = UITextBorderStyle.RoundedRect
+        weightTextField.layer.borderColor = UIColor.grayColor().CGColor
+        weightTextField.layer.cornerRadius = CGFloat(5.0)
+ 
         agePicker.delegate = self
         agePicker.dataSource = self
         agePicker.frame = CGRectMake(0,0,500,80)
@@ -115,7 +118,9 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         ageTextField.inputAccessoryView = toolbar
         ageTextField.inputView = agePicker
         ageTextField.frame = CGRectMake(200, 155, 100, 35)
-        ageTextField.backgroundColor = UIColor.blueColor()
+        ageTextField.borderStyle = UITextBorderStyle.RoundedRect
+        ageTextField.layer.borderColor = UIColor.grayColor().CGColor
+        ageTextField.layer.cornerRadius = CGFloat(5.0)
         ageTextField.text = "20"
         
         waistPicker.delegate = self
@@ -125,7 +130,9 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         waistTextField.inputAccessoryView = toolbar
         waistTextField.inputView = waistPicker
         waistTextField.frame = CGRectMake(200, 205, 100, 35)
-        waistTextField.backgroundColor = UIColor.blueColor()
+        waistTextField.borderStyle = UITextBorderStyle.RoundedRect
+        waistTextField.layer.borderColor = UIColor.grayColor().CGColor
+        waistTextField.layer.cornerRadius = CGFloat(5.0)
         
         inseamPicker.delegate = self
         inseamPicker.dataSource = self
@@ -134,7 +141,9 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         inseamTextField.inputAccessoryView = toolbar
         inseamTextField.inputView = inseamPicker
         inseamTextField.frame = CGRectMake(200, 255, 100, 35)
-        inseamTextField.backgroundColor = UIColor.blueColor()
+        inseamTextField.borderStyle = UITextBorderStyle.RoundedRect
+        inseamTextField.layer.borderColor = UIColor.grayColor().CGColor
+        inseamTextField.layer.cornerRadius = CGFloat(5.0)
         
         shirtSizePicker.delegate = self
         shirtSizePicker.dataSource = self
@@ -143,7 +152,9 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         shirtSizeTextField.inputAccessoryView = toolbar
         shirtSizeTextField.inputView = shirtSizePicker
         shirtSizeTextField.frame = CGRectMake(200, 305, 100, 35)
-        shirtSizeTextField.backgroundColor = UIColor.blueColor()
+        shirtSizeTextField.borderStyle = UITextBorderStyle.RoundedRect
+        shirtSizeTextField.layer.borderColor = UIColor.grayColor().CGColor
+        shirtSizeTextField.layer.cornerRadius = CGFloat(5.0)
         
         preferredFitPicker.delegate = self
         preferredFitPicker.dataSource = self
@@ -152,7 +163,9 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         preferredFitTextField.inputAccessoryView = toolbar
         preferredFitTextField.inputView = preferredFitPicker
         preferredFitTextField.frame = CGRectMake(200, 355, 100, 35)
-        preferredFitTextField.backgroundColor = UIColor.blueColor()
+        preferredFitTextField.borderStyle = UITextBorderStyle.RoundedRect
+        preferredFitTextField.layer.borderColor = UIColor.grayColor().CGColor
+        preferredFitTextField.layer.cornerRadius = CGFloat(5.0)
         
         shoeSizePicker.delegate = self
         shoeSizePicker.dataSource = self
@@ -161,7 +174,9 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         shoeSizeTextField.inputAccessoryView = toolbar
         shoeSizeTextField.inputView = shoeSizePicker
         shoeSizeTextField.frame = CGRectMake(200, 405, 100, 35)
-        shoeSizeTextField.backgroundColor = UIColor.blueColor()
+        shoeSizeTextField.borderStyle = UITextBorderStyle.RoundedRect
+        shoeSizeTextField.layer.borderColor = UIColor.grayColor().CGColor
+        shoeSizeTextField.layer.cornerRadius = CGFloat(5.0)
         
         
         
