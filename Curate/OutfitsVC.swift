@@ -20,6 +20,7 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let cellRowHeight: CGFloat = 50
     var outfitsDelegate:OutfitsVCDelegate?
     var outfitsTableView: UITableView = UITableView(frame: UIScreen.mainScreen().bounds)
+    var ownedOutfits: [Outfit]?
     
     override func loadView() {
         super.loadView()
@@ -46,14 +47,14 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        var bufferData:[Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as [Outfit]
+        self.ownedOutfits = readCustomObjArrayFromUserDefaults("ownedOutfits") as? [Outfit]
         
         //gotta change eventually
         println("tableData.count = \(tableData.count)")
-        println("bufferData.count = \(bufferData.count)")
+        println("ownedOutfits.count = \(ownedOutfits!.count)")
         
-        if(bufferData.count != tableData.count) {
-            tableData.append(bufferData.last!.title!)
+        if(ownedOutfits!.count != tableData.count) {
+            tableData.append(ownedOutfits!.last!.title!)
             outfitsTableView.reloadData()
         }
     }
@@ -72,6 +73,17 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return temp
     }
     
+    func deleteOutfitWithTitle(title: String) {
+        var outfitIndex: Int?
+        for var i = 0; i < ownedOutfits!.count; i++ {
+            if ownedOutfits![i].title == title {
+                outfitIndex = i
+                break
+            }
+        }
+        ownedOutfits!.removeAtIndex(outfitIndex!)
+        writeCustomObjArraytoUserDefaults(ownedOutfits!, "ownedOutfits")
+    }
     
 }
 
@@ -105,23 +117,21 @@ extension OutfitsVC: UITableViewDelegate {
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         
-        //        let alert = UIAlertController(title: "Item selected", message: "You selected item \(indexPath.row)", preferredStyle: UIAlertControllerStyle.Alert)
-        //
-        //        alert.addAction(UIAlertAction(title: "OK",
-        //            style: UIAlertActionStyle.Default,
-        //            handler: {
-        //                (alert: UIAlertAction!) in println("An alert of type \(alert.style.hashValue) was tapped!")
-        //        }))
-        //
-        //        self.presentViewController(alert, animated: true, completion: nil)
-        
     }
     
     func tableView(tableView: UITableView!, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject]! {
         let deleteClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            self.tableData.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             println("Delete closure called")
+            
+            var alert = UIAlertController(title: "Warning", message: "Sure you want to delete?", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: {
+                action in
+                self.deleteOutfitWithTitle(self.tableData[indexPath.row])
+                self.tableData.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
         }
         
         let editClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in

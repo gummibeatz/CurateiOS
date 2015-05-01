@@ -37,6 +37,7 @@
 		1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5AE1A46035A008C732C /* measureTape.jpg */; };
 		1AA3C5B11A46035A008C732C /* tshirtIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5AF1A46035A008C732C /* tshirtIcon.jpg */; };
 		1AA3C5B71A461003008C732C /* SegmentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C5B61A461003008C732C /* SegmentsController.swift */; };
+		1AC9AC4B1AF2E9470090E108 /* AddOutfitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC9AC4A1AF2E9470090E108 /* AddOutfitView.swift */; };
 		1ACC8B101A58C82200093290 /* PropertiesBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */; };
 		1ACC8B111A58C82200093290 /* PropertiesFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */; };
 		1AF1A2731ACA3FFF006770D6 /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2721ACA3FFF006770D6 /* APICalls.swift */; };
@@ -92,6 +93,7 @@
 		1AA3C5AE1A46035A008C732C /* measureTape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = measureTape.jpg; sourceTree = "<group>"; };
 		1AA3C5AF1A46035A008C732C /* tshirtIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tshirtIcon.jpg; sourceTree = "<group>"; };
 		1AA3C5B61A461003008C732C /* SegmentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentsController.swift; sourceTree = "<group>"; };
+		1AC9AC4A1AF2E9470090E108 /* AddOutfitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddOutfitView.swift; sourceTree = "<group>"; };
 		1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesBackView.swift; sourceTree = "<group>"; };
 		1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesFrontView.swift; sourceTree = "<group>"; };
 		1AF1A2721ACA3FFF006770D6 /* APICalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			children = (
 				1A96E9A51A58C66200C23C0E /* OutfitBuilderContainerVC.swift */,
 				1AA3C59F1A460234008C732C /* OutfitBuilderVC.swift */,
+				1AC9AC4A1AF2E9470090E108 /* AddOutfitView.swift */,
 				1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */,
 				1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */,
 				1A96E9A71A58C67E00C23C0E /* PropertiesViewVC.swift */,
@@ -388,6 +391,7 @@
 				1A8CCC271AD0601C001E3AF0 /* Bottom.swift in Sources */,
 				1ACC8B111A58C82200093290 /* PropertiesFrontView.swift in Sources */,
 				1A8CCC291AD06024001E3AF0 /* Shoes.swift in Sources */,
+				1AC9AC4B1AF2E9470090E108 /* AddOutfitView.swift in Sources */,
 				1AA3C5771A4601B2008C732C /* AppDelegate.swift in Sources */,
 				1AA3C5A01A460234008C732C /* WardrobeBuilderVC.swift in Sources */,
 				1AF1A2731ACA3FFF006770D6 /* APICalls.swift in Sources */,

@@ -38,10 +38,10 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
                     options: UIViewAnimationOptions.TransitionCrossDissolve,
                     animations: {
                         appDelegate.window!.rootViewController = appDelegate.navigationController
-                    }, completion: {
-                        animationFinished in
                         appDelegate.setupMeasurementsButton()
                         
+                    }, completion: {
+                        animationFinished in
                 })
             }
         } else {

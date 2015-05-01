@@ -210,10 +210,16 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func returnButtonTapped() {
-        var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        self.okButton!.removeFromSuperview()
-        appDelegate.window?.rootViewController = appDelegate.navigationController
-        appDelegate.setupMeasurementsButton()
+        if (heightTextField.text.isEmpty || weightTextField.text.isEmpty || ageTextField.text.isEmpty || waistTextField.text.isEmpty || inseamTextField.text.isEmpty || shirtSizeTextField.text.isEmpty || preferredFitTextField.text.isEmpty || shoeSizeTextField.text.isEmpty) {
+            var alert = UIAlertController(title: "Missing Fields", message: "Please fill in all fields to proceed", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            self.okButton!.removeFromSuperview()
+            appDelegate.window?.rootViewController = appDelegate.navigationController
+            appDelegate.setupMeasurementsButton()
+        }
     }
 }
 

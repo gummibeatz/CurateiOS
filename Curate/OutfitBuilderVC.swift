@@ -12,7 +12,9 @@ protocol OutfitBuilderVCDelegate {
     func pickerViewWasTapped(image: UIImage)
 }
 
-class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate {
+class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate, AddOutfitViewDelegate {
+    
+    var addOutfitView: AddOutfitView?
     
     let shirtPicker = UIPickerView()
     let sweaterPicker = UIPickerView()
@@ -190,36 +192,15 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     func addOutfit() {
         println("addOutfit Button hit")
         var outfit: Outfit = Outfit()
-        //write an alertview controller for adding in titles and tags
-        outfit.title = "test"
         outfit.top = shirtPickerData[shirtPicker.selectedRowInComponent(0)]
         outfit.sweater = sweaterPickerData[sweaterPicker.selectedRowInComponent(0)]
         outfit.jacket = jacketPickerData[jacketPicker.selectedRowInComponent(0)]
         outfit.bottom = pantsPickerData[pantsPicker.selectedRowInComponent(0)]
         outfit.shoes = shoePickerData[shoePicker.selectedRowInComponent(0)]
-        // need to find some other way to double check outfit
-        if( find(ownedOutfits, outfit) != nil) {
-            println("outfit already exists")
-        } else if (outfitWithTitleExists(outfit.title!)) {
-            println("title already exists")
-        } else {
-            ownedOutfits.append(outfit)
-            writeCustomObjArraytoUserDefaults(ownedOutfits, "ownedOutfits")
-            
-            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-            appDelegate.segmentedControl.selectedSegmentIndex = appDelegate.OUTFITSINDEX
-            appDelegate.segmentsController.indexDidChangeForSegmentedControl(appDelegate.segmentedControl)
-            
-        }
-    }
-    
-    func outfitWithTitleExists(title: String) -> Bool {
-        for outfit in ownedOutfits {
-            if(outfit.title == title) {
-                return true
-            }
-        }
-        return false
+        self.addOutfitView = AddOutfitView(frame: CGRect(x: 20, y: 100, width: screenWidth-40, height: UIScreen.mainScreen().bounds.height - 150), outfit: outfit)
+        addOutfitView?.delegate = self
+        self.view.addSubview(blurEffectView)
+        self.view.addSubview(self.addOutfitView!)
     }
     
     func shirtPickerViewTapGestureRecognized() {
@@ -267,6 +248,12 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         println("blur effect recognized")
         self.blurEffectView.removeFromSuperview()
     }
+    
+    func dismissOutfitView() {
+        self.blurEffectView.removeFromSuperview()
+        self.addOutfitView?.removeFromSuperview()
+    }
+    
 }
 
 extension OutfitBuilderVC: UIGestureRecognizerDelegate {

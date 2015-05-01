@@ -12,6 +12,7 @@ import CoreData
 class Outfit: NSObject, NSCoding {
     
     var title: String?
+    var tags: [String]?
     var top: Top?
     var sweater: Sweater?
     var jacket: Jacket?
@@ -25,6 +26,7 @@ class Outfit: NSObject, NSCoding {
     required convenience init(coder aDecoder: NSCoder) {
         self.init()
         self.title = aDecoder.decodeObjectForKey("title") as String?
+        self.tags = aDecoder.decodeObjectForKey("tags") as [String]?
         self.top = aDecoder.decodeObjectForKey("top") as Top?
         self.sweater = aDecoder.decodeObjectForKey("sweater") as Sweater?
         self.jacket = aDecoder.decodeObjectForKey("jacket") as Jacket?
@@ -34,6 +36,7 @@ class Outfit: NSObject, NSCoding {
     
     func encodeWithCoder(coder: NSCoder) {
         coder.encodeObject(self.title, forKey: "title")
+        coder.encodeObject(self.tags, forKey: "tags")
         coder.encodeObject(self.top, forKey: "top")
         coder.encodeObject(self.sweater, forKey: "sweater")
         coder.encodeObject(self.jacket, forKey: "jacket")
