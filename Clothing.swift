@@ -28,7 +28,6 @@ class Clothing: NSObject, NSCoding {
         self.fileName = clothing.objectForKey("file_name") as? String
         self.url = url
         self.mainCategory = clothing.objectForKey("main_category") as? String
-        
         self.properties = clothing
     }
     

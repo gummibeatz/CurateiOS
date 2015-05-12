@@ -43,11 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         self.segmentedControl.setWidth(50, forSegmentAtIndex: 1)
         self.segmentedControl.setWidth(50, forSegmentAtIndex: 2)
 
-        self.segmentedControl.tintColor = UIColor.blackColor()
+        self.segmentedControl.tintColor = UIColor.grayColor()
 
-        self.segmentedControl.setImage(UIImage(named: "Shirt")!.imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 0)
-        self.segmentedControl.setImage(UIImage(named: "Wardrobe")!.imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 1)
-        self.segmentedControl.setImage(UIImage(named: "CurateBowtie")!.imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 2)
+        self.segmentedControl.setImage(RBResizeImage(UIImage(named: "Swipe")!, CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal) , forSegmentAtIndex: 0)
+        self.segmentedControl.setImage(RBResizeImage(UIImage(named: "Wardrobe")!, CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 1)
+        self.segmentedControl.setImage(RBResizeImage(UIImage(named: "Outfit")!, CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 2)
 
         
         self.firstUserExperience()
@@ -124,6 +124,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     func applicationWillTerminate(application: UIApplication!) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+        
+        
         self.saveContext()
     }
 

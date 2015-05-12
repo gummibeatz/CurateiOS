@@ -13,41 +13,82 @@ import CoreData
 let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
 
 
+// checks to see if user exists in nsuserdefaults, if not then
 // takes in parameter of unique user curate Auth Token
 // makes a request to curate website to retrieve and store user preferences
-// in object User 
+// in object User
 /// NEEED TO MAKE EDIT TO CHECK IF USER ALREADY EXISTS AND OVERWRITE
 func getUser(curateAuthToken: String, completionHandler:(currentUser:User) ->()) {
-    let request = NSMutableURLRequest(URL: NSURL(string: "http://curateanalytics.herokuapp.com/api/v1/user.json")!)
-    request.HTTPMethod = "POST"
-    let postDict = ["authentication_token":curateAuthToken] as Dictionary<String,String>
-    request.HTTPBody = NSJSONSerialization.dataWithJSONObject(postDict, options: nil, error: nil)
+    println("in getUser")
+    let url: NSURL = NSURL(string: "http://curateanalytics.herokuapp.com/api/v1/user.json?authentication_token=\(curateAuthToken)")!
+    println("going to \(url)")
+    let request = NSMutableURLRequest(URL: url)
+    request.HTTPMethod = "GET"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
         var error:NSError?
-        if let userDict: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? NSDictionary{
+        if let userDict: NSMutableDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? NSMutableDictionary {
+            
             
             println(curateAuthToken)
-            var preferencesDict: NSDictionary = userDict.valueForKey("preferences") as NSDictionary
+            println(userDict)
+            var tempDict = NSMutableDictionary()
+            println(userDict["preferences"])
+            if var preferencesDict: NSMutableDictionary = userDict["preferences"] as? NSMutableDictionary {
         
             
-            /// MUST TAKE THESE OUT LATER!!!!!!!!!
-            ///
-            ///
-            preferencesDict.setValue("9", forKey: "age")
-            preferencesDict.setValue("Extra Slim", forKey: "preferred_shirt_fit")
-            preferencesDict.setValue("Regular", forKey: "preferred_pants_fit")
-            
-//            println("preferencesDict = \(preferencesDict)")
-            
-            if let moc = WardrobeBuilderVC().managedObjectContext {
-                var user: User = User.createInManagedObjectContext(moc, preferences: preferencesDict)
-                println("user created and stored")
-                completionHandler(currentUser: user)
+                /// MUST TAKE THESE OUT LATER!!!!!!!!!
+                ///
+                ///
+                println("preferencesDict = \(preferencesDict)")
+                
+                if let moc = managedObjectContext {
+                    var user: User = User.createInManagedObjectContext(moc, preferences: preferencesDict)
+                    println("user created and stored")
+                    completionHandler(currentUser: user)
+                }
+                
+            } else {
+                println("no preferencesDict")
+                tempDict.setValue("height", forKey: "height")
+                tempDict.setValue("weight", forKey: "weight")
+                tempDict.setValue("age", forKey: "age")
+                tempDict.setValue("waist", forKey: "waist_size")
+                tempDict.setValue("inseam", forKey: "inseam")
+                tempDict.setValue("shirt size", forKey: "shirt_size")
+                tempDict.setValue("preferred shirt fit", forKey: "preferred_shirt_fit")
+                tempDict.setValue("preferred pants fit", forKey: "preferred_pants_fit")
+                tempDict.setValue("shoe size", forKey: "shoe_size")
+                if let moc = managedObjectContext {
+                    var user: User = User.createInManagedObjectContext(moc, preferences: tempDict)
+                    println("user created and stored")
+                    completionHandler(currentUser: user)
+                }
             }
+            
+
         } else {
-            println("fucking hell shit goddamn it/ your authtoken isn't correct")
+            println("Ruh roh authtoken isn't correct")
         }
+    }
+    task.resume()
+}
+
+func postUser(curateAuthToken: String, preferencesDict: NSDictionary) {
+    println("posting user")
+    let request = NSMutableURLRequest(URL: NSURL(string: "http://curateanalytics.herokuapp.com/api/v1/user/1/edit.json")!)
+    request.HTTPMethod = "POST"
+    var postDict = ["authentication_token":curateAuthToken, "preferences":preferencesDict] as NSDictionary
+    println(postDict)
+    println(NSJSONSerialization.dataWithJSONObject(postDict, options: nil, error: nil))
+    
+    request.HTTPBody = NSJSONSerialization.dataWithJSONObject(postDict, options: nil, error: nil)
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
+        println("posting userpreferences")
+        println("response = \(response)")
+        println("data = \(data)")
+        println("error = \(error)")
     }
     task.resume()
 }
@@ -96,6 +137,8 @@ func getImageData(imagePath: String) -> NSData {
 // chooses and returns the batchID that corresponds to the user preferences
 func chooseSwipeBatch(user:User) -> (id: Int, folder: String) {
     let preferredFit = (shirtFit: user.preferredShirtFit, pantsFit: user.preferredPantsFit)
+    println(user.preferredShirtFit)
+    println(user.preferredPantsFit)
     
     switch preferredFit {
     case let("Extra Slim", "Regular"):
@@ -110,12 +153,12 @@ func chooseSwipeBatch(user:User) -> (id: Int, folder: String) {
         return (5, "regular_shirt_skinny_pant")
     case let("Regular", "Slim"):
         return (6, "regular_shirt_slim_pant")
-    case let("Extra Slim", "Regular"):
-        return (7, "extra_slim_shirt_regular_pant")
-    case let("Extra Slim", "Skinny"):
-        return (8, "extra_slim_shirt_skinny_pant")
-    case let("Extra Slim", "Slim"):
-        return (9, "extra_slim_shirt_slim_pant")
+    case let("Slim", "Regular"):
+        return (7, "slim_shirt_regular_pant")
+    case let("Slim", "Skinny"):
+        return (8, "slim_shirt_skinny_pant")
+    case let("Slim", "Slim"):
+        return (9, "slim_shirt_slim_pant")
     default:
         return (0, "error nothing matches")
     }
@@ -163,9 +206,7 @@ func hasUser(user: String) -> Bool {
 // saves curate auth token into field Tokens.curateAuthToken
 func getCurateAuthToken(fbAuthToken: String,completionHandler:(curateAuthToken:String) ->()) {
     // setting up request
-    println("==============\nin getCurateAuthToken")
-    println("fbAuthToken = \(fbAuthToken)")
-    
+    println("============== in getCurateAuthToken =========")
     let request = NSMutableURLRequest(URL: NSURL(string:  "http://curateanalytics.herokuapp.com/api/v1/tokens.json")!)
     request.HTTPMethod = "POST"
     
@@ -182,19 +223,16 @@ func getCurateAuthToken(fbAuthToken: String,completionHandler:(curateAuthToken:S
             println("error=\(error)")
             return
         }
-        println(response)
+//        println(response)
         var jsonResult:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &err) as NSDictionary
-        println(jsonResult)
+//        println(jsonResult)
         if let authentication_token: String = jsonResult["authentication_token"] as? String {
             println("curateAuthToken given")
+            println("curateAuthToken = \(authentication_token)")
             completionHandler(curateAuthToken: authentication_token)
         } else {
             println("error no curate AuthToken")
         }
-        //            println(jsonResult)
-        //            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-        //            println("responseString = \(responseString)")
-        //            println("authentication_token = \(authentication_token)")
     }
     task.resume()
 }

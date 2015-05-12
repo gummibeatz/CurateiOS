@@ -5,6 +5,7 @@
 
 
 import UIKit
+import CoreData
 
 class FBLoginVC: UIViewController, FBLoginViewDelegate {
     
@@ -20,31 +21,42 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
         
         var loginView: FBLoginView = FBLoginView()
         loginView.center = self.view.center
-        self.view.addSubview(loginView)
+        
         
         setupIntroView()
     
         
         if(FBSession.activeSession().isOpen) {
-            let delay = 1 * Double(NSEC_PER_SEC)
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
             var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        
             self.authToken = FBSession.activeSession().accessTokenData.accessToken
             println(self.authToken)
             
-            dispatch_after(time, dispatch_get_main_queue()) {
-                UIView.transitionWithView(appDelegate.window!, duration: 2,
-                    options: UIViewAnimationOptions.TransitionCrossDissolve,
-                    animations: {
-                        appDelegate.window!.rootViewController = appDelegate.navigationController
-                        appDelegate.setupMeasurementsButton()
-                        
-                    }, completion: {
-                        animationFinished in
-                })
-            }
+            UIView.animateWithDuration(2, delay: 1, options: nil, animations: {
+                self.introView.alpha = 0
+                }, completion: {
+                    animationFinished in
+                    self.introView.removeFromSuperview()
+                    self.view.removeFromSuperview()
+                    appDelegate.window!.rootViewController = appDelegate.navigationController
+                    appDelegate.setupMeasurementsButton()
+            })
+//            let delay = 1 * Double(NSEC_PER_SEC)
+//            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+//            dispatch_after(time, dispatch_get_main_queue()) {
+//                UIView.transitionWithView(appDelegate.window!, duration: 2,
+//                    options: UIViewAnimationOptions.TransitionCrossDissolve,
+//                    animations: {
+//                        self.introView.alpha = 0
+//                        println("animating")
+//                        
+//                    }, completion: {
+//                        animationFinished in
+//                        appDelegate.window!.rootViewController = appDelegate.navigationController
+//                        appDelegate.setupMeasurementsButton()
+//                })
+//            }
         } else {
+            self.view.insertSubview(loginView, belowSubview: self.introView)
             UIView.animateWithDuration(2, delay: 1, options: nil, animations: {
                 self.introView.alpha = 0
                 }, completion: {
@@ -61,8 +73,8 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
         title.textColor = UIColor.whiteColor()
         title.font = UIFont.systemFontOfSize(40)
         
-        var imageView: UIImageView = UIImageView(frame: CGRect(x: UIScreen.mainScreen().bounds.midX - 100, y: 250, width: 200, height: 100))
-        imageView.image = RBResizeImage(UIImage(named: "CurateBowtieBlack")!, CGSize(width: 200, height: 100))
+        var imageView: UIImageView = UIImageView(frame: CGRect(x: UIScreen.mainScreen().bounds.midX - 75, y: 250, width: 150, height: 150))
+        imageView.image = UIImage(named: "CurateBowtieBlack")
         
         introView.addSubview(imageView)
         introView.addSubview(title)

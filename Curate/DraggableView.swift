@@ -10,7 +10,7 @@ import UIKit
 
 protocol DraggableViewDelegate {
     func cardSwipedLeft(card:UIView)
-    func cardSwipedRight(card:UIView)
+    func cardSwipedRight(card:DraggableView)
 //    func cardDoubleTapped(card:UIView)
 //    func doubleTapped()
 }

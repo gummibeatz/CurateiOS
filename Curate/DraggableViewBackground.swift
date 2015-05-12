@@ -272,10 +272,10 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
 //    }
     
     //%%% action called when the card is double tapped.
-    func cardSwipedRight(card:UIView){
+    func cardSwipedRight(card: DraggableView){
         // Begin Edit ********
         var clothingArticle: Clothing = swipeBatch[self.currentBatchIndex][cardsIndex]
-        saveClothingArticle(clothingArticle)
+        saveClothingArticle(clothingArticle, imageData: UIImageJPEGRepresentation(card.information.image!, 0.5))
         
 //        var top: Top = Top()
 //        var topImageData: NSData = UIImageJPEGRepresentation(loadedCards.objectAtIndex(0).information.image!, 0.0)
@@ -486,17 +486,16 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
     }
     
-    func saveClothingArticle(clothingArticle: Clothing) {
+    func saveClothingArticle(clothingArticle: Clothing, imageData: NSData) {
         clothingArticle.imageData = UIImageJPEGRepresentation(loadedCards.objectAtIndex(0).information.image!, 0.0)
         println(clothingArticle.mainCategory)
         switch clothingArticle.mainCategory! as String {
         case "Tops":
-            let top: Top = Top(top: clothingArticle.properties!, url: clothingArticle.url!)
+            let top: Top = Top(top: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedTops!.append(top) //%%% add top to ownedTops if swiped right
             writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
         case "Bottoms":
-            let bottom: Bottom = Bottom(bottom: clothingArticle.properties!, url: clothingArticle.url!)
-            println(bottom)
+            let bottom: Bottom = Bottom(bottom: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedBottoms!.append(bottom) //%%% add bottom to ownedBottoms if swiped right
             writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")
         default:

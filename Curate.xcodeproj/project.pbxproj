@@ -144,8 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				1AA3C5961A46021A008C732C /* RBResizer.swift */,
-				1AF1A2721ACA3FFF006770D6 /* APICalls.swift */,
 				1A8CCC1B1ACB22F3001E3AF0 /* ReadWriteCalls.swift */,
+				1AF1A2721ACA3FFF006770D6 /* APICalls.swift */,
 			);
 			name = GlobalFunctions;
 			sourceTree = "<group>";

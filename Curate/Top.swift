@@ -28,7 +28,7 @@ class Top: Clothing {
         super.init()
     }
     
-    init(top: NSDictionary, url: String) {
+    init(top: NSDictionary, url: String, imageData: NSData) {
         super.init()
         self.fileName = top.objectForKey("file_name") as? String
         self.url = url
@@ -41,7 +41,7 @@ class Top: Clothing {
         self.color2 = top.objectForKey("color_2") as? String
         self.fit = top.objectForKey("fit") as? String
         self.material = top.objectForKey("material") as? String
-        self.imageData = getImageData(url)
+        self.imageData = imageData
     }
     
     required convenience init(coder aDecoder: NSCoder) {

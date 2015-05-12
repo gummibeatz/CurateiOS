@@ -29,7 +29,7 @@ class Bottom: Clothing {
         super.init()
     }
     
-    init(bottom: NSDictionary, url: String) {
+    init(bottom: NSDictionary, url: String, imageData: NSData) {
         super.init()
         self.fileName = bottom.objectForKey("file_name") as? String
         self.url = url
@@ -43,7 +43,7 @@ class Bottom: Clothing {
         self.color2 = bottom.objectForKey("color_2") as? String
         self.fit = bottom.objectForKey("fit") as? String
         self.material = bottom.objectForKey("material") as? String
-        self.imageData = getImageData(url)
+        self.imageData = imageData
     }
     
     required convenience init(coder aDecoder: NSCoder) {
