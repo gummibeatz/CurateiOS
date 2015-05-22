@@ -17,6 +17,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     let CARD_WIDTH: CGFloat = 290  //%%% width of the draggable card
     let RIGHT_SWIPE: Int = 0
     let LEFT_SWIPE: Int = 1
+    let MAX_BATCHES: Int = 18 // number of batches we can swipe to
     
     var beingSwiped: Bool = false //%%% flag to restrict swiping too fast
     var batchIsLoading: Bool = false // %%% flag to restrict clicking during loadNextBatch()
@@ -63,28 +64,32 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         self.currentUser = currentUser
         
         //take this out later when batches are fixed
-        while(swipeBatch[currentBatchIndex].count == 0) {
-            self.currentBatchIndex++
-        }
-        
-        //loading urls of pictures into clothingCardLabels
-        for clothes in swipeBatch[self.currentBatchIndex] {
-            clothingCardLabels.addObject(clothes)
-        }
+        if self.currentBatchIndex < MAX_BATCHES {
+            while(swipeBatch[currentBatchIndex].count == 0) {
+                self.currentBatchIndex++
+            }
+            
+            //loading urls of pictures into clothingCardLabels
+            for clothes in swipeBatch[self.currentBatchIndex] {
+                clothingCardLabels.addObject(clothes)
+            }
 
-//        println(swipeBatch[8].count)
-        println("batchindex = \(currentBatchIndex)")
-        println("loading finished")
-        println(clothingCardLabels.count)
-        
-        // loading finished
-        
-        
-        //fetch cardsIndex first 
-        cardsIndex = indexes.cardsIndex as Int
-        cardsLoadedIndex = cardsIndex
-        
-        self.loadCards()
+    //        println(swipeBatch[8].count)
+            println("batchindex = \(currentBatchIndex)")
+            println("loading finished")
+            println(clothingCardLabels.count)
+            
+            // loading finished
+            
+            
+            //fetch cardsIndex first 
+            cardsIndex = indexes.cardsIndex as Int
+            cardsLoadedIndex = cardsIndex
+            
+            self.loadCards()
+        } else {
+            println("out of batches")
+        }
 
     }
     
@@ -204,14 +209,16 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             
             //%%% displays the small number of loaded cards dictated by MAX_BUFFER_SIZE so that
             //    not all the cards are showing at once and clogging data
-            for (var i = 0; i < self.loadedCards.count; i++ ){
-                if i > 0 {
-                    self.insertSubview(self.loadedCards.objectAtIndex(i) as UIView, belowSubview: self.loadedCards.objectAtIndex(i-1) as UIView)
-                } else {
-                    self.addSubview(self.loadedCards.objectAtIndex(i) as UIView)
+            dispatch_async(dispatch_get_main_queue(), {
+                for (var i = 0; i < self.loadedCards.count; i++ ){
+                    if i > 0 {
+                        self.insertSubview(self.loadedCards.objectAtIndex(i) as UIView, belowSubview: self.loadedCards.objectAtIndex(i-1) as UIView)
+                    } else {
+                        self.addSubview(self.loadedCards.objectAtIndex(i) as UIView)
+                    }
+                    self.cardsLoadedIndex++ //%%% increment to account for loading a card into loadedCards
                 }
-                self.cardsLoadedIndex++ //%%% increment to account for loading a card into loadedCards
-            }
+            })
         }
     }
     
@@ -297,14 +304,15 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     //Gonna have to fix the indexing at some point to account for different buffer sizes
     //mostly just look for the allcards.count places
     func undoAction(){
-        println("================")
-        println("allCards.count: \(allCards.count)")
-        println("cardsLoadedIndex: \(cardsLoadedIndex)")
-        println("loadedCards.count: \(loadedCards.count)")
         var restoredCard:DraggableView?
-        
+        println("batchIsLoading = \(batchIsLoading)")
+        println("beingSwiped = \(beingSwiped)")
         //%%% can't undo if you just started the app
-        if (previousActions.items.count > 0 && !beingSwiped) {
+        if (previousActions.items.count > 0 && !beingSwiped && !batchIsLoading && cardsIndex > 0) {
+            println("================")
+            println("allCards.count: \(allCards.count)")
+            println("cardsLoadedIndex: \(cardsLoadedIndex)")
+            println("loadedCards.count: \(loadedCards.count)")
             self.beingSwiped = true
             
             //%%% can't undo if you are on your first card
@@ -399,7 +407,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         self.currentBatchIndex++
         saveBatchIndex()
         //Will need to change when the batches stop later on
-        if self.currentBatchIndex < 18 {
+        if self.currentBatchIndex < MAX_BATCHES {
             self.clothingCardLabels.removeAllObjects()
             self.allCards.removeAllObjects()
             
@@ -419,6 +427,9 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             self.cardsIndex = 0
             self.loadCards()
             completionHandler(loadingFinished: true)
+        } else {
+            println("no more batches")
+            println("currentBatchIndex = \(self.currentBatchIndex)")
         }
     }
     

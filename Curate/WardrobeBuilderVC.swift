@@ -40,7 +40,7 @@ class WardrobeBuilderVC: UIViewController {
             // only add in the draggable background view after we have the swipe batches
             // so that we can load up the images
             // I gotta ask somebody about setting up these concurrency dealios
-                            self.draggableBackground  = DraggableViewBackground(frame: self.view.frame, swipeBatch: swipeBatch, indexes: self.indexes!, currentUser: currentUser)
+            self.draggableBackground  = DraggableViewBackground(frame: self.view.frame, swipeBatch: swipeBatch, indexes: self.indexes!, currentUser: currentUser)
             dispatch_async(dispatch_get_main_queue(), {
                 tempDraggableBackground.removeFromSuperview()
                 self.view.addSubview(self.draggableBackground!)
