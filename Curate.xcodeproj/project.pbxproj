@@ -21,6 +21,9 @@
 		1A8CCC291AD06024001E3AF0 /* Shoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC281AD06024001E3AF0 /* Shoes.swift */; };
 		1A96E9A61A58C66200C23C0E /* OutfitBuilderContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A96E9A51A58C66200C23C0E /* OutfitBuilderContainerVC.swift */; };
 		1A96E9A81A58C67E00C23C0E /* PropertiesViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A96E9A71A58C67E00C23C0E /* PropertiesViewVC.swift */; };
+		1A9C5D1D1B0E50E300B828D9 /* oldFunctions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1A9C5D1C1B0E50E300B828D9 /* oldFunctions.txt */; };
+		1A9C5D201B0E512D00B828D9 /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1A9C5D1F1B0E512D00B828D9 /* todo.txt */; };
+		1A9C5D221B0E6C7C00B828D9 /* majorBugs.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1A9C5D211B0E6C7C00B828D9 /* majorBugs.txt */; };
 		1AA3C5771A4601B2008C732C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C5761A4601B2008C732C /* AppDelegate.swift */; };
 		1AA3C57A1A4601B2008C732C /* Curate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C5781A4601B2008C732C /* Curate.xcdatamodeld */; };
 		1AA3C5811A4601B2008C732C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5801A4601B2008C732C /* Images.xcassets */; };
@@ -73,6 +76,9 @@
 		1A8CCC281AD06024001E3AF0 /* Shoes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shoes.swift; sourceTree = "<group>"; };
 		1A96E9A51A58C66200C23C0E /* OutfitBuilderContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitBuilderContainerVC.swift; sourceTree = "<group>"; };
 		1A96E9A71A58C67E00C23C0E /* PropertiesViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesViewVC.swift; sourceTree = "<group>"; };
+		1A9C5D1C1B0E50E300B828D9 /* oldFunctions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oldFunctions.txt; sourceTree = "<group>"; };
+		1A9C5D1F1B0E512D00B828D9 /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
+		1A9C5D211B0E6C7C00B828D9 /* majorBugs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = majorBugs.txt; sourceTree = "<group>"; };
 		1AA3C5711A4601B2008C732C /* Curate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Curate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA3C5751A4601B2008C732C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AA3C5761A4601B2008C732C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +156,17 @@
 			name = GlobalFunctions;
 			sourceTree = "<group>";
 		};
+		1A9C5D1E1B0E50F100B828D9 /* oldFunctionsAndMiscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				1A9C5D1C1B0E50E300B828D9 /* oldFunctions.txt */,
+				1A9C5D1F1B0E512D00B828D9 /* todo.txt */,
+				1A9C5D211B0E6C7C00B828D9 /* majorBugs.txt */,
+			);
+			name = oldFunctionsAndMiscellaneous;
+			path = Curate;
+			sourceTree = "<group>";
+		};
 		1AA3C5681A4601B2008C732C = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +174,7 @@
 				1AA3C5891A4601B2008C732C /* CurateTests */,
 				1AA3C5721A4601B2008C732C /* Products */,
 				1A5F4B8D1A93DE55000B9705 /* Frameworks */,
+				1A9C5D1E1B0E50F100B828D9 /* oldFunctionsAndMiscellaneous */,
 			);
 			sourceTree = "<group>";
 		};
@@ -360,7 +378,10 @@
 				1AA3C5B11A46035A008C732C /* tshirtIcon.jpg in Resources */,
 				1AA3C5A91A460316008C732C /* VNeck in Resources */,
 				1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */,
+				1A9C5D1D1B0E50E300B828D9 /* oldFunctions.txt in Resources */,
+				1A9C5D201B0E512D00B828D9 /* todo.txt in Resources */,
 				1AA3C5811A4601B2008C732C /* Images.xcassets in Resources */,
+				1A9C5D221B0E6C7C00B828D9 /* majorBugs.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

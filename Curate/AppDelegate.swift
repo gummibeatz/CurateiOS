@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     }
 
     func setupMeasurementsButton() {
-        measurementsButton = UIButton(frame: CGRect(x: 17, y: 34, width: 22, height: 15))
+        measurementsButton = UIButton(frame: CGRect(x: 17, y: 30, width: 22, height: 22))
         measurementsButton.addTarget(self, action: "measurementsButtonTapped", forControlEvents: .TouchUpInside)
         measurementsButton.setImage(UIImage(named: "menuButton"), forState: .Normal)
         self.window?.addSubview(measurementsButton)

@@ -54,9 +54,11 @@ class DraggableView: UIView {
 //        self.addGestureRecognizer(tapGestureRecognizer)
         self.addSubview(information)
         
-        overlayView = OverlayView(frame: CGRectMake(self.frame.size.width/2-50, 50, 100, 100))
-        overlayView!.alpha = 0
-        self.addSubview(overlayView!)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.overlayView = OverlayView(frame: CGRectMake(self.frame.size.width/2-50, 50, 100, 100))
+            self.overlayView!.alpha = 0
+            self.addSubview(self.overlayView!)
+        })
         
     }
     
@@ -178,6 +180,7 @@ class DraggableView: UIView {
     
     
     func rightClickAction(completion: (actionCompleted: Bool) -> Void ) {
+        
         overlayView!.setMode(GGOverlayViewMode.Right)
         overlayView!.alpha = 0
         var finishPoint: CGPoint = CGPointMake(600, self.center.y);

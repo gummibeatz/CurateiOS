@@ -71,6 +71,8 @@ class AddOutfitView: UIView, UITextFieldDelegate {
         titleTextField!.delegate = self
         titleTextField!.inputAccessoryView = toolbar
         titleTextField!.tag = 0
+        titleTextField?.textColor = UIColor.grayColor()
+        titleTextField?.text = "title"
         
         var tagTextField: UITextField = UITextField(frame: CGRect(x: self.frame.width/2 - 50 , y: 90, width: 160, height: 30))
         tagTextField.borderStyle = UITextBorderStyle.Bezel
@@ -79,6 +81,8 @@ class AddOutfitView: UIView, UITextFieldDelegate {
         tagTextField.delegate = self
         tagTextField.inputAccessoryView = toolbar
         tagTextField.tag = 1
+        tagTextField.textColor = UIColor.grayColor()
+        tagTextField.text = "#hashtags"
 
         self.addSubview(labels)
         self.addSubview(titleTextField!)
@@ -147,6 +151,8 @@ class AddOutfitView: UIView, UITextFieldDelegate {
 extension AddOutfitView: UITextFieldDelegate{
     func textFieldDidBeginEditing(textField: UITextField!) {    //delegate method
         activeTextField = textField
+        println("textfieldidbeginediting")
+        activeTextField?.textColor = UIColor.blackColor()
     }
     
     

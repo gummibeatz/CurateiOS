@@ -19,6 +19,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     let LEFT_SWIPE: Int = 1
     
     var beingSwiped: Bool = false //%%% flag to restrict swiping too fast
+    var batchIsLoading: Bool = false // %%% flag to restrict clicking during loadNextBatch()
     var clothingCardLabels: NSMutableArray = NSMutableArray()
     var allCards: NSMutableArray = NSMutableArray()
     var loadedCards: NSMutableArray = NSMutableArray()
@@ -53,7 +54,10 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         loadOwnedWardrobe()
         println("owned Tops.count = \(ownedTops!.count)")
         
-        self.setupView()
+        dispatch_async(dispatch_get_main_queue(), {
+            self.setupView()
+        })
+        
         self.currentBatchIndex = indexes.batchIndex as Int
         self.swipeBatch = swipeBatch
         self.currentUser = currentUser
@@ -67,7 +71,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         for clothes in swipeBatch[self.currentBatchIndex] {
             clothingCardLabels.addObject(clothes)
         }
-        println(swipeBatch[8].count)
+
+//        println(swipeBatch[8].count)
         println("batchindex = \(currentBatchIndex)")
         println("loading finished")
         println(clothingCardLabels.count)
@@ -78,7 +83,9 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         //fetch cardsIndex first 
         cardsIndex = indexes.cardsIndex as Int
         cardsLoadedIndex = cardsIndex
+        
         self.loadCards()
+
     }
     
     func loadOwnedWardrobe() {
@@ -160,10 +167,16 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     //    feel free to get rid of it (eg: if you are building cards from data from the internet)
     
     func createDraggableViewWithDataAtIndex(index:Int) -> DraggableView{
+        let imageData: NSData = getImageData((clothingCardLabels.objectAtIndex(index) as Clothing).url!)
+        
         var draggableView: DraggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 30, width: CARD_WIDTH, height: CARD_HEIGHT))
         println(clothingCardLabels.objectAtIndex(index))
-        let imageData: NSData = getImageData((clothingCardLabels.objectAtIndex(index) as Clothing).url!)
-        draggableView.information.image = UIImage(data: imageData)
+        
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            draggableView.information.image = UIImage(data: imageData)
+            })
+        
         draggableView.delegate = self
         return draggableView
     }
@@ -191,13 +204,13 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             
             //%%% displays the small number of loaded cards dictated by MAX_BUFFER_SIZE so that
             //    not all the cards are showing at once and clogging data
-            for (var i = 0; i < loadedCards.count; i++ ){
+            for (var i = 0; i < self.loadedCards.count; i++ ){
                 if i > 0 {
-                    self.insertSubview(loadedCards.objectAtIndex(i) as UIView, belowSubview: loadedCards.objectAtIndex(i-1) as UIView)
+                    self.insertSubview(self.loadedCards.objectAtIndex(i) as UIView, belowSubview: self.loadedCards.objectAtIndex(i-1) as UIView)
                 } else {
-                    self.addSubview(loadedCards.objectAtIndex(i) as UIView)
+                    self.addSubview(self.loadedCards.objectAtIndex(i) as UIView)
                 }
-                cardsLoadedIndex++ //%%% increment to account for loading a card into loadedCards
+                self.cardsLoadedIndex++ //%%% increment to account for loading a card into loadedCards
             }
         }
     }
@@ -216,8 +229,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             loadedCards.addObject(allCards.objectAtIndex(cardsLoadedIndex))
             cardsLoadedIndex++ //%%% loaded a card, so have to increment count
             cardsIndex++
-            self.insertSubview(loadedCards.objectAtIndex(MAX_BUFFER_SIZE-1) as UIView, belowSubview: loadedCards.objectAtIndex(MAX_BUFFER_SIZE-2) as UIView)
-            
+            self.insertSubview(self.loadedCards.objectAtIndex(self.MAX_BUFFER_SIZE-1) as UIView, belowSubview: self.loadedCards.objectAtIndex(self.MAX_BUFFER_SIZE-2) as UIView)
             //%%% keep track of previous action
             
             
@@ -231,60 +243,23 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         
         if(cardsIndex == allCards.count) {
             println("loading new cards")
-            self.loadNextBatch()
+            //send to run in background thread
+            dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
+                self.loadNextBatch({
+                    loadingFinished in
+                    self.batchIsLoading = false
+                })
+            }
         }
         saveCardsIndex()
         
     }
     
-    /// OLD cardSwipedRight func
-    //%%% action called when the card goes to the right.
-//    func cardSwipedRight(card:UIView){
-//        //do whatever you want with the card that was swiped
-//        //    DraggableView *c = (DraggableView *)card;
-//        
-//        loadedCards.removeObjectAtIndex(0) //%%% card was swiped, so it's no longer a "loaded card"
-//        
-//        if (cardsLoadedIndex < allCards.count) {
-//            //%%% if we haven't reached the end of all cards, put another into the loaded cards
-//            loadedCards.addObject(allCards.objectAtIndex(cardsLoadedIndex))
-//            cardsLoadedIndex++//%%% loaded a card, so have to increment count
-//            cardsIndex++
-//            
-//            self.insertSubview(loadedCards.objectAtIndex(MAX_BUFFER_SIZE-1) as UIView, belowSubview: loadedCards.objectAtIndex(MAX_BUFFER_SIZE-2) as UIView)
-//            
-//            //%%% keep track of previous action
-//            previousAction = RIGHT_SWIPE
-//        } else if(cardsIndex <= allCards.count) {
-//            cardsIndex++
-//        }
-//        
-//        println("CardSwipedRight \(cardsLoadedIndex)")
-//        println("cardsIndex \(cardsIndex)")
-//        println("~~~~~~~~~~~~~~~")
-//        
-//        if(cardsIndex == allCards.count) {
-//            println("loading new cards")
-//            self.loadNextBatch()
-//        }
-//        saveCardsIndex()
-//        
-//    }
     
     //%%% action called when the card is double tapped.
     func cardSwipedRight(card: DraggableView){
-        // Begin Edit ********
         var clothingArticle: Clothing = swipeBatch[self.currentBatchIndex][cardsIndex]
         saveClothingArticle(clothingArticle, imageData: UIImageJPEGRepresentation(card.information.image!, 0.5))
-        
-//        var top: Top = Top()
-//        var topImageData: NSData = UIImageJPEGRepresentation(loadedCards.objectAtIndex(0).information.image!, 0.0)
-//        top.imageData = topImageData
-//
-//        ownedTops!.append(top) //%%% add top to ownedTops if swiped right
-//        
-//        writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
-        //End edit ********
         
         loadedCards.removeObjectAtIndex(0) //%%% card was swiped, so it's no longer a "loaded card"
         previousActions.push(RIGHT_SWIPE) //%%% push actions onto stack
@@ -305,10 +280,15 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         println("CardSwipedRight \(cardsLoadedIndex)")
         println("cardsIndex \(cardsIndex)")
         println("~~~~~~~~~~~~~~~")
-        
+
         if(cardsIndex == allCards.count) {
             println("loading new cards")
-            self.loadNextBatch()
+            dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
+                self.loadNextBatch({
+                    loadingFinished in
+                    self.batchIsLoading = false
+                })
+            }
         }
         saveCardsIndex()
     }
@@ -387,23 +367,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         saveCardsIndex()
     }
     
-    /// OLD SWIPE RIGHT FUNCTION
-//    //%%% when you hit the right button, this is called and substitutes the swipe
-//    func swipeRight(){
-//        if (loadedCards.count > 0) {
-//            var dragView: DraggableView = loadedCards.firstObject as DraggableView
-//            dragView.overlayView?.mode = GGOverlayViewMode.Right
-//            UIView.animateWithDuration(0.2, animations: {
-//                dragView.overlayView?.alpha = 1
-//                var temp = 0 // may need to fix this
-//            })
-//            dragView.rightClickAction()
-//            println("swipedRight")
-//        }
-//    }
-    
     func swipeRight(){
-        if (loadedCards.count > 0 && !beingSwiped) {
+        if (loadedCards.count > 0 && !beingSwiped && !batchIsLoading) {
             self.beingSwiped = true
             var dragView: DraggableView = loadedCards.firstObject as DraggableView
             dragView.rightClickAction({actionCompleted in
@@ -416,7 +381,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     //%%% when you hit the left button, this is called and substitutes the swipe
     func swipeLeft(){
-        if (loadedCards.count > 0 && !beingSwiped) {
+        if (loadedCards.count > 0 && !beingSwiped && !batchIsLoading) {
             self.beingSwiped = true
             var dragView: DraggableView = loadedCards.firstObject as DraggableView
             dragView.leftClickAction({ actionCompleted in
@@ -427,45 +392,34 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         }
     }
     
-    
-    //%%% when you hit the have button, this is called and substitutes the double tap
-//    func doubleTapped(){
-//        if (loadedCards.count > 0) {
-//            var dragView: DraggableView = loadedCards.firstObject as DraggableView
-//            dragView.overlayView?.mode = GGOverlayViewMode.Tap
-//            UIView.animateWithDuration(0.2, animations: {
-//                dragView.overlayView?.alpha = 1
-//                var temp = 0 // may need to fix this
-//            })
-//            dragView.rightClickAction()
-//            println("doubleTapped")
-//        }
-//    }
-    
     //%% loads next batch by adding in links from the next batch and deleting the previous cards
-    func loadNextBatch() {
+    func loadNextBatch(completionHandler:(loadingFinished:Bool)->()) {
         println("=====in loadnextBatch=====")
+        self.batchIsLoading = true
         self.currentBatchIndex++
         saveBatchIndex()
-        
-        self.clothingCardLabels.removeAllObjects()
-        self.allCards.removeAllObjects()
-        
-        //take this out later when batches are fixed
-        while(swipeBatch[currentBatchIndex].count == 0) {
-            self.currentBatchIndex++
+        //Will need to change when the batches stop later on
+        if self.currentBatchIndex < 18 {
+            self.clothingCardLabels.removeAllObjects()
+            self.allCards.removeAllObjects()
+            
+            //take this out later when batches are fixed
+            while(swipeBatch[currentBatchIndex].count == 0) {
+                self.currentBatchIndex++
+            }
+            
+            //loading tops into clothingCardLabels
+            for clothes in swipeBatch[currentBatchIndex] {
+                self.clothingCardLabels.addObject(clothes)
+            }
+            println("clothingCard Label count = \(self.clothingCardLabels.count)")
+            
+            // loading finished
+            self.cardsLoadedIndex = 0
+            self.cardsIndex = 0
+            self.loadCards()
+            completionHandler(loadingFinished: true)
         }
-        
-        //loading tops into clothingCardLabels
-        for clothes in swipeBatch[currentBatchIndex] {
-            self.clothingCardLabels.addObject(clothes)
-        }
-        println("clothingCard Label count = \(self.clothingCardLabels.count)")
-        
-        // loading finished
-        self.cardsLoadedIndex = 0
-        self.cardsIndex = 0
-        self.loadCards()
     }
     
     func saveBatchIndex() {
@@ -490,11 +444,11 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         clothingArticle.imageData = UIImageJPEGRepresentation(loadedCards.objectAtIndex(0).information.image!, 0.0)
         println(clothingArticle.mainCategory)
         switch clothingArticle.mainCategory! as String {
-        case "Tops":
+        case "Top":
             let top: Top = Top(top: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedTops!.append(top) //%%% add top to ownedTops if swiped right
             writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
-        case "Bottoms":
+        case "Bottom":
             let bottom: Bottom = Bottom(bottom: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedBottoms!.append(bottom) //%%% add bottom to ownedBottoms if swiped right
             writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")

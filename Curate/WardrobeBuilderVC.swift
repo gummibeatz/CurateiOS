@@ -25,14 +25,14 @@ class WardrobeBuilderVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //added in as a buffer updated after dispatch async
-        self.draggableBackground = DraggableViewBackground(frame: self.view.frame)
+        let tempDraggableBackground = DraggableViewBackground(frame: self.view.frame)
         indexes = getBatchIndex()
         
         
         ///HERES A PROBLEM GOTTA SETUP USER IN FIRST STEP
         let currentUser: User = getUserFromCoreData()!
         /// END
-        
+                self.view.addSubview(tempDraggableBackground)
         getSwipeBatch(currentUser) {
             swipeBatch in
             println("getSwipeBatch finished")
@@ -40,14 +40,16 @@ class WardrobeBuilderVC: UIViewController {
             // only add in the draggable background view after we have the swipe batches
             // so that we can load up the images
             // I gotta ask somebody about setting up these concurrency dealios
+                            self.draggableBackground  = DraggableViewBackground(frame: self.view.frame, swipeBatch: swipeBatch, indexes: self.indexes!, currentUser: currentUser)
             dispatch_async(dispatch_get_main_queue(), {
-                self.draggableBackground!.removeFromSuperview()
-                self.draggableBackground  = DraggableViewBackground(frame: self.view.frame, swipeBatch: swipeBatch, indexes: self.indexes!, currentUser: currentUser)
+                tempDraggableBackground.removeFromSuperview()
                 self.view.addSubview(self.draggableBackground!)
             })
+            
+
+
         }
-    
-        self.view.addSubview(self.draggableBackground!)
+
     }
     
     override func didReceiveMemoryWarning() {

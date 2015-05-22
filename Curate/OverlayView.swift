@@ -29,7 +29,11 @@ class OverlayView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.whiteColor()
         imageView = UIImageView(image: UIImage(named: "noButton"))
-        self.addSubview(imageView)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.layoutSubviews()
+            self.addSubview(self.imageView)
+        })
+        
     }
     
     func setMode(mode: GGOverlayViewMode) {

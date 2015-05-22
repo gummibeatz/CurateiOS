@@ -50,10 +50,18 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var activeTextField:UITextField?
     var okButton: UIButton?
     
+    var scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds)
+    
     // Do any additional setup after loading the view, typically from a nib.
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //scrollview edits
+        
+        self.scrollView.contentSize = CGSize(width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height + 100)
+        self.scrollView.scrollEnabled = false
+        //scrollview edits end
         
         var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         appDelegate.fbLoginVC.setFBAuthToken()
@@ -197,16 +205,17 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         shoeSizeTextField.textColor = UIColor.grayColor()
         
         //adding objs to viewController and misc. settings
-        self.view.backgroundColor = UIColor.whiteColor()
-        self.view.addSubview(heightTextField)
-        self.view.addSubview(weightTextField)
-        self.view.addSubview(ageTextField)
-        self.view.addSubview(waistTextField)
-        self.view.addSubview(inseamTextField)
-        self.view.addSubview(shirtSizeTextField)
-        self.view.addSubview(preferredShirtFitTextField)
-        self.view.addSubview(preferredPantsFitTextField)
-        self.view.addSubview(shoeSizeTextField)
+        self.view.addSubview(self.scrollView)
+
+        self.scrollView.addSubview(heightTextField)
+        self.scrollView.addSubview(weightTextField)
+        self.scrollView.addSubview(ageTextField)
+        self.scrollView.addSubview(waistTextField)
+        self.scrollView.addSubview(inseamTextField)
+        self.scrollView.addSubview(shirtSizeTextField)
+        self.scrollView.addSubview(preferredShirtFitTextField)
+        self.scrollView.addSubview(preferredPantsFitTextField)
+        self.scrollView.addSubview(shoeSizeTextField)
         setupOkButton()
     }
     
@@ -256,7 +265,7 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         measurementLabel.attributedText = attrString
         measurementLabel.frame = CGRectMake(5,55, 150, 450)
         measurementLabel.numberOfLines = 10
-        self.view.addSubview(measurementLabel)
+        self.scrollView.addSubview(measurementLabel)
     }
     
     func setupToolBar() {
@@ -285,6 +294,7 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     //hides the inputView for a UITextField
     func donePressed() {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         activeTextField?.resignFirstResponder()
     }
     
@@ -302,7 +312,7 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         okButton!.addTarget(self, action: "returnButtonTapped", forControlEvents: .TouchUpInside)
         okButton!.setTitle("Done", forState: .Normal)
         okButton?.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        self.view.addSubview(okButton!)
+        self.scrollView.addSubview(okButton!)
     }
     
     func returnButtonTapped() {
@@ -465,6 +475,8 @@ extension MeasurementsVC: UIPickerViewDelegate {
 extension MeasurementsVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField!) {
         activeTextField = textField
+        //maybe not make magic numbers. calculate size of keyboard
+        scrollView.setContentOffset(CGPoint(x: 0, y: 160), animated: true)
     }
 }
 

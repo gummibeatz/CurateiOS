@@ -25,9 +25,8 @@ class OutfitCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //        outfitImage.backgroundColor = UIColor.blueColor()
+                outfitImage.backgroundColor = UIColor.blueColor()
         //        outfitImage?.frame = CGRect(x: 4, y: 3, width: 40, height: 36)
-        //        outfitImage.backgroundColor = UIColor.blueColor()
         self.selectionStyle = UITableViewCellSelectionStyle.None
         self.addSubview(outfitName)
         self.addSubview(outfitImage)

@@ -1,0 +1,66 @@
+/// OLD cardSwipedRight func
+//%%% action called when the card goes to the right.
+func cardSwipedRight(card:UIView){
+//do whatever you want with the card that was swiped
+//    DraggableView *c = (DraggableView *)card;
+
+loadedCards.removeObjectAtIndex(0) //%%% card was swiped, so it's no longer a "loaded card"
+
+if (cardsLoadedIndex < allCards.count) {
+//%%% if we haven't reached the end of all cards, put another into the loaded cards
+loadedCards.addObject(allCards.objectAtIndex(cardsLoadedIndex))
+cardsLoadedIndex++//%%% loaded a card, so have to increment count
+cardsIndex++
+
+self.insertSubview(loadedCards.objectAtIndex(MAX_BUFFER_SIZE-1) as UIView, belowSubview: loadedCards.objectAtIndex(MAX_BUFFER_SIZE-2) as UIView)
+
+//%%% keep track of previous action
+previousAction = RIGHT_SWIPE
+} else if(cardsIndex <= allCards.count) {
+cardsIndex++
+}
+
+println("CardSwipedRight \(cardsLoadedIndex)")
+println("cardsIndex \(cardsIndex)")
+println("~~~~~~~~~~~~~~~")
+
+if(cardsIndex == allCards.count) {
+println("loading new cards")
+self.loadNextBatch()
+}
+saveCardsIndex()
+
+}
+
+=========================
+
+/// OLD SWIPE RIGHT FUNCTION
+//    //%%% when you hit the right button, this is called and substitutes the swipe
+//    func swipeRight(){
+//        if (loadedCards.count > 0) {
+//            var dragView: DraggableView = loadedCards.firstObject as DraggableView
+//            dragView.overlayView?.mode = GGOverlayViewMode.Right
+//            UIView.animateWithDuration(0.2, animations: {
+//                dragView.overlayView?.alpha = 1
+//                var temp = 0 // may need to fix this
+//            })
+//            dragView.rightClickAction()
+//            println("swipedRight")
+//        }
+//    }
+
+=================================
+
+//%%% when you hit the have button, this is called and substitutes the double tap
+//    func doubleTapped(){
+//        if (loadedCards.count > 0) {
+//            var dragView: DraggableView = loadedCards.firstObject as DraggableView
+//            dragView.overlayView?.mode = GGOverlayViewMode.Tap
+//            UIView.animateWithDuration(0.2, animations: {
+//                dragView.overlayView?.alpha = 1
+//                var temp = 0 // may need to fix this
+//            })
+//            dragView.rightClickAction()
+//            println("doubleTapped")
+//        }
+//    }
