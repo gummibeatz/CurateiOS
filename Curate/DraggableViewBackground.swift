@@ -347,27 +347,45 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
                     restoredCard = self.createDraggableViewWithDataAtIndex(allCards.count - 1)
                 }
                 
-                //checks to see if Items need to be removed
-                var previousAction = previousActions.pop()
-                if(previousAction == RIGHT_SWIPE) {
-                    ownedTops?.removeLast()
-                    writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
-                }
-                
-                
                 // put restored card at front of array
                 loadedCards.insertObject(restoredCard!, atIndex: 0)
                 
+                // checks to see if Items need to be removed
+                // and sets up for animation
+                let finishPoint:CGPoint = restoredCard!.center
+                var previousAction = previousActions.pop()
+                
+                if(previousAction == RIGHT_SWIPE) {
+                    ownedTops?.removeLast()
+                    writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
+                    restoredCard?.center = CGPointMake(600, self.center.y)
+                    restoredCard?.overlayView?.setMode(GGOverlayViewMode.Right)
+                    restoredCard?.overlayView?.alpha = 1
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.addSubview(restoredCard!)
+                        UIView.animateWithDuration(0.7, animations: {
+                            restoredCard?.center = finishPoint
+                            restoredCard?.overlayView?.alpha = 0
+                            }, completion: { animationFinished in
+                                self.beingSwiped = false
+                        })
+                    })
+                } else if(previousAction == LEFT_SWIPE) {
+                    restoredCard?.center = CGPointMake(-600, self.center.y)
+                    restoredCard?.overlayView?.setMode(GGOverlayViewMode.Left)
+                    restoredCard?.overlayView?.alpha = 1
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.addSubview(restoredCard!)
+                        UIView.animateWithDuration(0.7, animations: {
+                            restoredCard?.center = finishPoint
+                            restoredCard?.overlayView?.alpha = 0
+                            }, completion: { animationFinished in
+                                self.beingSwiped = false
+                        })
+                    })
+                }
+                
                 println("loadedCards.count now \(loadedCards.count)")
-                //%%% undo animation
-                restoredCard!.alpha = 0
-                self.addSubview(restoredCard!)
-                UIView.animateWithDuration(1.3, animations: {
-                    restoredCard!.alpha = 1
-                    }, completion: { animationFinished in
-                        self.beingSwiped = false
-                    }
-                )
                 println("cardUndone \(cardsLoadedIndex)")
                 println("cardIndex = \(cardsIndex)")
             }
