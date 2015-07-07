@@ -33,6 +33,7 @@ class Bottom: Clothing {
         super.init()
         self.fileName = bottom.objectForKey("file_name") as? String
         self.url = url
+        self.properties = bottom
         self.mainCategory = bottom.objectForKey("main_category") as? String
         self.occasion = bottom.objectForKey("occasion") as? String
         self.brand = bottom.objectForKey("brand") as? String
@@ -50,6 +51,7 @@ class Bottom: Clothing {
         self.init()
         self.fileName = aDecoder.decodeObjectForKey("fileName") as String?
         self.url = aDecoder.decodeObjectForKey("url") as String?
+        self.properties = aDecoder.decodeObjectForKey("properties") as NSDictionary?
         self.mainCategory = aDecoder.decodeObjectForKey("mainCategory") as String?
         self.occasion = aDecoder.decodeObjectForKey("occasion") as String?
         self.brand = aDecoder.decodeObjectForKey("brand") as String?
@@ -66,6 +68,7 @@ class Bottom: Clothing {
     override func encodeWithCoder(coder: NSCoder) {
         coder.encodeObject(self.fileName, forKey: "fileName")
         coder.encodeObject(self.url, forKey: "url")
+                coder.encodeObject(self.properties, forKey: "properties")
         coder.encodeObject(self.mainCategory, forKey: "mainCategory")
         coder.encodeObject(self.brand, forKey: "brand")
         coder.encodeObject(self.occasion, forKey: "occasion")

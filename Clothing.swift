@@ -46,4 +46,13 @@ class Clothing: NSObject, NSCoding {
         coder.encodeObject(self.mainCategory, forKey: "mainCategory")
         coder.encodeObject(self.properties, forKey: "properties")
     }
+    
+    func convertToDict() -> NSDictionary {
+        var dict: NSMutableDictionary = NSMutableDictionary()
+        println(self.fileName)
+        dict.setObject(self.fileName!, forKey: "file_name")
+        dict.setObject(self.url!, forKey: "url")
+        dict.setObject(self.properties!, forKey: "properties")
+        return dict
+    }
 }

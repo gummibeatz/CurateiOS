@@ -263,10 +263,44 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     }
     
     
-    //%%% action called when the card is double tapped.
+    //%%% action called when the card is swipedRight
     func cardSwipedRight(card: DraggableView){
         var clothingArticle: Clothing = swipeBatch[self.currentBatchIndex][cardsIndex]
         saveClothingArticle(clothingArticle, imageData: UIImageJPEGRepresentation(card.information.image!, 0.5))
+        
+        //gonna start formating dict to pass to postwardrobe
+        let fbAuthToken = getFbAuthToken()
+        var wardrobeDict: NSMutableDictionary = NSMutableDictionary()
+        var ownedTops:[Top] = readCustomObjArrayFromUserDefaults("ownedTops") as [Top]
+        var ownedBottoms:[Bottom] = readCustomObjArrayFromUserDefaults("ownedBottoms") as [Bottom]
+        var topsArr = [NSDictionary]()
+        var bottomsArr = [NSDictionary]()
+        
+        if(ownedTops.count>1) {
+            for index in 1...ownedTops.count-1 {
+                println(ownedTops[index].fileName)
+                println(ownedTops[index].url)
+                println(ownedTops[index].properties)
+                topsArr.append(ownedTops[index].convertToDict())
+            }
+        }
+        if(ownedBottoms.count>1) {
+            for i in 1...ownedBottoms.count-1 {
+                bottomsArr.append(ownedBottoms[i].convertToDict())
+            }
+        }
+        println(topsArr)
+        println(bottomsArr)
+        
+        wardrobeDict.setObject(topsArr , forKey: "tops")
+        wardrobeDict.setObject(bottomsArr , forKey: "bottoms")
+        getCurateAuthToken(fbAuthToken, {
+            curateAuthToken in
+            postWardrobe(curateAuthToken, wardrobeDict)
+        })
+        
+        
+        //formatting and posting wardrove finished
         
         loadedCards.removeObjectAtIndex(0) //%%% card was swiped, so it's no longer a "loaded card"
         previousActions.push(RIGHT_SWIPE) //%%% push actions onto stack
@@ -473,11 +507,11 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         clothingArticle.imageData = UIImageJPEGRepresentation(loadedCards.objectAtIndex(0).information.image!, 0.0)
         println(clothingArticle.mainCategory)
         switch clothingArticle.mainCategory! as String {
-        case "Top":
+        case "Collared Shirt", "Jacket", "Light Layer", "Long Sleeve Shirt", "Short Sleeve Shirt":
             let top: Top = Top(top: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedTops!.append(top) //%%% add top to ownedTops if swiped right
             writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
-        case "Bottom":
+        case "Casual", "Chinos", "Shorts", "Suit Pants":
             let bottom: Bottom = Bottom(bottom: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedBottoms!.append(bottom) //%%% add bottom to ownedBottoms if swiped right
             writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")

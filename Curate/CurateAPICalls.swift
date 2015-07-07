@@ -74,6 +74,7 @@ func getUser(curateAuthToken: String, completionHandler:(currentUser:User) ->())
     task.resume()
 }
 
+// stores user properties in database
 func postUser(curateAuthToken: String, preferencesDict: NSDictionary) {
     println("posting user")
     let request = NSMutableURLRequest(URL: NSURL(string: "http://curateanalytics.herokuapp.com/api/v1/user/1/edit.json")!)
@@ -87,6 +88,28 @@ func postUser(curateAuthToken: String, preferencesDict: NSDictionary) {
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
         println("posting userpreferences")
+        println("response = \(response)")
+        println("data = \(data)")
+        println("error = \(error)")
+    }
+    task.resume()
+}
+
+
+//stores users wardrobe
+func postWardrobe(curateAuthToken: String, wardrobeDict: NSDictionary) {
+    println("posting wardrobe")
+    let request = NSMutableURLRequest(URL: NSURL(string: "http://curateanalytics.herokuapp.com/api/v1/wardrobe/1/edit.json")!)
+    request.HTTPMethod = "POST"
+    var postDict = ["authentication_token":curateAuthToken, "wardrobe":wardrobeDict] as NSDictionary
+    println(postDict)
+    println(NSJSONSerialization.dataWithJSONObject(postDict, options: NSJSONWritingOptions.PrettyPrinted, error: nil))
+    
+    
+    request.HTTPBody = NSJSONSerialization.dataWithJSONObject(postDict, options: nil, error: nil)
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
+        println("posting wardrobe")
         println("response = \(response)")
         println("data = \(data)")
         println("error = \(error)")
@@ -276,3 +299,4 @@ func getMatches(color: String, main_category: String, completionHandler:(matchDi
     task.resume()
     
 }
+

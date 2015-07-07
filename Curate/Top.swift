@@ -31,7 +31,9 @@ class Top: Clothing {
     init(top: NSDictionary, url: String, imageData: NSData) {
         super.init()
         self.fileName = top.objectForKey("file_name") as? String
+        println(fileName!)
         self.url = url
+        self.properties = top
         self.mainCategory = top.objectForKey("main_category") as? String
         self.brand = top.objectForKey("brand") as? String
         self.clothingType = top.objectForKey("clothing_type") as? String
@@ -48,6 +50,7 @@ class Top: Clothing {
         self.init()
         self.fileName = aDecoder.decodeObjectForKey("fileName") as String?
         self.url = aDecoder.decodeObjectForKey("url") as String?
+        self.properties = aDecoder.decodeObjectForKey("properties") as NSDictionary?
         self.mainCategory = aDecoder.decodeObjectForKey("mainCategory") as String?
         self.brand = aDecoder.decodeObjectForKey("brand") as String?
         self.clothingType = aDecoder.decodeObjectForKey("clothingType") as String?
@@ -63,6 +66,7 @@ class Top: Clothing {
     override func encodeWithCoder(coder: NSCoder) {
         coder.encodeObject(self.fileName, forKey: "fileName")
         coder.encodeObject(self.url, forKey: "url")
+        coder.encodeObject(self.properties, forKey: "properties")
         coder.encodeObject(self.mainCategory, forKey: "mainCategory")
         coder.encodeObject(self.brand, forKey: "brand")
         coder.encodeObject(self.clothingType, forKey: "clothingType")
