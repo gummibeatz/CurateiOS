@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/OutfitBuilderVC.swift"
-            timestampString = "453582768.119895"
+            timestampString = "457971050.364633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
             landmarkName = "pickerView(_:viewForRow:forComponent:reusingView:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/OutfitBuilderVC.swift"
-            timestampString = "453582768.119895"
+            timestampString = "457971050.364633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
             landmarkName = "dismissOutfitView()"
             landmarkType = "5">
          </BreakpointContent>
@@ -470,7 +470,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
@@ -480,6 +480,36 @@
             startingLineNumber = "284"
             endingLineNumber = "284"
             landmarkName = "cardSwipedRight(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Curate/WeatherAPICalls.swift"
+            timestampString = "457936464.033015"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "9"
+            endingLineNumber = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Curate/OutfitBuilderVC.swift"
+            timestampString = "457971050.364633"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
+            landmarkName = "pickerViewDoubleTapGestureRecognized(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

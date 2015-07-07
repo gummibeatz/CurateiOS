@@ -281,9 +281,10 @@ func getFbAuthToken() -> String {
 
 // user sends 2 properties of article to be matched. color and main category style
 // receives dictionary with main category of original article and color pairings
-func getMatches(color: String, main_category: String, completionHandler:(matchDict: NSDictionary) -> ()) {
+func getMatches(curateAuthToken: String, temperature: Double, base_clothing: String, completionHandler:(matchDict: NSDictionary) -> ()) {
     println("in getMatches")
-    let url: NSURL = NSURL(string:"http://www.curateme.co/api/v1/matches?color=\(color)&&style=\(main_category)")!
+    var fbase_clothing: String = base_clothing.stringByReplacingOccurrencesOfString("&", withString: "%26", options: NSStringCompareOptions.LiteralSearch, range: nil)
+    let url: NSURL = NSURL(string:"http://curateanalytics.herokuapp.com/api/v1/matches?authentication_token=\(curateAuthToken)&&temperature=\(temperature)&&base_clothing=\(fbase_clothing)")!
     
     let request = NSMutableURLRequest(URL: url)
     request.HTTPMethod = "GET"
@@ -291,10 +292,11 @@ func getMatches(color: String, main_category: String, completionHandler:(matchDi
     let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
         var error: NSError?
         if let matchDict: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? NSDictionary {
-
             completionHandler(matchDict: matchDict)
         }
-        
+        println("data = \(data)")
+        println("response = \(response)")
+        println("error = \(error)")
     }
     task.resume()
     

@@ -43,6 +43,7 @@
 		1AC9AC4B1AF2E9470090E108 /* AddOutfitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC9AC4A1AF2E9470090E108 /* AddOutfitView.swift */; };
 		1ACC8B101A58C82200093290 /* PropertiesBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */; };
 		1ACC8B111A58C82200093290 /* PropertiesFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */; };
+		1AEC455A1B4B8E4C009D8D9A /* WeatherAPICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEC45591B4B8E4C009D8D9A /* WeatherAPICalls.swift */; };
 		1AF1A2731ACA3FFF006770D6 /* CurateAPICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2721ACA3FFF006770D6 /* CurateAPICalls.swift */; };
 		1AF1A27C1ACA41E1006770D6 /* Indexes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2781ACA41E1006770D6 /* Indexes.swift */; };
 		1AF1A27D1ACA41E1006770D6 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2791ACA41E1006770D6 /* Tokens.swift */; };
@@ -102,6 +103,7 @@
 		1AC9AC4A1AF2E9470090E108 /* AddOutfitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddOutfitView.swift; sourceTree = "<group>"; };
 		1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesBackView.swift; sourceTree = "<group>"; };
 		1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesFrontView.swift; sourceTree = "<group>"; };
+		1AEC45591B4B8E4C009D8D9A /* WeatherAPICalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPICalls.swift; sourceTree = "<group>"; };
 		1AF1A2721ACA3FFF006770D6 /* CurateAPICalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurateAPICalls.swift; sourceTree = "<group>"; };
 		1AF1A2781ACA41E1006770D6 /* Indexes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Indexes.swift; sourceTree = "<group>"; };
 		1AF1A2791ACA41E1006770D6 /* Tokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				1AA3C5961A46021A008C732C /* RBResizer.swift */,
 				1A8CCC1B1ACB22F3001E3AF0 /* ReadWriteCalls.swift */,
 				1AF1A2721ACA3FFF006770D6 /* CurateAPICalls.swift */,
+				1AEC45591B4B8E4C009D8D9A /* WeatherAPICalls.swift */,
 			);
 			name = GlobalFunctions;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				1AA3C5A01A460234008C732C /* WardrobeBuilderVC.swift in Sources */,
 				1AF1A2731ACA3FFF006770D6 /* CurateAPICalls.swift in Sources */,
 				1AA3C5971A46021A008C732C /* RBResizer.swift in Sources */,
+				1AEC455A1B4B8E4C009D8D9A /* WeatherAPICalls.swift in Sources */,
 				1A96E9A61A58C66200C23C0E /* OutfitBuilderContainerVC.swift in Sources */,
 				1A8CCC231AD0600F001E3AF0 /* Sweater.swift in Sources */,
 				1AA3C5A61A460234008C732C /* MeasurementsVC.swift in Sources */,

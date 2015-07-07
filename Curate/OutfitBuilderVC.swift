@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import CoreLocation
+import Foundation
 
 protocol OutfitBuilderVCDelegate {
     func pickerViewWasTapped(image: UIImage)
 }
 
-class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate, AddOutfitViewDelegate {
+class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate, AddOutfitViewDelegate {
     
     var addOutfitView: AddOutfitView?
     var scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds)
@@ -38,8 +40,28 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     let POPOUTSIZE = CGSize(width: 270, height: 320)
     let screenWidth = UIScreen.mainScreen().bounds.size.width
     
+    var locations = []
+    let locationManager = CLLocationManager()
+    
+    var temp:Double = 0
+    var curateAuthToken:String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getCurateAuthToken(getFbAuthToken(), {
+            curateAuthtoken in
+            self.curateAuthToken = curateAuthtoken
+        })
+        
+        locationManager.delegate = self
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
+            println("Clauthorizationstatus not determined")
+            locationManager.requestWhenInUseAuthorization()
+        } else if CLLocationManager.locationServicesEnabled() {
+            println("CLauthorizationstatus location services enabled")
+            locationManager.startUpdatingLocation()
+        }
         
         //set up pickers
         setupPickerViewers()
@@ -246,26 +268,24 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     
     func pickerViewDoubleTapGestureRecognized(sender: UITapGestureRecognizer ) {
         println("double tapped")
-        var color: String?
-        var mainCategory: String?
+        var baseClothing: String?
         let pickerView: UIPickerView = sender.view as UIPickerView
         switch pickerView.tag {
         case shirtPicker.tag:
-            color = shirtPickerData[shirtPicker.selectedRowInComponent(0)].color1!
-            mainCategory = "Tops"
+            baseClothing = shirtPickerData[shirtPicker.selectedRowInComponent(0)].fileName!
         case sweaterPicker.tag:
             println()
         case jacketPicker.tag:
             println()
         case pantsPicker.tag:
-            color = pantsPickerData[pantsPicker.selectedRowInComponent(0)].color1!
-            mainCategory = "Bottoms"
+            baseClothing = pantsPickerData[pantsPicker.selectedRowInComponent(0)].fileName!
         case shoePicker.tag:
             println()
         default:
             println()
         }
-        getMatches(color!, mainCategory!, {
+
+        getMatches(self.curateAuthToken!, self.temp, baseClothing!, {
             matchDict in
             println(matchDict)
         })
@@ -282,7 +302,16 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         self.addOutfitView?.removeFromSuperview()
     }
     
+    func getLocation() {
+        var coord = locations.lastObject as CLLocation
+        var lat = coord.coordinate.latitude
+        var long = coord.coordinate.longitude
+        println("(\(lat),\(long))")
+    }
+
 }
+    
+
 
 extension OutfitBuilderVC: UIGestureRecognizerDelegate {
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer!, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer!) -> Bool {
@@ -374,6 +403,31 @@ extension OutfitBuilderVC: UIPickerViewDelegate {
         tmpView.insertSubview(imageView, atIndex: 0)
         return tmpView
     }
+}
+
+//MARK: Delegates CLLocationManager
+extension OutfitBuilderVC: CLLocationManagerDelegate {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [AnyObject]){
+        locationManager.startUpdatingLocation()
+        var location: CLLocation = locations.last as CLLocation
+        var lat: CLLocationDegrees = location.coordinate.latitude
+        var lon: CLLocationDegrees = location.coordinate.longitude
+        //        println("in did update location")
+        //        println("(\(lat),\(long)")
+        self.locations = locations
+        getWeatherWithLocation(lat, lon, {
+            currentTemp in
+            self.temp = currentTemp
+        })
+        
+    }
+    
+    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if (status == CLAuthorizationStatus.AuthorizedAlways || status == CLAuthorizationStatus.AuthorizedWhenInUse) {
+            manager.startUpdatingLocation()
+        }
+    }
+    
 }
 
 
