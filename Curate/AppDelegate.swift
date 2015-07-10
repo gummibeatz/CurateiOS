@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  Curate
@@ -8,9 +9,10 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLocationManagerDelegate {
                             
     var window: UIWindow?
     var segmentsController: SegmentsController = SegmentsController()
@@ -20,10 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     var fbLoginVC: FBLoginVC = FBLoginVC()
     var measurementsButton: UIButton = UIButton()
     
-
     let WARDROBEBUILDERINDEX = 0
     let OUTFITBUILDERINDEX = 1
     let OUTFITSINDEX = 2
+    
+    var locations = []
+    let locationManager = CLLocationManager()
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
@@ -51,6 +55,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
 
         
         self.firstUserExperience()
+        
+        //Setting up coreLocation
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
+            println("Clauthorizationstatus not determined")
+            locationManager.requestWhenInUseAuthorization()
+        } else if CLLocationManager.locationServicesEnabled() {
+            println("CLauthorizationstatus location services enabled")
+            locationManager.startUpdatingLocation()
+        }
 
         
         //Setting up FBLoginView
@@ -209,5 +224,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
     }
 
+}
+
+//MARK: Delegates CLLocationManager
+extension AppDelegate: CLLocationManagerDelegate {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [AnyObject]){
+        locationManager.startUpdatingLocation()
+        self.locations = locations
+//        println("in did update location")
+
+    }
+    
+    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        println("in did changeauthorizationstatus for locationmanager")
+        if (status == CLAuthorizationStatus.AuthorizedAlways || status == CLAuthorizationStatus.AuthorizedWhenInUse) {
+            println("authorizationstatus is gooooood")
+            manager.startUpdatingLocation()
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
 }
 

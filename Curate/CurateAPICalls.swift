@@ -281,24 +281,28 @@ func getFbAuthToken() -> String {
 
 // user sends 2 properties of article to be matched. color and main category style
 // receives dictionary with main category of original article and color pairings
-func getMatches(curateAuthToken: String, temperature: Double, base_clothing: String, completionHandler:(matchDict: NSDictionary) -> ()) {
+func getMatches(curateAuthToken: String, base_clothing: String, completionHandler:(matchDict: NSDictionary) -> ()) {
     println("in getMatches")
-    var fbase_clothing: String = base_clothing.stringByReplacingOccurrencesOfString("&", withString: "%26", options: NSStringCompareOptions.LiteralSearch, range: nil)
-    let url: NSURL = NSURL(string:"http://curateanalytics.herokuapp.com/api/v1/matches?authentication_token=\(curateAuthToken)&&temperature=\(temperature)&&base_clothing=\(fbase_clothing)")!
     
-    let request = NSMutableURLRequest(URL: url)
-    request.HTTPMethod = "GET"
-    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
-        var error: NSError?
-        if let matchDict: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? NSDictionary {
-            completionHandler(matchDict: matchDict)
+    getWeather({
+        currentTemp in
+        var fbase_clothing: String = base_clothing.stringByReplacingOccurrencesOfString("&", withString: "%26", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        let url: NSURL = NSURL(string:"http://curateanalytics.herokuapp.com/api/v1/matches?authentication_token=\(curateAuthToken)&&temperature=\(currentTemp)&&base_clothing=\(fbase_clothing)")!
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
+            var error: NSError?
+            if let matchDict: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? NSDictionary {
+                completionHandler(matchDict: matchDict)
+            }
+            println("data = \(data)")
+            println("response = \(response)")
+            println("error = \(error)")
         }
-        println("data = \(data)")
-        println("response = \(response)")
-        println("error = \(error)")
-    }
-    task.resume()
-    
+        task.resume()
+    })
 }
 

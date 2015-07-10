@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/OutfitBuilderVC.swift"
-            timestampString = "453582768.119895"
+            timestampString = "458245480.320606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
             landmarkName = "pickerView(_:titleForRow:forComponent:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/OutfitBuilderVC.swift"
-            timestampString = "453582768.119895"
+            timestampString = "458240017.371216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "pickerViewDoubleTapGestureRecognized(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -481,6 +481,130 @@
             endingLineNumber = "284"
             landmarkName = "cardSwipedRight(_:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Curate/AppDelegate.swift"
+            timestampString = "458240346.850391"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Curate/CurateAPICalls.swift"
+            timestampString = "458240604.579726"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "getMatches(_:_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Curate/WeatherAPICalls.swift"
+            timestampString = "458241384.852914"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "getWeather(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Curate.getWeather ((currentTemp : Swift.Double) -&gt; ()) -&gt; ()"
+                  moduleName = "Curate"
+                  urlString = "file:///Users/KennethKuo/Documents/Apps/Example%20App/Curate/Curate/WeatherAPICalls.swift"
+                  timestampString = "458241331.704786"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "87">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reabstraction thunk helper from @callee_owned () -&gt; (@autoreleased Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSNumber&gt;) to @callee_owned () -&gt; (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSNumber&gt;)"
+                  moduleName = "Curate"
+                  urlString = "file:///Users/KennethKuo/Documents/Apps/Example%20App/Curate/Curate/WeatherAPICalls.swift"
+                  timestampString = "458241331.705035"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Curate/WeatherAPICalls.swift"
+            timestampString = "458241367.148098"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "getWeather(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Curate.getWeather ((currentTemp : Swift.Double) -&gt; ()) -&gt; ()"
+                  moduleName = "Curate"
+                  urlString = "file:///Users/KennethKuo/Documents/Apps/Example%20App/Curate/Curate/WeatherAPICalls.swift"
+                  timestampString = "458241385.206916"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "396">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reabstraction thunk helper from @callee_owned () -&gt; (@autoreleased Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSNumber&gt;) to @callee_owned () -&gt; (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSNumber&gt;)"
+                  moduleName = "Curate"
+                  urlString = "file:///Users/KennethKuo/Documents/Apps/Example%20App/Curate/Curate/WeatherAPICalls.swift"
+                  timestampString = "458241385.207168"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
