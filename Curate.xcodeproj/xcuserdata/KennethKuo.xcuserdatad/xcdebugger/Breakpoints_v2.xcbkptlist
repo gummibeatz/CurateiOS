@@ -74,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/OutfitBuilderVC.swift"
-            timestampString = "457971050.364633"
+            timestampString = "458245480.320606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
-            landmarkName = "pickerView(_:viewForRow:forComponent:reusingView:)"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
+            landmarkName = "pickerView(_:numberOfRowsInComponent:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -110,7 +110,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
-            endingLineNumber = "37">
+            endingLineNumber = "37"
+            landmarkName = "getUser(_:_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -156,7 +158,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "201"
-            endingLineNumber = "201">
+            endingLineNumber = "201"
+            landmarkName = "formatSwipeBatch(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -186,7 +190,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "217"
-            endingLineNumber = "217">
+            endingLineNumber = "217"
+            landmarkName = "formatSwipeBatch(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -200,7 +206,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "204"
-            endingLineNumber = "204">
+            endingLineNumber = "204"
+            landmarkName = "formatSwipeBatch(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -258,12 +266,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/OutfitBuilderVC.swift"
-            timestampString = "457971050.364633"
+            timestampString = "458240017.371216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
-            landmarkName = "dismissOutfitView()"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
+            landmarkName = "pickerViewDoubleTapGestureRecognized(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -438,7 +446,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
-            endingLineNumber = "105">
+            endingLineNumber = "105"
+            landmarkName = "postWardrobe(_:_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -460,7 +470,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
@@ -476,15 +486,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Curate/WeatherAPICalls.swift"
-            timestampString = "457936464.033015"
+            filePath = "Curate/AppDelegate.swift"
+            timestampString = "458240346.850391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "9"
-            endingLineNumber = "9">
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -493,14 +505,106 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Curate/OutfitBuilderVC.swift"
-            timestampString = "457971050.364633"
+            filePath = "Curate/CurateAPICalls.swift"
+            timestampString = "458240604.579726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
-            landmarkName = "pickerViewDoubleTapGestureRecognized(_:)"
-            landmarkType = "5">
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "getMatches(_:_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Curate/WeatherAPICalls.swift"
+            timestampString = "458241384.852914"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "getWeather(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Curate.getWeather ((currentTemp : Swift.Double) -&gt; ()) -&gt; ()"
+                  moduleName = "Curate"
+                  urlString = "file:///Users/KennethKuo/Documents/Apps/Example%20App/Curate/Curate/WeatherAPICalls.swift"
+                  timestampString = "458241331.704786"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "87">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reabstraction thunk helper from @callee_owned () -&gt; (@autoreleased Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSNumber&gt;) to @callee_owned () -&gt; (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSNumber&gt;)"
+                  moduleName = "Curate"
+                  urlString = "file:///Users/KennethKuo/Documents/Apps/Example%20App/Curate/Curate/WeatherAPICalls.swift"
+                  timestampString = "458241331.705035"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Curate/WeatherAPICalls.swift"
+            timestampString = "458241367.148098"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "getWeather(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Curate.getWeather ((currentTemp : Swift.Double) -&gt; ()) -&gt; ()"
+                  moduleName = "Curate"
+                  urlString = "file:///Users/KennethKuo/Documents/Apps/Example%20App/Curate/Curate/WeatherAPICalls.swift"
+                  timestampString = "458241385.206916"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "396">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reabstraction thunk helper from @callee_owned () -&gt; (@autoreleased Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSNumber&gt;) to @callee_owned () -&gt; (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSNumber&gt;)"
+                  moduleName = "Curate"
+                  urlString = "file:///Users/KennethKuo/Documents/Apps/Example%20App/Curate/Curate/WeatherAPICalls.swift"
+                  timestampString = "458241385.207168"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
