@@ -83,8 +83,8 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         jacketPickerData = readCustomObjArrayFromUserDefaults("ownedJackets") as [Top]
         lightLayerPickerData = readCustomObjArrayFromUserDefaults("ownedLightLayers") as [Top]
         collaredShirtPickerData = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as [Top]
-        longSleeveShirtPickerData = readCustomObjArrayFromUserDefaults("ownedLongSleeves") as [Top]
-        shortSleeveShirtPickerData = readCustomObjArrayFromUserDefaults("ownedShortSleeves") as [Top]
+        longSleeveShirtPickerData = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts") as [Top]
+        shortSleeveShirtPickerData = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as [Top]
         pantsPickerData = readCustomObjArrayFromUserDefaults("ownedPants") as [Bottom]
         shortsPickerData = readCustomObjArrayFromUserDefaults("ownedShorts") as [Bottom]
         
