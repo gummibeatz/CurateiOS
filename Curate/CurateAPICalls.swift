@@ -153,6 +153,7 @@ func getSwipeBatch(user: User, completionHandler:(swipeBatch:Array<Array<Clothin
 //}
 
 func getImageData(imagePath: String) -> NSData {
+    println(imagePath)
     let url = NSURL(string: imagePath)
     let data = NSData(contentsOfURL: url!)
     return data!

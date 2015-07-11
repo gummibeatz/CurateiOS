@@ -32,10 +32,14 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     var currentUser: User?
 
     var ownedTops:[Top]?
-    var ownedSweaters: [Sweater]?
-    var ownedJackets: [Jacket]?
     var ownedBottoms: [Bottom]?
-    var ownedShoes: [Shoes]?
+    var ownedJackets: [Top]?
+    var ownedLightLayers: [Top]?
+    var ownedCollaredShirts: [Top]?
+    var ownedLongSleeveShirts: [Top]?
+    var ownedShortSleeveShirts: [Top]?
+    var ownedPants: [Bottom]?
+    var ownedShorts: [Bottom]?
     
     required init(coder aDecoder: (NSCoder!)) {
         super.init(coder: aDecoder)
@@ -95,42 +99,58 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     func loadOwnedWardrobe() {
         ownedTops = readCustomObjArrayFromUserDefaults("ownedTops") as? [Top]
-        ownedSweaters = readCustomObjArrayFromUserDefaults("ownedSweaters") as? [Sweater]
-        ownedJackets = readCustomObjArrayFromUserDefaults("ownedJackets") as? [Jacket]
         ownedBottoms = readCustomObjArrayFromUserDefaults("ownedBottoms") as? [Bottom]
-        ownedShoes = readCustomObjArrayFromUserDefaults("ownedShoes") as? [Shoes]
+        ownedJackets = readCustomObjArrayFromUserDefaults("ownedJackets") as? [Top]
+        ownedLightLayers = readCustomObjArrayFromUserDefaults("ownedLightLayers") as? [Top]
+        ownedCollaredShirts = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as? [Top]
+        ownedLongSleeveShirts = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts") as? [Top]
+        ownedShortSleeveShirts = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as? [Top]
+        ownedPants = readCustomObjArrayFromUserDefaults("ownedPants") as? [Bottom]
+        ownedShorts = readCustomObjArrayFromUserDefaults("ownedShorts") as? [Bottom]
         
         println("ownedBottoms = \(ownedBottoms)")
         
-        if(ownedTops!.count == 0) {
-            var emptyTop = Top()
-            emptyTop.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
-            ownedTops!.append(emptyTop)
-            writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
-        }
-        if(ownedSweaters!.count == 0) {
-            var emptySweater = Sweater()
-            emptySweater.image =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
-            ownedSweaters!.append(emptySweater)
-            writeCustomObjArraytoUserDefaults(ownedSweaters!, "ownedSweaters")
-        }
         if(ownedJackets!.count == 0) {
-            var emptyJacket = Jacket()
-            emptyJacket.image =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            var emptyJacket = Top()
+            emptyJacket.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
             ownedJackets!.append(emptyJacket)
             writeCustomObjArraytoUserDefaults(ownedJackets!, "ownedJackets")
         }
-        if(ownedBottoms!.count == 0) {
-            var emptyBottom = Bottom()
-            emptyBottom.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
-            ownedBottoms!.append(emptyBottom)
-            writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")
+        if(ownedLightLayers!.count == 0) {
+            var emptyLightLayer = Top()
+            emptyLightLayer.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            ownedLightLayers!.append(emptyLightLayer)
+            writeCustomObjArraytoUserDefaults(ownedLightLayers!, "ownedLightLayers")
         }
-        if(ownedShoes!.count == 0) {
-            var emptyShoes = Shoes()
-            emptyShoes.image =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
-            ownedShoes!.append(emptyShoes)
-            writeCustomObjArraytoUserDefaults(ownedShoes!, "ownedShoes")
+        if(ownedCollaredShirts!.count == 0) {
+            var emptyCollaredShirt = Top()
+            emptyCollaredShirt.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            ownedCollaredShirts!.append(emptyCollaredShirt)
+            writeCustomObjArraytoUserDefaults(ownedCollaredShirts!, "ownedCollaredShirts")
+        }
+        if(ownedLongSleeveShirts!.count == 0) {
+            var emptyLongSleeveShirt = Top()
+            emptyLongSleeveShirt.imageData = UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            ownedLongSleeveShirts!.append(emptyLongSleeveShirt)
+            writeCustomObjArraytoUserDefaults(ownedLongSleeveShirts!, "ownedLongSleeveShirts")
+        }
+        if(ownedShortSleeveShirts!.count == 0) {
+            var emptyShortSleeveShirt = Top()
+            emptyShortSleeveShirt.imageData = UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            ownedShortSleeveShirts!.append(emptyShortSleeveShirt)
+            writeCustomObjArraytoUserDefaults(ownedShortSleeveShirts!, "ownedShortSleeveShirts")
+        }
+        if(ownedPants!.count == 0) {
+            var emptyPants = Bottom()
+            emptyPants.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            ownedPants!.append(emptyPants)
+            writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedPants")
+        }
+        if(ownedShorts!.count == 0) {
+            var emptyShorts = Bottom()
+            emptyShorts.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            ownedShorts!.append(emptyShorts)
+            writeCustomObjArraytoUserDefaults(ownedShorts!, "ownedShorts")
         }
         
     }
@@ -511,10 +531,39 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             let top: Top = Top(top: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedTops!.append(top) //%%% add top to ownedTops if swiped right
             writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
+            switch clothingArticle.mainCategory! as String {
+            case "Jacket":
+                ownedJackets!.append(top)
+                writeCustomObjArraytoUserDefaults(ownedJackets!, "ownedJackets")
+            case "Light Layer":
+                ownedLightLayers!.append(top)
+                writeCustomObjArraytoUserDefaults(ownedLightLayers!, "ownedLightLayers")
+            case "Collared Shirt":
+                ownedCollaredShirts!.append(top)
+                writeCustomObjArraytoUserDefaults(ownedCollaredShirts!, "ownedCollaredShirts")
+            case "Long Sleeve Shirt":
+                ownedLongSleeveShirts!.append(top)
+                writeCustomObjArraytoUserDefaults(ownedLongSleeveShirts!, "ownedLongSleeveShirts")
+            case "Short Sleeve Shirt":
+                ownedShortSleeveShirts!.append(top)
+                writeCustomObjArraytoUserDefaults(ownedShortSleeveShirts!, "ownedShortSleeveShirts")
+            default:
+                println("save clothing article tops impossible")
+            }
         case "Casual", "Chinos", "Shorts", "Suit Pants":
             let bottom: Bottom = Bottom(bottom: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedBottoms!.append(bottom) //%%% add bottom to ownedBottoms if swiped right
             writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")
+            switch clothingArticle.mainCategory! as String {
+            case "Casual", "Chinos", "Suit Pants":
+                ownedPants!.append(bottom)
+                writeCustomObjArraytoUserDefaults(ownedPants!, "ownedPants")
+            case "Shorts":
+                ownedShorts!.append(bottom)
+                writeCustomObjArraytoUserDefaults(ownedShorts!, "ownedShorts")
+            default:
+                println("save clothing article bottoms impossible place")
+            }
         default:
             println("not anything")
         }
