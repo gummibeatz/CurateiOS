@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLocationManagerDelegate {
                             
     var window: UIWindow?
     var segmentsController: SegmentsController = SegmentsController()
@@ -20,16 +20,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     var fbLoginVC: FBLoginVC = FBLoginVC()
     var measurementsButton: UIButton = UIButton()
     
-
     let WARDROBEBUILDERINDEX = 0
     let OUTFITBUILDERINDEX = 1
     let OUTFITSINDEX = 2
+    
+    var location = CLLocation()
+    let locationManager = CLLocationManager()
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
         
+        //setting up locationmanager
+        locationManager.delegate = self
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
+            println("Clauthorizationstatus not determined")
+            locationManager.requestWhenInUseAuthorization()
+        } else if CLLocationManager.locationServicesEnabled() {
+            println("CLauthorizationstatus location services enabled")
+            locationManager.startUpdatingLocation()
+        }
     
-
         // Setting up segmented view control
         var viewControllers: NSArray = self.segmentViewControllers()
         self.segmentsController.setNavigationController(navigationController)
@@ -209,5 +219,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
     }
 
+}
+
+//MARK: Delegates CLLocationManager
+extension AppDelegate: CLLocationManagerDelegate {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [AnyObject]){
+        locationManager.startUpdatingLocation()
+        self.location = locations.last as CLLocation
+                println("in did update location")
+        //        println("(\(lat),\(long)")
+        
+        
+    }
+    
+    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if (status == CLAuthorizationStatus.AuthorizedAlways || status == CLAuthorizationStatus.AuthorizedWhenInUse) {
+            manager.startUpdatingLocation()
+        }
+    }
+    
 }
 
