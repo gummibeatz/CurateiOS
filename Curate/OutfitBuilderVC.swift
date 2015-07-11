@@ -14,7 +14,7 @@ protocol OutfitBuilderVCDelegate {
     func pickerViewWasTapped(image: UIImage)
 }
 
-class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate, AddOutfitViewDelegate {
+class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate, AddOutfitViewDelegate {
     
     var addOutfitView: AddOutfitView?
     var scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds)
@@ -44,9 +44,6 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     let POPOUTSIZE = CGSize(width: 270, height: 320)
     let screenWidth = UIScreen.mainScreen().bounds.size.width
     
-    var locations = []
-    let locationManager = CLLocationManager()
-    
     var temp:Double = 0
     var curateAuthToken:String?
     
@@ -57,15 +54,6 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             curateAuthtoken in
             self.curateAuthToken = curateAuthtoken
         })
-        
-        locationManager.delegate = self
-        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
-            println("Clauthorizationstatus not determined")
-            locationManager.requestWhenInUseAuthorization()
-        } else if CLLocationManager.locationServicesEnabled() {
-            println("CLauthorizationstatus location services enabled")
-            locationManager.startUpdatingLocation()
-        }
         
         //set up pickers
         setupPickerViewers()
@@ -342,7 +330,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             println()
         }
 
-        getMatches(self.curateAuthToken!, self.temp, baseClothing!, {
+        getMatches(self.curateAuthToken!, baseClothing!, {
             matchDict in
             println(matchDict)
         })
@@ -357,13 +345,6 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     func dismissOutfitView() {
         self.blurEffectView.removeFromSuperview()
         self.addOutfitView?.removeFromSuperview()
-    }
-    
-    func getLocation() {
-        var coord = locations.lastObject as CLLocation
-        var lat = coord.coordinate.latitude
-        var long = coord.coordinate.longitude
-        println("(\(lat),\(long))")
     }
 
 }
@@ -472,31 +453,6 @@ extension OutfitBuilderVC: UIPickerViewDelegate {
         tmpView.insertSubview(imageView, atIndex: 0)
         return tmpView
     }
-}
-
-//MARK: Delegates CLLocationManager
-extension OutfitBuilderVC: CLLocationManagerDelegate {
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [AnyObject]){
-        locationManager.startUpdatingLocation()
-        var location: CLLocation = locations.last as CLLocation
-        var lat: CLLocationDegrees = location.coordinate.latitude
-        var lon: CLLocationDegrees = location.coordinate.longitude
-        //        println("in did update location")
-        //        println("(\(lat),\(long)")
-        self.locations = locations
-        getWeatherWithLocation(lat, lon, {
-            currentTemp in
-            self.temp = currentTemp
-        })
-        
-    }
-    
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if (status == CLAuthorizationStatus.AuthorizedAlways || status == CLAuthorizationStatus.AuthorizedWhenInUse) {
-            manager.startUpdatingLocation()
-        }
-    }
-    
 }
 
 
