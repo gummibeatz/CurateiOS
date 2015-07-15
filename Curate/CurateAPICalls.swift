@@ -298,7 +298,7 @@ func getMatches(curateAuthToken: String, base_clothing: String, completionHandle
             if let matchDict: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? NSDictionary {
                 completionHandler(matchDict: matchDict)
             }
-            println("data = \(data)")
+//            println("data = \(data)")
             println("response = \(response)")
             println("error = \(error)")
         }

@@ -1,1 +1,5 @@
 Timing for click on buttons in wardrobebuilderVC
+
+green matches are not good
+
+gotta double tap then switch things

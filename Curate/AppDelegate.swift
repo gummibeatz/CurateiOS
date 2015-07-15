@@ -226,7 +226,7 @@ extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [AnyObject]){
         locationManager.startUpdatingLocation()
         self.location = locations.last as CLLocation
-                println("in did update location")
+//                println("in did update location")
         //        println("(\(lat),\(long)")
         
         

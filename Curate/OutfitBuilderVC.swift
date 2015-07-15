@@ -224,11 +224,11 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         
         
         let pickerWidth = screenWidth*3/4
-        jacketPicker.frame = CGRectMake(40, 0, pickerWidth, 180)
-        lightLayerPicker.frame = CGRectMake(40, 120, pickerWidth, 180)
+        jacketPicker.frame = CGRectMake(40, 480, pickerWidth, 180)
+        lightLayerPicker.frame = CGRectMake(40, 360, pickerWidth, 180)
         collaredShirtPicker.frame = CGRectMake(40, 240, pickerWidth, 180)
-        longSleeveShirtPicker.frame = CGRectMake(40, 360, pickerWidth, 180)
-        shortSleeveShirtPicker.frame = CGRectMake(40, 480, pickerWidth, 180)
+        longSleeveShirtPicker.frame = CGRectMake(40, 120, pickerWidth, 180)
+        shortSleeveShirtPicker.frame = CGRectMake(40, 0, pickerWidth, 180)
         pantsPicker.frame = CGRectMake(40, 600, pickerWidth, 180)
         shortsPicker.frame = CGRectMake(40, 720, pickerWidth, 180)
         
@@ -330,18 +330,136 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             println()
         }
 
-        getMatches(self.curateAuthToken!, baseClothing!, {
-            matchDict in
-            println(matchDict)
-        })
+        if (self.curateAuthToken != nil) {
+            getMatches(self.curateAuthToken!, baseClothing!, {
+                matchDict in
+                let message:String = matchDict.objectForKey("message") as String
+                println(message)
+                if message != "NA" {
+                    let matches:[NSDictionary] = matchDict.objectForKey("matches") as [NSDictionary]
+                    println(matches)
+                    var maxMatch:NSDictionary = self.getMaxMatch(matches)
+                    self.assembleOutfitFromMatch(maxMatch)
+                }
+            })
+        }
         
     }
     
+    func getMaxMatch(matches: [NSDictionary]) -> NSDictionary {
+        var maxMatch:NSDictionary = NSDictionary()
+        var maxScore = -9999
+        for match in matches {
+            var currentScore: Int = (match.objectForKey("score") as String).toInt()!
+            if currentScore > maxScore {
+                maxMatch = match
+            }
+        }
+        return maxMatch
+    }
+    
+    func assembleOutfitFromMatch(match: NSDictionary) {
+        var buffer: [[String]] = match.objectForKey("outfits") as [[String]]
+        var outfit:[String] = buffer[0]
+        var ownedPants: [Bottom] = readCustomObjArrayFromUserDefaults("ownedPants") as [Bottom]
+        
+        jacketPicker.selectRow(0, inComponent: 0, animated: true)
+        lightLayerPicker.selectRow(0, inComponent: 0, animated: true)
+        collaredShirtPicker.selectRow(0, inComponent: 0, animated: true)
+        longSleeveShirtPicker.selectRow(0, inComponent: 0, animated: true)
+        shortSleeveShirtPicker.selectRow(0, inComponent: 0, animated: true)
+        
+        changePickerWithOutfitIdx(outfit[0], isBottom: true)
+        if outfit[1] != "NA" {
+            changePickerWithOutfitIdx(outfit[1], isBottom: false)
+        }
+        if outfit[2] != "NA" {
+            changePickerWithOutfitIdx(outfit[2], isBottom: false)
+        }
+        
+        
+    }
+    
+    func getMainCategory(fileName: String, isBottom: Bool) -> String{
+        if(isBottom) {
+            var ownedBottoms: [Bottom] = readCustomObjArrayFromUserDefaults("ownedBottoms") as [Bottom]
+            for bottom in ownedBottoms {
+                if bottom.fileName! == fileName {
+                    return bottom.mainCategory!
+                }
+            }
+        } else {
+            var ownedTops: [Top] = readCustomObjArrayFromUserDefaults("ownedTops") as [Top]
+            for top in ownedTops {
+                if top.fileName! == fileName {
+                    return top.mainCategory!
+                }
+            }
+        }
+        return "NA"
+    }
+    
+    func changePickerWithOutfitIdx(outfitName: String, isBottom: Bool) {
+        var mainCategory: String = getMainCategory(outfitName, isBottom: false)
+        switch mainCategory {
+        case "Jacket":
+            var ownedJackets = readCustomObjArrayFromUserDefaults("ownedJackets") as [Top]
+            for (var i = 1; i < ownedJackets.count; i++) {
+                if(outfitName == ownedJackets[i].fileName!) {
+                    jacketPicker.selectRow(i, inComponent: 0, animated: true)
+                    break
+                }
+            }
+        case "Light Layer":
+            var ownedLightLayers = readCustomObjArrayFromUserDefaults("ownedLightLayers") as [Top]
+            for (var i = 1; i < ownedLightLayers.count; i++) {
+                if(outfitName == ownedLightLayers[i].fileName!) {
+                    lightLayerPicker.selectRow(i, inComponent: 0, animated: true)
+                    break
+                }
+            }
+        case "Long Sleeve Shirt":
+            var ownedLongSleeveShirts = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts") as [Top]
+            for (var i = 1; i < ownedLongSleeveShirts.count; i++) {
+                if(outfitName == ownedLongSleeveShirts[i].fileName!) {
+                    longSleeveShirtPicker.selectRow(i, inComponent: 0, animated: true)
+                    break
+                }
+            }
+        case "Collared Shirt":
+            var ownedCollaredShirts = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as [Top]
+            for (var i = 1; i < ownedCollaredShirts.count; i++) {
+                if(outfitName == ownedCollaredShirts[i].fileName!) {
+                    collaredShirtPicker.selectRow(i, inComponent: 0, animated: true)
+                    break
+                }
+            }
+        case "Short Sleeve Shirt":
+            var ownedShortSleeveShirts = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as [Top]
+            for (var i = 1; i < ownedShortSleeveShirts.count; i++) {
+                if(outfitName == ownedShortSleeveShirts[i].fileName!) {
+                    shortSleeveShirtPicker.selectRow(i, inComponent: 0, animated: true)
+                    break
+                }
+            }
+        default:
+            var ownedPants = readCustomObjArrayFromUserDefaults("ownedPants") as [Bottom]
+            for (var i = 1; i < ownedPants.count; i++) {
+                if outfitName == ownedPants[i].fileName! {
+                    pantsPicker.selectRow(i, inComponent: 0, animated: true)
+                    break
+                }
+            }
+        }
+    }
+
+
+
     func blurEffectWasTapped(VC: UIViewController) {
         println("blur effect recognized")
         self.blurEffectView.removeFromSuperview()
     }
-    
+
     func dismissOutfitView() {
         self.blurEffectView.removeFromSuperview()
         self.addOutfitView?.removeFromSuperview()
