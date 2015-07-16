@@ -11,15 +11,15 @@ import CoreData
 
 class Outfit: NSObject, NSCoding {
     
+//    saves the filename of all appropriate outfits
     var title: String?
     var tags: [String]?
-    var jacket: Top?
-    var lightLayer: Top?
-    var collaredShirt: Top?
-    var longSleeveShirt: Top?
-    var shortSleeveShirt: Top?
-    var pants: Bottom?
-    var shorts: Bottom?
+    var jacket: String?
+    var lightLayer: String?
+    var collaredShirt: String?
+    var longSleeveShirt: String?
+    var shortSleeveShirt: String?
+    var bottoms: String?
     
     override init() {
         super.init()
@@ -29,13 +29,12 @@ class Outfit: NSObject, NSCoding {
         self.init()
         self.title = aDecoder.decodeObjectForKey("title") as String?
         self.tags = aDecoder.decodeObjectForKey("tags") as [String]?
-        self.jacket = aDecoder.decodeObjectForKey("jacket") as Top?
-        self.lightLayer = aDecoder.decodeObjectForKey("lightLayer") as Top?
-        self.collaredShirt = aDecoder.decodeObjectForKey("collaredShirt") as Top?
-        self.longSleeveShirt = aDecoder.decodeObjectForKey("longSleeveShirt") as Top?
-        self.shortSleeveShirt = aDecoder.decodeObjectForKey("shortSleeveShirt") as Top?
-        self.pants = aDecoder.decodeObjectForKey("pants") as Bottom?
-        self.shorts = aDecoder.decodeObjectForKey("shorts") as Bottom?
+        self.jacket = aDecoder.decodeObjectForKey("jacket") as String?
+        self.lightLayer = aDecoder.decodeObjectForKey("lightLayer") as String?
+        self.collaredShirt = aDecoder.decodeObjectForKey("collaredShirt") as String?
+        self.longSleeveShirt = aDecoder.decodeObjectForKey("longSleeveShirt") as String?
+        self.shortSleeveShirt = aDecoder.decodeObjectForKey("shortSleeveShirt") as String?
+        self.bottoms = aDecoder.decodeObjectForKey("bottoms") as String?
     }
     
     func encodeWithCoder(coder: NSCoder) {
@@ -46,7 +45,6 @@ class Outfit: NSObject, NSCoding {
         coder.encodeObject(self.collaredShirt, forKey: "collaredShirt")
         coder.encodeObject(self.longSleeveShirt, forKey: "longSleeveShirt")
         coder.encodeObject(self.shortSleeveShirt, forKey: "shortSleeveShirt")
-        coder.encodeObject(self.pants , forKey: "pants")
-        coder.encodeObject(self.shorts, forKey: "shorts")
+        coder.encodeObject(self.bottoms , forKey: "bottoms")
     }
 }

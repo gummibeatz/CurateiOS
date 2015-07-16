@@ -554,16 +554,6 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             let bottom: Bottom = Bottom(bottom: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedBottoms!.append(bottom) //%%% add bottom to ownedBottoms if swiped right
             writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")
-            switch clothingArticle.mainCategory! as String {
-            case "Casual", "Chinos", "Suit Pants":
-                ownedPants!.append(bottom)
-                writeCustomObjArraytoUserDefaults(ownedPants!, "ownedPants")
-            case "Shorts":
-                ownedShorts!.append(bottom)
-                writeCustomObjArraytoUserDefaults(ownedShorts!, "ownedShorts")
-            default:
-                println("save clothing article bottoms impossible place")
-            }
         default:
             println("not anything")
         }

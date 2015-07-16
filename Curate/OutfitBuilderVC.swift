@@ -25,16 +25,14 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     let collaredShirtPicker = UIPickerView()
     let longSleeveShirtPicker = UIPickerView()
     let shortSleeveShirtPicker = UIPickerView()
-    let pantsPicker = UIPickerView()
-    let shortsPicker = UIPickerView()
+    let bottomsPicker = UIPickerView()
     
     var jacketPickerData:[Top] = [Top]()
     var lightLayerPickerData:[Top] = [Top]()
     var collaredShirtPickerData:[Top] = [Top]()
     var longSleeveShirtPickerData:[Top] = [Top]()
     var shortSleeveShirtPickerData:[Top] = [Top]()
-    var pantsPickerData:[Bottom] = [Bottom]()
-    var shortsPickerData:[Bottom] = [Bottom]()
+    var bottomsPickerData:[Bottom] = [Bottom]()
     
     var outfitBuilderVCDelegate: OutfitBuilderVCDelegate?
     var ownedOutfits: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as [Outfit]
@@ -73,8 +71,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         collaredShirtPickerData = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as [Top]
         longSleeveShirtPickerData = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts") as [Top]
         shortSleeveShirtPickerData = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as [Top]
-        pantsPickerData = readCustomObjArrayFromUserDefaults("ownedPants") as [Bottom]
-        shortsPickerData = readCustomObjArrayFromUserDefaults("ownedShorts") as [Bottom]
+        bottomsPickerData = readCustomObjArrayFromUserDefaults("ownedBottoms") as [Bottom]
         
         //adds in pickers if they have more than just NA symbol.
         if(jacketPickerData.count > 1 && addedPickers[0] == false) {
@@ -102,15 +99,10 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             shortSleeveShirtPicker.selectRow(1, inComponent: 0, animated: false)
             addedPickers[4] = true
         }
-        if(pantsPickerData.count > 1 && addedPickers[5] == false) {
-            scrollView.addSubview(pantsPicker)
-            pantsPicker.selectRow(1, inComponent: 0, animated: false)
+        if(bottomsPickerData.count > 1 && addedPickers[5] == false) {
+            scrollView.addSubview(bottomsPicker)
+            bottomsPicker.selectRow(1, inComponent: 0, animated: false)
             addedPickers[5] = true
-        }
-        if(shortsPickerData.count > 1 && addedPickers[6] == false) {
-            scrollView.addSubview(shortsPicker)
-            shortsPicker.selectRow(1, inComponent: 0, animated: false)
-            addedPickers[6] = true
         }
         
         reloadAllPickers()
@@ -127,8 +119,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         collaredShirtPicker.reloadAllComponents()
         longSleeveShirtPicker.reloadAllComponents()
         shortSleeveShirtPicker.reloadAllComponents()
-        pantsPicker.reloadAllComponents()
-        shortsPicker.reloadAllComponents()
+        bottomsPicker.reloadAllComponents()
     }
     
     func setupGestureRecognizers() {
@@ -138,15 +129,13 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         var longSleeveShirtSingleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewSingleTapGestureRecognized:")
         var shortSleeveShirtSingleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewSingleTapGestureRecognized:")
         var pantsSingleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewSingleTapGestureRecognized:")
-        var shortsSingleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewSingleTapGestureRecognized:")
-        
+       
         var jacketDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewDoubleTapGestureRecognized:")
         var lightLayerDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewDoubleTapGestureRecognized:")
         var collaredShirtDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewDoubleTapGestureRecognized:")
         var longSleeveShirtDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewDoubleTapGestureRecognized:")
         var shortSleeveShirtDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewDoubleTapGestureRecognized:")
         var pantsDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewDoubleTapGestureRecognized:")
-        var shortsDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: "pickerViewDoubleTapGestureRecognized:")
         
         jacketDoubleTapRecognizer.numberOfTapsRequired = 2
         lightLayerDoubleTapRecognizer.numberOfTapsRequired = 2
@@ -154,7 +143,6 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         longSleeveShirtDoubleTapRecognizer.numberOfTapsRequired = 2
         shortSleeveShirtDoubleTapRecognizer.numberOfTapsRequired = 2
         pantsDoubleTapRecognizer.numberOfTapsRequired = 2
-        shortsDoubleTapRecognizer.numberOfTapsRequired = 2
         
         jacketSingleTapRecognizer.requireGestureRecognizerToFail(jacketDoubleTapRecognizer)
         lightLayerSingleTapRecognizer.requireGestureRecognizerToFail(lightLayerDoubleTapRecognizer)
@@ -162,23 +150,21 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         longSleeveShirtSingleTapRecognizer.requireGestureRecognizerToFail(longSleeveShirtDoubleTapRecognizer)
         shortSleeveShirtSingleTapRecognizer.requireGestureRecognizerToFail(shortSleeveShirtDoubleTapRecognizer)
         pantsSingleTapRecognizer.requireGestureRecognizerToFail(pantsDoubleTapRecognizer)
-        shortsSingleTapRecognizer.requireGestureRecognizerToFail(shortsDoubleTapRecognizer)
         
         jacketPicker.addGestureRecognizer(jacketSingleTapRecognizer)
         lightLayerPicker.addGestureRecognizer(lightLayerSingleTapRecognizer)
         collaredShirtPicker.addGestureRecognizer(collaredShirtSingleTapRecognizer)
         longSleeveShirtPicker.addGestureRecognizer(longSleeveShirtSingleTapRecognizer)
         shortSleeveShirtPicker.addGestureRecognizer(shortSleeveShirtSingleTapRecognizer)
-        pantsPicker.addGestureRecognizer(pantsSingleTapRecognizer)
-        shortsPicker.addGestureRecognizer(shortsSingleTapRecognizer)
+        bottomsPicker.addGestureRecognizer(pantsSingleTapRecognizer)
+
         
         jacketPicker.addGestureRecognizer(jacketDoubleTapRecognizer)
         lightLayerPicker.addGestureRecognizer(lightLayerDoubleTapRecognizer)
         collaredShirtPicker.addGestureRecognizer(collaredShirtDoubleTapRecognizer)
         longSleeveShirtPicker.addGestureRecognizer(longSleeveShirtDoubleTapRecognizer)
         shortSleeveShirtPicker.addGestureRecognizer(shortSleeveShirtDoubleTapRecognizer)
-        pantsPicker.addGestureRecognizer(pantsDoubleTapRecognizer)
-        shortsPicker.addGestureRecognizer(shortsDoubleTapRecognizer)
+        bottomsPicker.addGestureRecognizer(pantsDoubleTapRecognizer)
         
         jacketSingleTapRecognizer.delegate = self
         lightLayerSingleTapRecognizer.delegate = self
@@ -186,7 +172,6 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         longSleeveShirtSingleTapRecognizer.delegate = self
         shortSleeveShirtSingleTapRecognizer.delegate = self
         pantsSingleTapRecognizer.delegate = self
-        shortsSingleTapRecognizer.delegate = self
         
         jacketDoubleTapRecognizer.delegate = self
         lightLayerDoubleTapRecognizer.delegate = self
@@ -194,7 +179,6 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         longSleeveShirtDoubleTapRecognizer.delegate = self
         shortSleeveShirtDoubleTapRecognizer.delegate = self
         pantsDoubleTapRecognizer.delegate = self
-        shortsDoubleTapRecognizer.delegate = self
     }
     
     func setupPickerViewers() {
@@ -203,25 +187,21 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         collaredShirtPicker.delegate = self
         longSleeveShirtPicker.delegate = self
         shortSleeveShirtPicker.delegate = self
-        pantsPicker.delegate = self
-        shortsPicker.delegate = self
+        bottomsPicker.delegate = self
         
         jacketPicker.dataSource = self
         lightLayerPicker.dataSource = self
         collaredShirtPicker.dataSource = self
         longSleeveShirtPicker.dataSource = self
         shortSleeveShirtPicker.dataSource = self
-        pantsPicker.dataSource = self
-        shortsPicker.dataSource = self
+        bottomsPicker.dataSource = self
         
         jacketPicker.tag = 0
         lightLayerPicker.tag = 1
         collaredShirtPicker.tag = 2
         longSleeveShirtPicker.tag = 3
         shortSleeveShirtPicker.tag = 4
-        pantsPicker.tag = 5
-        shortsPicker.tag = 6
-        
+        bottomsPicker.tag = 5
         
         let pickerWidth = screenWidth*3/4
         jacketPicker.frame = CGRectMake(40, 480, pickerWidth, 180)
@@ -229,9 +209,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         collaredShirtPicker.frame = CGRectMake(40, 240, pickerWidth, 180)
         longSleeveShirtPicker.frame = CGRectMake(40, 120, pickerWidth, 180)
         shortSleeveShirtPicker.frame = CGRectMake(40, 0, pickerWidth, 180)
-        pantsPicker.frame = CGRectMake(40, 600, pickerWidth, 180)
-        shortsPicker.frame = CGRectMake(40, 720, pickerWidth, 180)
-        
+        bottomsPicker.frame = CGRectMake(40, 600, pickerWidth, 180)
         
         let rotate = CGAffineTransformScale(CGAffineTransformMakeRotation(-3.14/2), 0.25, 2.0)
         self.jacketPicker.transform = rotate
@@ -239,8 +217,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         self.collaredShirtPicker.transform = rotate
         self.longSleeveShirtPicker.transform = rotate
         self.shortSleeveShirtPicker.transform = rotate
-        self.pantsPicker.transform = rotate
-        self.shortsPicker.transform = rotate
+        self.bottomsPicker.transform = rotate
     }
     
     func setupView() {
@@ -269,13 +246,12 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     func addOutfit() {
         println("addOutfit Button hit")
         var outfit: Outfit = Outfit()
-        outfit.jacket = jacketPickerData[jacketPicker.selectedRowInComponent(0)]
-        outfit.lightLayer = lightLayerPickerData[lightLayerPicker.selectedRowInComponent(0)]
-        outfit.collaredShirt = collaredShirtPickerData[collaredShirtPicker.selectedRowInComponent(0)]
-        outfit.longSleeveShirt = collaredShirtPickerData[longSleeveShirtPicker.selectedRowInComponent(0)]
-        outfit.shortSleeveShirt = collaredShirtPickerData[shortSleeveShirtPicker.selectedRowInComponent(0)]
-        outfit.pants = pantsPickerData[pantsPicker.selectedRowInComponent(0)]
-        outfit.shorts = shortsPickerData[shortsPicker.selectedRowInComponent(0)]
+        outfit.jacket = jacketPickerData[jacketPicker.selectedRowInComponent(0)].fileName
+        outfit.lightLayer = lightLayerPickerData[lightLayerPicker.selectedRowInComponent(0)].fileName
+        outfit.collaredShirt = collaredShirtPickerData[collaredShirtPicker.selectedRowInComponent(0)].fileName
+        outfit.longSleeveShirt = collaredShirtPickerData[longSleeveShirtPicker.selectedRowInComponent(0)].fileName
+        outfit.shortSleeveShirt = collaredShirtPickerData[shortSleeveShirtPicker.selectedRowInComponent(0)].fileName
+        outfit.bottoms = bottomsPickerData[bottomsPicker.selectedRowInComponent(0)].fileName
         self.addOutfitView = AddOutfitView(frame: CGRect(x: 20, y: 100, width: screenWidth-40, height: UIScreen.mainScreen().bounds.height - 150), outfit: outfit)
         addOutfitView?.delegate = self
         self.view.addSubview(blurEffectView)
@@ -296,10 +272,8 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             image = UIImage(data: longSleeveShirtPickerData[longSleeveShirtPicker.selectedRowInComponent(0)].imageData!)
         case shortSleeveShirtPicker.tag:
             image = UIImage(data: shortSleeveShirtPickerData[shortSleeveShirtPicker.selectedRowInComponent(0)].imageData!)
-        case pantsPicker.tag:
-            image = UIImage(data: pantsPickerData[pantsPicker.selectedRowInComponent(0)].imageData!)!
-        case shortsPicker.tag:
-            image = UIImage(data:shortsPickerData[shortsPicker.selectedRowInComponent(0)].imageData!)!
+        case bottomsPicker.tag:
+            image = UIImage(data: bottomsPickerData[bottomsPicker.selectedRowInComponent(0)].imageData!)!
         default:
             image = UIImage()
         }
@@ -322,10 +296,8 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             baseClothing = longSleeveShirtPickerData[longSleeveShirtPicker.selectedRowInComponent(0)].fileName!
         case shortSleeveShirtPicker.tag:
             baseClothing = shortSleeveShirtPickerData[shortSleeveShirtPicker.selectedRowInComponent(0)].fileName!
-        case pantsPicker.tag:
-            baseClothing = pantsPickerData[pantsPicker.selectedRowInComponent(0)].fileName!
-        case shortsPicker.tag:
-            baseClothing = shortsPickerData[shortsPicker.selectedRowInComponent(0)].fileName!
+        case bottomsPicker.tag:
+            baseClothing = bottomsPickerData[bottomsPicker.selectedRowInComponent(0)].fileName!
         default:
             println()
         }
@@ -336,10 +308,16 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                 let message:String = matchDict.objectForKey("message") as String
                 println(message)
                 if message != "NA" {
-                    let matches:[NSDictionary] = matchDict.objectForKey("matches") as [NSDictionary]
-                    println(matches)
-                    var maxMatch:NSDictionary = self.getMaxMatch(matches)
-                    self.assembleOutfitFromMatch(maxMatch)
+                    println(matchDict)
+                    if let matches:[NSDictionary] = matchDict.objectForKey("matches") as? [NSDictionary] {
+                        println(matches)
+                        var maxMatch:NSDictionary = self.getMaxMatch(matches)
+                        self.assembleOutfitFromMatch(maxMatch)
+                    } else {
+                        var alert = UIAlertController(title: "Alert", message: "No outfits could be matched", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
                 }
             })
         }
@@ -446,7 +424,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             var ownedPants = readCustomObjArrayFromUserDefaults("ownedPants") as [Bottom]
             for (var i = 1; i < ownedPants.count; i++) {
                 if outfitName == ownedPants[i].fileName! {
-                    pantsPicker.selectRow(i, inComponent: 0, animated: true)
+                    bottomsPicker.selectRow(i, inComponent: 0, animated: true)
                     break
                 }
             }
@@ -493,10 +471,8 @@ extension OutfitBuilderVC: UIPickerViewDataSource {
             return longSleeveShirtPickerData.count
         case shortSleeveShirtPicker.tag:
             return shortSleeveShirtPickerData.count
-        case pantsPicker.tag:
-            return pantsPickerData.count
-        case shortsPicker.tag:
-            return shortsPickerData.count
+        case bottomsPicker.tag:
+            return bottomsPickerData.count
         default:
             return 0
         }
@@ -519,10 +495,8 @@ extension OutfitBuilderVC: UIPickerViewDelegate {
             return "long sleeve shirts"
         case shortSleeveShirtPicker.tag:
             return "short sleeve shirts"
-        case pantsPicker.tag:
+        case bottomsPicker.tag:
             return "pants"
-        case shortsPicker.tag:
-            return "shorts"
         default:
             return "nothing"
         }
@@ -556,10 +530,8 @@ extension OutfitBuilderVC: UIPickerViewDelegate {
             img = UIImage(data: longSleeveShirtPickerData[row].imageData!)
         case shortSleeveShirtPicker.tag:
             img = UIImage(data: shortSleeveShirtPickerData[row].imageData!)
-        case pantsPicker.tag:
-            img = UIImage(data: pantsPickerData[row].imageData!)
-        case shortsPicker.tag:
-            img = UIImage(data: shortsPickerData[row].imageData!)
+        case bottomsPicker.tag:
+            img = UIImage(data: bottomsPickerData[row].imageData!)
         default:
             img = nil
         }
