@@ -25,7 +25,7 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func loadView() {
         super.loadView()
         
-        var bufferData: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as [Outfit]
+        var bufferData: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as! [Outfit]
         for outfit in bufferData {
             if let bufftitle: String = outfit.title {
                 tableData.append(outfit.title!)
@@ -99,7 +99,7 @@ extension OutfitsVC: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as OutfitCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as! OutfitCell
         cell.outfitName.text = self.tableData[indexPath.row]
         
         //modify for actual outfit image
@@ -115,11 +115,11 @@ extension OutfitsVC: UITableViewDataSource {
 //MARK: Delegates TableView
 extension OutfitsVC: UITableViewDelegate {
     
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
     
-    func tableView(tableView: UITableView!, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject]! {
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
         let deleteClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             println("Delete closure called")
             
@@ -147,7 +147,7 @@ extension OutfitsVC: UITableViewDelegate {
         return [deleteAction, editAction]
     }
     
-    func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
     }
     

@@ -14,11 +14,11 @@ class SegmentsController: NSObject {
     var viewControllers: NSArray = NSArray()
     var navigationController = UINavigationController()
     
-    func setNavigationController(aNavigationController: UINavigationController) {
+    func setTheNavigationController(aNavigationController: UINavigationController) {
         self.navigationController = aNavigationController
     }
     
-    func setViewControllers(theViewControllers: NSArray) {
+    func setTheViewControllers(theViewControllers: NSArray) {
         self.viewControllers = theViewControllers
     }
     
@@ -28,10 +28,10 @@ class SegmentsController: NSObject {
         var index: NSInteger = aSegmentedControl.selectedSegmentIndex
         
         var incomingViewController: UIViewController = self.viewControllers.objectAtIndex(index)
-         as UIViewController
+         as! UIViewController
         
-        var theViewControllers = NSArray(object: incomingViewController)
-        self.navigationController.setViewControllers(theViewControllers, animated: false)
+        var theViewControllers: [UIViewController] = NSArray(object: incomingViewController) as! [UIViewController]
+        self.navigationController.setViewControllers(theViewControllers as [UIViewController], animated: false)
         
         incomingViewController.navigationItem.titleView = aSegmentedControl
     }

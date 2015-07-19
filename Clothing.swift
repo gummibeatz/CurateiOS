@@ -33,11 +33,11 @@ class Clothing: NSObject, NSCoding {
     
     required convenience init(coder aDecoder: NSCoder) {
         self.init()
-        self.fileName = aDecoder.decodeObjectForKey("fileName") as String?
-        self.url = aDecoder.decodeObjectForKey("url") as String?
-        self.mainCategory = aDecoder.decodeObjectForKey("mainCategory") as String?
+        self.fileName = aDecoder.decodeObjectForKey("fileName") as! String?
+        self.url = aDecoder.decodeObjectForKey("url") as! String?
+        self.mainCategory = aDecoder.decodeObjectForKey("mainCategory") as! String?
         
-        self.properties = aDecoder.decodeObjectForKey("properties") as NSDictionary?
+        self.properties = aDecoder.decodeObjectForKey("properties") as! NSDictionary?
     }
     
     func encodeWithCoder(coder: NSCoder) {

@@ -21,7 +21,7 @@ func writeCustomObjArraytoUserDefaults(objectArray: [NSObject], fileName: String
 func readCustomObjArrayFromUserDefaults(fileName: String) -> [NSObject] {
     let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     if let data: NSData = userDefaults.objectForKey(fileName) as? NSData {
-        var objectArray: [NSObject] = NSKeyedUnarchiver.unarchiveObjectWithData(data) as [NSObject]
+        var objectArray: [NSObject] = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! [NSObject]
         return objectArray
     } else {
         return []
@@ -49,7 +49,7 @@ func getBatchIndex() -> Indexes {
         let fetchRequest = NSFetchRequest(entityName: "Indexes")
         
         // Execute the fetch request, and cast the results to an array of Tokens objects
-        let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as [Indexes]
+        let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as! [Indexes]
         indexes = fetchResults[0]
     } else {
         indexes = NSEntityDescription.insertNewObjectForEntityForName("Indexes", inManagedObjectContext: managedObjectContext!) as? Indexes

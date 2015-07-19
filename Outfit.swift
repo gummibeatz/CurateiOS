@@ -27,14 +27,14 @@ class Outfit: NSObject, NSCoding {
     
     required convenience init(coder aDecoder: NSCoder) {
         self.init()
-        self.title = aDecoder.decodeObjectForKey("title") as String?
-        self.tags = aDecoder.decodeObjectForKey("tags") as [String]?
-        self.jacket = aDecoder.decodeObjectForKey("jacket") as String?
-        self.lightLayer = aDecoder.decodeObjectForKey("lightLayer") as String?
-        self.collaredShirt = aDecoder.decodeObjectForKey("collaredShirt") as String?
-        self.longSleeveShirt = aDecoder.decodeObjectForKey("longSleeveShirt") as String?
-        self.shortSleeveShirt = aDecoder.decodeObjectForKey("shortSleeveShirt") as String?
-        self.bottoms = aDecoder.decodeObjectForKey("bottoms") as String?
+        self.title = aDecoder.decodeObjectForKey("title") as! String?
+        self.tags = aDecoder.decodeObjectForKey("tags")as! [String]?
+        self.jacket = aDecoder.decodeObjectForKey("jacket") as! String?
+        self.lightLayer = aDecoder.decodeObjectForKey("lightLayer") as! String?
+        self.collaredShirt = aDecoder.decodeObjectForKey("collaredShirt") as! String?
+        self.longSleeveShirt = aDecoder.decodeObjectForKey("longSleeveShirt") as! String?
+        self.shortSleeveShirt = aDecoder.decodeObjectForKey("shortSleeveShirt") as! String?
+        self.bottoms = aDecoder.decodeObjectForKey("bottoms") as! String?
     }
     
     func encodeWithCoder(coder: NSCoder) {

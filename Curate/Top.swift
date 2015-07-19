@@ -48,19 +48,19 @@ class Top: Clothing {
     
     required convenience init(coder aDecoder: NSCoder) {
         self.init()
-        self.fileName = aDecoder.decodeObjectForKey("fileName") as String?
-        self.url = aDecoder.decodeObjectForKey("url") as String?
-        self.properties = aDecoder.decodeObjectForKey("properties") as NSDictionary?
-        self.mainCategory = aDecoder.decodeObjectForKey("mainCategory") as String?
-        self.brand = aDecoder.decodeObjectForKey("brand") as String?
-        self.clothingType = aDecoder.decodeObjectForKey("clothingType") as String?
-        self.clothingType2 = aDecoder.decodeObjectForKey("clothingType2") as String?
-        self.collarType = aDecoder.decodeObjectForKey("collarType") as String?
-        self.color1 = aDecoder.decodeObjectForKey("color1") as String?
-        self.color2 = aDecoder.decodeObjectForKey("color2") as String?
-        self.fit = aDecoder.decodeObjectForKey("fit") as String?
-        self.material = aDecoder.decodeObjectForKey("material") as String?
-        self.imageData = aDecoder.decodeObjectForKey("imageData") as NSData?
+        self.fileName = aDecoder.decodeObjectForKey("fileName") as! String?
+        self.url = aDecoder.decodeObjectForKey("url") as! String?
+        self.properties = aDecoder.decodeObjectForKey("properties") as! NSDictionary?
+        self.mainCategory = aDecoder.decodeObjectForKey("mainCategory") as! String?
+        self.brand = aDecoder.decodeObjectForKey("brand") as! String?
+        self.clothingType = aDecoder.decodeObjectForKey("clothingType") as! String?
+        self.clothingType2 = aDecoder.decodeObjectForKey("clothingType2") as! String?
+        self.collarType = aDecoder.decodeObjectForKey("collarType") as! String?
+        self.color1 = aDecoder.decodeObjectForKey("color1") as! String?
+        self.color2 = aDecoder.decodeObjectForKey("color2") as! String?
+        self.fit = aDecoder.decodeObjectForKey("fit") as! String?
+        self.material = aDecoder.decodeObjectForKey("material") as! String?
+        self.imageData = aDecoder.decodeObjectForKey("imageData") as! NSData?
     }
     
     override func encodeWithCoder(coder: NSCoder) {

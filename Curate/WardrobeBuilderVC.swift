@@ -12,7 +12,7 @@ import CoreData
 class WardrobeBuilderVC: UIViewController {
     
     
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var user: User?
     var batches = Array<AnyObject>()
     var indexes: Indexes?

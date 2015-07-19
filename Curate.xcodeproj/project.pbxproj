@@ -15,10 +15,7 @@
 		1A8CCC1C1ACB22F3001E3AF0 /* ReadWriteCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC1B1ACB22F3001E3AF0 /* ReadWriteCalls.swift */; };
 		1A8CCC1F1AD05406001E3AF0 /* StackStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC1E1AD05406001E3AF0 /* StackStruct.swift */; };
 		1A8CCC211AD05F72001E3AF0 /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC201AD05F72001E3AF0 /* Outfit.swift */; };
-		1A8CCC231AD0600F001E3AF0 /* Sweater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC221AD0600F001E3AF0 /* Sweater.swift */; };
-		1A8CCC251AD06017001E3AF0 /* Jacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC241AD06017001E3AF0 /* Jacket.swift */; };
 		1A8CCC271AD0601C001E3AF0 /* Bottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC261AD0601C001E3AF0 /* Bottom.swift */; };
-		1A8CCC291AD06024001E3AF0 /* Shoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CCC281AD06024001E3AF0 /* Shoes.swift */; };
 		1A96E9A61A58C66200C23C0E /* OutfitBuilderContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A96E9A51A58C66200C23C0E /* OutfitBuilderContainerVC.swift */; };
 		1A96E9A81A58C67E00C23C0E /* PropertiesViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A96E9A71A58C67E00C23C0E /* PropertiesViewVC.swift */; };
 		1A9C5D1D1B0E50E300B828D9 /* oldFunctions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1A9C5D1C1B0E50E300B828D9 /* oldFunctions.txt */; };
@@ -71,10 +68,7 @@
 		1A8CCC1B1ACB22F3001E3AF0 /* ReadWriteCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteCalls.swift; sourceTree = "<group>"; };
 		1A8CCC1E1AD05406001E3AF0 /* StackStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackStruct.swift; path = Curate/StackStruct.swift; sourceTree = "<group>"; };
 		1A8CCC201AD05F72001E3AF0 /* Outfit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
-		1A8CCC221AD0600F001E3AF0 /* Sweater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sweater.swift; sourceTree = "<group>"; };
-		1A8CCC241AD06017001E3AF0 /* Jacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jacket.swift; sourceTree = "<group>"; };
 		1A8CCC261AD0601C001E3AF0 /* Bottom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bottom.swift; sourceTree = "<group>"; };
-		1A8CCC281AD06024001E3AF0 /* Shoes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shoes.swift; sourceTree = "<group>"; };
 		1A96E9A51A58C66200C23C0E /* OutfitBuilderContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitBuilderContainerVC.swift; sourceTree = "<group>"; };
 		1A96E9A71A58C67E00C23C0E /* PropertiesViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesViewVC.swift; sourceTree = "<group>"; };
 		1A9C5D1C1B0E50E300B828D9 /* oldFunctions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oldFunctions.txt; sourceTree = "<group>"; };
@@ -288,10 +282,7 @@
 				1A8CCC201AD05F72001E3AF0 /* Outfit.swift */,
 				1AF4B8E41AED30E40007C526 /* Clothing.swift */,
 				1A8CCC191ACB1E77001E3AF0 /* Top.swift */,
-				1A8CCC221AD0600F001E3AF0 /* Sweater.swift */,
-				1A8CCC241AD06017001E3AF0 /* Jacket.swift */,
 				1A8CCC261AD0601C001E3AF0 /* Bottom.swift */,
-				1A8CCC281AD06024001E3AF0 /* Shoes.swift */,
 			);
 			name = DataModelsAndStructures;
 			path = ..;
@@ -411,10 +402,8 @@
 				1A8CCC211AD05F72001E3AF0 /* Outfit.swift in Sources */,
 				1AA3C5A41A460234008C732C /* OutfitsVC.swift in Sources */,
 				1A12D9031A6EE18400DA3617 /* OutfitCell.swift in Sources */,
-				1A8CCC251AD06017001E3AF0 /* Jacket.swift in Sources */,
 				1A8CCC271AD0601C001E3AF0 /* Bottom.swift in Sources */,
 				1ACC8B111A58C82200093290 /* PropertiesFrontView.swift in Sources */,
-				1A8CCC291AD06024001E3AF0 /* Shoes.swift in Sources */,
 				1AC9AC4B1AF2E9470090E108 /* AddOutfitView.swift in Sources */,
 				1AA3C5771A4601B2008C732C /* AppDelegate.swift in Sources */,
 				1AA3C5A01A460234008C732C /* WardrobeBuilderVC.swift in Sources */,
@@ -422,7 +411,6 @@
 				1AA3C5971A46021A008C732C /* RBResizer.swift in Sources */,
 				1AEC455A1B4B8E4C009D8D9A /* WeatherAPICalls.swift in Sources */,
 				1A96E9A61A58C66200C23C0E /* OutfitBuilderContainerVC.swift in Sources */,
-				1A8CCC231AD0600F001E3AF0 /* Sweater.swift in Sources */,
 				1AA3C5A61A460234008C732C /* MeasurementsVC.swift in Sources */,
 				1AA3C57A1A4601B2008C732C /* Curate.xcdatamodeld in Sources */,
 				1AA3C5B71A461003008C732C /* SegmentsController.swift in Sources */,
@@ -546,7 +534,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Curate/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -566,7 +554,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Curate/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

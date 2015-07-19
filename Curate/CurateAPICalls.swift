@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
+let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
 
 
 // checks to see if user exists in nsuserdefaults, if not then
@@ -204,9 +204,9 @@ func formatSwipeBatch(batchArr: Array<Array<AnyObject>>) -> Array<Array<Clothing
     for var row = 0; row < batchArr.count; row++ {
         batchRow.removeAll(keepCapacity: false)
         for var col = 0; col < (batchArr[row]).count; col++ {
-            let tempDict: NSDictionary = batchArr[row][col] as NSDictionary
-            let url: String = tempDict.objectForKey("url") as String
-            let clothingDict:NSDictionary = tempDict.objectForKey("properties") as NSDictionary
+            let tempDict: NSDictionary = batchArr[row][col] as! NSDictionary
+            let url: String = tempDict.objectForKey("url") as! String
+            let clothingDict:NSDictionary = tempDict.objectForKey("properties") as! NSDictionary
             var clothing = Clothing(clothing: clothingDict, url: url)
             batchRow.append(clothing)
         }
@@ -249,7 +249,7 @@ func getCurateAuthToken(fbAuthToken: String,completionHandler:(curateAuthToken:S
             return
         }
 //        println(response)
-        var jsonResult:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &err) as NSDictionary
+        var jsonResult:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &err) as! NSDictionary
 //        println(jsonResult)
         if let authentication_token: String = jsonResult["authentication_token"] as? String {
             println("curateAuthToken given")

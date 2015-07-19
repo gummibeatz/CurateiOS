@@ -21,7 +21,7 @@ class AddOutfitView: UIView, UITextFieldDelegate {
     var okButton: UIButton?
     var cancelButton: UIButton?
     var outfit: Outfit?
-    var ownedOutfits: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as [Outfit]
+    var ownedOutfits: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as! [Outfit]
     var delegate: AddOutfitViewDelegate?
     
     required init(coder aDecoder: NSCoder) {
@@ -125,7 +125,7 @@ class AddOutfitView: UIView, UITextFieldDelegate {
             ownedOutfits.append(outfit!)
             writeCustomObjArraytoUserDefaults(ownedOutfits, "ownedOutfits")
             
-            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.segmentedControl.selectedSegmentIndex = appDelegate.OUTFITSINDEX
             appDelegate.segmentsController.indexDidChangeForSegmentedControl(appDelegate.segmentedControl)
             delegate?.dismissOutfitView()
@@ -149,14 +149,14 @@ class AddOutfitView: UIView, UITextFieldDelegate {
 
 ///MARK Textfield Delegate methods
 extension AddOutfitView: UITextFieldDelegate{
-    func textFieldDidBeginEditing(textField: UITextField!) {    //delegate method
+    func textFieldDidBeginEditing(textField: UITextField) {    //delegate method
         activeTextField = textField
         println("textfieldidbeginediting")
         activeTextField?.textColor = UIColor.blackColor()
     }
     
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
+    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
         if textField.tag == 1 {
             outfitTags.append(textField.text!)
             textField.text = ""

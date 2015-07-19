@@ -11,7 +11,7 @@ import UIKit
 class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
     // Retreive the managedObjectContext from AppDelegate
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     var user:User?
     
@@ -63,7 +63,7 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.scrollView.scrollEnabled = false
         //scrollview edits end
         
-        var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.fbLoginVC.setFBAuthToken()
         
         setupLabels()
@@ -261,7 +261,7 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         var attrString: NSMutableAttributedString = NSMutableAttributedString(string: stringLabel)
         var style: NSMutableParagraphStyle = NSMutableParagraphStyle()
         style.lineSpacing = 30
-        attrString.addAttribute(NSParagraphStyleAttributeName , value: style, range: NSMakeRange(0, countElements(stringLabel)))
+        attrString.addAttribute(NSParagraphStyleAttributeName , value: style, range: NSMakeRange(0,count(stringLabel)))
         measurementLabel.attributedText = attrString
         measurementLabel.frame = CGRectMake(5,55, 150, 450)
         measurementLabel.numberOfLines = 10
@@ -347,9 +347,9 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 curateAuthToken in
                 postUser(curateAuthToken, preferencesDict)
             })
-            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             self.okButton!.removeFromSuperview()
-            appDelegate.window?.rootViewController = appDelegate.navigationController
+            appDelegate.window!.rootViewController = appDelegate.navigationController
             appDelegate.setupMeasurementsButton()
         }
     }
@@ -435,7 +435,7 @@ extension MeasurementsVC: UIPickerViewDelegate {
     }
     
     // maybe go back to this if scrolling lags too much
-    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView.tag {
         case heightPicker.tag:
             heightTextField.text = heightPickerData[row]
@@ -473,7 +473,7 @@ extension MeasurementsVC: UIPickerViewDelegate {
 
 //Mark: Delegate UITextField
 extension MeasurementsVC: UITextFieldDelegate {
-    func textFieldDidBeginEditing(textField: UITextField!) {
+    func textFieldDidBeginEditing(textField: UITextField) {
         activeTextField = textField
         //maybe not make magic numbers. calculate size of keyboard
         scrollView.setContentOffset(CGPoint(x: 0, y: 160), animated: true)

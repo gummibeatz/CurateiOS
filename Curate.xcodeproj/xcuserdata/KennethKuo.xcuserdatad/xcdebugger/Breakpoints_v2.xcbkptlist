@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/OutfitBuilderVC.swift"
-            timestampString = "458775606.072885"
+            timestampString = "459014943.29993"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "470"
-            endingLineNumber = "470"
+            startingLineNumber = "485"
+            endingLineNumber = "485"
             landmarkName = "pickerView(_:numberOfRowsInComponent:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "458320395.072706"
+            timestampString = "458955051.733346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
+            startingLineNumber = "469"
+            endingLineNumber = "469"
             landmarkName = "loadNextBatch(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "458320395.072706"
+            timestampString = "458955051.733346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "527"
-            endingLineNumber = "527"
+            startingLineNumber = "516"
+            endingLineNumber = "516"
             landmarkName = "saveClothingArticle(_:imageData:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/OutfitBuilderVC.swift"
-            timestampString = "458775606.072885"
+            timestampString = "459014943.29993"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
             landmarkName = "pickerViewDoubleTapGestureRecognized(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "458320395.072706"
+            timestampString = "458955051.733346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "449"
-            endingLineNumber = "449"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
             landmarkName = "DraggableViewBackground"
             landmarkType = "3">
          </BreakpointContent>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "458320395.072706"
+            timestampString = "458955051.733346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "462"
-            endingLineNumber = "462"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
             landmarkName = "DraggableViewBackground"
             landmarkType = "3">
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "458320395.072706"
+            timestampString = "458955051.733346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "450"
-            endingLineNumber = "450"
+            startingLineNumber = "439"
+            endingLineNumber = "439"
             landmarkName = "swipeRight()"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "458320395.072706"
+            timestampString = "458955051.733346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "463"
-            endingLineNumber = "463"
+            startingLineNumber = "452"
+            endingLineNumber = "452"
             landmarkName = "swipeLeft()"
             landmarkType = "5">
          </BreakpointContent>
@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "458320395.072706"
+            timestampString = "458955051.733346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
             landmarkName = "cardSwipedRight(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -474,28 +474,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/DraggableViewBackground.swift"
-            timestampString = "458320395.072706"
+            timestampString = "458955051.733346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "cardSwipedRight(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Curate/AppDelegate.swift"
-            timestampString = "458323058.017023"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -520,6 +504,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "Curate.getWeather ((currentTemp : Swift.Double) -&gt; ()) -&gt; ()"
                   moduleName = "Curate"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/KennethKuo/Documents/Apps/Example%20App/Curate/Curate/WeatherAPICalls.swift"
                   timestampString = "458241331.704786"
                   startingColumnNumber = "9223372036854775807"
@@ -534,6 +519,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "reabstraction thunk helper from @callee_owned () -&gt; (@autoreleased Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSNumber&gt;) to @callee_owned () -&gt; (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSNumber&gt;)"
                   moduleName = "Curate"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/KennethKuo/Documents/Apps/Example%20App/Curate/Curate/WeatherAPICalls.swift"
                   timestampString = "458241331.705035"
                   startingColumnNumber = "9223372036854775807"
@@ -566,6 +552,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "Curate.getWeather ((currentTemp : Swift.Double) -&gt; ()) -&gt; ()"
                   moduleName = "Curate"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/KennethKuo/Documents/Apps/Example%20App/Curate/Curate/WeatherAPICalls.swift"
                   timestampString = "458241385.206916"
                   startingColumnNumber = "9223372036854775807"
@@ -580,6 +567,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "reabstraction thunk helper from @callee_owned () -&gt; (@autoreleased Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSNumber&gt;) to @callee_owned () -&gt; (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSNumber&gt;)"
                   moduleName = "Curate"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/KennethKuo/Documents/Apps/Example%20App/Curate/Curate/WeatherAPICalls.swift"
                   timestampString = "458241385.207168"
                   startingColumnNumber = "9223372036854775807"

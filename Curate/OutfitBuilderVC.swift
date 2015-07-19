@@ -35,7 +35,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     var bottomsPickerData:[Bottom] = [Bottom]()
     
     var outfitBuilderVCDelegate: OutfitBuilderVCDelegate?
-    var ownedOutfits: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as [Outfit]
+    var ownedOutfits: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as! [Outfit]
     
     var blurEffectView: UIVisualEffectView =  UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
     
@@ -44,6 +44,8 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     
     var temp:Double = 0
     var curateAuthToken:String?
+    var previousMatch: [NSDictionary] = [NSDictionary]()
+    var previousMatchIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,12 +68,12 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         println("AYYYY")
-        jacketPickerData = readCustomObjArrayFromUserDefaults("ownedJackets") as [Top]
-        lightLayerPickerData = readCustomObjArrayFromUserDefaults("ownedLightLayers") as [Top]
-        collaredShirtPickerData = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as [Top]
-        longSleeveShirtPickerData = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts") as [Top]
-        shortSleeveShirtPickerData = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as [Top]
-        bottomsPickerData = readCustomObjArrayFromUserDefaults("ownedBottoms") as [Bottom]
+        jacketPickerData = readCustomObjArrayFromUserDefaults("ownedJackets") as! [Top]
+        lightLayerPickerData = readCustomObjArrayFromUserDefaults("ownedLightLayers") as! [Top]
+        collaredShirtPickerData = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as! [Top]
+        longSleeveShirtPickerData = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts") as! [Top]
+        shortSleeveShirtPickerData = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as! [Top]
+        bottomsPickerData = readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]
         
         //adds in pickers if they have more than just NA symbol.
         if(jacketPickerData.count > 1 && addedPickers[0] == false) {
@@ -249,8 +251,8 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         outfit.jacket = jacketPickerData[jacketPicker.selectedRowInComponent(0)].fileName
         outfit.lightLayer = lightLayerPickerData[lightLayerPicker.selectedRowInComponent(0)].fileName
         outfit.collaredShirt = collaredShirtPickerData[collaredShirtPicker.selectedRowInComponent(0)].fileName
-        outfit.longSleeveShirt = collaredShirtPickerData[longSleeveShirtPicker.selectedRowInComponent(0)].fileName
-        outfit.shortSleeveShirt = collaredShirtPickerData[shortSleeveShirtPicker.selectedRowInComponent(0)].fileName
+        outfit.longSleeveShirt = longSleeveShirtPickerData[longSleeveShirtPicker.selectedRowInComponent(0)].fileName
+        outfit.shortSleeveShirt = shortSleeveShirtPickerData[shortSleeveShirtPicker.selectedRowInComponent(0)].fileName
         outfit.bottoms = bottomsPickerData[bottomsPicker.selectedRowInComponent(0)].fileName
         self.addOutfitView = AddOutfitView(frame: CGRect(x: 20, y: 100, width: screenWidth-40, height: UIScreen.mainScreen().bounds.height - 150), outfit: outfit)
         addOutfitView?.delegate = self
@@ -259,7 +261,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     }
     
     func pickerViewSingleTapGestureRecognized(sender: UITapGestureRecognizer) {
-        let pickerView: UIPickerView = sender.view as UIPickerView
+        let pickerView: UIPickerView = sender.view as! UIPickerView
         var image:UIImage?
         switch pickerView.tag {
         case jacketPicker.tag:
@@ -284,7 +286,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     func pickerViewDoubleTapGestureRecognized(sender: UITapGestureRecognizer ) {
         println("double tapped")
         var baseClothing: String?
-        let pickerView: UIPickerView = sender.view as UIPickerView
+        let pickerView: UIPickerView = sender.view as! UIPickerView
         switch pickerView.tag {
         case jacketPicker.tag:
             baseClothing = jacketPickerData[jacketPicker.selectedRowInComponent(0)].fileName!
@@ -305,14 +307,14 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         if (self.curateAuthToken != nil) {
             getMatches(self.curateAuthToken!, baseClothing!, {
                 matchDict in
-                let message:String = matchDict.objectForKey("message") as String
+                let message:String = matchDict.objectForKey("message") as! String
                 println(message)
                 if message != "NA" {
                     println(matchDict)
                     if let matches:[NSDictionary] = matchDict.objectForKey("matches") as? [NSDictionary] {
                         println(matches)
-                        var maxMatch:NSDictionary = self.getMaxMatch(matches)
-                        self.assembleOutfitFromMatch(maxMatch)
+                        var currentMatch:NSDictionary = self.getNextMatch(matches)
+                        self.assembleOutfitFromMatch(currentMatch)
                     } else {
                         var alert = UIAlertController(title: "Alert", message: "No outfits could be matched", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
@@ -324,22 +326,33 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         
     }
     
-    func getMaxMatch(matches: [NSDictionary]) -> NSDictionary {
-        var maxMatch:NSDictionary = NSDictionary()
-        var maxScore = -9999
-        for match in matches {
-            var currentScore: Int = (match.objectForKey("score") as String).toInt()!
-            if currentScore > maxScore {
-                maxMatch = match
-            }
+//    func getMaxMatch(matches: [NSDictionary]) -> NSDictionary {
+//        var maxMatch:NSDictionary = NSDictionary()
+//        var maxScore = -9999
+//        for match in matches {
+//            var currentScore: Int = (match.objectForKey("score") as! String).toInt()!
+//            if currentScore > maxScore {
+//                
+//                maxMatch = match
+//            }
+//        }
+//        return maxMatch
+//    }
+    
+    func getNextMatch(matches:[NSDictionary]) -> NSDictionary {
+        if (self.previousMatch != matches) {
+            self.previousMatch = matches
+            self.previousMatchIndex = 0
         }
-        return maxMatch
+        //account for wrapping around
+        self.previousMatchIndex = (previousMatchIndex+1) % previousMatch.count
+        return previousMatch[previousMatchIndex-0]
     }
     
     func assembleOutfitFromMatch(match: NSDictionary) {
-        var buffer: [[String]] = match.objectForKey("outfits") as [[String]]
+        var buffer: [[String]] = match.objectForKey("outfits") as! [[String]]
         var outfit:[String] = buffer[0]
-        var ownedPants: [Bottom] = readCustomObjArrayFromUserDefaults("ownedPants") as [Bottom]
+        var ownedPants: [Bottom] = readCustomObjArrayFromUserDefaults("ownedPants") as! [Bottom]
         
         jacketPicker.selectRow(0, inComponent: 0, animated: true)
         lightLayerPicker.selectRow(0, inComponent: 0, animated: true)
@@ -347,12 +360,14 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         longSleeveShirtPicker.selectRow(0, inComponent: 0, animated: true)
         shortSleeveShirtPicker.selectRow(0, inComponent: 0, animated: true)
         
-        changePickerWithOutfitIdx(outfit[0], isBottom: true)
+        println("outfit is \(outfit)")
+        
+        changePickerWithOutfitName(outfit[0], isBottom: true)
         if outfit[1] != "NA" {
-            changePickerWithOutfitIdx(outfit[1], isBottom: false)
+            changePickerWithOutfitName(outfit[1], isBottom: false)
         }
         if outfit[2] != "NA" {
-            changePickerWithOutfitIdx(outfit[2], isBottom: false)
+            changePickerWithOutfitName(outfit[2], isBottom: false)
         }
         
         
@@ -360,16 +375,16 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     
     func getMainCategory(fileName: String, isBottom: Bool) -> String{
         if(isBottom) {
-            var ownedBottoms: [Bottom] = readCustomObjArrayFromUserDefaults("ownedBottoms") as [Bottom]
+            var ownedBottoms: [Bottom] = readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]
             for bottom in ownedBottoms {
-                if bottom.fileName! == fileName {
+                if bottom.fileName == fileName {
                     return bottom.mainCategory!
                 }
             }
         } else {
-            var ownedTops: [Top] = readCustomObjArrayFromUserDefaults("ownedTops") as [Top]
+            var ownedTops: [Top] = readCustomObjArrayFromUserDefaults("ownedTops") as! [Top]
             for top in ownedTops {
-                if top.fileName! == fileName {
+                if top.fileName == fileName {
                     return top.mainCategory!
                 }
             }
@@ -377,11 +392,11 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         return "NA"
     }
     
-    func changePickerWithOutfitIdx(outfitName: String, isBottom: Bool) {
-        var mainCategory: String = getMainCategory(outfitName, isBottom: false)
+    func changePickerWithOutfitName(outfitName: String, isBottom: Bool) {
+        var mainCategory: String = getMainCategory(outfitName, isBottom: isBottom)
         switch mainCategory {
         case "Jacket":
-            var ownedJackets = readCustomObjArrayFromUserDefaults("ownedJackets") as [Top]
+            var ownedJackets = readCustomObjArrayFromUserDefaults("ownedJackets") as! [Top]
             for (var i = 1; i < ownedJackets.count; i++) {
                 if(outfitName == ownedJackets[i].fileName!) {
                     jacketPicker.selectRow(i, inComponent: 0, animated: true)
@@ -389,7 +404,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                 }
             }
         case "Light Layer":
-            var ownedLightLayers = readCustomObjArrayFromUserDefaults("ownedLightLayers") as [Top]
+            var ownedLightLayers = readCustomObjArrayFromUserDefaults("ownedLightLayers") as! [Top]
             for (var i = 1; i < ownedLightLayers.count; i++) {
                 if(outfitName == ownedLightLayers[i].fileName!) {
                     lightLayerPicker.selectRow(i, inComponent: 0, animated: true)
@@ -397,7 +412,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                 }
             }
         case "Long Sleeve Shirt":
-            var ownedLongSleeveShirts = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts") as [Top]
+            var ownedLongSleeveShirts = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts")as! [Top]
             for (var i = 1; i < ownedLongSleeveShirts.count; i++) {
                 if(outfitName == ownedLongSleeveShirts[i].fileName!) {
                     longSleeveShirtPicker.selectRow(i, inComponent: 0, animated: true)
@@ -405,7 +420,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                 }
             }
         case "Collared Shirt":
-            var ownedCollaredShirts = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as [Top]
+            var ownedCollaredShirts = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as! [Top]
             for (var i = 1; i < ownedCollaredShirts.count; i++) {
                 if(outfitName == ownedCollaredShirts[i].fileName!) {
                     collaredShirtPicker.selectRow(i, inComponent: 0, animated: true)
@@ -413,7 +428,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                 }
             }
         case "Short Sleeve Shirt":
-            var ownedShortSleeveShirts = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as [Top]
+            var ownedShortSleeveShirts = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as! [Top]
             for (var i = 1; i < ownedShortSleeveShirts.count; i++) {
                 if(outfitName == ownedShortSleeveShirts[i].fileName!) {
                     shortSleeveShirtPicker.selectRow(i, inComponent: 0, animated: true)
@@ -421,9 +436,9 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                 }
             }
         default:
-            var ownedPants = readCustomObjArrayFromUserDefaults("ownedPants") as [Bottom]
-            for (var i = 1; i < ownedPants.count; i++) {
-                if outfitName == ownedPants[i].fileName! {
+            var ownedBottoms = readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]
+            for (var i = 1; i < ownedBottoms.count; i++) {
+                if outfitName == ownedBottoms[i].fileName {
                     bottomsPicker.selectRow(i, inComponent: 0, animated: true)
                     break
                 }
@@ -448,7 +463,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
 
 
 extension OutfitBuilderVC: UIGestureRecognizerDelegate {
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer!, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer!) -> Bool {
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }
@@ -505,11 +520,11 @@ extension OutfitBuilderVC: UIPickerViewDelegate {
     //        func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
     //        }
     
-    func pickerView(pickerView: UIPickerView!, widthForComponent component: Int) -> CGFloat{
+    func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat{
         return 80
     }
     
-    func pickerView(pickerView: UIPickerView!, rowHeightForComponent component: Int) -> CGFloat{
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat{
         return 80
     }
     
@@ -517,7 +532,7 @@ extension OutfitBuilderVC: UIPickerViewDelegate {
     
     // func pickerView(pickerView: UIPickerView!, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString!
     
-    func pickerView(pickerView: UIPickerView!, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView!{
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
         var img: UIImage?
         switch pickerView.tag {
         case jacketPicker.tag:

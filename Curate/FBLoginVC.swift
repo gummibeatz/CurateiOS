@@ -27,7 +27,7 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
     
         
         if(FBSession.activeSession().isOpen) {
-            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             self.authToken = FBSession.activeSession().accessTokenData.accessToken
             println(self.authToken)
             
@@ -103,7 +103,7 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
         println("User: \(user)")
         println("User ID: \(user.objectID)")
         println("User Name: \(user.name)")
-        var userEmail = user.objectForKey("email") as String
+        var userEmail = user.objectForKey("email") as! String
         println("User Email: \(userEmail)")
     }
     

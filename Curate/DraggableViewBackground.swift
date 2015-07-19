@@ -38,8 +38,6 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     var ownedCollaredShirts: [Top]?
     var ownedLongSleeveShirts: [Top]?
     var ownedShortSleeveShirts: [Top]?
-    var ownedPants: [Bottom]?
-    var ownedShorts: [Bottom]?
     
     required init(coder aDecoder: (NSCoder!)) {
         super.init(coder: aDecoder)
@@ -105,8 +103,6 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         ownedCollaredShirts = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as? [Top]
         ownedLongSleeveShirts = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts") as? [Top]
         ownedShortSleeveShirts = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as? [Top]
-        ownedPants = readCustomObjArrayFromUserDefaults("ownedPants") as? [Bottom]
-        ownedShorts = readCustomObjArrayFromUserDefaults("ownedShorts") as? [Bottom]
         
         println("ownedBottoms = \(ownedBottoms)")
         
@@ -140,19 +136,12 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             ownedShortSleeveShirts!.append(emptyShortSleeveShirt)
             writeCustomObjArraytoUserDefaults(ownedShortSleeveShirts!, "ownedShortSleeveShirts")
         }
-        if(ownedPants!.count == 0) {
-            var emptyPants = Bottom()
-            emptyPants.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
-            ownedPants!.append(emptyPants)
-            writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedPants")
+        if(ownedBottoms!.count == 0) {
+            var emptyBottoms = Bottom()
+            emptyBottoms.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            ownedBottoms!.append(emptyBottoms)
+            writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")
         }
-        if(ownedShorts!.count == 0) {
-            var emptyShorts = Bottom()
-            emptyShorts.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
-            ownedShorts!.append(emptyShorts)
-            writeCustomObjArraytoUserDefaults(ownedShorts!, "ownedShorts")
-        }
-        
     }
     
     func setupView(){
@@ -192,7 +181,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     //    feel free to get rid of it (eg: if you are building cards from data from the internet)
     
     func createDraggableViewWithDataAtIndex(index:Int) -> DraggableView{
-        let imageData: NSData = getImageData((clothingCardLabels.objectAtIndex(index) as Clothing).url!)
+        let imageData: NSData = getImageData((clothingCardLabels.objectAtIndex(index) as! Clothing).url!)
         
         var draggableView: DraggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 30, width: CARD_WIDTH, height: CARD_HEIGHT))
         println(clothingCardLabels.objectAtIndex(index))
@@ -232,9 +221,9 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             dispatch_async(dispatch_get_main_queue(), {
                 for (var i = 0; i < self.loadedCards.count; i++ ){
                     if i > 0 {
-                        self.insertSubview(self.loadedCards.objectAtIndex(i) as UIView, belowSubview: self.loadedCards.objectAtIndex(i-1) as UIView)
+                        self.insertSubview(self.loadedCards.objectAtIndex(i) as! UIView, belowSubview: self.loadedCards.objectAtIndex(i-1) as! UIView)
                     } else {
-                        self.addSubview(self.loadedCards.objectAtIndex(i) as UIView)
+                        self.addSubview(self.loadedCards.objectAtIndex(i) as! UIView)
                     }
                     self.cardsLoadedIndex++ //%%% increment to account for loading a card into loadedCards
                 }
@@ -256,7 +245,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             loadedCards.addObject(allCards.objectAtIndex(cardsLoadedIndex))
             cardsLoadedIndex++ //%%% loaded a card, so have to increment count
             cardsIndex++
-            self.insertSubview(self.loadedCards.objectAtIndex(self.MAX_BUFFER_SIZE-1) as UIView, belowSubview: self.loadedCards.objectAtIndex(self.MAX_BUFFER_SIZE-2) as UIView)
+            self.insertSubview(self.loadedCards.objectAtIndex(self.MAX_BUFFER_SIZE-1) as! UIView, belowSubview: self.loadedCards.objectAtIndex(self.MAX_BUFFER_SIZE-2) as! UIView)
             //%%% keep track of previous action
             
             
@@ -291,8 +280,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         //gonna start formating dict to pass to postwardrobe
         let fbAuthToken = getFbAuthToken()
         var wardrobeDict: NSMutableDictionary = NSMutableDictionary()
-        var ownedTops:[Top] = readCustomObjArrayFromUserDefaults("ownedTops") as [Top]
-        var ownedBottoms:[Bottom] = readCustomObjArrayFromUserDefaults("ownedBottoms") as [Bottom]
+        var ownedTops:[Top] = readCustomObjArrayFromUserDefaults("ownedTops") as! [Top]
+        var ownedBottoms:[Bottom] = readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]
         var topsArr = [NSDictionary]()
         var bottomsArr = [NSDictionary]()
         
@@ -331,7 +320,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             cardsLoadedIndex++ //%%% loaded a card, so have to increment count
             cardsIndex++
             
-            self.insertSubview(loadedCards.objectAtIndex(MAX_BUFFER_SIZE-1) as UIView, belowSubview: loadedCards.objectAtIndex(MAX_BUFFER_SIZE-2) as UIView)
+            self.insertSubview(loadedCards.objectAtIndex(MAX_BUFFER_SIZE-1) as! UIView, belowSubview: loadedCards.objectAtIndex(MAX_BUFFER_SIZE-2) as! UIView)
             
             //%%% keep track of previous action
         } else if(cardsIndex <= allCards.count) {
@@ -375,7 +364,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
                 var lastBufferCard: DraggableView = DraggableView(frame: CGRect())
                 var restoreLastBufferCard: DraggableView = DraggableView(frame: CGRect())
                 if(loadedCards.count == MAX_BUFFER_SIZE) {
-                    lastBufferCard = loadedCards[MAX_BUFFER_SIZE-1] as DraggableView
+                    lastBufferCard = loadedCards[MAX_BUFFER_SIZE-1] as! DraggableView
                     loadedCards.removeObjectAtIndex(MAX_BUFFER_SIZE-1)
                     //%%% fix the deletion by ARC from removeFromSuperview to add back
                     restoreLastBufferCard = self.createDraggableViewWithDataAtIndex(cardsLoadedIndex-1)
@@ -450,7 +439,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     func swipeRight(){
         if (loadedCards.count > 0 && !beingSwiped && !batchIsLoading) {
             self.beingSwiped = true
-            var dragView: DraggableView = loadedCards.firstObject as DraggableView
+            var dragView: DraggableView = loadedCards.firstObject as! DraggableView
             dragView.rightClickAction({actionCompleted in
                 println("swipedFinished")
                 self.beingSwiped = false
@@ -463,7 +452,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     func swipeLeft(){
         if (loadedCards.count > 0 && !beingSwiped && !batchIsLoading) {
             self.beingSwiped = true
-            var dragView: DraggableView = loadedCards.firstObject as DraggableView
+            var dragView: DraggableView = loadedCards.firstObject as! DraggableView
             dragView.leftClickAction({ actionCompleted in
                 println("swipedFinished")
                 self.beingSwiped = false
@@ -508,19 +497,19 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     func saveBatchIndex() {
         let fetchRequest = NSFetchRequest(entityName: "Indexes")
         // Execute the fetch request, and cast the results to an array of Tokens objects
-        let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as [Indexes]
+        let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as! [Indexes]
         var indexes = fetchResults[0]
         indexes.batchIndex = self.currentBatchIndex
-        (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
+        (UIApplication.sharedApplication().delegate as! AppDelegate).saveContext()
     }
     
     func saveCardsIndex() {
         let fetchRequest = NSFetchRequest(entityName: "Indexes")
         // Execute the fetch request, and cast the results to an array of Tokens objects
-        let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as [Indexes]
+        let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as! [Indexes]
         var indexes = fetchResults[0]
         indexes.cardsIndex = self.cardsIndex
-        (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
+        (UIApplication.sharedApplication().delegate as! AppDelegate).saveContext()
     }
     
     func saveClothingArticle(clothingArticle: Clothing, imageData: NSData) {
