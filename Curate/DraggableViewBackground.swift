@@ -109,36 +109,42 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         if(ownedJackets!.count == 0) {
             var emptyJacket = Top()
             emptyJacket.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            emptyJacket.fileName = "NA"
             ownedJackets!.append(emptyJacket)
             writeCustomObjArraytoUserDefaults(ownedJackets!, "ownedJackets")
         }
         if(ownedLightLayers!.count == 0) {
             var emptyLightLayer = Top()
             emptyLightLayer.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            emptyLightLayer.fileName = "NA"
             ownedLightLayers!.append(emptyLightLayer)
             writeCustomObjArraytoUserDefaults(ownedLightLayers!, "ownedLightLayers")
         }
         if(ownedCollaredShirts!.count == 0) {
             var emptyCollaredShirt = Top()
             emptyCollaredShirt.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            emptyCollaredShirt.fileName = "NA"
             ownedCollaredShirts!.append(emptyCollaredShirt)
             writeCustomObjArraytoUserDefaults(ownedCollaredShirts!, "ownedCollaredShirts")
         }
         if(ownedLongSleeveShirts!.count == 0) {
             var emptyLongSleeveShirt = Top()
             emptyLongSleeveShirt.imageData = UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            emptyLongSleeveShirt.fileName = "NA"
             ownedLongSleeveShirts!.append(emptyLongSleeveShirt)
             writeCustomObjArraytoUserDefaults(ownedLongSleeveShirts!, "ownedLongSleeveShirts")
         }
         if(ownedShortSleeveShirts!.count == 0) {
             var emptyShortSleeveShirt = Top()
             emptyShortSleeveShirt.imageData = UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            emptyShortSleeveShirt.fileName = "NA"
             ownedShortSleeveShirts!.append(emptyShortSleeveShirt)
             writeCustomObjArraytoUserDefaults(ownedShortSleeveShirts!, "ownedShortSleeveShirts")
         }
         if(ownedBottoms!.count == 0) {
             var emptyBottoms = Bottom()
             emptyBottoms.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            emptyBottoms.fileName = "NA"
             ownedBottoms!.append(emptyBottoms)
             writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")
         }

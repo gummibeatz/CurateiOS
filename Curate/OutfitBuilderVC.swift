@@ -289,22 +289,22 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         let pickerView: UIPickerView = sender.view as! UIPickerView
         switch pickerView.tag {
         case jacketPicker.tag:
-            baseClothing = jacketPickerData[jacketPicker.selectedRowInComponent(0)].fileName!
+            baseClothing = jacketPickerData[jacketPicker.selectedRowInComponent(0)].fileName
         case lightLayerPicker.tag:
-            baseClothing = lightLayerPickerData[lightLayerPicker.selectedRowInComponent(0)].fileName!
+            baseClothing = lightLayerPickerData[lightLayerPicker.selectedRowInComponent(0)].fileName
         case collaredShirtPicker.tag:
-            baseClothing = collaredShirtPickerData[collaredShirtPicker.selectedRowInComponent(0)].fileName!
+            baseClothing = collaredShirtPickerData[collaredShirtPicker.selectedRowInComponent(0)].fileName
         case longSleeveShirtPicker.tag:
-            baseClothing = longSleeveShirtPickerData[longSleeveShirtPicker.selectedRowInComponent(0)].fileName!
+            baseClothing = longSleeveShirtPickerData[longSleeveShirtPicker.selectedRowInComponent(0)].fileName
         case shortSleeveShirtPicker.tag:
-            baseClothing = shortSleeveShirtPickerData[shortSleeveShirtPicker.selectedRowInComponent(0)].fileName!
+            baseClothing = shortSleeveShirtPickerData[shortSleeveShirtPicker.selectedRowInComponent(0)].fileName
         case bottomsPicker.tag:
-            baseClothing = bottomsPickerData[bottomsPicker.selectedRowInComponent(0)].fileName!
+            baseClothing = bottomsPickerData[bottomsPicker.selectedRowInComponent(0)].fileName
         default:
             println()
         }
 
-        if (self.curateAuthToken != nil) {
+        if (self.curateAuthToken != nil && baseClothing != nil) {
             getMatches(self.curateAuthToken!, baseClothing!, {
                 matchDict in
                 let message:String = matchDict.objectForKey("message") as! String
@@ -325,19 +325,6 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         }
         
     }
-    
-//    func getMaxMatch(matches: [NSDictionary]) -> NSDictionary {
-//        var maxMatch:NSDictionary = NSDictionary()
-//        var maxScore = -9999
-//        for match in matches {
-//            var currentScore: Int = (match.objectForKey("score") as! String).toInt()!
-//            if currentScore > maxScore {
-//                
-//                maxMatch = match
-//            }
-//        }
-//        return maxMatch
-//    }
     
     func getNextMatch(matches:[NSDictionary]) -> NSDictionary {
         if (self.previousMatch != matches) {
