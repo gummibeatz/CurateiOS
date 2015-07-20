@@ -16,10 +16,9 @@ protocol AddOutfitViewDelegate {
 class AddOutfitView: UIView, UITextFieldDelegate {
     
     var titleTextField: UITextField?
-    var outfitTags:Array<String> = [String]()
     var activeTextField: UITextField?
-    var okButton: UIButton?
-    var cancelButton: UIButton?
+    var doneButton: UIButton?
+    var backButton: UIButton?
     var outfit: Outfit?
     var ownedOutfits: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as! [Outfit]
     var delegate: AddOutfitViewDelegate?
@@ -38,6 +37,8 @@ class AddOutfitView: UIView, UITextFieldDelegate {
         self.outfit = outfit
         setupLayout()
         setupInputViews()
+        setupCategoryTable()
+        setupWeatherButtons()
         setupButtons()
     }
     
@@ -50,12 +51,6 @@ class AddOutfitView: UIView, UITextFieldDelegate {
     }
     
     func setupInputViews() {
-        var labels: UILabel = UILabel(frame: CGRect(x: 10, y: 40, width: 35, height: 80))
-        labels.text = "Title\n\nTag"
-        labels.numberOfLines = 3
-        labels.textAlignment = .Left
-        
-        
         let toolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 44))
         var items = [UIBarButtonItem]()
         let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "donePressed")
@@ -64,7 +59,7 @@ class AddOutfitView: UIView, UITextFieldDelegate {
         toolbar.barStyle = UIBarStyle.Black
         toolbar.setItems(items, animated: true)
         
-        titleTextField = UITextField(frame: CGRect(x: self.frame.width/2 - 50, y: 40, width: 160, height: 30))
+        titleTextField = UITextField(frame: CGRect(x: self.frame.width/2 - 80, y: 50, width: 160, height: 30))
         titleTextField!.borderStyle = UITextBorderStyle.Bezel
         titleTextField!.layer.borderColor = UIColor.grayColor().CGColor;
         titleTextField!.layer.cornerRadius = CGFloat(5.0)
@@ -72,34 +67,46 @@ class AddOutfitView: UIView, UITextFieldDelegate {
         titleTextField!.inputAccessoryView = toolbar
         titleTextField!.tag = 0
         titleTextField?.textColor = UIColor.grayColor()
-        titleTextField?.text = "title"
-        
-        var tagTextField: UITextField = UITextField(frame: CGRect(x: self.frame.width/2 - 50 , y: 90, width: 160, height: 30))
-        tagTextField.borderStyle = UITextBorderStyle.Bezel
-        tagTextField.layer.borderColor = UIColor.grayColor().CGColor;
-        tagTextField.layer.cornerRadius = CGFloat(5.0)
-        tagTextField.delegate = self
-        tagTextField.inputAccessoryView = toolbar
-        tagTextField.tag = 1
-        tagTextField.textColor = UIColor.grayColor()
-        tagTextField.text = "#hashtags"
-
-        self.addSubview(labels)
+        titleTextField?.text = "Outfit Name"
         self.addSubview(titleTextField!)
-        self.addSubview(tagTextField)
     }
     
+    func setupCategoryTable() {
+        var temp: UILabel = UILabel(frame: CGRectMake(10, self.frame.height/4, self.frame.width - 20, self.frame.height/2))
+        temp.layer.borderColor = UIColor.blackColor().CGColor
+        temp.layer.borderWidth = 1.0
+        temp.text = "customizable categories \n coming soon"
+        temp.textAlignment = NSTextAlignment.Center
+        temp.numberOfLines = 2
+        self.addSubview(temp)
+    }
+    
+    func setupWeatherButtons() {
+        var temp: UILabel = UILabel(frame: CGRectMake(10, 4*self.frame.height/5, self.frame.width - 20, 50))
+        temp.layer.borderColor = UIColor.blackColor().CGColor
+        temp.layer.borderWidth = 1.0
+        temp.text = "weather options coming soon"
+        temp.textAlignment = NSTextAlignment.Center
+        temp.numberOfLines = 2
+        self.addSubview(temp)
+    }
+    
+    
     func setupButtons() {
-        okButton = UIButton(frame: CGRect(x: UIScreen.mainScreen().bounds.midX - 80, y: 350, width: 50, height: 32))
-        okButton!.addTarget(self, action: "okButtonTapped", forControlEvents: .TouchUpInside)
-        okButton!.setImage(UIImage(named: "okButton"), forState: .Normal)
+        self.backButton = UIButton(frame: CGRectMake(10, 10, 50, 20))
+        self.backButton?.setTitle("Back", forState: UIControlState.Normal)
+        self.backButton?.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        var backButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "backButtonTapped")
+        backButton?.addGestureRecognizer(backButtonGesture)
         
-        cancelButton = UIButton(frame: CGRect(x: UIScreen.mainScreen().bounds.midX, y: 350, width: 80, height: 32))
-        cancelButton!.addTarget(self, action: "cancelButtonTapped", forControlEvents: .TouchUpInside)
-        cancelButton!.setImage(UIImage(named: "cancelButton"), forState: .Normal)
+        self.doneButton = UIButton(frame: CGRectMake(self.frame.width - 55, 10, 50, 20))
+        self.doneButton?.setTitle("Done", forState: .Normal)
+        self.doneButton?.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        var doneButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "doneButtonTapped")
+        doneButton?.addGestureRecognizer(doneButtonGesture)
         
-        self.addSubview(okButton!)
-        self.addSubview(cancelButton!)
+        self.addSubview(backButton!)
+        self.addSubview(doneButton!)
     }
     
     func donePressed() {
@@ -107,15 +114,11 @@ class AddOutfitView: UIView, UITextFieldDelegate {
         println("donePressed")
     }
     
-    func okButtonTapped() {
-        println("okButtonTapped")
+    func doneButtonTapped() {
+        println("doneButtonTapped")
         self.outfit!.title = titleTextField!.text!
-        self.outfit!.tags = outfitTags
         // need to find some other way to double check outfit
         
-//        if( find(ownedOutfits, self.outfit) != nil) {
-//            println("outfit already exists")
-//        } else
         
         if (outfitWithTitleExists(outfit!.title!)) {
             println("title already exists")
@@ -132,8 +135,8 @@ class AddOutfitView: UIView, UITextFieldDelegate {
         }
     }
     
-    func cancelButtonTapped() {
-        println("cancelButtonTapped")
+    func backButtonTapped() {
+        println("backButtonTapped")
         delegate?.dismissOutfitView()
     }
     
@@ -153,16 +156,11 @@ extension AddOutfitView: UITextFieldDelegate{
         activeTextField = textField
         println("textfieldidbeginediting")
         activeTextField?.textColor = UIColor.blackColor()
+        textField.text = ""
     }
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
-        if textField.tag == 1 {
-            outfitTags.append(textField.text!)
-            textField.text = ""
-            println("outfitTags = \(outfitTags)")
-            return true
-        }
         return false
     }
 }

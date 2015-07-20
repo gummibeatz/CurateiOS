@@ -12,6 +12,8 @@ class OutfitsContainerVC: UIViewController {
     
     let frameForOutfitsVC: CGRect = CGRect(x:0, y: 20, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
     var outfitsVC = OutfitsVC()
+    var outfitView: OutfitView?
+    var outfitCell: OutfitCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()

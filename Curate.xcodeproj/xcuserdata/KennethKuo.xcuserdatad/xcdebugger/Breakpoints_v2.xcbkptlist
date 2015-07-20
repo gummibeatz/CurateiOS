@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/OutfitBuilderVC.swift"
-            timestampString = "459015889.262299"
+            timestampString = "459017939.539582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "485"
-            endingLineNumber = "485"
+            startingLineNumber = "472"
+            endingLineNumber = "472"
             landmarkName = "pickerView(_:numberOfRowsInComponent:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/OutfitsVC.swift"
-            timestampString = "452141904.838273"
+            timestampString = "459059366.135643"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "createTableDataFromOutfits(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,12 +234,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/AddOutfitView.swift"
-            timestampString = "453672102.125979"
+            timestampString = "459058649.507267"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "okButtonTapped()"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "doneButtonTapped()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -250,12 +250,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/AddOutfitView.swift"
-            timestampString = "453672102.125979"
+            timestampString = "459058649.507267"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "okButtonTapped()"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "doneButtonTapped()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

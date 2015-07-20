@@ -16,7 +16,7 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let cellIdentifier = "cellIdentfier"
     
-    var tableData:[String] = []
+    var tableData:[Outfit] = []
     let cellRowHeight: CGFloat = 50
     var outfitsDelegate:OutfitsVCDelegate?
     var outfitsTableView: UITableView = UITableView(frame: UIScreen.mainScreen().bounds)
@@ -27,11 +27,7 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         var bufferData: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as! [Outfit]
         for outfit in bufferData {
-            if let bufftitle: String = outfit.title {
-                tableData.append(outfit.title!)
-            } else {
-                tableData.append("no title")
-            }
+            tableData.append(outfit)
         }
         
         outfitsTableView.rowHeight = cellRowHeight
@@ -54,7 +50,7 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         println("ownedOutfits.count = \(ownedOutfits!.count)")
         
         if(ownedOutfits!.count != tableData.count) {
-            tableData.append(ownedOutfits!.last!.title!)
+            tableData.append(ownedOutfits!.last!)
             outfitsTableView.reloadData()
         }
     }
@@ -100,8 +96,8 @@ extension OutfitsVC: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as! OutfitCell
-        cell.outfitName.text = self.tableData[indexPath.row]
-        
+        cell.outfitName.text = self.tableData[indexPath.row].title
+        cell.outfit = self.tableData[indexPath.row]
         //modify for actual outfit image
         var img = UIImage(named: "tshirt1.jpg")
         cell.outfitImage.image = img
@@ -126,7 +122,7 @@ extension OutfitsVC: UITableViewDelegate {
             var alert = UIAlertController(title: "Warning", message: "Sure you want to delete?", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: {
                 action in
-                self.deleteOutfitWithTitle(self.tableData[indexPath.row])
+                self.deleteOutfitWithTitle(self.tableData[indexPath.row].title!)
                 self.tableData.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             }))
