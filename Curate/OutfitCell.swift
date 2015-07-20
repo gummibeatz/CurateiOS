@@ -28,22 +28,13 @@ class OutfitCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 //                outfitImage.backgroundColor = UIColor.blueColor()
         //        outfitImage?.frame = CGRect(x: 4, y: 3, width: 40, height: 36)
-        self.selectionStyle = UITableViewCellSelectionStyle.None
+        self.selectionStyle = UITableViewCellSelectionStyle.Default
         self.addSubview(outfitName)
-        var tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewOutfit")
-        var swipeRightGesture: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "viewOutfit")
-        swipeRightGesture.direction = UISwipeGestureRecognizerDirection.Right
-        self.addGestureRecognizer(tapGesture)
-        self.addGestureRecognizer(swipeRightGesture)
 //        self.addSubview(outfitImage)
     }
     
     
     override func layoutSubviews() {
         
-    }
-    
-    func viewOutfit() {
-        println("cellTapped")
     }
 }

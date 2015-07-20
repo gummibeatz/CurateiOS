@@ -12,9 +12,10 @@ protocol OutfitsVCDelegate {
     func editButtonTapped()
 }
 
-class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, SingleOutfitVCDelegate {
     
     let cellIdentifier = "cellIdentfier"
+    var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var tableData:[Outfit] = []
     let cellRowHeight: CGFloat = 50
@@ -24,7 +25,6 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func loadView() {
         super.loadView()
-        
         var bufferData: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as! [Outfit]
         for outfit in bufferData {
             tableData.append(outfit)
@@ -112,7 +112,12 @@ extension OutfitsVC: UITableViewDataSource {
 extension OutfitsVC: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        println("didslelectRow at \(indexPath.row)")
+        var singleOutfitVC: SingleOutfitVC = SingleOutfitVC()
+        singleOutfitVC.delegate = self
+        singleOutfitVC.outfit = self.tableData[indexPath.row]
+        self.navigationController?.presentViewController(singleOutfitVC, animated: true, completion: nil)
+        self.appDelegate.measurementsButton.removeFromSuperview()
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
@@ -153,4 +158,15 @@ extension OutfitsVC: UITableViewDelegate {
     
     
     
+}
+
+//MARK: Delegates SingleOutfitVC
+extension OutfitsVC: SingleOutfitVCDelegate {
+    
+    func dismissSingleOutfitVC() {
+        println("dismissSingleOutfitVC delegated")
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.appDelegate.setupMeasurementsButton()
+        
+    }
 }

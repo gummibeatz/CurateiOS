@@ -59,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         self.segmentedControl = UISegmentedControl(items: titles as [AnyObject])
         self.segmentedControl.addTarget(self.segmentsController, action: "indexDidChangeForSegmentedControl:", forControlEvents: UIControlEvents.ValueChanged)
         
-        
         self.segmentedControl.setWidth(50, forSegmentAtIndex: 0)
         self.segmentedControl.setWidth(50, forSegmentAtIndex: 1)
         self.segmentedControl.setWidth(50, forSegmentAtIndex: 2)
