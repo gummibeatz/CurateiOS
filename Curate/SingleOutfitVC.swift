@@ -54,28 +54,31 @@ class SingleOutfitVC: UIViewController {
     
     func setupClothingPieces() {
         var toBeDisplayed: [Clothing] = []
-        if outfit?.jacket != nil {
+        println("outfit?.jacket = \(outfit?.jacket)")
+        if outfit?.jacket != "NA" {
             toBeDisplayed.append(getClothing(outfit!.jacket!,isBottom: false))
         }
-        if outfit?.lightLayer != nil {
+        if outfit?.lightLayer != "NA" {
             toBeDisplayed.append(getClothing(outfit!.lightLayer!,isBottom: false))
         }
-        if outfit?.collaredShirt != nil {
+        if outfit?.collaredShirt != "NA" {
             toBeDisplayed.append(getClothing(outfit!.collaredShirt!,isBottom: false))
         }
-        if outfit?.longSleeveShirt != nil {
+        if outfit?.longSleeveShirt != "NA" {
             toBeDisplayed.append(getClothing(outfit!.longSleeveShirt!,isBottom: false))
         }
-        if outfit?.shortSleeveShirt != nil {
+        if outfit?.shortSleeveShirt != "NA" {
             toBeDisplayed.append(getClothing(outfit!.shortSleeveShirt!,isBottom: false))
         }
-        if outfit?.bottoms != nil {
+        if outfit?.bottoms != "NA" {
             toBeDisplayed.append(getClothing(outfit!.bottoms!,isBottom: true))
         }
         
         for (var i = 0; i<toBeDisplayed.count; i++) {
             var yCoord: Int = i*90 + 100
             var imageView: UIImageView = UIImageView(frame: CGRect(x: 20, y: yCoord, width: 80, height: 80))
+            println(toBeDisplayed)
+            println(toBeDisplayed[i])
             imageView.image = UIImage(data: toBeDisplayed[i].imageData!)
             self.view.addSubview(imageView)
         }

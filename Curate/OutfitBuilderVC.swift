@@ -309,7 +309,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                 matchDict in
                 let message:String = matchDict.objectForKey("message") as! String
                 println(message)
-                if message != "NA" {
+                if message == "Success" {
                     println(matchDict)
                     if let matches:[NSDictionary] = matchDict.objectForKey("matches") as? [NSDictionary] {
                         println(matches)
