@@ -177,22 +177,22 @@ extension OutfitsVC: SingleOutfitVCDelegate {
             if (self.ownedOutfits![i].title! == originalOutfit.title!) {
                 // update outfit with what was on singleoutfitVC
                 for clothing in newOutfit {
-                    switch clothing.mainCategory! {
-                    case "Collared Shirt":
-                        originalOutfit.collaredShirt = clothing.fileName!
-                    case "Jacket":
-                        originalOutfit.jacket = clothing.fileName!
-                    case "Light Layer":
-                        originalOutfit.lightLayer = clothing.fileName!
-                    case "Long Sleeve Shirt":
-                        originalOutfit.longSleeveShirt = clothing.fileName!
-                    case "Short Sleeve Shirt":
-                        originalOutfit.shortSleeveShirt = clothing.fileName!
-                    case "Casual", "Chinos", "Shorts", "Suit Pants":
-                        originalOutfit.bottoms = clothing.fileName!
-                    default:
-                        println("error outfit was not changed")
-                    }
+                        switch clothing.mainCategory! {
+                        case "Collared Shirt":
+                            originalOutfit.collaredShirt = clothing.fileName!
+                        case "Jacket":
+                            originalOutfit.jacket = clothing.fileName!
+                        case "Light Layer":
+                            originalOutfit.lightLayer = clothing.fileName!
+                        case "Long Sleeve Shirt":
+                            originalOutfit.longSleeveShirt = clothing.fileName!
+                        case "Short Sleeve Shirt":
+                            originalOutfit.shortSleeveShirt = clothing.fileName!
+                        case "Casual", "Chinos", "Shorts", "Suit Pants":
+                            originalOutfit.bottoms = clothing.fileName!
+                        default:
+                            println("error outfit was not changed")
+                        }
                 }
                 self.ownedOutfits![i] = originalOutfit
                 writeCustomObjArraytoUserDefaults(ownedOutfits!, "ownedOutfits")

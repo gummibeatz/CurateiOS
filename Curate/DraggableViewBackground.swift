@@ -110,6 +110,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             var emptyJacket = Top()
             emptyJacket.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
             emptyJacket.fileName = "NA"
+            emptyJacket.mainCategory = "Jacket"
             ownedJackets!.append(emptyJacket)
             writeCustomObjArraytoUserDefaults(ownedJackets!, "ownedJackets")
         }
@@ -117,6 +118,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             var emptyLightLayer = Top()
             emptyLightLayer.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
             emptyLightLayer.fileName = "NA"
+            emptyLightLayer.mainCategory = "Light Layer"
             ownedLightLayers!.append(emptyLightLayer)
             writeCustomObjArraytoUserDefaults(ownedLightLayers!, "ownedLightLayers")
         }
@@ -124,6 +126,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             var emptyCollaredShirt = Top()
             emptyCollaredShirt.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
             emptyCollaredShirt.fileName = "NA"
+            emptyCollaredShirt.mainCategory = "Collared Shirt"
             ownedCollaredShirts!.append(emptyCollaredShirt)
             writeCustomObjArraytoUserDefaults(ownedCollaredShirts!, "ownedCollaredShirts")
         }
@@ -131,6 +134,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             var emptyLongSleeveShirt = Top()
             emptyLongSleeveShirt.imageData = UIImagePNGRepresentation(UIImage(named: "notAvailable"))
             emptyLongSleeveShirt.fileName = "NA"
+            emptyLongSleeveShirt.mainCategory = "Long Sleeve Shirt"
             ownedLongSleeveShirts!.append(emptyLongSleeveShirt)
             writeCustomObjArraytoUserDefaults(ownedLongSleeveShirts!, "ownedLongSleeveShirts")
         }
@@ -138,6 +142,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             var emptyShortSleeveShirt = Top()
             emptyShortSleeveShirt.imageData = UIImagePNGRepresentation(UIImage(named: "notAvailable"))
             emptyShortSleeveShirt.fileName = "NA"
+            emptyShortSleeveShirt.mainCategory = "Short Sleeve Shirt"
             ownedShortSleeveShirts!.append(emptyShortSleeveShirt)
             writeCustomObjArraytoUserDefaults(ownedShortSleeveShirts!, "ownedShortSleeveShirts")
         }
@@ -145,6 +150,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             var emptyBottoms = Bottom()
             emptyBottoms.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
             emptyBottoms.fileName = "NA"
+            emptyBottoms.mainCategory = "Chinos"
             ownedBottoms!.append(emptyBottoms)
             writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")
         }
