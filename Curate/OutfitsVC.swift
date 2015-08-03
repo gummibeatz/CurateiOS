@@ -169,4 +169,35 @@ extension OutfitsVC: SingleOutfitVCDelegate {
         self.appDelegate.setupMeasurementsButton()
         
     }
+    
+    // takes in the original outfit as an Outfit object and the newOutfit as an array of
+    // Clothing. Should be the updated toBeDisplayed array from SingleOutfitVC
+    func saveNewOutfit(originalOutfit: Outfit, newOutfit: [Clothing]) {
+        for (var i = 0; i < self.ownedOutfits!.count; i++) {
+            if (self.ownedOutfits![i].title! == originalOutfit.title!) {
+                // update outfit with what was on singleoutfitVC
+                for clothing in newOutfit {
+                    switch clothing.mainCategory! {
+                    case "Collared Shirt":
+                        originalOutfit.collaredShirt = clothing.fileName!
+                    case "Jacket":
+                        originalOutfit.jacket = clothing.fileName!
+                    case "Light Layer":
+                        originalOutfit.lightLayer = clothing.fileName!
+                    case "Long Sleeve Shirt":
+                        originalOutfit.longSleeveShirt = clothing.fileName!
+                    case "Short Sleeve Shirt":
+                        originalOutfit.shortSleeveShirt = clothing.fileName!
+                    case "Casual", "Chinos", "Shorts", "Suit Pants":
+                        originalOutfit.bottoms = clothing.fileName!
+                    default:
+                        println("error outfit was not changed")
+                    }
+                }
+                self.ownedOutfits![i] = originalOutfit
+                writeCustomObjArraytoUserDefaults(ownedOutfits!, "ownedOutfits")
+                break
+            }
+        }
+    }
 }

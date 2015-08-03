@@ -582,15 +582,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Curate/SingleOutfitVC.swift"
-            timestampString = "459124600.729375"
+            timestampString = "460256194.878201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "setupClothingPieces()"
             landmarkType = "5">
          </BreakpointContent>
@@ -601,14 +601,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Curate/SingleOutfitVC.swift"
-            timestampString = "459124600.729375"
+            filePath = "Curate/AppDelegate.swift"
+            timestampString = "459708312.242"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "setupClothingPieces()"
-            landmarkType = "5">
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
