@@ -40,7 +40,6 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     var blurEffectView: UIVisualEffectView =  UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
     
     let POPOUTSIZE = CGSize(width: 270, height: 320)
-    let screenWidth = UIScreen.mainScreen().bounds.size.width
     
     var temp:Double = 0
     var curateAuthToken:String?
@@ -207,7 +206,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         shortSleeveShirtPicker.tag = 4
         bottomsPicker.tag = 5
         
-        let pickerWidth = screenWidth*3/4
+        let pickerWidth = SCREENWIDTH*3/4
         jacketPicker.frame = CGRectMake(40, 480, pickerWidth, 180)
         lightLayerPicker.frame = CGRectMake(40, 360, pickerWidth, 180)
         collaredShirtPicker.frame = CGRectMake(40, 240, pickerWidth, 180)
@@ -256,7 +255,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         outfit.longSleeveShirt = longSleeveShirtPickerData[longSleeveShirtPicker.selectedRowInComponent(0)].fileName
         outfit.shortSleeveShirt = shortSleeveShirtPickerData[shortSleeveShirtPicker.selectedRowInComponent(0)].fileName
         outfit.bottoms = bottomsPickerData[bottomsPicker.selectedRowInComponent(0)].fileName
-        self.addOutfitView = AddOutfitView(frame: CGRect(x: 20, y: 100, width: screenWidth-40, height: UIScreen.mainScreen().bounds.height - 150), outfit: outfit)
+        self.addOutfitView = AddOutfitView(frame: CGRect(x: 20, y: 100, width: SCREENWIDTH-40, height: UIScreen.mainScreen().bounds.height - 150), outfit: outfit)
         addOutfitView?.delegate = self
         self.view.addSubview(blurEffectView)
         self.view.addSubview(self.addOutfitView!)
@@ -288,20 +287,27 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     func pickerViewDoubleTapGestureRecognized(sender: UITapGestureRecognizer ) {
         println("double tapped")
         var baseClothing: String?
+        var baseCategory: String?
         let pickerView: UIPickerView = sender.view as! UIPickerView
         switch pickerView.tag {
         case jacketPicker.tag:
             baseClothing = jacketPickerData[jacketPicker.selectedRowInComponent(0)].fileName
+            baseCategory = jacketPickerData[jacketPicker.selectedRowInComponent(0)].mainCategory
         case lightLayerPicker.tag:
             baseClothing = lightLayerPickerData[lightLayerPicker.selectedRowInComponent(0)].fileName
+            baseCategory = lightLayerPickerData[lightLayerPicker.selectedRowInComponent(0)].mainCategory
         case collaredShirtPicker.tag:
             baseClothing = collaredShirtPickerData[collaredShirtPicker.selectedRowInComponent(0)].fileName
+            baseCategory = collaredShirtPickerData[collaredShirtPicker.selectedRowInComponent(0)].mainCategory
         case longSleeveShirtPicker.tag:
             baseClothing = longSleeveShirtPickerData[longSleeveShirtPicker.selectedRowInComponent(0)].fileName
+            baseCategory = longSleeveShirtPickerData[longSleeveShirtPicker.selectedRowInComponent(0)].mainCategory
         case shortSleeveShirtPicker.tag:
             baseClothing = shortSleeveShirtPickerData[shortSleeveShirtPicker.selectedRowInComponent(0)].fileName
+            baseCategory = shortSleeveShirtPickerData[shortSleeveShirtPicker.selectedRowInComponent(0)].mainCategory
         case bottomsPicker.tag:
             baseClothing = bottomsPickerData[bottomsPicker.selectedRowInComponent(0)].fileName
+            baseCategory = bottomsPickerData[bottomsPicker.selectedRowInComponent(0)].mainCategory
         default:
             println()
         }
@@ -321,7 +327,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                     if let matches:[NSDictionary] = matchDict.objectForKey("matches") as? [NSDictionary] {
                         println(matches)
                         var currentMatch:NSDictionary = self.getNextMatch(matches)
-                        self.assembleOutfitFromMatch(currentMatch)
+                        self.assembleOutfitFromMatch(currentMatch,baseCategory: baseCategory!)
                     } else {
                         var alert = UIAlertController(title: "Alert", message: "No outfits could be matched", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
@@ -347,26 +353,42 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         return previousMatch[previousMatchIndex-0]
     }
     
-    func assembleOutfitFromMatch(match: NSDictionary) {
+    func assembleOutfitFromMatch(match: NSDictionary, baseCategory: String) {
         var buffer: [[String]] = match.objectForKey("outfits") as! [[String]]
         var outfit:[String] = buffer[0]
         var ownedPants: [Bottom] = readCustomObjArrayFromUserDefaults("ownedPants") as! [Bottom]
+        var changedPickers = [false, false, false, false, false, false]
         
-        jacketPicker.selectRow(0, inComponent: 0, animated: true)
-        lightLayerPicker.selectRow(0, inComponent: 0, animated: true)
-        collaredShirtPicker.selectRow(0, inComponent: 0, animated: true)
-        longSleeveShirtPicker.selectRow(0, inComponent: 0, animated: true)
-        shortSleeveShirtPicker.selectRow(0, inComponent: 0, animated: true)
+        switch baseCategory {
+        case "Jacket":
+            changedPickers[0] = true
+        case "Light Layer":
+            changedPickers[1] = true
+        case "Collared Shirt":
+            changedPickers[2] = true
+        case "Long Sleeve Shirt":
+            changedPickers[3] = true
+        case "Short Sleeve Shirt":
+            changedPickers[4] = true
+        default:
+            changedPickers[5] = true
+        }
         
         println("outfit is \(outfit)")
         
-        changePickerWithOutfitName(outfit[0], isBottom: true)
+        changePickerWithOutfitName(outfit[0], isBottom: true, changedPickers: &changedPickers)
         if outfit[1] != "NA" {
-            changePickerWithOutfitName(outfit[1], isBottom: false)
+            changePickerWithOutfitName(outfit[1], isBottom: false, changedPickers: &changedPickers)
         }
         if outfit[2] != "NA" {
-            changePickerWithOutfitName(outfit[2], isBottom: false)
+            changePickerWithOutfitName(outfit[2], isBottom: false, changedPickers: &changedPickers)
         }
+        
+        if changedPickers[0] == false { jacketPicker.selectRow(0, inComponent: 0, animated: true) }
+        if changedPickers[1] == false {lightLayerPicker.selectRow(0, inComponent: 0, animated: true) }
+        if changedPickers[2] == false {collaredShirtPicker.selectRow(0, inComponent: 0, animated: true) }
+        if changedPickers[3] == false {longSleeveShirtPicker.selectRow(0, inComponent: 0, animated: true) }
+        if changedPickers[4] == false {shortSleeveShirtPicker.selectRow(0, inComponent: 0, animated: true) }
         
         
     }
@@ -390,7 +412,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         return "NA"
     }
     
-    func changePickerWithOutfitName(outfitName: String, isBottom: Bool) {
+    func changePickerWithOutfitName(outfitName: String, isBottom: Bool, inout changedPickers: [Bool]) {
         var mainCategory: String = getMainCategory(outfitName, isBottom: isBottom)
         switch mainCategory {
         case "Jacket":
@@ -398,6 +420,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             for (var i = 1; i < ownedJackets.count; i++) {
                 if(outfitName == ownedJackets[i].fileName!) {
                     jacketPicker.selectRow(i, inComponent: 0, animated: true)
+                    changedPickers[0] = true
                     break
                 }
             }
@@ -406,6 +429,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             for (var i = 1; i < ownedLightLayers.count; i++) {
                 if(outfitName == ownedLightLayers[i].fileName!) {
                     lightLayerPicker.selectRow(i, inComponent: 0, animated: true)
+                    changedPickers[1] = true
                     break
                 }
             }
@@ -414,6 +438,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             for (var i = 1; i < ownedLongSleeveShirts.count; i++) {
                 if(outfitName == ownedLongSleeveShirts[i].fileName!) {
                     longSleeveShirtPicker.selectRow(i, inComponent: 0, animated: true)
+                    changedPickers[2] = true
                     break
                 }
             }
@@ -422,6 +447,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             for (var i = 1; i < ownedCollaredShirts.count; i++) {
                 if(outfitName == ownedCollaredShirts[i].fileName!) {
                     collaredShirtPicker.selectRow(i, inComponent: 0, animated: true)
+                    changedPickers[3] = true
                     break
                 }
             }
@@ -430,6 +456,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             for (var i = 1; i < ownedShortSleeveShirts.count; i++) {
                 if(outfitName == ownedShortSleeveShirts[i].fileName!) {
                     shortSleeveShirtPicker.selectRow(i, inComponent: 0, animated: true)
+                    changedPickers[4] = true
                     break
                 }
             }
@@ -438,6 +465,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             for (var i = 1; i < ownedBottoms.count; i++) {
                 if outfitName == ownedBottoms[i].fileName {
                     bottomsPicker.selectRow(i, inComponent: 0, animated: true)
+                    changedPickers[5] = true
                     break
                 }
             }
