@@ -115,6 +115,8 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
     func reloadAllPickers() {
         jacketPicker.reloadAllComponents()
         lightLayerPicker.reloadAllComponents()
@@ -305,8 +307,13 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         }
 
         if (self.curateAuthToken != nil && baseClothing != nil) {
+            self.view.addSubview(blurEffectView)
             getMatches(self.curateAuthToken!, baseClothing!, {
                 matchDict in
+                // remove blur view
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.blurEffectView.removeFromSuperview()
+                })
                 let message:String = matchDict.objectForKey("message") as! String
                 println(message)
                 if message == "Success" {
@@ -320,6 +327,10 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil)
                     }
+                } else {
+                    var alert = UIAlertController(title: "Alert", message: "No outfits could be matched", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
             })
         }

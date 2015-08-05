@@ -30,7 +30,10 @@ class WardrobeBuilderVC: UIViewController {
         
         
         ///HERES A PROBLEM GOTTA SETUP USER IN FIRST STEP
-        let currentUser: User = getUserFromCoreData()!
+//        let currentUser: User = getUserFromCoreData()!
+        let currentUser: User = User.createInManagedObjectContext(managedObjectContext!, preferences: NSDictionary())
+        currentUser.preferredPantsFit = "Slim"
+        currentUser.preferredShirtFit = "Extra Slim"
         /// END
                 self.view.addSubview(tempDraggableBackground)
         getSwipeBatch(currentUser) {

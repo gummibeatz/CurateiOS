@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A046E2C1B725B9900D25AE5 /* PersonaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A046E2B1B725B9900D25AE5 /* PersonaVC.swift */; };
+		1A046E2E1B725CAE00D25AE5 /* globalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A046E2D1B725CAE00D25AE5 /* globalConstants.swift */; };
+		1A046E321B7265A900D25AE5 /* RecommendationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A046E311B7265A900D25AE5 /* RecommendationVC.swift */; };
 		1A12D9011A6EE16000DA3617 /* OutfitsContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A12D9001A6EE16000DA3617 /* OutfitsContainerVC.swift */; };
 		1A12D9031A6EE18400DA3617 /* OutfitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A12D9021A6EE18300DA3617 /* OutfitCell.swift */; };
 		1A5F4B8F1A93DE82000B9705 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5F4B8E1A93DE82000B9705 /* FacebookSDK.framework */; };
@@ -61,6 +64,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A046E2B1B725B9900D25AE5 /* PersonaVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaVC.swift; sourceTree = "<group>"; };
+		1A046E2D1B725CAE00D25AE5 /* globalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = globalConstants.swift; sourceTree = "<group>"; };
+		1A046E311B7265A900D25AE5 /* RecommendationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationVC.swift; sourceTree = "<group>"; };
 		1A12D9001A6EE16000DA3617 /* OutfitsContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitsContainerVC.swift; sourceTree = "<group>"; };
 		1A12D9021A6EE18300DA3617 /* OutfitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitCell.swift; sourceTree = "<group>"; };
 		1A5F4B8E1A93DE82000B9705 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 				1A8CCC1B1ACB22F3001E3AF0 /* ReadWriteCalls.swift */,
 				1AF1A2721ACA3FFF006770D6 /* CurateAPICalls.swift */,
 				1AEC45591B4B8E4C009D8D9A /* WeatherAPICalls.swift */,
+				1A046E2D1B725CAE00D25AE5 /* globalConstants.swift */,
 			);
 			name = GlobalFunctions;
 			sourceTree = "<group>";
@@ -235,6 +242,8 @@
 		1AA3C5B21A460376008C732C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1A046E2B1B725B9900D25AE5 /* PersonaVC.swift */,
+				1A046E311B7265A900D25AE5 /* RecommendationVC.swift */,
 				1A5F4B911A93E22F000B9705 /* FBLoginVC.swift */,
 				1AA3C59E1A460234008C732C /* MeasurementsVC.swift */,
 				1AA3C5B31A46039A008C732C /* WardrobeBuilder */,
@@ -410,6 +419,7 @@
 				1AA3C5A41A460234008C732C /* OutfitsVC.swift in Sources */,
 				1A12D9031A6EE18400DA3617 /* OutfitCell.swift in Sources */,
 				1A8CCC271AD0601C001E3AF0 /* Bottom.swift in Sources */,
+				1A046E2C1B725B9900D25AE5 /* PersonaVC.swift in Sources */,
 				1ACC8B111A58C82200093290 /* PropertiesFrontView.swift in Sources */,
 				1AC9AC4B1AF2E9470090E108 /* AddOutfitView.swift in Sources */,
 				1AA3C5771A4601B2008C732C /* AppDelegate.swift in Sources */,
@@ -417,6 +427,7 @@
 				1AF1A2731ACA3FFF006770D6 /* CurateAPICalls.swift in Sources */,
 				1AA3C5971A46021A008C732C /* RBResizer.swift in Sources */,
 				1AEC455A1B4B8E4C009D8D9A /* WeatherAPICalls.swift in Sources */,
+				1A046E2E1B725CAE00D25AE5 /* globalConstants.swift in Sources */,
 				1A96E9A61A58C66200C23C0E /* OutfitBuilderContainerVC.swift in Sources */,
 				1AA3C5A61A460234008C732C /* MeasurementsVC.swift in Sources */,
 				1AA3C57A1A4601B2008C732C /* Curate.xcdatamodeld in Sources */,
@@ -427,6 +438,7 @@
 				1A8CCC1A1ACB1E77001E3AF0 /* Top.swift in Sources */,
 				1A96E9A81A58C67E00C23C0E /* PropertiesViewVC.swift in Sources */,
 				1AF4B8E51AED30E40007C526 /* Clothing.swift in Sources */,
+				1A046E321B7265A900D25AE5 /* RecommendationVC.swift in Sources */,
 				1A8CCC1C1ACB22F3001E3AF0 /* ReadWriteCalls.swift in Sources */,
 				1AF1A27D1ACA41E1006770D6 /* Tokens.swift in Sources */,
 				1A7B8AA41B5EB44A00C2D552 /* EditClothingView.swift in Sources */,
