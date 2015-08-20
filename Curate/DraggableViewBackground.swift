@@ -30,6 +30,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     var currentBatchIndex: Int = Int()
     var swipeBatch: Array<Array<Clothing>> = Array<Array<Clothing>>()
     var currentUser: User?
+    var blurEffectView: UIVisualEffectView =  UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
 
     var ownedTops:[Top]?
     var ownedBottoms: [Bottom]?
@@ -275,6 +276,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
                 self.loadNextBatch({
                     loadingFinished in
+                    self.blurEffectView.removeFromSuperview()
                     self.batchIsLoading = false
                 })
             }
@@ -348,6 +350,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
                 self.loadNextBatch({
                     loadingFinished in
+                    self.blurEffectView.removeFromSuperview()
                     self.batchIsLoading = false
                 })
             }
@@ -476,6 +479,14 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     //%% loads next batch by adding in links from the next batch and deleting the previous cards
     func loadNextBatch(completionHandler:(loadingFinished:Bool)->()) {
         println("=====in loadnextBatch=====")
+        
+        //%%buffer for loadings
+        var loadingText = UILabel(frame: CGRect(x: SCREENWIDTH/2-40, y: SCREENHEIGHT/2 - 20, width: 80, height: 20))
+        loadingText.text = "Loading dopeness"
+        loadingText.textColor = UIColor.whiteColor()
+        blurEffectView.addSubview(loadingText)
+        self.addSubview(blurEffectView)
+        
         self.batchIsLoading = true
         self.currentBatchIndex++
         saveBatchIndex()
