@@ -207,11 +207,11 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         bottomsPicker.tag = 5
         
         let pickerWidth = SCREENWIDTH*3/4
-        jacketPicker.frame = CGRectMake(40, 480, pickerWidth, 180)
-        lightLayerPicker.frame = CGRectMake(40, 360, pickerWidth, 180)
-        collaredShirtPicker.frame = CGRectMake(40, 240, pickerWidth, 180)
-        longSleeveShirtPicker.frame = CGRectMake(40, 120, pickerWidth, 180)
         shortSleeveShirtPicker.frame = CGRectMake(40, 0, pickerWidth, 180)
+        longSleeveShirtPicker.frame = CGRectMake(40, 120, pickerWidth, 180)
+        collaredShirtPicker.frame = CGRectMake(40, 240, pickerWidth, 180)
+        lightLayerPicker.frame = CGRectMake(40, 360, pickerWidth, 180)
+        jacketPicker.frame = CGRectMake(40, 480, pickerWidth, 180)
         bottomsPicker.frame = CGRectMake(40, 600, pickerWidth, 180)
         
         let rotate = CGAffineTransformScale(CGAffineTransformMakeRotation(-3.14/2), 0.25, 2.0)
@@ -227,7 +227,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         self.view.addSubview(scrollView)
         self.view.backgroundColor = UIColor.whiteColor()
         scrollView.contentSize = CGSize(width: 320, height: 758)
-        scrollView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 44, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 44, right: 0)
         self.blurEffectView.frame = self.view.bounds
         setupToolBar()
     }
@@ -375,14 +375,19 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         }
         
         println("outfit is \(outfit)")
+        println("1 changedPickers =\(changedPickers)")
         
         changePickerWithOutfitName(outfit[0], isBottom: true, changedPickers: &changedPickers)
+        println("2 changedPickers =\(changedPickers)")
         if outfit[1] != "NA" {
             changePickerWithOutfitName(outfit[1], isBottom: false, changedPickers: &changedPickers)
         }
+        println("3 changedPickers =\(changedPickers)")
         if outfit[2] != "NA" {
             changePickerWithOutfitName(outfit[2], isBottom: false, changedPickers: &changedPickers)
         }
+        
+        println("4 changedPickers = \(changedPickers)")
         
         if changedPickers[0] == false { jacketPicker.selectRow(0, inComponent: 0, animated: true) }
         if changedPickers[1] == false {lightLayerPicker.selectRow(0, inComponent: 0, animated: true) }
@@ -414,6 +419,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
     
     func changePickerWithOutfitName(outfitName: String, isBottom: Bool, inout changedPickers: [Bool]) {
         var mainCategory: String = getMainCategory(outfitName, isBottom: isBottom)
+        println("main Category = \(mainCategory)")
         switch mainCategory {
         case "Jacket":
             var ownedJackets = readCustomObjArrayFromUserDefaults("ownedJackets") as! [Top]
@@ -438,7 +444,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             for (var i = 1; i < ownedLongSleeveShirts.count; i++) {
                 if(outfitName == ownedLongSleeveShirts[i].fileName!) {
                     longSleeveShirtPicker.selectRow(i, inComponent: 0, animated: true)
-                    changedPickers[2] = true
+                    changedPickers[3] = true
                     break
                 }
             }
@@ -447,7 +453,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
             for (var i = 1; i < ownedCollaredShirts.count; i++) {
                 if(outfitName == ownedCollaredShirts[i].fileName!) {
                     collaredShirtPicker.selectRow(i, inComponent: 0, animated: true)
-                    changedPickers[3] = true
+                    changedPickers[2] = true
                     break
                 }
             }

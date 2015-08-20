@@ -38,7 +38,7 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
                     self.introView.removeFromSuperview()
                     self.view.removeFromSuperview()
                     appDelegate.window!.rootViewController = appDelegate.navigationController
-                    appDelegate.setupMeasurementsButton()
+//                    appDelegate.setupMeasurementsButton()
             })
 //            let delay = 1 * Double(NSEC_PER_SEC)
 //            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))

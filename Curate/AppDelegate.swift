@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
     var segmentsController: SegmentsController = SegmentsController()
     var segmentedControl: UISegmentedControl = UISegmentedControl()
     var navigationController: UINavigationController = UINavigationController()
+    var measurementsVC: MeasurementsVC?
     var personaController: PersonaVC?
     var fbLoginVC: FBLoginVC = FBLoginVC()
     var measurementsButton: UIButton = UIButton()
@@ -73,6 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         self.firstUserExperience()
         
         personaController = PersonaVC()
+        measurementsVC = MeasurementsVC()
         
         return true
     }
@@ -110,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
     func measurementsButtonTapped() {
         println("measurementsButtonTapped")
         self.measurementsButton.removeFromSuperview()
-        window?.rootViewController = personaController
+        window?.rootViewController = self.measurementsVC
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -138,7 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         //         -- MARK FB stuff
         println("in application FB")
-        self.window?.rootViewController = self.personaController
+        self.window?.rootViewController = self.measurementsVC
         self.fbLoginVC.resignFirstResponder()
         return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
     }

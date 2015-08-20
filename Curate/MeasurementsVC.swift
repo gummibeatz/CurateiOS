@@ -350,7 +350,7 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             self.okButton!.removeFromSuperview()
             appDelegate.window!.rootViewController = appDelegate.navigationController
-            appDelegate.setupMeasurementsButton()
+//            appDelegate.setupMeasurementsButton()
         }
     }
 }
