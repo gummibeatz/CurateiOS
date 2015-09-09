@@ -140,7 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         //         -- MARK FB stuff
         println("in application FB")
-        self.window?.rootViewController = self.measurementsVC
+        self.window?.rootViewController = self.personaController
         self.fbLoginVC.resignFirstResponder()
         return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
     }

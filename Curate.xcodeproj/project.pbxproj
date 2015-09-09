@@ -51,6 +51,9 @@
 		1AF1A27D1ACA41E1006770D6 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2791ACA41E1006770D6 /* Tokens.swift */; };
 		1AF1A27F1ACA41E1006770D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A27B1ACA41E1006770D6 /* User.swift */; };
 		1AF4B8E51AED30E40007C526 /* Clothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B8E41AED30E40007C526 /* Clothing.swift */; };
+		CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */; };
+		CCE2D1C91BA09A1F008197F4 /* PersonaVCwithXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE2D1C81BA09A1F008197F4 /* PersonaVCwithXib.swift */; };
+		CCE2D1CB1BA0BE94008197F4 /* PersonaPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +116,9 @@
 		1AF1A2791ACA41E1006770D6 /* Tokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		1AF1A27B1ACA41E1006770D6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1AF4B8E41AED30E40007C526 /* Clothing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clothing.swift; sourceTree = "<group>"; };
+		CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaChoiceView.xib; sourceTree = "<group>"; };
+		CCE2D1C81BA09A1F008197F4 /* PersonaVCwithXib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaVCwithXib.swift; sourceTree = "<group>"; };
+		CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaPreferencesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,7 @@
 		1A9C5D1E1B0E50F100B828D9 /* oldFunctionsAndMiscellaneous */ = {
 			isa = PBXGroup;
 			children = (
+				CCE2D1C41BA08487008197F4 /* OpeningViews */,
 				1A9C5D1C1B0E50E300B828D9 /* oldFunctions.txt */,
 				1A9C5D1F1B0E512D00B828D9 /* todo.txt */,
 				1A9C5D211B0E6C7C00B828D9 /* majorBugs.txt */,
@@ -203,6 +210,7 @@
 				1AA3C5761A4601B2008C732C /* AppDelegate.swift */,
 				1AA3C5B61A461003008C732C /* SegmentsController.swift */,
 				1A8CCC1D1ACB2832001E3AF0 /* GlobalFunctions */,
+				CCE2D1C51BA0849A008197F4 /* Views */,
 				1AA3C5B21A460376008C732C /* ViewControllers */,
 				1AA3C5A81A460316008C732C /* VNeck */,
 				1AA3C5801A4601B2008C732C /* Images.xcassets */,
@@ -303,6 +311,23 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		CCE2D1C41BA08487008197F4 /* OpeningViews */ = {
+			isa = PBXGroup;
+			children = (
+				CCE2D1C81BA09A1F008197F4 /* PersonaVCwithXib.swift */,
+				CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */,
+			);
+			name = OpeningViews;
+			sourceTree = "<group>";
+		};
+		CCE2D1C51BA0849A008197F4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -388,6 +413,7 @@
 				1AA3C5A91A460316008C732C /* VNeck in Resources */,
 				1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */,
 				1A9C5D1D1B0E50E300B828D9 /* oldFunctions.txt in Resources */,
+				CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */,
 				1A9C5D201B0E512D00B828D9 /* todo.txt in Resources */,
 				1AA3C5811A4601B2008C732C /* Images.xcassets in Resources */,
 				1A9C5D221B0E6C7C00B828D9 /* majorBugs.txt in Resources */,
@@ -421,6 +447,7 @@
 				1A8CCC271AD0601C001E3AF0 /* Bottom.swift in Sources */,
 				1A046E2C1B725B9900D25AE5 /* PersonaVC.swift in Sources */,
 				1ACC8B111A58C82200093290 /* PropertiesFrontView.swift in Sources */,
+				CCE2D1CB1BA0BE94008197F4 /* PersonaPreferencesView.swift in Sources */,
 				1AC9AC4B1AF2E9470090E108 /* AddOutfitView.swift in Sources */,
 				1AA3C5771A4601B2008C732C /* AppDelegate.swift in Sources */,
 				1AA3C5A01A460234008C732C /* WardrobeBuilderVC.swift in Sources */,
@@ -431,6 +458,7 @@
 				1A96E9A61A58C66200C23C0E /* OutfitBuilderContainerVC.swift in Sources */,
 				1AA3C5A61A460234008C732C /* MeasurementsVC.swift in Sources */,
 				1AA3C57A1A4601B2008C732C /* Curate.xcdatamodeld in Sources */,
+				CCE2D1C91BA09A1F008197F4 /* PersonaVCwithXib.swift in Sources */,
 				1AA3C5B71A461003008C732C /* SegmentsController.swift in Sources */,
 				1AF1A27C1ACA41E1006770D6 /* Indexes.swift in Sources */,
 				1A12D9011A6EE16000DA3617 /* OutfitsContainerVC.swift in Sources */,
@@ -559,6 +587,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Curate/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
