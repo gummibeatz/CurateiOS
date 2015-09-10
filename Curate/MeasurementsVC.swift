@@ -93,8 +93,6 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         heightTextField.layer.borderColor = UIColor.grayColor().CGColor;
         heightTextField.layer.cornerRadius = CGFloat(5.0)
         
-        weightPicker.delegate = self
-        weightPicker.dataSource = self
         weightPicker.frame = CGRectMake(0,0,500,80)
         weightPicker.selectRow(20, inComponent: 0, animated: false)
         weightTextField.delegate = self

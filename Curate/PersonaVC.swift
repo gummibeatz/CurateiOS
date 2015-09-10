@@ -92,7 +92,7 @@ class PersonaVC: UIViewController, RecommendationVCDelegate {
         financeLabel.textAlignment = NSTextAlignment.Center
         
         var stylishLabel = UILabel(frame: CGRect(x: personaWidth, y: heightOffset+personaHeight*2+labelHeight-20, width: personaWidth, height: labelHeight))
-        stylishLabel.text = "You probably own\n a couple ascsots"
+        stylishLabel.text = "You probably own\n a couple ascots"
         stylishLabel.numberOfLines = 2
         stylishLabel.textAlignment = NSTextAlignment.Center
         
