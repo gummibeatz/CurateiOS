@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  WardrobeBuilder
 //
-//  Created by Kenneth Kuo on 12/10/14.
-//  Copyright (c) 2014 Kenneth Kuo. All rights reserved.
+//  Created by Curate on 12/10/14.
+//  Copyright (c) 2014 Curate. All rights reserved.
 //
 
 import UIKit
@@ -24,6 +24,16 @@ class WardrobeBuilderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let firstLaunchWardrobeBuilder = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunchWardrobeBuilder")
+        if firstLaunchWardrobeBuilder  {
+            println("not first launch in wardrobe builder")
+        }
+        else {
+            println("First launch, setting NSUserDefault.")
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
+            
+        }
+        
         //added in as a buffer updated after dispatch async
         let tempDraggableBackground = DraggableViewBackground(frame: self.view.frame)
         indexes = getBatchIndex()

@@ -2,8 +2,8 @@
 //  APICalls.swift
 //  WardrobeBuilder
 //
-//  Created by Kenneth Kuo on 3/4/15.
-//  Copyright (c) 2015 Kenneth Kuo. All rights reserved.
+//  Created by Curate on 3/4/15.
+//  Copyright (c) 2015 Curate. All rights reserved.
 //
 
 import Foundation
@@ -121,8 +121,9 @@ func postWardrobe(curateAuthToken: String, wardrobeDict: NSDictionary) {
 func getSwipeBatch(user: User, completionHandler:(swipeBatch:Array<Array<Clothing>>) ->()) {
     println("in getSwipeBatch")
     var swipeBatch  = chooseSwipeBatch(user)
-    println("going to http://curateanalytics.herokuapp.com/api/v1/batch?batch_folder=\(swipeBatch.folder)")
-    let request = NSMutableURLRequest(URL: NSURL(string: "http://curateanalytics.herokuapp.com/api/v1/batch?batch_folder=\(swipeBatch.folder)")!)
+    let batchURL = "http://curateanalytics.herokuapp.com/api/v1/batch"
+    println("going to" + batchURL)
+    let request = NSMutableURLRequest(URL: NSURL(string: batchURL)!)
     request.HTTPMethod = "GET"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     
@@ -204,10 +205,8 @@ func formatSwipeBatch(batchArr: Array<Array<AnyObject>>) -> Array<Array<Clothing
     for var row = 0; row < batchArr.count; row++ {
         batchRow.removeAll(keepCapacity: false)
         for var col = 0; col < (batchArr[row]).count; col++ {
-            let tempDict: NSDictionary = batchArr[row][col] as! NSDictionary
-            let url: String = tempDict.objectForKey("url") as! String
-            let clothingDict:NSDictionary = tempDict.objectForKey("properties") as! NSDictionary
-            var clothing = Clothing(clothing: clothingDict, url: url)
+            let clothingDict: NSDictionary = batchArr[row][col] as! NSDictionary
+            var clothing = Clothing(clothing: clothingDict)
             batchRow.append(clothing)
         }
         batches.append(batchRow)

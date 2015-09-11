@@ -2,8 +2,8 @@
 //  PropertiesBackView.swift
 //  OutfitBuilder
 //
-//  Created by Kenneth Kuo on 1/2/15.
-//  Copyright (c) 2015 Kenneth Kuo. All rights reserved.
+//  Created by Curate on 1/2/15.
+//  Copyright (c) 2015 Curate. All rights reserved.
 //
 
 import UIKit

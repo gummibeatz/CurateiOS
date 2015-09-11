@@ -2,8 +2,8 @@
 //  DraggableViewBackground.swift
 //  WardrobeBuilder
 //
-//  Created by Kenneth Kuo on 12/10/14.
-//  Copyright (c) 2014 Kenneth Kuo. All rights reserved.
+//  Created by Curate on 12/10/14.
+//  Copyright (c) 2014 Curate. All rights reserved.
 //
 
 import UIKit
@@ -537,32 +537,32 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     func saveClothingArticle(clothingArticle: Clothing, imageData: NSData) {
         clothingArticle.imageData = UIImageJPEGRepresentation(loadedCards.objectAtIndex(0).information.image!, 0.0)
-        println(clothingArticle.mainCategory)
+        println(clothingArticle.mainCategory!)
         switch clothingArticle.mainCategory! as String {
-        case "Collared Shirt", "Jacket", "Light Layer", "Long Sleeve Shirt", "Short Sleeve Shirt":
+        case "collared_shirt", "jacket", "light_layer", "long_sleeve_shirt", "short_sleeve_shirt":
             let top: Top = Top(top: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedTops!.append(top) //%%% add top to ownedTops if swiped right
             writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
             switch clothingArticle.mainCategory! as String {
-            case "Jacket":
+            case "jacket":
                 ownedJackets!.append(top)
                 writeCustomObjArraytoUserDefaults(ownedJackets!, "ownedJackets")
-            case "Light Layer":
+            case "light_layer":
                 ownedLightLayers!.append(top)
                 writeCustomObjArraytoUserDefaults(ownedLightLayers!, "ownedLightLayers")
-            case "Collared Shirt":
+            case "collared_shirt":
                 ownedCollaredShirts!.append(top)
                 writeCustomObjArraytoUserDefaults(ownedCollaredShirts!, "ownedCollaredShirts")
-            case "Long Sleeve Shirt":
+            case "long_sleeve_shirt":
                 ownedLongSleeveShirts!.append(top)
                 writeCustomObjArraytoUserDefaults(ownedLongSleeveShirts!, "ownedLongSleeveShirts")
-            case "Short Sleeve Shirt":
+            case "short_sleeve_shirt":
                 ownedShortSleeveShirts!.append(top)
                 writeCustomObjArraytoUserDefaults(ownedShortSleeveShirts!, "ownedShortSleeveShirts")
             default:
                 println("save clothing article tops impossible")
             }
-        case "Casual", "Chinos", "Shorts", "Suit Pants":
+        case "casual", "chinos", "shorts", "suit_pants", "pants":
             let bottom: Bottom = Bottom(bottom: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedBottoms!.append(bottom) //%%% add bottom to ownedBottoms if swiped right
             writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")

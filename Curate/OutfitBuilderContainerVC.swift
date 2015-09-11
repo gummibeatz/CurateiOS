@@ -2,8 +2,8 @@
 //  OutfitBuilderContainerVC.swift
 //  OutfitBuilderContainer
 //
-//  Created by Kenneth Kuo on 1/3/15.
-//  Copyright (c) 2015 Kenneth Kuo. All rights reserved.
+//  Created by Curate on 1/3/15.
+//  Copyright (c) 2015 Curate. All rights reserved.
 //
 
 import UIKit

@@ -2,8 +2,8 @@
 //  WeatherAPICalls.swift
 //  Curate
 //
-//  Created by Kenneth Kuo on 7/7/15.
-//  Copyright (c) 2015 Kenneth Kuo. All rights reserved.
+//  Created by Curate on 7/7/15.
+//  Copyright (c) 2015 Curate. All rights reserved.
 //
 
 import Foundation

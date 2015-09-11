@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Curate
 //
-//  Created by Kenneth Kuo on 12/20/14.
-//  Copyright (c) 2014 Kenneth Kuo. All rights reserved.
+//  Created by Curate on 12/20/14.
+//  Copyright (c) 2014 Curate. All rights reserved.
 //
 
 import UIKit

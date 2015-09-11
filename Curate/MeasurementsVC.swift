@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  Measurements
 //
-//  Created by Kenneth Kuo on 10/14/14.
-//  Copyright (c) 2014 Kenneth Kuo. All rights reserved.
+//  Created by Curate on 10/14/14.
+//  Copyright (c) 2014 Curate. All rights reserved.
 //
 
 import UIKit
@@ -16,8 +16,8 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var user:User?
     
     //initialization constants
-    let heightPicker = UIPickerView()
-    let weightPicker = UIPickerView()
+    let picker1 = UIPickerView()
+    let picker2 = UIPickerView()
     let agePicker = UIPickerView()
     let waistPicker = UIPickerView()
     let inseamPicker = UIPickerView()
@@ -26,8 +26,8 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let preferredPantsFitPicker = UIPickerView()
     let shoeSizePicker = UIPickerView()
     
-    let heightTextField = UITextField()
-    let weightTextField = UITextField()
+    let textField1 = UITextField()
+    let textField2 = UITextField()
     let ageTextField = UITextField()
     let waistTextField = UITextField()
     let inseamTextField = UITextField()
@@ -36,8 +36,8 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let preferredPantsFitTextField = UITextField()
     let shoeSizeTextField = UITextField()
     
-    var heightPickerData = [String()]
-    var weightPickerData = [String]()
+    var picker1Data = [String()]
+    var picker2Data = [String]()
     var agePickerData = [String]()
     var waistPickerData = [String]()
     var inseamPickerData = [String]()
@@ -72,8 +72,8 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         
         //creating textfields with a pickerview
-        heightPicker.tag = 0
-        weightPicker.tag = 1
+        picker1.tag = 0
+        picker2.tag = 1
         agePicker.tag = 2
         waistPicker.tag = 3
         inseamPicker.tag = 4
@@ -82,26 +82,26 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         preferredPantsFitPicker.tag = 7
         shoeSizePicker.tag = 8
         
-        heightPicker.delegate = self
-        heightPicker.dataSource = self
-        heightPicker.frame = CGRectMake(0, 0, 500, 80)
-        heightTextField.delegate = self
-        heightTextField.inputAccessoryView = toolbar
-        heightTextField.inputView = heightPicker
-        heightTextField.frame = CGRectMake(200, 60, 100, 35)
-        heightTextField.borderStyle = UITextBorderStyle.RoundedRect
-        heightTextField.layer.borderColor = UIColor.grayColor().CGColor;
-        heightTextField.layer.cornerRadius = CGFloat(5.0)
+        picker1.delegate = self
+        picker1.dataSource = self
+        picker1.frame = CGRectMake(0, 0, 500, 80)
+        textField1.delegate = self
+        textField1.inputAccessoryView = toolbar
+        textField1.inputView = picker1
+        textField1.frame = CGRectMake(200, 60, 100, 35)
+        textField1.borderStyle = UITextBorderStyle.RoundedRect
+        textField1.layer.borderColor = UIColor.grayColor().CGColor;
+        textField1.layer.cornerRadius = CGFloat(5.0)
         
-        weightPicker.frame = CGRectMake(0,0,500,80)
-        weightPicker.selectRow(20, inComponent: 0, animated: false)
-        weightTextField.delegate = self
-        weightTextField.inputAccessoryView = toolbar
-        weightTextField.inputView = weightPicker
-        weightTextField.frame = CGRectMake(200, 110, 100, 35)
-        weightTextField.borderStyle = UITextBorderStyle.RoundedRect
-        weightTextField.layer.borderColor = UIColor.grayColor().CGColor
-        weightTextField.layer.cornerRadius = CGFloat(5.0)
+        picker2.frame = CGRectMake(0,0,500,80)
+        picker2.selectRow(20, inComponent: 0, animated: false)
+        textField2.delegate = self
+        textField2.inputAccessoryView = toolbar
+        textField2.inputView = picker2
+        textField2.frame = CGRectMake(200, 110, 100, 35)
+        textField2.borderStyle = UITextBorderStyle.RoundedRect
+        textField2.layer.borderColor = UIColor.grayColor().CGColor
+        textField2.layer.cornerRadius = CGFloat(5.0)
  
         agePicker.delegate = self
         agePicker.dataSource = self
@@ -182,8 +182,8 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         shoeSizeTextField.layer.cornerRadius = CGFloat(5.0)
         
         //Default values that will appear
-        heightTextField.text = "height"
-        weightTextField.text = "weight"
+        textField1.text = "height"
+        textField2.text = "weight"
         ageTextField.text = "age"
         waistTextField.text = "waist"
         inseamTextField.text = "inseam"
@@ -192,8 +192,8 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         preferredPantsFitTextField.text = "preferred pants fit"
         shoeSizeTextField.text = "shoe size"
         
-        heightTextField.textColor = UIColor.grayColor()
-        weightTextField.textColor = UIColor.grayColor()
+        textField1.textColor = UIColor.grayColor()
+        textField2.textColor = UIColor.grayColor()
         ageTextField.textColor = UIColor.grayColor()
         waistTextField.textColor = UIColor.grayColor()
         inseamTextField.textColor = UIColor.grayColor()
@@ -205,8 +205,8 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         //adding objs to viewController and misc. settings
         self.view.addSubview(self.scrollView)
 
-        self.scrollView.addSubview(heightTextField)
-        self.scrollView.addSubview(weightTextField)
+        self.scrollView.addSubview(textField1)
+        self.scrollView.addSubview(textField2)
         self.scrollView.addSubview(ageTextField)
         self.scrollView.addSubview(waistTextField)
         self.scrollView.addSubview(inseamTextField)
@@ -221,10 +221,10 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         super.viewDidAppear(animated)
         if(hasUser("User")){
             user = getUserFromCoreData()
-            heightTextField.text = user?.height
-            heightTextField.textColor = UIColor.blackColor()
-            weightTextField.text = user?.weight
-            weightTextField.textColor = UIColor.blackColor()
+            textField1.text = user?.height
+            textField1.textColor = UIColor.blackColor()
+            textField2.text = user?.weight
+            textField2.textColor = UIColor.blackColor()
             ageTextField.text = user?.age
             ageTextField.textColor = UIColor.blackColor()
             waistTextField.text = user?.waistSize
@@ -279,8 +279,8 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func addPickerData() {
-        heightPickerData = ["5'1''","5'2''","5'3''","5'4''","5'5''","5'6''","5'7''","5'8''","5'9''","5'10''","5'11''","6'0''","6'1''","6'2''","6'3''","6'4''","6'5''","6'6''","6'7''","6'8''","6'9''","6'10''","6'11''"]
-        weightPickerData = createArrayWithRange(100, end: 220)
+        picker1Data = ["5'1''","5'2''","5'3''","5'4''","5'5''","5'6''","5'7''","5'8''","5'9''","5'10''","5'11''","6'0''","6'1''","6'2''","6'3''","6'4''","6'5''","6'6''","6'7''","6'8''","6'9''","6'10''","6'11''"]
+        picker2Data = createArrayWithRange(100, end: 220)
         agePickerData = createArrayWithRange(0,end: 99)
         waistPickerData = ["26","27","28","29","30","31","32","33","34","36","38","40","42"]
         inseamPickerData = ["25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40"]
@@ -314,13 +314,13 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func returnButtonTapped() {
-        if (heightTextField.text == "height" || weightTextField.text == "weight" || ageTextField.text == "age" || waistTextField.text == "waist" || inseamTextField.text == "inseam" || shirtSizeTextField.text == "shirt size" || preferredShirtFitTextField.text == "preferred shirt fit" || preferredPantsFitTextField == "preferred pants fit" || shoeSizeTextField.text == "shoe size") {
+        if (textField1.text == "height" || textField2.text == "weight" || ageTextField.text == "age" || waistTextField.text == "waist" || inseamTextField.text == "inseam" || shirtSizeTextField.text == "shirt size" || preferredShirtFitTextField.text == "preferred shirt fit" || preferredPantsFitTextField == "preferred pants fit" || shoeSizeTextField.text == "shoe size") {
             var alert = UIAlertController(title: "Missing Fields", message: "Please fill in all fields to proceed", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         } else {
-            user?.height = heightTextField.text
-            user?.weight = weightTextField.text
+            user?.height = textField1.text
+            user?.weight = textField2.text
             user?.age = ageTextField.text
             user?.waistSize = waistTextField.text
             user?.inseam = inseamTextField.text
@@ -331,8 +331,8 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.managedObjectContext?.save(nil)
             
             var preferencesDict: NSMutableDictionary = NSMutableDictionary()
-            preferencesDict.setValue(heightTextField.text, forKey: "height")
-            preferencesDict.setValue(weightTextField.text, forKey: "weight")
+            preferencesDict.setValue(textField1.text, forKey: "height")
+            preferencesDict.setValue(textField2.text, forKey: "weight")
             preferencesDict.setValue(ageTextField.text, forKey: "age")
             preferencesDict.setValue(waistTextField.text, forKey: "waist_size")
             preferencesDict.setValue(inseamTextField.text, forKey: "inseam")
@@ -361,10 +361,10 @@ extension MeasurementsVC: UIPickerViewDataSource {
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView.tag{
-        case heightPicker.tag:
-            return heightPickerData.count
-        case weightPicker.tag:
-            return weightPickerData.count
+        case picker1.tag:
+            return picker1Data.count
+        case picker2.tag:
+            return picker2Data.count
         case agePicker.tag:
             return agePickerData.count
         case waistPicker.tag:
@@ -391,14 +391,14 @@ extension MeasurementsVC: UIPickerViewDelegate {
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         switch pickerView.tag {
-        case heightPicker.tag:
-            heightTextField.text = heightPickerData[row]
-            heightTextField.textColor = UIColor.blackColor()
-            return heightPickerData[row]
-        case weightPicker.tag:
-            weightTextField.text = weightPickerData[row]
-            weightTextField.textColor = UIColor.blackColor()
-            return weightPickerData[row]
+        case picker1.tag:
+            textField1.text = picker1Data[row]
+            textField1.textColor = UIColor.blackColor()
+            return picker1Data[row]
+        case picker2.tag:
+            textField2.text = picker2Data[row]
+            textField2.textColor = UIColor.blackColor()
+            return picker2Data[row]
         case agePicker.tag:
             ageTextField.text = agePickerData[row]
             ageTextField.textColor = UIColor.blackColor()
@@ -435,12 +435,12 @@ extension MeasurementsVC: UIPickerViewDelegate {
     // maybe go back to this if scrolling lags too much
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView.tag {
-        case heightPicker.tag:
-            heightTextField.text = heightPickerData[row]
-            heightTextField.textColor = UIColor.blackColor()
-        case weightPicker.tag:
-            weightTextField.text = weightPickerData[row]
-            weightTextField.textColor = UIColor.blackColor()
+        case picker1.tag:
+            textField1.text = picker1Data[row]
+            textField1.textColor = UIColor.blackColor()
+        case picker2.tag:
+            textField2.text = picker2Data[row]
+            textField2.textColor = UIColor.blackColor()
         case agePicker.tag:
             ageTextField.text = agePickerData[row]
             ageTextField.textColor = UIColor.blackColor()

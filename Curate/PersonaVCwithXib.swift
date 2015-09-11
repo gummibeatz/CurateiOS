@@ -3,7 +3,7 @@
 //  Curate
 //
 //  Created by Linus Liang on 9/9/15.
-//  Copyright (c) 2015 Kenneth Kuo. All rights reserved.
+//  Copyright (c) 2015 Curate. All rights reserved.
 //
 
 import Foundation

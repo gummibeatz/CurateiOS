@@ -2,8 +2,8 @@
 //  SegmentsController.swift
 //  Curate
 //
-//  Created by Kenneth Kuo on 12/20/14.
-//  Copyright (c) 2014 Kenneth Kuo. All rights reserved.
+//  Created by Curate on 12/20/14.
+//  Copyright (c) 2014 Curate. All rights reserved.
 //
 //  Inspired by Marcus Crafter on 25/06/10.
 //  Copyright 2010 Red Artisan. All rights reserved.

@@ -2,8 +2,8 @@
 //  SingleOutfitVC.swift
 //  Curate
 //
-//  Created by Kenneth Kuo on 7/20/15.
-//  Copyright (c) 2015 Kenneth Kuo. All rights reserved.
+//  Created by Curate on 7/20/15.
+//  Copyright (c) 2015 Curate. All rights reserved.
 //
 
 // ************MUST UP DATE LASTEDITED and IMAGEVIEW TAGS WHEN INSERTING NEW LAYER!!!!!!!!***************

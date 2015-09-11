@@ -2,8 +2,8 @@
 //  Curate.swift
 //  Curate
 //
-//  Created by Kenneth Kuo on 3/31/15.
-//  Copyright (c) 2015 Kenneth Kuo. All rights reserved.
+//  Created by Curate on 3/31/15.
+//  Copyright (c) 2015 Curate. All rights reserved.
 //
 
 import Foundation
@@ -23,10 +23,10 @@ class Clothing: NSObject, NSCoding {
         super.init()
     }
     
-    init(clothing: NSDictionary, url: String) {
+    init(clothing: NSDictionary) {
         super.init()
         self.fileName = clothing.objectForKey("file_name") as? String
-        self.url = url
+        self.url = clothing.objectForKey("url") as? String
         self.mainCategory = clothing.objectForKey("main_category") as? String
         self.properties = clothing
     }
@@ -36,8 +36,6 @@ class Clothing: NSObject, NSCoding {
         self.fileName = aDecoder.decodeObjectForKey("fileName") as! String?
         self.url = aDecoder.decodeObjectForKey("url") as! String?
         self.mainCategory = aDecoder.decodeObjectForKey("mainCategory") as! String?
-        
-        self.properties = aDecoder.decodeObjectForKey("properties") as! NSDictionary?
     }
     
     func encodeWithCoder(coder: NSCoder) {

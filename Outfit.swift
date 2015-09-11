@@ -2,8 +2,8 @@
 //  Curate.swift
 //  Curate
 //
-//  Created by Kenneth Kuo on 3/31/15.
-//  Copyright (c) 2015 Kenneth Kuo. All rights reserved.
+//  Created by Curate on 3/31/15.
+//  Copyright (c) 2015 Curate. All rights reserved.
 //
 
 import Foundation
