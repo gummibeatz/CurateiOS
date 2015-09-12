@@ -104,8 +104,8 @@ func postWardrobe(curateAuthToken: String, wardrobeDict: NSDictionary) {
     let request = NSMutableURLRequest(URL: NSURL(string: baseURL + "/api/v1/wardrobe/1/edit.json")!)
     request.HTTPMethod = "POST"
     var postDict = ["authentication_token":curateAuthToken, "wardrobe":wardrobeDict] as NSDictionary
-    println(postDict)
-    println(NSJSONSerialization.dataWithJSONObject(postDict, options: NSJSONWritingOptions.PrettyPrinted, error: nil))
+//    println(postDict)
+//    println(NSJSONSerialization.dataWithJSONObject(postDict, options: NSJSONWritingOptions.PrettyPrinted, error: nil))
     
     
     request.HTTPBody = NSJSONSerialization.dataWithJSONObject(postDict, options: nil, error: nil)
@@ -113,7 +113,7 @@ func postWardrobe(curateAuthToken: String, wardrobeDict: NSDictionary) {
     let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
         println("posting wardrobe")
         println("response = \(response)")
-        println("data = \(data)")
+//        println("data = \(data)")
         println("error = \(error)")
     }
     task.resume()
