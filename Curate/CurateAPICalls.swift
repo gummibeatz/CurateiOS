@@ -12,6 +12,8 @@ import CoreData
 
 let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
 
+let baseURL: String = "http://localhost:3000"
+
 
 // checks to see if user exists in nsuserdefaults, if not then
 // takes in parameter of unique user curate Auth Token
@@ -20,7 +22,7 @@ let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDe
 /// NEEED TO MAKE EDIT TO CHECK IF USER ALREADY EXISTS AND OVERWRITE
 func getUser(curateAuthToken: String, completionHandler:(currentUser:User) ->()) {
     println("in getUser")
-    let url: NSURL = NSURL(string: "http://curateanalytics.herokuapp.com/api/v1/user.json?authentication_token=\(curateAuthToken)")!
+    let url: NSURL = NSURL(string: baseURL + "/api/v1/user.json?authentication_token=\(curateAuthToken)")!
     println("going to \(url)")
     let request = NSMutableURLRequest(URL: url)
     request.HTTPMethod = "GET"
@@ -77,7 +79,7 @@ func getUser(curateAuthToken: String, completionHandler:(currentUser:User) ->())
 // stores user properties in database
 func postUser(curateAuthToken: String, preferencesDict: NSDictionary) {
     println("posting user")
-    let request = NSMutableURLRequest(URL: NSURL(string: "http://curateanalytics.herokuapp.com/api/v1/user/1/edit.json")!)
+    let request = NSMutableURLRequest(URL: NSURL(string: baseURL + "/api/v1/user/1/edit.json")!)
     request.HTTPMethod = "POST"
     var postDict = ["authentication_token":curateAuthToken, "preferences":preferencesDict] as NSDictionary
     println(postDict)
@@ -99,7 +101,7 @@ func postUser(curateAuthToken: String, preferencesDict: NSDictionary) {
 //stores users wardrobe
 func postWardrobe(curateAuthToken: String, wardrobeDict: NSDictionary) {
     println("posting wardrobe")
-    let request = NSMutableURLRequest(URL: NSURL(string: "http://curateanalytics.herokuapp.com/api/v1/wardrobe/1/edit.json")!)
+    let request = NSMutableURLRequest(URL: NSURL(string: baseURL + "/api/v1/wardrobe/1/edit.json")!)
     request.HTTPMethod = "POST"
     var postDict = ["authentication_token":curateAuthToken, "wardrobe":wardrobeDict] as NSDictionary
     println(postDict)
@@ -121,7 +123,7 @@ func postWardrobe(curateAuthToken: String, wardrobeDict: NSDictionary) {
 func getSwipeBatch(user: User, completionHandler:(swipeBatch:Array<Array<Clothing>>) ->()) {
     println("in getSwipeBatch")
     var swipeBatch  = chooseSwipeBatch(user)
-    let batchURL = "http://curateanalytics.herokuapp.com/api/v1/batch"
+    let batchURL = baseURL + "/api/v1/batch"
     println("going to" + batchURL)
     let request = NSMutableURLRequest(URL: NSURL(string: batchURL)!)
     request.HTTPMethod = "GET"
@@ -231,7 +233,7 @@ func hasUser(user: String) -> Bool {
 func getCurateAuthToken(fbAuthToken: String,completionHandler:(curateAuthToken:String) ->()) {
     // setting up request
     println("============== in getCurateAuthToken =========")
-    let request = NSMutableURLRequest(URL: NSURL(string:  "http://curateanalytics.herokuapp.com/api/v1/tokens.json")!)
+    let request = NSMutableURLRequest(URL: NSURL(string:  baseURL + "/api/v1/tokens.json")!)
     request.HTTPMethod = "POST"
     
     let postDict = ["token":fbAuthToken] as Dictionary<String, String>
@@ -287,7 +289,7 @@ func getMatches(curateAuthToken: String, base_clothing: String, completionHandle
     
     getWeather({
         currentTemp in
-        let url: NSURL = NSURL(string:"http://curateanalytics.herokuapp.com/api/v1/matches?authentication_token=\(curateAuthToken)&&temperature=\(currentTemp)&&base_clothing=\(fbase_clothing)")!
+        let url: NSURL = NSURL(string: baseURL + "/api/v1/matches?authentication_token=\(curateAuthToken)&&temperature=\(currentTemp)&&base_clothing=\(fbase_clothing)")!
         
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "GET"

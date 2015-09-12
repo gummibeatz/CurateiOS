@@ -317,6 +317,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         
         wardrobeDict.setObject(topsArr , forKey: "tops")
         wardrobeDict.setObject(bottomsArr , forKey: "bottoms")
+        wardrobeDict.setObject(clothingArticle.convertToDict(), forKey: "clothing")
         getCurateAuthToken(fbAuthToken, {
             curateAuthToken in
             postWardrobe(curateAuthToken, wardrobeDict)

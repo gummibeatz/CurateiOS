@@ -51,6 +51,7 @@
 		1AF1A27D1ACA41E1006770D6 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2791ACA41E1006770D6 /* Tokens.swift */; };
 		1AF1A27F1ACA41E1006770D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A27B1ACA41E1006770D6 /* User.swift */; };
 		1AF4B8E51AED30E40007C526 /* Clothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B8E41AED30E40007C526 /* Clothing.swift */; };
+		CC4A49C71BA361010024BB54 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC4A49C61BA361010024BB54 /* View.xib */; };
 		CC8691001BA2496500D5BEC7 /* PersonaOutfitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
 		CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */; };
@@ -118,6 +119,7 @@
 		1AF1A2791ACA41E1006770D6 /* Tokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		1AF1A27B1ACA41E1006770D6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1AF4B8E41AED30E40007C526 /* Clothing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clothing.swift; sourceTree = "<group>"; };
+		CC4A49C61BA361010024BB54 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOutfitsView.swift; sourceTree = "<group>"; };
 		CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOverlayView.swift; sourceTree = "<group>"; };
 		CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaChoiceView.xib; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 			children = (
 				CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */,
 				CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */,
+				CC4A49C61BA361010024BB54 /* View.xib */,
 			);
 			name = openingViews;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				1AA3C5A91A460316008C732C /* VNeck in Resources */,
 				1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */,
 				1A9C5D1D1B0E50E300B828D9 /* oldFunctions.txt in Resources */,
+				CC4A49C71BA361010024BB54 /* View.xib in Resources */,
 				CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */,
 				1A9C5D201B0E512D00B828D9 /* todo.txt in Resources */,
 				1AA3C5811A4601B2008C732C /* Images.xcassets in Resources */,
