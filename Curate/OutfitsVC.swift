@@ -166,7 +166,7 @@ extension OutfitsVC: SingleOutfitVCDelegate {
     func dismissSingleOutfitVC() {
         println("dismissSingleOutfitVC delegated")
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
-        self.appDelegate.setupMeasurementsButton()
+//        self.appDelegate.setupMeasurementsButton()
         
     }
     

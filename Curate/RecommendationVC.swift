@@ -46,7 +46,7 @@ class RecommendationVC: UIViewController {
     }
     
     func setupBodyView(personaFaceFrame: CGRect) -> PersonaPreferencesView {
-        let personaScript = "Before I can turn you into a FASHION GAWD, you gotta answer a few questions. Tap my face when you're done."
+        let personaScript = "Before I can turn you into a FASHION GAWD, you should answer a few questions. Tap my face when you're done, or if you want to skip this. You can always enter it in later."
         let question1 = "How tall are you?"
         let question2 = "How much do you weight"
         let question3 = "Body type?"
@@ -60,7 +60,7 @@ class RecommendationVC: UIViewController {
     }
     
     func setupFitView(personaFaceFrame: CGRect) -> PersonaPreferencesView {
-        let personaScript = "Word. Now, tell me how you like your clothes to fit. The key to looking FRESH AF is to have shit that actually fits you right. If your shit doesn’t fit right, we’ll tell you. Tap my face when you’re done."
+        let personaScript = "Word. Now, tell me how you like your clothes to fit. The key to looking FRESH AF is to have shit that actually fits you right. If your shit doesn’t fit right, we’ll tell you. Tap my face when you’re done, or if you want to skip this. You can always enter it in later."
         let question1 = "How do you like your shirts to fit?"
         let question2 = "How do you like your pants to fit?"
         let question3 = "Do you get your shit tailored?"
@@ -98,7 +98,7 @@ class RecommendationVC: UIViewController {
             delegate?.dismissRecommendationView()
             var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.window!.rootViewController = appDelegate.navigationController
-            appDelegate.setupMeasurementsButton()
+//            appDelegate.setupMeasurementsButton()
         default:
             println("no cases match")
         }

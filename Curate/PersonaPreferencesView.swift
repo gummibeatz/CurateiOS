@@ -57,6 +57,7 @@ class PersonaPreferencesView: UIView, UIPickerViewDataSource, UIPickerViewDelega
         personaLabel.text = personaScript
         personaLabel.lineBreakMode = .ByWordWrapping
         personaLabel.numberOfLines = 0
+        personaLabel.font = UIFont(name: personaLabel.font.fontName, size: 12)
         
         var heightOffset = personaLabel.frame.height+5
         

@@ -360,15 +360,15 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         var changedPickers = [false, false, false, false, false, false]
         
         switch baseCategory {
-        case "Jacket":
+        case "jacket":
             changedPickers[0] = true
-        case "Light Layer":
+        case "light_layer":
             changedPickers[1] = true
-        case "Collared Shirt":
+        case "collared_shirt":
             changedPickers[2] = true
-        case "Long Sleeve Shirt":
+        case "long_sleeve_shirt":
             changedPickers[3] = true
-        case "Short Sleeve Shirt":
+        case "short_sleeve_shirt":
             changedPickers[4] = true
         default:
             changedPickers[5] = true
@@ -421,7 +421,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
         var mainCategory: String = getMainCategory(outfitName, isBottom: isBottom)
         println("main Category = \(mainCategory)")
         switch mainCategory {
-        case "Jacket":
+        case "jacket":
             var ownedJackets = readCustomObjArrayFromUserDefaults("ownedJackets") as! [Top]
             for (var i = 1; i < ownedJackets.count; i++) {
                 if(outfitName == ownedJackets[i].fileName!) {
@@ -430,7 +430,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                     break
                 }
             }
-        case "Light Layer":
+        case "light_layer":
             var ownedLightLayers = readCustomObjArrayFromUserDefaults("ownedLightLayers") as! [Top]
             for (var i = 1; i < ownedLightLayers.count; i++) {
                 if(outfitName == ownedLightLayers[i].fileName!) {
@@ -439,7 +439,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                     break
                 }
             }
-        case "Long Sleeve Shirt":
+        case "long_sleeve_shirt":
             var ownedLongSleeveShirts = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts")as! [Top]
             for (var i = 1; i < ownedLongSleeveShirts.count; i++) {
                 if(outfitName == ownedLongSleeveShirts[i].fileName!) {
@@ -448,7 +448,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                     break
                 }
             }
-        case "Collared Shirt":
+        case "collared_shirt":
             var ownedCollaredShirts = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as! [Top]
             for (var i = 1; i < ownedCollaredShirts.count; i++) {
                 if(outfitName == ownedCollaredShirts[i].fileName!) {
@@ -457,7 +457,7 @@ class OutfitBuilderVC: UIViewController, UIPickerViewDataSource, UIPickerViewDel
                     break
                 }
             }
-        case "Short Sleeve Shirt":
+        case "short_sleeve_shirt":
             var ownedShortSleeveShirts = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as! [Top]
             for (var i = 1; i < ownedShortSleeveShirts.count; i++) {
                 if(outfitName == ownedShortSleeveShirts[i].fileName!) {

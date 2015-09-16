@@ -20,9 +20,10 @@ class PersonaOutfitsView: UIView {
     
     func setupView() {
         var personaLabel: UILabel = UILabel(frame: CGRect(x: 10, y: 0, width: self.frame.width, height: 100))
-        personaLabel.text = "Alright, now that we've got that shit out of the way, let's go to the fun part. Tell me if you have any of these outfits. Once you're done, tap my face."
+        personaLabel.text = "Alright, now that we've got that shit out of the way, let's go to the fun part. Tell me if you have any of these outfits. Once you're done, tap my face, or if you want to skip this. You can always enter it in later."
         personaLabel.lineBreakMode = .ByWordWrapping
         personaLabel.numberOfLines = 0
+        personaLabel.font = UIFont(name: personaLabel.font.fontName, size: 14)
         
         let outfitHeightOffset = personaLabel.frame.height
         let outfitWidth = (self.frame.width-30)/3

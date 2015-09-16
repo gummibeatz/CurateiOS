@@ -12,7 +12,7 @@ import CoreData
 
 let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
 
-let baseURL: String = "http://localhost:3000"
+let baseURL: String = "http://curateanalytics.herokuapp.com"
 
 
 // checks to see if user exists in nsuserdefaults, if not then
