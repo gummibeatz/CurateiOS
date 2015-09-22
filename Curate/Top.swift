@@ -31,7 +31,7 @@ class Top: Clothing {
     init(top: NSDictionary, url: String, imageData: NSData) {
         super.init()
         self.fileName = top.objectForKey("file_name") as? String
-        println(fileName!)
+        print(fileName!)
         self.url = url
         self.properties = top
         self.mainCategory = top.objectForKey("main_category") as? String

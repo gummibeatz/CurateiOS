@@ -34,7 +34,7 @@ class DraggableView: UIView {
     var yFromCenter: CGFloat = CGFloat()
     var originalPoint: CGPoint = CGPoint()
     
-    required init(coder aDecoder: (NSCoder!)) {
+    required init?(coder aDecoder: (NSCoder!)) {
         super.init(coder: aDecoder)
         // ...
     }
@@ -84,22 +84,22 @@ class DraggableView: UIView {
             //in the middle of a swipe
         case UIGestureRecognizerState.Changed:
             // dictates rotation (see ROTATION_MAX and ROTATION_STRENGTH for details)
-            var rotationStrength: CGFloat =  min(xFromCenter / ROTATION_STRENGTH, ROTATION_MAX)
+            let rotationStrength: CGFloat =  min(xFromCenter / ROTATION_STRENGTH, ROTATION_MAX)
             
             // degree change in radians
-            var rotationAngel: CGFloat =  CGFloat(ROTATION_ANGLE * rotationStrength)
+            let rotationAngel: CGFloat =  CGFloat(ROTATION_ANGLE * rotationStrength)
             
             // amount the height changes when you move the card up to a certain point
-            var scale: CGFloat = max(1 - fabs(rotationStrength)/SCALE_STRENGTH, SCALE_MAX)
+            let scale: CGFloat = max(1 - fabs(rotationStrength)/SCALE_STRENGTH, SCALE_MAX)
             
             // move the object's center by center + gesture coordinate
             self.center = CGPointMake(self.originalPoint.x + xFromCenter, self.originalPoint.y + yFromCenter)
             
             // rotate by certain amount
-            var transform: CGAffineTransform = CGAffineTransformMakeRotation(rotationAngel)
+            let transform: CGAffineTransform = CGAffineTransformMakeRotation(rotationAngel)
             
             // scale by certain amount
-            var scaleTransform: CGAffineTransform = CGAffineTransformScale(transform, scale, scale)
+            let scaleTransform: CGAffineTransform = CGAffineTransformScale(transform, scale, scale)
             
             // apply transformations
             self.transform = scaleTransform
@@ -157,7 +157,7 @@ class DraggableView: UIView {
     
     //called when swipe exceeds the ACTION_MARGIN to the right
     func rightAction(){
-        var finishPoint: CGPoint = CGPoint(x: 500, y: (2 * yFromCenter + self.originalPoint.y))
+        let finishPoint: CGPoint = CGPoint(x: 500, y: (2 * yFromCenter + self.originalPoint.y))
         UIView.animateWithDuration(0.4, animations: {
             self.center = finishPoint
             }, completion: { animationFinished in
@@ -169,7 +169,7 @@ class DraggableView: UIView {
     
     //called when swipe exceeds the ACTION_MARGIN to the left
     func leftAction(){
-        var finishPoint: CGPoint = CGPoint(x: -500, y: (2 * yFromCenter + self.originalPoint.y))
+        let finishPoint: CGPoint = CGPoint(x: -500, y: (2 * yFromCenter + self.originalPoint.y))
         UIView.animateWithDuration(0.4, animations: {
             self.center = finishPoint
             }, completion: { animationFinished in
@@ -183,7 +183,7 @@ class DraggableView: UIView {
         
         overlayView!.setMode(GGOverlayViewMode.Right)
         overlayView!.alpha = 0
-        var finishPoint: CGPoint = CGPointMake(600, self.center.y);
+        let finishPoint: CGPoint = CGPointMake(600, self.center.y);
         UIView.animateWithDuration(0.7, animations: {
             self.center = finishPoint
             self.transform = CGAffineTransformMakeRotation(1)
@@ -198,7 +198,7 @@ class DraggableView: UIView {
     func leftClickAction(completion: (actionCompleted: Bool) -> Void) {
         overlayView!.setMode(GGOverlayViewMode.Left)
         overlayView!.alpha = 0
-        var finishPoint: CGPoint = CGPointMake(-600, self.center.y);
+        let finishPoint: CGPoint = CGPointMake(-600, self.center.y);
         UIView.animateWithDuration(0.7, animations: {
             self.center = finishPoint
             self.transform = CGAffineTransformMakeRotation(-1)

@@ -23,14 +23,14 @@ class SegmentsController: NSObject {
     }
     
     func indexDidChangeForSegmentedControl(aSegmentedControl: UISegmentedControl){
-        println("inside indexDidChangeForSegmentedControl with selectedSegment Index as \(aSegmentedControl.selectedSegmentIndex)")
+        print("inside indexDidChangeForSegmentedControl with selectedSegment Index as \(aSegmentedControl.selectedSegmentIndex)")
         
-        var index: NSInteger = aSegmentedControl.selectedSegmentIndex
+        let index: NSInteger = aSegmentedControl.selectedSegmentIndex
         
-        var incomingViewController: UIViewController = self.viewControllers.objectAtIndex(index)
+        let incomingViewController: UIViewController = self.viewControllers.objectAtIndex(index)
          as! UIViewController
         
-        var theViewControllers: [UIViewController] = NSArray(object: incomingViewController) as! [UIViewController]
+        let theViewControllers: [UIViewController] = NSArray(object: incomingViewController) as! [UIViewController]
         self.navigationController.setViewControllers(theViewControllers as [UIViewController], animated: false)
         
         incomingViewController.navigationItem.titleView = aSegmentedControl

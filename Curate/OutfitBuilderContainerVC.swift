@@ -31,8 +31,8 @@ class OutfitBuilderContainerVC: UIViewController, PropertiesViewVCDelegate, Outf
     
     //must change this to handle not only images  but data at some point
     func pickerViewWasTapped(image: UIImage) {
-        println("pickerViewWasTapped Delegated")
-        var propertiesViewVC = PropertiesViewVC()
+        print("pickerViewWasTapped Delegated")
+        let propertiesViewVC = PropertiesViewVC()
         propertiesViewVC.propertiesViewVCDelegate = self
         propertiesViewVC.image = image
         self.addChildViewController(propertiesViewVC)
@@ -41,7 +41,7 @@ class OutfitBuilderContainerVC: UIViewController, PropertiesViewVCDelegate, Outf
     }
     
     func blurEffectWasTapped(VC: UIViewController) {
-        println("blurEffectDelegated")
+        print("blurEffectDelegated")
         VC.view.removeFromSuperview()
         VC.willMoveToParentViewController(nil)
         VC.removeFromParentViewController()

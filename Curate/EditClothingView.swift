@@ -13,13 +13,13 @@ protocol EditClothingViewDelegate{
     func savePickerChangeWithFileName(clothing: Clothing)
 }
 
-class EditClothingView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
+class EditClothingView: UIView {
     
     let clothingPicker = UIPickerView()
     var clothingPickerData = [Clothing]()
     var delegate:EditClothingViewDelegate?
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         // ...
     }
@@ -54,16 +54,16 @@ class EditClothingView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func setupReturnButtons() {
-        var cancelButton: UIButton = UIButton(frame: CGRectMake(10, 10, 50, 20))
+        let cancelButton: UIButton = UIButton(frame: CGRectMake(10, 10, 50, 20))
         cancelButton.setTitle("Back", forState: UIControlState.Normal)
         cancelButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        var cancelButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "cancelButtonTapped")
+        let cancelButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "cancelButtonTapped")
         cancelButton.addGestureRecognizer(cancelButtonGesture)
         
-        var saveButton: UIButton = UIButton(frame: CGRectMake(self.frame.width - 55, 10, 50, 20))
+        let saveButton: UIButton = UIButton(frame: CGRectMake(self.frame.width - 55, 10, 50, 20))
         saveButton.setTitle("Save", forState: .Normal)
         saveButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        var saveButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "saveButtonTapped")
+        let saveButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "saveButtonTapped")
         saveButton.addGestureRecognizer(saveButtonGesture)
         
         self.addSubview(cancelButton)
@@ -71,12 +71,12 @@ class EditClothingView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func cancelButtonTapped() {
-        println("cancelbuttonTapped")
+        print("cancelbuttonTapped")
         delegate?.dismissEditClothingView()
     }
     
     func saveButtonTapped() {
-        println("saveButtonTapped")
+        print("saveButtonTapped")
         delegate?.dismissEditClothingView()
         delegate?.savePickerChangeWithFileName(clothingPickerData[clothingPicker.selectedRowInComponent(0)])
     }
@@ -96,7 +96,7 @@ class EditClothingView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         case "Casual", "Chinos", "Shorts", "Suit Pants":
             clothingPickerData = readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]
         default:
-            println("couldn't populate picker")
+            print("couldn't populate picker")
         }
         let rowIdx:Int = getIndexWithFileName(clothingPickerData, fileName: clothing.fileName!)
         clothingPicker.selectRow(rowIdx, inComponent: 0, animated: false)
@@ -127,7 +127,7 @@ extension EditClothingView: UIPickerViewDataSource {
 extension EditClothingView: UIPickerViewDelegate {
     // several optional methods:
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return "clothing"
     }
     
@@ -146,9 +146,9 @@ extension EditClothingView: UIPickerViewDelegate {
     
     // func pickerView(pickerView: UIPickerView!, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString!
     
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
-        var img: UIImage = UIImage(data: clothingPickerData[row].imageData!)!
-        let resizedImg = RBResizeImage(img, CGSize(width: 280, height: 120))
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+        let img: UIImage = UIImage(data: clothingPickerData[row].imageData!)!
+        let resizedImg = RBResizeImage(img, targetSize: CGSize(width: 280, height: 120))
         let imageView = UIImageView(image: resizedImg)
         let tmpView = UIView(frame: CGRectMake(0, 0, 130, 130))
         let rotate = CGAffineTransformScale(CGAffineTransformMakeRotation(3.14/2), 0.25, 2.0)

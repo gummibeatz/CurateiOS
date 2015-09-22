@@ -26,10 +26,10 @@ class WardrobeBuilderVC: UIViewController {
         super.viewDidLoad()
         let firstLaunchWardrobeBuilder = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunchWardrobeBuilder")
         if firstLaunchWardrobeBuilder  {
-            println("not first launch in wardrobe builder")
+            print("not first launch in wardrobe builder")
         }
         else {
-            println("First launch, setting NSUserDefault.")
+            print("First launch, setting NSUserDefault.")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
             
         }
@@ -48,7 +48,7 @@ class WardrobeBuilderVC: UIViewController {
                 self.view.addSubview(tempDraggableBackground)
         getSwipeBatch(currentUser) {
             swipeBatch in
-            println("getSwipeBatch finished")
+            print("getSwipeBatch finished")
             self.batches = swipeBatch
             // only add in the draggable background view after we have the swipe batches
             // so that we can load up the images

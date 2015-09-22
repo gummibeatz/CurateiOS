@@ -31,7 +31,7 @@ class Clothing: NSObject, NSCoding {
         self.properties = clothing
     }
     
-    required convenience init(coder aDecoder: NSCoder) {
+    required convenience init?(coder aDecoder: NSCoder) {
         self.init()
         self.fileName = aDecoder.decodeObjectForKey("fileName") as! String?
         self.url = aDecoder.decodeObjectForKey("url") as! String?
@@ -46,8 +46,8 @@ class Clothing: NSObject, NSCoding {
     }
     
     func convertToDict() -> NSDictionary {
-        var dict: NSMutableDictionary = NSMutableDictionary()
-        println(self.fileName)
+        let dict: NSMutableDictionary = NSMutableDictionary()
+        print(self.fileName)
         dict.setObject(self.fileName!, forKey: "file_name")
         dict.setObject(self.url!, forKey: "url")
         dict.setObject(self.properties!, forKey: "properties")

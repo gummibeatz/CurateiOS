@@ -31,8 +31,8 @@ class PropertiesViewVC: UIViewController{
     }
     
     func setupView(image: UIImage) {
-        println("setupview for propertiesviewVC")
-        var tappableBackView: UIView = createTappableBackView()
+        print("setupview for propertiesviewVC")
+        let tappableBackView: UIView = createTappableBackView()
         propertiesBackView = createPropertiesBackView()
         propertiesFrontView = createPropertiesFrontView(image)
         self.view.addSubview(tappableBackView)
@@ -41,44 +41,44 @@ class PropertiesViewVC: UIViewController{
     }
     
     func createTappableBackView() -> UIView {
-        var view = UIView()
+        let view = UIView()
         view.frame = UIScreen.mainScreen().bounds
         view.backgroundColor = UIColor.clearColor()
-        var backScreenTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "backViewWasTapped")
+        let backScreenTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "backViewWasTapped")
         view.addGestureRecognizer(backScreenTapGestureRecognizer)
         return view
     }
     
     func createPropertiesFrontView(image: UIImage) -> PropertiesFrontView {
-        var frontView: PropertiesFrontView = PropertiesFrontView(frame: CGRect(x: (SCREENWIDTH -  POPOUTSIZE.width)/2, y: self.view.frame.height/2 - POPOUTSIZE.height/2, width: POPOUTSIZE.width, height: POPOUTSIZE.height))
+        let frontView: PropertiesFrontView = PropertiesFrontView(frame: CGRect(x: (SCREENWIDTH -  POPOUTSIZE.width)/2, y: self.view.frame.height/2 - POPOUTSIZE.height/2, width: POPOUTSIZE.width, height: POPOUTSIZE.height))
         frontView.popoutImageView.image = image
-        var gestureRecognizer = UITapGestureRecognizer(target: self, action: "popoutViewWasTapped")
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: "popoutViewWasTapped")
         frontView.addGestureRecognizer(gestureRecognizer)
         return frontView
     }
     
     
     func createPropertiesBackView() -> PropertiesBackView {
-        var backView = PropertiesBackView(frame: CGRect(x: (SCREENWIDTH -  POPOUTSIZE.width)/2, y: self.view.frame.height/2 - POPOUTSIZE.height/2, width: POPOUTSIZE.width, height: POPOUTSIZE.height))
-        var gestureRecognizer = UITapGestureRecognizer(target: self, action: "popoutViewWasTapped")
+        let backView = PropertiesBackView(frame: CGRect(x: (SCREENWIDTH -  POPOUTSIZE.width)/2, y: self.view.frame.height/2 - POPOUTSIZE.height/2, width: POPOUTSIZE.width, height: POPOUTSIZE.height))
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: "popoutViewWasTapped")
         backView.addGestureRecognizer(gestureRecognizer)
         return backView
     }
     
     func popoutViewWasTapped() {
         if isFrontView {
-            println("fronttapped")
+            print("fronttapped")
             UIView.transitionFromView(propertiesFrontView!, toView: propertiesBackView!, duration: 1.0, options: .TransitionFlipFromRight, completion: nil)
             isFrontView = false
         } else {
-            println("backtapped")
+            print("backtapped")
             isFrontView = true
             UIView.transitionFromView(propertiesBackView!, toView: propertiesFrontView!, duration: 1.0, options: .TransitionFlipFromRight, completion: nil)
         }
     }
     
     func backViewWasTapped() {
-        println("backview send to blurview")
+        print("backview send to blurview")
         propertiesViewVCDelegate?.blurEffectWasTapped(self)
     }
     

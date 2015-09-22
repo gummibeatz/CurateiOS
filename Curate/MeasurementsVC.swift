@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+class MeasurementsVC: UIViewController {
     
     // Retreive the managedObjectContext from AppDelegate
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
@@ -63,7 +63,7 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.scrollView.scrollEnabled = false
         //scrollview edits end
         
-        var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.fbLoginVC.setFBAuthToken()
         
         setupLabels()
@@ -239,11 +239,11 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             preferredPantsFitTextField.textColor = UIColor.blackColor()
             shoeSizeTextField.text = user?.shoeSize
             shoeSizeTextField.textColor = UIColor.blackColor()
-            println("has user")
+            print("has user")
         } else {
             let bufferDict: NSDictionary = NSDictionary()
             self.user = User.createInManagedObjectContext(managedObjectContext!, preferences: bufferDict)
-            println("no user")
+            print("no user")
         }
         
     }
@@ -256,10 +256,10 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func setupLabels() {
         let measurementLabel = UILabel()
         let stringLabel: String = "Height\nWeight\nAge\nWaist\nInseam\nShirt Size\nPreferred Shirt Fit\nPreferred Pants Fit\nShoe Size"
-        var attrString: NSMutableAttributedString = NSMutableAttributedString(string: stringLabel)
-        var style: NSMutableParagraphStyle = NSMutableParagraphStyle()
+        let attrString: NSMutableAttributedString = NSMutableAttributedString(string: stringLabel)
+        let style: NSMutableParagraphStyle = NSMutableParagraphStyle()
         style.lineSpacing = 30
-        attrString.addAttribute(NSParagraphStyleAttributeName , value: style, range: NSMakeRange(0,count(stringLabel)))
+        attrString.addAttribute(NSParagraphStyleAttributeName , value: style, range: NSMakeRange(0,stringLabel.characters.count))
         measurementLabel.attributedText = attrString
         measurementLabel.frame = CGRectMake(5,55, 150, 450)
         measurementLabel.numberOfLines = 10
@@ -269,7 +269,7 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func setupToolBar() {
         //pickerview tool bar
         self.toolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 44))
-        var items = [AnyObject]()
+        var items = [UIBarButtonItem]()
         //making done button
         let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "donePressed")
         items.append(doneButton)
@@ -315,22 +315,25 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func returnButtonTapped() {
         if (textField1.text == "height" || textField2.text == "weight" || ageTextField.text == "age" || waistTextField.text == "waist" || inseamTextField.text == "inseam" || shirtSizeTextField.text == "shirt size" || preferredShirtFitTextField.text == "preferred shirt fit" || preferredPantsFitTextField == "preferred pants fit" || shoeSizeTextField.text == "shoe size") {
-            var alert = UIAlertController(title: "Missing Fields", message: "Please fill in all fields to proceed", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Missing Fields", message: "Please fill in all fields to proceed", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         } else {
-            user?.height = textField1.text
-            user?.weight = textField2.text
-            user?.age = ageTextField.text
-            user?.waistSize = waistTextField.text
-            user?.inseam = inseamTextField.text
-            user?.shirtSize = shirtSizeTextField.text
-            user?.preferredShirtFit = preferredShirtFitTextField.text
-            user?.preferredPantsFit = preferredPantsFitTextField.text
-            user?.shoeSize = shoeSizeTextField.text
-            self.managedObjectContext?.save(nil)
+            user?.height = textField1.text!
+            user?.weight = textField2.text!
+            user?.age = ageTextField.text!
+            user?.waistSize = waistTextField.text!
+            user?.inseam = inseamTextField.text!
+            user?.shirtSize = shirtSizeTextField.text!
+            user?.preferredShirtFit = preferredShirtFitTextField.text!
+            user?.preferredPantsFit = preferredPantsFitTextField.text!
+            user?.shoeSize = shoeSizeTextField.text!
+            do {
+                try self.managedObjectContext?.save()
+            } catch _ {
+            }
             
-            var preferencesDict: NSMutableDictionary = NSMutableDictionary()
+            let preferencesDict: NSMutableDictionary = NSMutableDictionary()
             preferencesDict.setValue(textField1.text, forKey: "height")
             preferencesDict.setValue(textField2.text, forKey: "weight")
             preferencesDict.setValue(ageTextField.text, forKey: "age")
@@ -341,11 +344,11 @@ class MeasurementsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             preferencesDict.setValue(preferredShirtFitTextField.text, forKey: "preferred_shirt_fit")
             preferencesDict.setValue(shoeSizeTextField.text, forKey: "shoe_size")
             let fbAuthToken = getFbAuthToken()
-            getCurateAuthToken(fbAuthToken, {
+            getCurateAuthToken(fbAuthToken, completionHandler: {
                 curateAuthToken in
-                postUser(curateAuthToken, preferencesDict)
+                postUser(curateAuthToken, preferencesDict: preferencesDict)
             })
-            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             self.okButton!.removeFromSuperview()
             appDelegate.window!.rootViewController = appDelegate.navigationController
 //            appDelegate.setupMeasurementsButton()
@@ -389,7 +392,7 @@ extension MeasurementsVC: UIPickerViewDataSource {
 extension MeasurementsVC: UIPickerViewDelegate {
     // several optional methods:
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView.tag {
         case picker1.tag:
             textField1.text = picker1Data[row]

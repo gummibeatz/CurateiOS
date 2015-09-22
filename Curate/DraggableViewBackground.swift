@@ -17,8 +17,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     let CARD_WIDTH: CGFloat = 290  //%%% width of the draggable card
     let RIGHT_SWIPE: Int = 0
     let LEFT_SWIPE: Int = 1
-    let MAX_BATCHES: Int = 18 // number of batches we can swipe to
     
+    var maxBatches: Int? // number of batches we can swipe to
     var beingSwiped: Bool = false //%%% flag to restrict swiping too fast
     var batchIsLoading: Bool = false // %%% flag to restrict clicking during loadNextBatch()
     var clothingCardLabels: NSMutableArray = NSMutableArray()
@@ -40,7 +40,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     var ownedLongSleeveShirts: [Top]?
     var ownedShortSleeveShirts: [Top]?
     
-    required init(coder aDecoder: (NSCoder!)) {
+    required init?(coder aDecoder: (NSCoder!)) {
         super.init(coder: aDecoder)
         // ...
     }
@@ -56,7 +56,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         super.layoutSubviews()
         
         loadOwnedWardrobe()
-        println("owned Tops.count = \(ownedTops!.count)")
+        print("owned Tops.count = \(ownedTops!.count)")
         
         dispatch_async(dispatch_get_main_queue(), {
             self.setupView()
@@ -64,10 +64,11 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         
         self.currentBatchIndex = indexes.batchIndex as Int
         self.swipeBatch = swipeBatch
+        maxBatches = swipeBatch.count
         self.currentUser = currentUser
         
         //take this out later when batches are fixed
-        if self.currentBatchIndex < MAX_BATCHES {
+        if self.currentBatchIndex < maxBatches {
             while(swipeBatch[currentBatchIndex].count == 0) {
                 self.currentBatchIndex++
             }
@@ -78,9 +79,9 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             }
 
     //        println(swipeBatch[8].count)
-            println("batchindex = \(currentBatchIndex)")
-            println("loading finished")
-            println(clothingCardLabels.count)
+            print("batchindex = \(currentBatchIndex)")
+            print("loading finished")
+            print(clothingCardLabels.count)
             
             // loading finished
             
@@ -91,7 +92,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             
             self.loadCards()
         } else {
-            println("out of batches")
+            print("out of batches")
         }
 
     }
@@ -105,55 +106,55 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         ownedLongSleeveShirts = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts") as? [Top]
         ownedShortSleeveShirts = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as? [Top]
         
-        println("ownedBottoms = \(ownedBottoms)")
+        print("ownedBottoms = \(ownedBottoms)")
         
         if(ownedJackets!.count == 0) {
-            var emptyJacket = Top()
-            emptyJacket.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            let emptyJacket = Top()
+            emptyJacket.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable")!)
             emptyJacket.fileName = "NA"
             emptyJacket.mainCategory = "Jacket"
             ownedJackets!.append(emptyJacket)
-            writeCustomObjArraytoUserDefaults(ownedJackets!, "ownedJackets")
+            writeCustomObjArraytoUserDefaults(ownedJackets!, fileName: "ownedJackets")
         }
         if(ownedLightLayers!.count == 0) {
-            var emptyLightLayer = Top()
-            emptyLightLayer.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            let emptyLightLayer = Top()
+            emptyLightLayer.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable")!)
             emptyLightLayer.fileName = "NA"
             emptyLightLayer.mainCategory = "Light Layer"
             ownedLightLayers!.append(emptyLightLayer)
-            writeCustomObjArraytoUserDefaults(ownedLightLayers!, "ownedLightLayers")
+            writeCustomObjArraytoUserDefaults(ownedLightLayers!, fileName: "ownedLightLayers")
         }
         if(ownedCollaredShirts!.count == 0) {
-            var emptyCollaredShirt = Top()
-            emptyCollaredShirt.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            let emptyCollaredShirt = Top()
+            emptyCollaredShirt.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable")!)
             emptyCollaredShirt.fileName = "NA"
             emptyCollaredShirt.mainCategory = "Collared Shirt"
             ownedCollaredShirts!.append(emptyCollaredShirt)
-            writeCustomObjArraytoUserDefaults(ownedCollaredShirts!, "ownedCollaredShirts")
+            writeCustomObjArraytoUserDefaults(ownedCollaredShirts!, fileName: "ownedCollaredShirts")
         }
         if(ownedLongSleeveShirts!.count == 0) {
-            var emptyLongSleeveShirt = Top()
-            emptyLongSleeveShirt.imageData = UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            let emptyLongSleeveShirt = Top()
+            emptyLongSleeveShirt.imageData = UIImagePNGRepresentation(UIImage(named: "notAvailable")!)
             emptyLongSleeveShirt.fileName = "NA"
             emptyLongSleeveShirt.mainCategory = "Long Sleeve Shirt"
             ownedLongSleeveShirts!.append(emptyLongSleeveShirt)
-            writeCustomObjArraytoUserDefaults(ownedLongSleeveShirts!, "ownedLongSleeveShirts")
+            writeCustomObjArraytoUserDefaults(ownedLongSleeveShirts!, fileName: "ownedLongSleeveShirts")
         }
         if(ownedShortSleeveShirts!.count == 0) {
-            var emptyShortSleeveShirt = Top()
-            emptyShortSleeveShirt.imageData = UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            let emptyShortSleeveShirt = Top()
+            emptyShortSleeveShirt.imageData = UIImagePNGRepresentation(UIImage(named: "notAvailable")!)
             emptyShortSleeveShirt.fileName = "NA"
             emptyShortSleeveShirt.mainCategory = "Short Sleeve Shirt"
             ownedShortSleeveShirts!.append(emptyShortSleeveShirt)
-            writeCustomObjArraytoUserDefaults(ownedShortSleeveShirts!, "ownedShortSleeveShirts")
+            writeCustomObjArraytoUserDefaults(ownedShortSleeveShirts!, fileName: "ownedShortSleeveShirts")
         }
         if(ownedBottoms!.count == 0) {
-            var emptyBottoms = Bottom()
-            emptyBottoms.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable"))
+            let emptyBottoms = Bottom()
+            emptyBottoms.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable")!)
             emptyBottoms.fileName = "NA"
             emptyBottoms.mainCategory = "Chinos"
             ownedBottoms!.append(emptyBottoms)
-            writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")
+            writeCustomObjArraytoUserDefaults(ownedBottoms!, fileName: "ownedBottoms")
         }
     }
     
@@ -196,8 +197,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     func createDraggableViewWithDataAtIndex(index:Int) -> DraggableView{
         let imageData: NSData = getImageData((clothingCardLabels.objectAtIndex(index) as! Clothing).url!)
         
-        var draggableView: DraggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 30, width: CARD_WIDTH, height: CARD_HEIGHT))
-        println(clothingCardLabels.objectAtIndex(index))
+        let draggableView: DraggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 30, width: CARD_WIDTH, height: CARD_HEIGHT))
+        print(clothingCardLabels.objectAtIndex(index))
         
         
         dispatch_async(dispatch_get_main_queue(), {
@@ -213,13 +214,13 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         //%%% if the buffer size is greater than the data size,
         //%%% there will be an array error, so this makes sure that doesn't happen
         if clothingCardLabels.count > 0 {
-            var numLoadedCardsCap: Int = ((clothingCardLabels.count > MAX_BUFFER_SIZE) ? MAX_BUFFER_SIZE: clothingCardLabels.count)
+            let numLoadedCardsCap: Int = ((clothingCardLabels.count > MAX_BUFFER_SIZE) ? MAX_BUFFER_SIZE: clothingCardLabels.count)
             
             
             //%%% loops through the exampleCardsLabels array to create a card for each label.
             //    This should be customized by removing "exampleCardLabels" with your own array of data
             for (var i = 0; i < clothingCardLabels.count; i++) {
-                var newCard: DraggableView = self.createDraggableViewWithDataAtIndex(i)
+                let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(i)
                 allCards.addObject(newCard)
                 
                 if ((i < (numLoadedCardsCap + cardsIndex)) && (i >= cardsIndex))  {
@@ -248,7 +249,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     // This should be customized with your own action
     func cardSwipedLeft(card:UIView){
         
-        println("allcards.count = \(allCards.count)")
+        print("allcards.count = \(allCards.count)")
         
         loadedCards.removeObjectAtIndex(0) //%%% card was swiped, so it's no longer a "loaded card"
         previousActions.push(LEFT_SWIPE) //%%% push previous action onto stack
@@ -266,14 +267,14 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             cardsIndex++
         }
         
-        println("CardSwipedLeft \(cardsLoadedIndex)")
-        println("cardsIndex \(cardsIndex)")
-        println("~~~~~~~~~~~~~~~")
+        print("CardSwipedLeft \(cardsLoadedIndex)")
+        print("cardsIndex \(cardsIndex)")
+        print("~~~~~~~~~~~~~~~")
         
         if(cardsIndex == allCards.count) {
-            println("loading new cards")
+            print("loading new cards")
             //send to run in background thread
-            dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
+            dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
                 self.loadNextBatch({
                     loadingFinished in
                     self.blurEffectView.removeFromSuperview()
@@ -288,12 +289,12 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     //%%% action called when the card is swipedRight
     func cardSwipedRight(card: DraggableView){
-        var clothingArticle: Clothing = swipeBatch[self.currentBatchIndex][cardsIndex]
-        saveClothingArticle(clothingArticle, imageData: UIImageJPEGRepresentation(card.information.image!, 0.5))
+        let clothingArticle: Clothing = swipeBatch[self.currentBatchIndex][cardsIndex]
+        saveClothingArticle(clothingArticle, imageData: UIImageJPEGRepresentation(card.information.image!, 0.5)!)
         
         //gonna start formating dict to pass to postwardrobe
         let fbAuthToken = getFbAuthToken()
-        var wardrobeDict: NSMutableDictionary = NSMutableDictionary()
+        let wardrobeDict: NSMutableDictionary = NSMutableDictionary()
         var ownedTops:[Top] = readCustomObjArrayFromUserDefaults("ownedTops") as! [Top]
         var ownedBottoms:[Bottom] = readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]
         var topsArr = [NSDictionary]()
@@ -301,9 +302,9 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         
         if(ownedTops.count>1) {
             for index in 1...ownedTops.count-1 {
-                println(ownedTops[index].fileName)
-                println(ownedTops[index].url)
-                println(ownedTops[index].properties)
+                print(ownedTops[index].fileName)
+                print(ownedTops[index].url)
+                print(ownedTops[index].properties)
                 topsArr.append(ownedTops[index].convertToDict())
             }
         }
@@ -312,15 +313,15 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
                 bottomsArr.append(ownedBottoms[i].convertToDict())
             }
         }
-        println(topsArr)
-        println(bottomsArr)
+        print(topsArr)
+        print(bottomsArr)
         
         wardrobeDict.setObject(topsArr , forKey: "tops")
         wardrobeDict.setObject(bottomsArr , forKey: "bottoms")
         wardrobeDict.setObject(clothingArticle.convertToDict(), forKey: "clothing")
-        getCurateAuthToken(fbAuthToken, {
+        getCurateAuthToken(fbAuthToken, completionHandler: {
             curateAuthToken in
-            postWardrobe(curateAuthToken, wardrobeDict)
+            postWardrobe(curateAuthToken, wardrobeDict: wardrobeDict)
         })
         
         
@@ -342,13 +343,13 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             cardsIndex++
         }
         
-        println("CardSwipedRight \(cardsLoadedIndex)")
-        println("cardsIndex \(cardsIndex)")
-        println("~~~~~~~~~~~~~~~")
+        print("CardSwipedRight \(cardsLoadedIndex)")
+        print("cardsIndex \(cardsIndex)")
+        print("~~~~~~~~~~~~~~~")
 
         if(cardsIndex == allCards.count) {
-            println("loading new cards")
-            dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
+            print("loading new cards")
+            dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
                 self.loadNextBatch({
                     loadingFinished in
                     self.blurEffectView.removeFromSuperview()
@@ -364,14 +365,14 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     //mostly just look for the allcards.count places
     func undoAction(){
         var restoredCard:DraggableView?
-        println("batchIsLoading = \(batchIsLoading)")
-        println("beingSwiped = \(beingSwiped)")
+        print("batchIsLoading = \(batchIsLoading)")
+        print("beingSwiped = \(beingSwiped)")
         //%%% can't undo if you just started the app
         if (previousActions.items.count > 0 && !beingSwiped && !batchIsLoading && cardsIndex > 0) {
-            println("================")
-            println("allCards.count: \(allCards.count)")
-            println("cardsLoadedIndex: \(cardsLoadedIndex)")
-            println("loadedCards.count: \(loadedCards.count)")
+            print("================")
+            print("allCards.count: \(allCards.count)")
+            print("cardsLoadedIndex: \(cardsLoadedIndex)")
+            print("loadedCards.count: \(loadedCards.count)")
             self.beingSwiped = true
             
             //%%% can't undo if you are on your first card
@@ -412,11 +413,11 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
                 // checks to see if Items need to be removed
                 // and sets up for animation
                 let finishPoint:CGPoint = restoredCard!.center
-                var previousAction = previousActions.pop()
+                let previousAction = previousActions.pop()
                 
                 if(previousAction == RIGHT_SWIPE) {
                     ownedTops?.removeLast()
-                    writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
+                    writeCustomObjArraytoUserDefaults(ownedTops!, fileName: "ownedTops")
                     restoredCard?.center = CGPointMake(600, self.center.y)
                     restoredCard?.overlayView?.setMode(GGOverlayViewMode.Right)
                     restoredCard?.overlayView?.alpha = 1
@@ -444,9 +445,9 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
                     })
                 }
                 
-                println("loadedCards.count now \(loadedCards.count)")
-                println("cardUndone \(cardsLoadedIndex)")
-                println("cardIndex = \(cardsIndex)")
+                print("loadedCards.count now \(loadedCards.count)")
+                print("cardUndone \(cardsLoadedIndex)")
+                print("cardIndex = \(cardsIndex)")
             }
         }
         saveCardsIndex()
@@ -455,12 +456,12 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     func swipeRight(){
         if (loadedCards.count > 0 && !beingSwiped && !batchIsLoading) {
             self.beingSwiped = true
-            var dragView: DraggableView = loadedCards.firstObject as! DraggableView
+            let dragView: DraggableView = loadedCards.firstObject as! DraggableView
             dragView.rightClickAction({actionCompleted in
-                println("swipedFinished")
+                print("swipedFinished")
                 self.beingSwiped = false
             })
-            println("swipedRight")
+            print("swipedRight")
         }
     }
     
@@ -468,21 +469,21 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     func swipeLeft(){
         if (loadedCards.count > 0 && !beingSwiped && !batchIsLoading) {
             self.beingSwiped = true
-            var dragView: DraggableView = loadedCards.firstObject as! DraggableView
+            let dragView: DraggableView = loadedCards.firstObject as! DraggableView
             dragView.leftClickAction({ actionCompleted in
-                println("swipedFinished")
+                print("swipedFinished")
                 self.beingSwiped = false
             })
-            println("swipedLeft")
+            print("swipedLeft")
         }
     }
     
     //%% loads next batch by adding in links from the next batch and deleting the previous cards
     func loadNextBatch(completionHandler:(loadingFinished:Bool)->()) {
-        println("=====in loadnextBatch=====")
+        print("=====in loadnextBatch=====")
         
         //%%buffer for loadings
-        var loadingText = UILabel(frame: CGRect(x: SCREENWIDTH/2-40, y: SCREENHEIGHT/2 - 20, width: 80, height: 20))
+        let loadingText = UILabel(frame: CGRect(x: SCREENWIDTH/2-40, y: SCREENHEIGHT/2 - 20, width: 80, height: 20))
         loadingText.text = "Loading dopeness"
         loadingText.textColor = UIColor.whiteColor()
         blurEffectView.addSubview(loadingText)
@@ -492,7 +493,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         self.currentBatchIndex++
         saveBatchIndex()
         //Will need to change when the batches stop later on
-        if self.currentBatchIndex < MAX_BATCHES {
+        if self.currentBatchIndex < maxBatches {
             self.clothingCardLabels.removeAllObjects()
             self.allCards.removeAllObjects()
             
@@ -505,7 +506,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             for clothes in swipeBatch[currentBatchIndex] {
                 self.clothingCardLabels.addObject(clothes)
             }
-            println("clothingCard Label count = \(self.clothingCardLabels.count)")
+            print("clothingCard Label count = \(self.clothingCardLabels.count)")
             
             // loading finished
             self.cardsLoadedIndex = 0
@@ -513,16 +514,16 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             self.loadCards()
             completionHandler(loadingFinished: true)
         } else {
-            println("no more batches")
-            println("currentBatchIndex = \(self.currentBatchIndex)")
+            print("no more batches")
+            print("currentBatchIndex = \(self.currentBatchIndex)")
         }
     }
     
     func saveBatchIndex() {
         let fetchRequest = NSFetchRequest(entityName: "Indexes")
         // Execute the fetch request, and cast the results to an array of Tokens objects
-        let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as! [Indexes]
-        var indexes = fetchResults[0]
+        let fetchResults = (try! managedObjectContext!.executeFetchRequest(fetchRequest)) as! [Indexes]
+        let indexes = fetchResults[0]
         indexes.batchIndex = self.currentBatchIndex
         (UIApplication.sharedApplication().delegate as! AppDelegate).saveContext()
     }
@@ -530,45 +531,45 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     func saveCardsIndex() {
         let fetchRequest = NSFetchRequest(entityName: "Indexes")
         // Execute the fetch request, and cast the results to an array of Tokens objects
-        let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as! [Indexes]
-        var indexes = fetchResults[0]
+        let fetchResults = (try! managedObjectContext!.executeFetchRequest(fetchRequest)) as! [Indexes]
+        let indexes = fetchResults[0]
         indexes.cardsIndex = self.cardsIndex
         (UIApplication.sharedApplication().delegate as! AppDelegate).saveContext()
     }
     
     func saveClothingArticle(clothingArticle: Clothing, imageData: NSData) {
         clothingArticle.imageData = UIImageJPEGRepresentation(loadedCards.objectAtIndex(0).information.image!, 0.0)
-        println(clothingArticle.mainCategory!)
+        print(clothingArticle.mainCategory!)
         switch clothingArticle.mainCategory! as String {
         case "collared_shirt", "jacket", "light_layer", "long_sleeve_shirt", "short_sleeve_shirt":
             let top: Top = Top(top: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedTops!.append(top) //%%% add top to ownedTops if swiped right
-            writeCustomObjArraytoUserDefaults(ownedTops!, "ownedTops")
+            writeCustomObjArraytoUserDefaults(ownedTops!, fileName: "ownedTops")
             switch clothingArticle.mainCategory! as String {
             case "jacket":
                 ownedJackets!.append(top)
-                writeCustomObjArraytoUserDefaults(ownedJackets!, "ownedJackets")
+                writeCustomObjArraytoUserDefaults(ownedJackets!, fileName: "ownedJackets")
             case "light_layer":
                 ownedLightLayers!.append(top)
-                writeCustomObjArraytoUserDefaults(ownedLightLayers!, "ownedLightLayers")
+                writeCustomObjArraytoUserDefaults(ownedLightLayers!, fileName: "ownedLightLayers")
             case "collared_shirt":
                 ownedCollaredShirts!.append(top)
-                writeCustomObjArraytoUserDefaults(ownedCollaredShirts!, "ownedCollaredShirts")
+                writeCustomObjArraytoUserDefaults(ownedCollaredShirts!, fileName: "ownedCollaredShirts")
             case "long_sleeve_shirt":
                 ownedLongSleeveShirts!.append(top)
-                writeCustomObjArraytoUserDefaults(ownedLongSleeveShirts!, "ownedLongSleeveShirts")
+                writeCustomObjArraytoUserDefaults(ownedLongSleeveShirts!, fileName: "ownedLongSleeveShirts")
             case "short_sleeve_shirt":
                 ownedShortSleeveShirts!.append(top)
-                writeCustomObjArraytoUserDefaults(ownedShortSleeveShirts!, "ownedShortSleeveShirts")
+                writeCustomObjArraytoUserDefaults(ownedShortSleeveShirts!, fileName: "ownedShortSleeveShirts")
             default:
-                println("save clothing article tops impossible")
+                print("save clothing article tops impossible")
             }
         case "casual", "chinos", "shorts", "suit_pants", "pants":
             let bottom: Bottom = Bottom(bottom: clothingArticle.properties!, url: clothingArticle.url!, imageData: imageData)
             ownedBottoms!.append(bottom) //%%% add bottom to ownedBottoms if swiped right
-            writeCustomObjArraytoUserDefaults(ownedBottoms!, "ownedBottoms")
+            writeCustomObjArraytoUserDefaults(ownedBottoms!, fileName: "ownedBottoms")
         default:
-            println("not anything")
+            print("not anything")
         }
     }
     

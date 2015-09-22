@@ -23,7 +23,7 @@ class AddOutfitView: UIView, UITextFieldDelegate {
     var ownedOutfits: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as! [Outfit]
     var delegate: AddOutfitViewDelegate?
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         // ...
     }
@@ -72,7 +72,7 @@ class AddOutfitView: UIView, UITextFieldDelegate {
     }
     
     func setupCategoryTable() {
-        var temp: UILabel = UILabel(frame: CGRectMake(10, self.frame.height/4, self.frame.width - 20, self.frame.height/2))
+        let temp: UILabel = UILabel(frame: CGRectMake(10, self.frame.height/4, self.frame.width - 20, self.frame.height/2))
         temp.layer.borderColor = UIColor.blackColor().CGColor
         temp.layer.borderWidth = 1.0
         temp.text = "customizable categories \n coming soon"
@@ -82,7 +82,7 @@ class AddOutfitView: UIView, UITextFieldDelegate {
     }
     
     func setupWeatherButtons() {
-        var temp: UILabel = UILabel(frame: CGRectMake(10, 4*self.frame.height/5, self.frame.width - 20, 50))
+        let temp: UILabel = UILabel(frame: CGRectMake(10, 4*self.frame.height/5, self.frame.width - 20, 50))
         temp.layer.borderColor = UIColor.blackColor().CGColor
         temp.layer.borderWidth = 1.0
         temp.text = "weather options coming soon"
@@ -96,13 +96,13 @@ class AddOutfitView: UIView, UITextFieldDelegate {
         self.backButton = UIButton(frame: CGRectMake(10, 10, 50, 20))
         self.backButton?.setTitle("Back", forState: UIControlState.Normal)
         self.backButton?.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        var backButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "backButtonTapped")
+        let backButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "backButtonTapped")
         backButton?.addGestureRecognizer(backButtonGesture)
         
         self.doneButton = UIButton(frame: CGRectMake(self.frame.width - 55, 10, 50, 20))
         self.doneButton?.setTitle("Done", forState: .Normal)
         self.doneButton?.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        var doneButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "doneButtonTapped")
+        let doneButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "doneButtonTapped")
         doneButton?.addGestureRecognizer(doneButtonGesture)
         
         self.addSubview(backButton!)
@@ -111,24 +111,24 @@ class AddOutfitView: UIView, UITextFieldDelegate {
     
     func donePressed() {
         activeTextField?.resignFirstResponder()
-        println("donePressed")
+        print("donePressed")
     }
     
     func doneButtonTapped() {
-        println("doneButtonTapped")
+        print("doneButtonTapped")
         self.outfit!.title = titleTextField!.text!
         // need to find some other way to double check outfit
         
         
         if (outfitWithTitleExists(outfit!.title!)) {
-            println("title already exists")
-            var alert: UIAlertView = UIAlertView(title: "Outfit with same title", message: "choose another title", delegate: "nil", cancelButtonTitle: "ok")
+            print("title already exists")
+            let alert: UIAlertView = UIAlertView(title: "Outfit with same title", message: "choose another title", delegate: "nil", cancelButtonTitle: "ok")
             alert.show()
         } else {
             ownedOutfits.append(outfit!)
-            writeCustomObjArraytoUserDefaults(ownedOutfits, "ownedOutfits")
+            writeCustomObjArraytoUserDefaults(ownedOutfits, fileName: "ownedOutfits")
             
-            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.segmentedControl.selectedSegmentIndex = appDelegate.OUTFITSINDEX
             appDelegate.segmentsController.indexDidChangeForSegmentedControl(appDelegate.segmentedControl)
             delegate?.dismissOutfitView()
@@ -136,7 +136,7 @@ class AddOutfitView: UIView, UITextFieldDelegate {
     }
     
     func backButtonTapped() {
-        println("backButtonTapped")
+        print("backButtonTapped")
         delegate?.dismissOutfitView()
     }
     
@@ -151,10 +151,10 @@ class AddOutfitView: UIView, UITextFieldDelegate {
 }
 
 ///MARK Textfield Delegate methods
-extension AddOutfitView: UITextFieldDelegate{
+extension AddOutfitView {
     func textFieldDidBeginEditing(textField: UITextField) {    //delegate method
         activeTextField = textField
-        println("textfieldidbeginediting")
+        print("textfieldidbeginediting")
         activeTextField?.textColor = UIColor.blackColor()
         textField.text = ""
     }

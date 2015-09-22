@@ -11,9 +11,9 @@ import Foundation
 class PersonaVCwithXib: UIViewController {
     
     override func viewDidLoad() {
-        var personaChoiceView: UIView = instanceFromNibNamed("PersonaChoiceView")
+        let personaChoiceView: UIView = instanceFromNibNamed("PersonaChoiceView")
         personaChoiceView.frame = self.view.frame
-        println(personaChoiceView.viewWithTag(1))
+        print(personaChoiceView.viewWithTag(1))
         
         self.view.addSubview(personaChoiceView)
     }

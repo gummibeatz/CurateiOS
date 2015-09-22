@@ -25,7 +25,7 @@ class Outfit: NSObject, NSCoding {
         super.init()
     }
     
-    required convenience init(coder aDecoder: NSCoder) {
+    required convenience init?(coder aDecoder: NSCoder) {
         self.init()
         self.title = aDecoder.decodeObjectForKey("title") as! String?
         self.tags = aDecoder.decodeObjectForKey("tags")as! [String]?

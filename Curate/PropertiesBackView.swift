@@ -10,7 +10,7 @@ import UIKit
 
 class PropertiesBackView: UIView {
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         // ...
     }
@@ -20,8 +20,8 @@ class PropertiesBackView: UIView {
         setupView()
         
         var image: UIImage = UIImage(named: "notAvailable")!
-        image = RBResizeImage(image, CGSize(width: frame.width, height: frame.height))
-        var imageView: UIImageView = UIImageView(image: image)
+        image = RBResizeImage(image, targetSize: CGSize(width: frame.width, height: frame.height))
+        let imageView: UIImageView = UIImageView(image: image)
         self.addSubview(imageView)
     }
     

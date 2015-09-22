@@ -19,7 +19,7 @@ class OutfitCell: UITableViewCell {
     var img: UIImage?
     var outfit: Outfit?
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

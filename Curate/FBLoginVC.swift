@@ -19,7 +19,7 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
         
         
         
-        var loginView: FBLoginView = FBLoginView()
+        let loginView: FBLoginView = FBLoginView()
         loginView.center = self.view.center
         
         
@@ -27,11 +27,11 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
     
         
         if(FBSession.activeSession().isOpen) {
-            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             self.authToken = FBSession.activeSession().accessTokenData.accessToken
-            println(self.authToken)
+            print(self.authToken)
             
-            UIView.animateWithDuration(2, delay: 1, options: nil, animations: {
+            UIView.animateWithDuration(2, delay: 1, options: [], animations: {
                 self.introView.alpha = 0
                 }, completion: {
                     animationFinished in
@@ -57,7 +57,7 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
 //            }
         } else {
             self.view.insertSubview(loginView, belowSubview: self.introView)
-            UIView.animateWithDuration(2, delay: 1, options: nil, animations: {
+            UIView.animateWithDuration(2, delay: 1, options: [], animations: {
                 self.introView.alpha = 0
                 }, completion: {
                     animationFinished in
@@ -67,20 +67,20 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
     }
     
     func setupIntroView() {
-        var title = UILabel(frame: CGRect(x: UIScreen.mainScreen().bounds.midX - 200, y: 125, width: 400, height: 50))
+        let title = UILabel(frame: CGRect(x: UIScreen.mainScreen().bounds.midX - 200, y: 125, width: 400, height: 50))
         title.text = "C U R A T E"
         title.textAlignment = NSTextAlignment.Center
         title.textColor = UIColor.whiteColor()
         title.font = UIFont.systemFontOfSize(40)
         
-        var imageView: UIImageView = UIImageView(frame: CGRect(x: UIScreen.mainScreen().bounds.midX - 75, y: 250, width: 150, height: 150))
+        let imageView: UIImageView = UIImageView(frame: CGRect(x: UIScreen.mainScreen().bounds.midX - 75, y: 250, width: 150, height: 150))
         imageView.image = UIImage(named: "CurateBowtieBlack")
         
         introView.addSubview(imageView)
         introView.addSubview(title)
         introView.backgroundColor = UIColor.blackColor()
         self.view.addSubview(introView)
-        println("introview setup")
+        print("introview setup")
     }
 
     
@@ -88,7 +88,7 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
         if FBSession.activeSession().isOpen {
             authToken = FBSession.activeSession().accessTokenData.accessToken
         } else {
-            println("FBSession state = \(FBSession.activeSession().state)")
+            print("FBSession state = \(FBSession.activeSession().state)")
         }
         
     }
@@ -96,23 +96,23 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
     // Facebook Delegate Methods
     
     func loginViewShowingLoggedInUser(loginView : FBLoginView!) {
-        println("User Logged In")
+        print("User Logged In")
     }
     
     func loginViewFetchedUserInfo(loginView : FBLoginView!, user: FBGraphUser) {
-        println("User: \(user)")
-        println("User ID: \(user.objectID)")
-        println("User Name: \(user.name)")
-        var userEmail = user.objectForKey("email") as! String
-        println("User Email: \(userEmail)")
+        print("User: \(user)")
+        print("User ID: \(user.objectID)")
+        print("User Name: \(user.name)")
+        let userEmail = user.objectForKey("email") as! String
+        print("User Email: \(userEmail)")
     }
     
     func loginViewShowingLoggedOutUser(loginView : FBLoginView!) {
-        println("User Logged Out")
+        print("User Logged Out")
     }
     
     func loginView(loginView : FBLoginView!, handleError:NSError) {
-        println("Error: \(handleError.localizedDescription)")
+        print("Error: \(handleError.localizedDescription)")
     }
     
     

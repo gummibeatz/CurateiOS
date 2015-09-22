@@ -34,16 +34,16 @@ class SingleOutfitVC: UIViewController, EditClothingViewDelegate {
     }
     
     func setupReturnButtons() {
-        var backButton: UIButton = UIButton(frame: CGRectMake(10, 30, 50, 20))
+        let backButton: UIButton = UIButton(frame: CGRectMake(10, 30, 50, 20))
         backButton.setTitle("Back", forState: UIControlState.Normal)
         backButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        var backButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "backButtonTapped")
+        let backButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "backButtonTapped")
         backButton.addGestureRecognizer(backButtonGesture)
         
-        var saveButton: UIButton = UIButton(frame: CGRectMake(self.view.frame.width - 55, 30, 50, 20))
+        let saveButton: UIButton = UIButton(frame: CGRectMake(self.view.frame.width - 55, 30, 50, 20))
         saveButton.setTitle("Save", forState: .Normal)
         saveButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        var saveButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "saveButtonTapped")
+        let saveButtonGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "saveButtonTapped")
         saveButton.addGestureRecognizer(saveButtonGesture)
         
         self.view.addSubview(backButton)
@@ -51,18 +51,18 @@ class SingleOutfitVC: UIViewController, EditClothingViewDelegate {
     }
     
     func backButtonTapped() {
-        println("backbuttonTapped")
+        print("backbuttonTapped")
         delegate!.dismissSingleOutfitVC()
     }
     
     func saveButtonTapped() {
-        println("saveButtonTapped")
+        print("saveButtonTapped")
         delegate?.dismissSingleOutfitVC()
         delegate?.saveNewOutfit(outfit!, newOutfit: toBeDisplayed)
     }
     
     func setupClothingPieces() {
-        println("outfit?.jacket = \(outfit?.jacket)")
+        print("outfit?.jacket = \(outfit?.jacket)")
         if outfit?.jacket != "NA" {
             toBeDisplayed.append(getClothing(outfit!.jacket!,isBottom: false))
         }
@@ -83,10 +83,10 @@ class SingleOutfitVC: UIViewController, EditClothingViewDelegate {
         }
         
         for (var i = 0; i<toBeDisplayed.count; i++) {
-            var yCoord: Int = i*90 + 100
-            var imageView: UIImageView = UIImageView(frame: CGRect(x: 20, y: yCoord, width: 80, height: 80))
+            let yCoord: Int = i*90 + 100
+            let imageView: UIImageView = UIImageView(frame: CGRect(x: 20, y: yCoord, width: 80, height: 80))
             imageView.userInteractionEnabled = true
-            var gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "createEditClothingView:")
+            let gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "createEditClothingView:")
             imageView.image = UIImage(data: toBeDisplayed[i].imageData!)
             imageView.tag = i+1000
             imageView.addGestureRecognizer(gestureRecognizer)
@@ -96,9 +96,9 @@ class SingleOutfitVC: UIViewController, EditClothingViewDelegate {
     }
     
     func createEditClothingView(sender: UITapGestureRecognizer) {
-        println("clothing tapped")
+        print("clothing tapped")
         lastEdited = sender.view!.tag
-        var clothing = toBeDisplayed[sender.view!.tag-1000]
+        let clothing = toBeDisplayed[sender.view!.tag-1000]
         editClothingView = EditClothingView(frame: CGRect(x: 10, y: UIScreen.mainScreen().bounds.height/2, width: UIScreen.mainScreen().bounds.width-20, height: 200), clothing: clothing)
         editClothingView?.delegate = self
         self.view.addSubview(blurEffectView)
@@ -110,14 +110,14 @@ class SingleOutfitVC: UIViewController, EditClothingViewDelegate {
     func getClothing(fileName: String, isBottom: Bool) -> Clothing {
         var clothing: Clothing = Clothing()
         if(isBottom) {
-            var ownedBottoms: [Bottom] = readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]
+            let ownedBottoms: [Bottom] = readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]
             for bottom in ownedBottoms {
                 if bottom.fileName == fileName {
                     clothing = bottom
                 }
             }
         } else {
-            var ownedTops: [Top] = readCustomObjArrayFromUserDefaults("ownedTops") as! [Top]
+            let ownedTops: [Top] = readCustomObjArrayFromUserDefaults("ownedTops") as! [Top]
             for top in ownedTops {
                 if top.fileName == fileName {
                     clothing = top
@@ -130,7 +130,7 @@ class SingleOutfitVC: UIViewController, EditClothingViewDelegate {
 }
 
 // MARK EditClothingViewDelegate functions
-extension SingleOutfitVC: EditClothingViewDelegate {
+extension SingleOutfitVC {
     
     func dismissEditClothingView() {
         editClothingView?.removeFromSuperview()
@@ -139,7 +139,7 @@ extension SingleOutfitVC: EditClothingViewDelegate {
     
     // updates UIImageView and replaces the new clothes in toBeDisplayed
     func savePickerChangeWithFileName(clothing: Clothing) {
-        println("new choice is \(clothing.fileName!)")
+        print("new choice is \(clothing.fileName!)")
         for (var i = 0; i < self.imageViewArray.count; i++) {
             if self.imageViewArray[i].tag == self.lastEdited {
                 self.imageViewArray[i].image = UIImage(data: clothing.imageData!)

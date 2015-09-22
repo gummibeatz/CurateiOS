@@ -29,7 +29,7 @@ class OutfitsContainerVC: UIViewController {
     }
     
     func setOutfitsVCDelegate(appDelegate: AppDelegate) {
-        println("settingoutfitvcdelegate")
+        print("settingoutfitvcdelegate")
         outfitsVC.outfitsDelegate = appDelegate
     }
 }

@@ -25,7 +25,7 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, S
     
     override func loadView() {
         super.loadView()
-        var bufferData: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as! [Outfit]
+        let bufferData: [Outfit] = readCustomObjArrayFromUserDefaults("ownedOutfits") as! [Outfit]
         for outfit in bufferData {
             tableData.append(outfit)
         }
@@ -46,8 +46,8 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, S
         self.ownedOutfits = readCustomObjArrayFromUserDefaults("ownedOutfits") as? [Outfit]
         
         //gotta change eventually
-        println("tableData.count = \(tableData.count)")
-        println("ownedOutfits.count = \(ownedOutfits!.count)")
+        print("tableData.count = \(tableData.count)")
+        print("ownedOutfits.count = \(ownedOutfits!.count)")
         
         if(ownedOutfits!.count != tableData.count) {
             tableData.append(ownedOutfits!.last!)
@@ -61,9 +61,9 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, S
     }
     
     func createTableDataFromOutfits(outfits: [Outfit]) -> [String] {
-        var temp: [String] = []
+        let temp: [String] = []
         for outfit in outfits {
-            println(outfit)
+            print(outfit)
 //            temp.append(outfit.title!)
         }
         return temp
@@ -78,13 +78,13 @@ class OutfitsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, S
             }
         }
         ownedOutfits!.removeAtIndex(outfitIndex!)
-        writeCustomObjArraytoUserDefaults(ownedOutfits!, "ownedOutfits")
+        writeCustomObjArraytoUserDefaults(ownedOutfits!, fileName: "ownedOutfits")
     }
     
 }
 
 //MARK: Data Source TableView
-extension OutfitsVC: UITableViewDataSource {
+extension OutfitsVC {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -95,11 +95,11 @@ extension OutfitsVC: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as! OutfitCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as! OutfitCell
         cell.outfitName.text = self.tableData[indexPath.row].title
         cell.outfit = self.tableData[indexPath.row]
         //modify for actual outfit image
-        var img = UIImage(named: "tshirt1.jpg")
+        let img = UIImage(named: "tshirt1.jpg")
         cell.outfitImage.image = img
         return cell
     }
@@ -109,22 +109,22 @@ extension OutfitsVC: UITableViewDataSource {
 }
 
 //MARK: Delegates TableView
-extension OutfitsVC: UITableViewDelegate {
+extension OutfitsVC {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("didslelectRow at \(indexPath.row)")
-        var singleOutfitVC: SingleOutfitVC = SingleOutfitVC()
+        print("didslelectRow at \(indexPath.row)")
+        let singleOutfitVC: SingleOutfitVC = SingleOutfitVC()
         singleOutfitVC.delegate = self
         singleOutfitVC.outfit = self.tableData[indexPath.row]
         self.navigationController?.presentViewController(singleOutfitVC, animated: true, completion: nil)
         self.appDelegate.measurementsButton.removeFromSuperview()
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let deleteClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            println("Delete closure called")
+            print("Delete closure called")
             
-            var alert = UIAlertController(title: "Warning", message: "Sure you want to delete?", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Warning", message: "Sure you want to delete?", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: {
                 action in
                 self.deleteOutfitWithTitle(self.tableData[indexPath.row].title!)
@@ -138,11 +138,11 @@ extension OutfitsVC: UITableViewDelegate {
         let editClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             //add in delegate to send info of the current outfit
             self.outfitsDelegate?.editButtonTapped()
-            println("edit closure called")
+            print("edit closure called")
         }
         
-        var deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: deleteClosure)
-        var editAction = UITableViewRowAction(style: .Normal, title: "Edit", handler: editClosure)
+        let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: deleteClosure)
+        let editAction = UITableViewRowAction(style: .Normal, title: "Edit", handler: editClosure)
         deleteAction.backgroundColor = UIColor.blueColor()
         
         return [deleteAction, editAction]
@@ -161,10 +161,10 @@ extension OutfitsVC: UITableViewDelegate {
 }
 
 //MARK: Delegates SingleOutfitVC
-extension OutfitsVC: SingleOutfitVCDelegate {
+extension OutfitsVC {
     
     func dismissSingleOutfitVC() {
-        println("dismissSingleOutfitVC delegated")
+        print("dismissSingleOutfitVC delegated")
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
 //        self.appDelegate.setupMeasurementsButton()
         
@@ -191,11 +191,11 @@ extension OutfitsVC: SingleOutfitVCDelegate {
                         case "Casual", "Chinos", "Shorts", "Suit Pants":
                             originalOutfit.bottoms = clothing.fileName!
                         default:
-                            println("error outfit was not changed")
+                            print("error outfit was not changed")
                         }
                 }
                 self.ownedOutfits![i] = originalOutfit
-                writeCustomObjArraytoUserDefaults(ownedOutfits!, "ownedOutfits")
+                writeCustomObjArraytoUserDefaults(ownedOutfits!, fileName: "ownedOutfits")
                 break
             }
         }

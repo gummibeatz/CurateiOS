@@ -23,11 +23,15 @@ func getWeather(completionHandler:(currentTemp:Double) ->()) {
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     
     let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
-        var error:NSError?
-        if let weatherDict: NSMutableDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? NSMutableDictionary {
-            //            println(weatherDict)
-            var currentTemp:Double = weatherDict.objectForKey("main")?.objectForKey("temp") as! Double
+        do {
+            guard let weatherDict: NSMutableDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableDictionary else {
+                throw APIErrors.DictError
+            }
+                //            println(weatherDict)
+            let currentTemp:Double = weatherDict.objectForKey("main")?.objectForKey("temp") as! Double
             completionHandler(currentTemp: currentTemp)
+        } catch {
+            
         }
     }
     task.resume()

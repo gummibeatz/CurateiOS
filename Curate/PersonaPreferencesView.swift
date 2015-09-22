@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PersonaPreferencesView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+class PersonaPreferencesView: UIView {
     
     var activeTextField:UITextField?
     var toolbar: UIToolbar?
@@ -46,14 +46,14 @@ class PersonaPreferencesView: UIView, UIPickerViewDataSource, UIPickerViewDelega
         setupView()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     func setupView() {
-        var textHeight:CGFloat = 30
+        let textHeight:CGFloat = 30
         
-        var personaLabel: UILabel = UILabel(frame: CGRect(x: 10, y: 0, width: self.frame.width, height: 100))
+        let personaLabel: UILabel = UILabel(frame: CGRect(x: 10, y: 0, width: self.frame.width, height: 100))
         personaLabel.text = personaScript
         personaLabel.lineBreakMode = .ByWordWrapping
         personaLabel.numberOfLines = 0
@@ -61,7 +61,7 @@ class PersonaPreferencesView: UIView, UIPickerViewDataSource, UIPickerViewDelega
         
         var heightOffset = personaLabel.frame.height+5
         
-        var questionLabel1 = UILabel(frame: CGRect(x: 10, y: heightOffset, width: self.frame.width-20, height: textHeight))
+        let questionLabel1 = UILabel(frame: CGRect(x: 10, y: heightOffset, width: self.frame.width-20, height: textHeight))
         questionLabel1.text = question1
         
         textField1.delegate = self
@@ -74,7 +74,7 @@ class PersonaPreferencesView: UIView, UIPickerViewDataSource, UIPickerViewDelega
         
         heightOffset = heightOffset + textHeight + questionLabel1.frame.height + 5
         
-        var questionLabel2 = UILabel(frame: CGRect(x: 10, y: heightOffset, width: self.frame.width-20, height: 20))
+        let questionLabel2 = UILabel(frame: CGRect(x: 10, y: heightOffset, width: self.frame.width-20, height: 20))
         questionLabel2.text = question2
         
         textField2.delegate = self
@@ -87,7 +87,7 @@ class PersonaPreferencesView: UIView, UIPickerViewDataSource, UIPickerViewDelega
         
         heightOffset = questionLabel2.frame.height + heightOffset + textHeight + 10
         
-        var questionLabel3 = UILabel(frame: CGRect(x: 10, y: heightOffset, width: self.frame.width-20, height: 20))
+        let questionLabel3 = UILabel(frame: CGRect(x: 10, y: heightOffset, width: self.frame.width-20, height: 20))
         questionLabel3.text = question3
         textField3.delegate = self
         textField3.inputAccessoryView = toolbar
@@ -125,7 +125,7 @@ class PersonaPreferencesView: UIView, UIPickerViewDataSource, UIPickerViewDelega
     func setupToolBar() {
         //pickerview tool bar
         self.toolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 44))
-        var items = [AnyObject]()
+        var items = [UIBarButtonItem]()
         //making done button
         let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "donePressed")
         items.append(doneButton)
@@ -163,7 +163,7 @@ extension PersonaPreferencesView: UIPickerViewDataSource {
 extension PersonaPreferencesView: UIPickerViewDelegate {
     // several optional methods:
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView.tag {
         case picker1.tag:
             textField1.text = picker1Data![row]

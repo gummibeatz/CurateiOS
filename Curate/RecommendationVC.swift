@@ -28,12 +28,12 @@ class RecommendationVC: UIViewController {
     
     func setupLayout() {
         let yOffset:CGFloat = 50
-        var personaFace: UIImageView = UIImageView(frame: CGRect(x: SCREENWIDTH/2-100, y: yOffset, width: 200, height: 200))
+        let personaFace: UIImageView = UIImageView(frame: CGRect(x: SCREENWIDTH/2-100, y: yOffset, width: 200, height: 200))
         personaFace.userInteractionEnabled = true
         personaFace.bounds = CGRectInset(personaFace.frame, 10.0, 0)
         personaFace.image = personaImage
         
-        var faceTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "faceTapped:")
+        let faceTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "faceTapped:")
         personaFace.addGestureRecognizer(faceTapGesture)
     
         bodyView =  setupBodyView(personaFace.frame)
@@ -83,7 +83,7 @@ class RecommendationVC: UIViewController {
     }
     
     func faceTapped(sender: UITapGestureRecognizer) {
-        println("face was tapped")
+        print("face was tapped")
         switch tapCount {
         case 0:
             bodyView?.removeFromSuperview()
@@ -96,11 +96,11 @@ class RecommendationVC: UIViewController {
         case 2:
             outfitsRecView?.removeFromSuperview()
             delegate?.dismissRecommendationView()
-            var appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.window!.rootViewController = appDelegate.navigationController
 //            appDelegate.setupMeasurementsButton()
         default:
-            println("no cases match")
+            print("no cases match")
         }
     }
 }
