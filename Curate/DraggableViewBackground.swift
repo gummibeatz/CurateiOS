@@ -160,16 +160,12 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     func setupView(){
         self.backgroundColor = UIColor(red: 0.92, green: 0.93, blue: 0.95, alpha: 1) //the gray background colors
-        let menuButton = UIButton(frame: CGRect(x: 17, y: 34, width: 22, height: 15))
-        let messageButton = UIButton(frame: CGRect(x: 284, y: 34, width: 18, height: 18))
         let xButton = UIButton(frame: CGRect(x: self.frame.width/4 - 70, y: self.frame.height - 120, width: 59, height: 59))
 //        let haveButton = UIButton(frame:CGRect(x: self.frame.width/2 - 70, y: self.frame.height - 120, width: 59, height: 59))
         let undoButton = UIButton(frame: CGRect(x: self.frame.width/2 - 29.5, y: self.frame.height - 120, width: 59, height: 59))
         let checkButton = UIButton(frame: CGRect(x: self.frame.width - 70, y: self.frame.height - 120, width: 59, height: 59))
         
-        
-        menuButton.setImage(UIImage(named: "menuButton"), forState: .Normal)
-        messageButton.setImage(UIImage(named: "messageButton"), forState: .Normal)
+
         xButton.setImage(UIImage(named: "xButton"), forState: .Normal)
 //        haveButton.setImage(UIImage(named: "haveButton"), forState: .Normal)
         undoButton.setImage(UIImage(named: "undoButton"), forState: .Normal)
@@ -182,8 +178,6 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         undoButton.addTarget(self, action: "undoAction", forControlEvents: .TouchUpInside)
         
         
-        self.addSubview(menuButton)
-        self.addSubview(messageButton)
         self.addSubview(xButton)
 //        self.addSubview(haveButton)
         self.addSubview(undoButton)
