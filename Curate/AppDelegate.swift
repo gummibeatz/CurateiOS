@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         
         // Setting up segmented view control
         let viewControllers: NSArray = self.segmentViewControllers()
+
         self.segmentsController.setTheNavigationController(navigationController)
         self.segmentsController.setTheViewControllers(viewControllers)
         let titles: NSArray = ["WardrobeBuilder", "OutfitBuilder", "Outfits"]
@@ -63,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         self.segmentedControl.setWidth(50, forSegmentAtIndex: 0)
         self.segmentedControl.setWidth(50, forSegmentAtIndex: 1)
         self.segmentedControl.setWidth(50, forSegmentAtIndex: 2)
+        
         
         self.segmentedControl.tintColor = UIColor.grayColor()
         
