@@ -54,3 +54,7 @@ class MainNavigationController: UINavigationController {
     }
     
 }
+
+extension MainNavigationController: UINavigationBarDelegate {
+    
+}

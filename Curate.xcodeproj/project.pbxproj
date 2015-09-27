@@ -55,6 +55,7 @@
 		CC425A431BB84A380021664C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A421BB84A380021664C /* MainNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
 		CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC425A461BB870BB0021664C /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
 		CC425A491BB873E60021664C /* oldIntroViewSetup in Resources */ = {isa = PBXBuildFile; fileRef = CC425A481BB873E60021664C /* oldIntroViewSetup */; settings = {ASSET_TAGS = (); }; };
+		CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A4B1BB885530021664C /* MainTabBarController.swift */; settings = {ASSET_TAGS = (); }; };
 		CC8691001BA2496500D5BEC7 /* PersonaOutfitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
 		CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */; };
@@ -126,6 +127,7 @@
 		CC425A421BB84A380021664C /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		CC425A461BB870BB0021664C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		CC425A481BB873E60021664C /* oldIntroViewSetup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oldIntroViewSetup; sourceTree = "<group>"; };
+		CC425A4B1BB885530021664C /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOutfitsView.swift; sourceTree = "<group>"; };
 		CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOverlayView.swift; sourceTree = "<group>"; };
 		CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaChoiceView.xib; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				1AA3C5B61A461003008C732C /* SegmentsController.txt */,
+				CC425A421BB84A380021664C /* MainNavigationController.swift */,
 				CCE2D1C41BA08487008197F4 /* OpeningViews */,
 				1A9C5D1C1B0E50E300B828D9 /* oldFunctions.txt */,
 				1A9C5D1F1B0E512D00B828D9 /* todo.txt */,
@@ -264,7 +267,7 @@
 			children = (
 				1A046E2B1B725B9900D25AE5 /* PersonaVC.swift */,
 				CC425A401BB84A1A0021664C /* OpeningNavigationController.swift */,
-				CC425A421BB84A380021664C /* MainNavigationController.swift */,
+				CC425A4B1BB885530021664C /* MainTabBarController.swift */,
 				1A046E311B7265A900D25AE5 /* RecommendationVC.swift */,
 				1A5F4B911A93E22F000B9705 /* FBLoginVC.swift */,
 				1AA3C59E1A460234008C732C /* MeasurementsVC.swift */,
@@ -325,6 +328,13 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		CC425A4A1BB8816B0021664C /* navigationViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = navigationViews;
+			sourceTree = "<group>";
+		};
 		CC8691011BA24ED800D5BEC7 /* openingViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +366,7 @@
 		CCE2D1C51BA0849A008197F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CC425A4A1BB8816B0021664C /* navigationViews */,
 				CC8691011BA24ED800D5BEC7 /* openingViews */,
 				CC8691021BA24EEB00D5BEC7 /* wardrobeBuilderViews */,
 			);
@@ -474,6 +485,7 @@
 			files = (
 				CC425A411BB84A1A0021664C /* OpeningNavigationController.swift in Sources */,
 				1A8CCC1F1AD05406001E3AF0 /* StackStruct.swift in Sources */,
+				CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */,
 				1AA3C5A21A460234008C732C /* DraggableView.swift in Sources */,
 				1AA3C5A31A460234008C732C /* OverlayView.swift in Sources */,
 				1A5F4B921A93E22F000B9705 /* FBLoginVC.swift in Sources */,
