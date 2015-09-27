@@ -13,9 +13,9 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLocationManagerDelegate {
     
     var window: UIWindow?
-    var segmentsController: SegmentsController = SegmentsController()
-    var segmentedControl: UISegmentedControl = UISegmentedControl()
-    var navigationController: UINavigationController = UINavigationController()
+//    var segmentsController: SegmentsController = SegmentsController()
+//    var segmentedControl: UISegmentedControl = UISegmentedControl()
+//    var navigationController: UINavigationController = UINavigationController()
     var measurementsVC: MeasurementsVC?
     var personaController: PersonaVC?
     var fbLoginVC: FBLoginVC = FBLoginVC()
@@ -33,12 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         
         //Setting up FBLoginView
         self.window = UIWindow()
-        window!.rootViewController = FBLoginVC()
+//        window!.rootViewController = FBLoginVC()
         self.window!.makeKeyAndVisible()
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.frame = UIScreen.mainScreen().bounds
         
-        //        window?.rootViewController = fbLoginVC
+                window?.rootViewController = fbLoginVC
         FBLoginView.self
         FBProfilePictureView.self
         
@@ -52,28 +52,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
             locationManager.startUpdatingLocation()
         }
         
+        
+        
         // Setting up segmented view control
-        let viewControllers: NSArray = self.segmentViewControllers()
-
-        self.segmentsController.setTheNavigationController(navigationController)
-        self.segmentsController.setTheViewControllers(viewControllers)
-        let titles: NSArray = ["WardrobeBuilder", "OutfitBuilder", "Outfits"]
-        self.segmentedControl = UISegmentedControl(items: titles as [AnyObject])
-        self.segmentedControl.addTarget(self.segmentsController, action: "indexDidChangeForSegmentedControl:", forControlEvents: UIControlEvents.ValueChanged)
-        
-        self.segmentedControl.setWidth(50, forSegmentAtIndex: 0)
-        self.segmentedControl.setWidth(50, forSegmentAtIndex: 1)
-        self.segmentedControl.setWidth(50, forSegmentAtIndex: 2)
-        
-        
-        self.segmentedControl.tintColor = UIColor.grayColor()
-        
-        self.segmentedControl.setImage(RBResizeImage(UIImage(named: "Swipe")!, targetSize: CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal) , forSegmentAtIndex: 0)
-        self.segmentedControl.setImage(RBResizeImage(UIImage(named: "Wardrobe")!, targetSize: CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 1)
-        self.segmentedControl.setImage(RBResizeImage(UIImage(named: "Outfit")!, targetSize: CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 2)
-        
-        
-        self.firstUserExperience()
+//        let viewControllers: NSArray = self.segmentViewControllers()
+//
+//        self.segmentsController.setTheNavigationController(navigationController)
+//        self.segmentsController.setTheViewControllers(viewControllers)
+//        let titles: NSArray = ["WardrobeBuilder", "OutfitBuilder", "Outfits"]
+//        self.segmentedControl = UISegmentedControl(items: titles as [AnyObject])
+//        self.segmentedControl.addTarget(self.segmentsController, action: "indexDidChangeForSegmentedControl:", forControlEvents: UIControlEvents.ValueChanged)
+//        
+//        self.segmentedControl.setWidth(50, forSegmentAtIndex: 0)
+//        self.segmentedControl.setWidth(50, forSegmentAtIndex: 1)
+//        self.segmentedControl.setWidth(50, forSegmentAtIndex: 2)
+//        
+//        
+//        self.segmentedControl.tintColor = UIColor.grayColor()
+//        
+//        self.segmentedControl.setImage(RBResizeImage(UIImage(named: "Swipe")!, targetSize: CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal) , forSegmentAtIndex: 0)
+//        self.segmentedControl.setImage(RBResizeImage(UIImage(named: "Wardrobe")!, targetSize: CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 1)
+//        self.segmentedControl.setImage(RBResizeImage(UIImage(named: "Outfit")!, targetSize: CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 2)
+//        
+//        
+//        self.firstUserExperience()
         
         personaController = PersonaVC()
         measurementsVC = MeasurementsVC()
@@ -93,15 +95,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         return viewControllers
     }
 
-    func firstUserExperience() {
-        self.segmentedControl.selectedSegmentIndex = WARDROBEBUILDERINDEX
-        self.segmentsController.indexDidChangeForSegmentedControl(self.segmentedControl)
-    }
-
+//    func firstUserExperience() {
+//        self.segmentedControl.selectedSegmentIndex = WARDROBEBUILDERINDEX
+//        self.segmentsController.indexDidChangeForSegmentedControl(self.segmentedControl)
+//    }
+//
     func editButtonTapped() {
-        print("editButtonTappedDelegated")
-        self.segmentedControl.selectedSegmentIndex = OUTFITBUILDERINDEX
-        self.segmentsController.indexDidChangeForSegmentedControl(self.segmentedControl)
+        print("editButtonTappedDelegated in AppDelegate")
+//        self.segmentedControl.selectedSegmentIndex = OUTFITBUILDERINDEX
+//        self.segmentsController.indexDidChangeForSegmentedControl(self.segmentedControl)
     }
 
     func setupMeasurementsButton() {

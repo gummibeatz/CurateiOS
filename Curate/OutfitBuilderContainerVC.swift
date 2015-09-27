@@ -15,16 +15,15 @@ class OutfitBuilderContainerVC: UIViewController, PropertiesViewVCDelegate, Outf
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("in viewdidload for outfitbuildercontainer")
         outfitBuilderVC.outfitBuilderVCDelegate = self
         self.loadViewController(outfitBuilderVC)
     }
-    
     
     //loads the bottom most layer view controller --> outfitbuilderVC with all the pickerviews
     func loadViewController(content: UIViewController) {
         self.addChildViewController(content)
         content.view.frame = self.frameForOutfitBuilderVC
-        
         self.view.addSubview(content.view)
         content.didMoveToParentViewController(self)
     }

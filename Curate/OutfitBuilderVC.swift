@@ -48,6 +48,7 @@ class OutfitBuilderVC: UIViewController, AddOutfitViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("loading view for outfitBuilder")
         
         getCurateAuthToken(getFbAuthToken(), completionHandler: {
             curateAuthtoken in

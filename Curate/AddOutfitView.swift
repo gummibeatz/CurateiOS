@@ -129,9 +129,9 @@ class AddOutfitView: UIView, UITextFieldDelegate {
             writeCustomObjArraytoUserDefaults(ownedOutfits, fileName: "ownedOutfits")
             
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.segmentedControl.selectedSegmentIndex = appDelegate.OUTFITSINDEX
-            appDelegate.segmentsController.indexDidChangeForSegmentedControl(appDelegate.segmentedControl)
-            delegate?.dismissOutfitView()
+//            appDelegate.segmentedControl.selectedSegmentIndex = appDelegate.OUTFITSINDEX
+//            appDelegate.segmentsController.indexDidChangeForSegmentedControl(appDelegate.segmentedControl)
+//            delegate?.dismissOutfitView()
         }
     }
     

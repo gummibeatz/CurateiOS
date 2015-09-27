@@ -350,7 +350,7 @@ class MeasurementsVC: UIViewController {
             })
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             self.okButton!.removeFromSuperview()
-            appDelegate.window!.rootViewController = appDelegate.navigationController
+//            appDelegate.window!.rootViewController = appDelegate.navigationController
 //            appDelegate.setupMeasurementsButton()
         }
     }

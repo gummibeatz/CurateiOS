@@ -41,7 +41,7 @@
 		1AA3C5A91A460316008C732C /* VNeck in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5A81A460316008C732C /* VNeck */; };
 		1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5AE1A46035A008C732C /* measureTape.jpg */; };
 		1AA3C5B11A46035A008C732C /* tshirtIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5AF1A46035A008C732C /* tshirtIcon.jpg */; };
-		1AA3C5B71A461003008C732C /* SegmentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C5B61A461003008C732C /* SegmentsController.swift */; };
+		1AA3C5B71A461003008C732C /* SegmentsController.txt in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C5B61A461003008C732C /* SegmentsController.txt */; };
 		1AC9AC4B1AF2E9470090E108 /* AddOutfitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC9AC4A1AF2E9470090E108 /* AddOutfitView.swift */; };
 		1ACC8B101A58C82200093290 /* PropertiesBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */; };
 		1ACC8B111A58C82200093290 /* PropertiesFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */; };
@@ -111,7 +111,7 @@
 		1AA3C5A81A460316008C732C /* VNeck */ = {isa = PBXFileReference; lastKnownFileType = folder; path = VNeck; sourceTree = "<group>"; };
 		1AA3C5AE1A46035A008C732C /* measureTape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = measureTape.jpg; sourceTree = "<group>"; };
 		1AA3C5AF1A46035A008C732C /* tshirtIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tshirtIcon.jpg; sourceTree = "<group>"; };
-		1AA3C5B61A461003008C732C /* SegmentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentsController.swift; sourceTree = "<group>"; };
+		1AA3C5B61A461003008C732C /* SegmentsController.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SegmentsController.txt; sourceTree = "<group>"; };
 		1AC9AC4A1AF2E9470090E108 /* AddOutfitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddOutfitView.swift; sourceTree = "<group>"; };
 		1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesBackView.swift; sourceTree = "<group>"; };
 		1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesFrontView.swift; sourceTree = "<group>"; };
@@ -185,6 +185,7 @@
 		1A9C5D1E1B0E50F100B828D9 /* oldFunctionsAndMiscellaneous */ = {
 			isa = PBXGroup;
 			children = (
+				1AA3C5B61A461003008C732C /* SegmentsController.txt */,
 				CCE2D1C41BA08487008197F4 /* OpeningViews */,
 				1A9C5D1C1B0E50E300B828D9 /* oldFunctions.txt */,
 				1A9C5D1F1B0E512D00B828D9 /* todo.txt */,
@@ -218,7 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				1AA3C5761A4601B2008C732C /* AppDelegate.swift */,
-				1AA3C5B61A461003008C732C /* SegmentsController.swift */,
 				1A8CCC1D1ACB2832001E3AF0 /* GlobalFunctions */,
 				CCE2D1C51BA0849A008197F4 /* Views */,
 				1AA3C5B21A460376008C732C /* ViewControllers */,
@@ -496,7 +496,7 @@
 				1AA3C5A61A460234008C732C /* MeasurementsVC.swift in Sources */,
 				1AA3C57A1A4601B2008C732C /* Curate.xcdatamodeld in Sources */,
 				CCE2D1C91BA09A1F008197F4 /* PersonaVCwithXib.swift in Sources */,
-				1AA3C5B71A461003008C732C /* SegmentsController.swift in Sources */,
+				1AA3C5B71A461003008C732C /* SegmentsController.txt in Sources */,
 				1AF1A27C1ACA41E1006770D6 /* Indexes.swift in Sources */,
 				1A12D9011A6EE16000DA3617 /* OutfitsContainerVC.swift in Sources */,
 				1AA3C5A71A460234008C732C /* OutfitBuilderVC.swift in Sources */,
@@ -568,7 +568,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -606,7 +606,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
