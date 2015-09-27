@@ -39,6 +39,8 @@ class MainNavigationController: UINavigationController {
         segmentedControl.setImage(RBResizeImage(UIImage(named: "Wardrobe")!, targetSize: CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 1)
         segmentedControl.setImage(RBResizeImage(UIImage(named: "Outfit")!, targetSize: CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 2)
         
+        segmentedControl.tintColor = UIColor.grayColor()
+        
         let startIndex = 0
         segmentedControl.selectedSegmentIndex = startIndex
         self.indexDidChangeForSegmentedControl(segmentedControl)
