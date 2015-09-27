@@ -53,7 +53,8 @@
 		1AF4B8E51AED30E40007C526 /* Clothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B8E41AED30E40007C526 /* Clothing.swift */; };
 		CC425A411BB84A1A0021664C /* OpeningNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A401BB84A1A0021664C /* OpeningNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
 		CC425A431BB84A380021664C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A421BB84A380021664C /* MainNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
-		CC4A49C71BA361010024BB54 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC4A49C61BA361010024BB54 /* View.xib */; };
+		CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC425A461BB870BB0021664C /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
+		CC425A491BB873E60021664C /* oldIntroViewSetup in Resources */ = {isa = PBXBuildFile; fileRef = CC425A481BB873E60021664C /* oldIntroViewSetup */; settings = {ASSET_TAGS = (); }; };
 		CC8691001BA2496500D5BEC7 /* PersonaOutfitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
 		CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */; };
@@ -123,7 +124,8 @@
 		1AF4B8E41AED30E40007C526 /* Clothing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clothing.swift; sourceTree = "<group>"; };
 		CC425A401BB84A1A0021664C /* OpeningNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningNavigationController.swift; sourceTree = "<group>"; };
 		CC425A421BB84A380021664C /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
-		CC4A49C61BA361010024BB54 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		CC425A461BB870BB0021664C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		CC425A481BB873E60021664C /* oldIntroViewSetup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oldIntroViewSetup; sourceTree = "<group>"; };
 		CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOutfitsView.swift; sourceTree = "<group>"; };
 		CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOverlayView.swift; sourceTree = "<group>"; };
 		CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaChoiceView.xib; sourceTree = "<group>"; };
@@ -328,7 +330,7 @@
 			children = (
 				CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */,
 				CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */,
-				CC4A49C61BA361010024BB54 /* View.xib */,
+				CC425A461BB870BB0021664C /* LaunchScreen.xib */,
 			);
 			name = openingViews;
 			sourceTree = "<group>";
@@ -346,6 +348,7 @@
 			children = (
 				CCE2D1C81BA09A1F008197F4 /* PersonaVCwithXib.swift */,
 				CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */,
+				CC425A481BB873E60021664C /* oldIntroViewSetup */,
 			);
 			name = OpeningViews;
 			sourceTree = "<group>";
@@ -442,11 +445,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */,
 				1AA3C5B11A46035A008C732C /* tshirtIcon.jpg in Resources */,
 				1AA3C5A91A460316008C732C /* VNeck in Resources */,
 				1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */,
+				CC425A491BB873E60021664C /* oldIntroViewSetup in Resources */,
 				1A9C5D1D1B0E50E300B828D9 /* oldFunctions.txt in Resources */,
-				CC4A49C71BA361010024BB54 /* View.xib in Resources */,
 				CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */,
 				1A9C5D201B0E512D00B828D9 /* todo.txt in Resources */,
 				1AA3C5811A4601B2008C732C /* Images.xcassets in Resources */,

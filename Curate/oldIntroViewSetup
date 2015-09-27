@@ -1,0 +1,16 @@
+func setupIntroView() {
+let title = UILabel(frame: CGRect(x: UIScreen.mainScreen().bounds.midX - 200, y: 125, width: 400, height: 50))
+title.text = "C U R A T E"
+title.textAlignment = NSTextAlignment.Center
+title.textColor = UIColor.whiteColor()
+title.font = UIFont.systemFontOfSize(40)
+
+let imageView: UIImageView = UIImageView(frame: CGRect(x: UIScreen.mainScreen().bounds.midX - 75, y: 250, width: 150, height: 150))
+imageView.image = UIImage(named: "CurateBowtieBlack")
+
+introView.addSubview(imageView)
+introView.addSubview(title)
+introView.backgroundColor = UIColor.blackColor()
+self.view.addSubview(introView)
+print("introview setup")
+}
