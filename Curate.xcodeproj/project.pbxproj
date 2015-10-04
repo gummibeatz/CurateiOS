@@ -55,6 +55,7 @@
 		CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC425A461BB870BB0021664C /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
 		CC425A491BB873E60021664C /* oldIntroViewSetup in Resources */ = {isa = PBXBuildFile; fileRef = CC425A481BB873E60021664C /* oldIntroViewSetup */; settings = {ASSET_TAGS = (); }; };
 		CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A4B1BB885530021664C /* MainTabBarController.swift */; settings = {ASSET_TAGS = (); }; };
+		CC541A2D1BC0CA15004BAEB9 /* modelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A2C1BC0CA15004BAEB9 /* modelType.swift */; settings = {ASSET_TAGS = (); }; };
 		CC8691001BA2496500D5BEC7 /* PersonaOutfitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
 		CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */; };
@@ -127,6 +128,7 @@
 		CC425A461BB870BB0021664C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		CC425A481BB873E60021664C /* oldIntroViewSetup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oldIntroViewSetup; sourceTree = "<group>"; };
 		CC425A4B1BB885530021664C /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		CC541A2C1BC0CA15004BAEB9 /* modelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelType.swift; sourceTree = "<group>"; };
 		CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOutfitsView.swift; sourceTree = "<group>"; };
 		CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOverlayView.swift; sourceTree = "<group>"; };
 		CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaChoiceView.xib; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				1AF1A2721ACA3FFF006770D6 /* CurateAPICalls.swift */,
 				1AEC45591B4B8E4C009D8D9A /* WeatherAPICalls.swift */,
 				1A046E2D1B725CAE00D25AE5 /* globalConstants.swift */,
+				CC541A2C1BC0CA15004BAEB9 /* modelType.swift */,
 			);
 			name = GlobalFunctions;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				CCE2D1C91BA09A1F008197F4 /* PersonaVCwithXib.swift in Sources */,
 				1AF1A27C1ACA41E1006770D6 /* Indexes.swift in Sources */,
 				1A12D9011A6EE16000DA3617 /* OutfitsContainerVC.swift in Sources */,
+				CC541A2D1BC0CA15004BAEB9 /* modelType.swift in Sources */,
 				1AA3C5A71A460234008C732C /* OutfitBuilderVC.swift in Sources */,
 				1A8CCC1A1ACB1E77001E3AF0 /* Top.swift in Sources */,
 				1A96E9A81A58C67E00C23C0E /* PropertiesViewVC.swift in Sources */,
