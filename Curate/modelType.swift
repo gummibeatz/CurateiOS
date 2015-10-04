@@ -6,6 +6,8 @@
 //  Copyright © 2015 Linus Liang. All rights reserved.
 //
 
+// courtesy of HAS http://stackoverflow.com/questions/26028918/ios-how-to-determine-iphone-model-in-swift
+
 import Foundation
 import UIKit
 
