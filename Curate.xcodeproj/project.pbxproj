@@ -41,7 +41,6 @@
 		1AA3C5A91A460316008C732C /* VNeck in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5A81A460316008C732C /* VNeck */; };
 		1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5AE1A46035A008C732C /* measureTape.jpg */; };
 		1AA3C5B11A46035A008C732C /* tshirtIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C5AF1A46035A008C732C /* tshirtIcon.jpg */; };
-		1AA3C5B71A461003008C732C /* SegmentsController.txt in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C5B61A461003008C732C /* SegmentsController.txt */; };
 		1AC9AC4B1AF2E9470090E108 /* AddOutfitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC9AC4A1AF2E9470090E108 /* AddOutfitView.swift */; };
 		1ACC8B101A58C82200093290 /* PropertiesBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */; };
 		1ACC8B111A58C82200093290 /* PropertiesFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */; };
@@ -266,8 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				1A046E2B1B725B9900D25AE5 /* PersonaVC.swift */,
-				CC425A401BB84A1A0021664C /* OpeningNavigationController.swift */,
-				CC425A4B1BB885530021664C /* MainTabBarController.swift */,
+				CC425A4D1BB88A2E0021664C /* Containers */,
 				1A046E311B7265A900D25AE5 /* RecommendationVC.swift */,
 				1A5F4B911A93E22F000B9705 /* FBLoginVC.swift */,
 				1AA3C59E1A460234008C732C /* MeasurementsVC.swift */,
@@ -333,6 +331,15 @@
 			children = (
 			);
 			name = navigationViews;
+			sourceTree = "<group>";
+		};
+		CC425A4D1BB88A2E0021664C /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				CC425A401BB84A1A0021664C /* OpeningNavigationController.swift */,
+				CC425A4B1BB885530021664C /* MainTabBarController.swift */,
+			);
+			name = Containers;
 			sourceTree = "<group>";
 		};
 		CC8691011BA24ED800D5BEC7 /* openingViews */ = {
@@ -512,7 +519,6 @@
 				1AA3C5A61A460234008C732C /* MeasurementsVC.swift in Sources */,
 				1AA3C57A1A4601B2008C732C /* Curate.xcdatamodeld in Sources */,
 				CCE2D1C91BA09A1F008197F4 /* PersonaVCwithXib.swift in Sources */,
-				1AA3C5B71A461003008C732C /* SegmentsController.txt in Sources */,
 				1AF1A27C1ACA41E1006770D6 /* Indexes.swift in Sources */,
 				1A12D9011A6EE16000DA3617 /* OutfitsContainerVC.swift in Sources */,
 				1AA3C5A71A460234008C732C /* OutfitBuilderVC.swift in Sources */,
