@@ -133,11 +133,11 @@ class PersonaVC: UIViewController, RecommendationVCDelegate {
             print("tech tapped")
             recommendationVC.personaImage = UIImage(named: "Tech Persona")
         case stylishTag:
+            print("stylish tapped")
+            recommendationVC.personaImage = UIImage(named: "Stylish Persona")
+        case financeTag:
             print("finance tapped")
             recommendationVC.personaImage = UIImage(named: "Finance Persona")
-        case financeTag:
-            print("stylishtapped")
-            recommendationVC.personaImage = UIImage(named: "Stylish Persona")
         default:
             print("error no tags match tapped view")
         }

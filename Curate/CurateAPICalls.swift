@@ -315,7 +315,7 @@ func getMatches(curateAuthToken: String, base_clothing: String, completionHandle
     getWeather({
         currentTemp in
         let url: NSURL = NSURL(string: baseURL + "/api/v1/matches?authentication_token=\(curateAuthToken)&&temperature=\(currentTemp)&&base_clothing=\(fbase_clothing)")!
-        
+        print(url)
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

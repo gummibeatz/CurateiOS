@@ -50,7 +50,6 @@
 		1AF1A27D1ACA41E1006770D6 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2791ACA41E1006770D6 /* Tokens.swift */; };
 		1AF1A27F1ACA41E1006770D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A27B1ACA41E1006770D6 /* User.swift */; };
 		1AF4B8E51AED30E40007C526 /* Clothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B8E41AED30E40007C526 /* Clothing.swift */; };
-		CC425A411BB84A1A0021664C /* OpeningNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A401BB84A1A0021664C /* OpeningNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
 		CC425A431BB84A380021664C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A421BB84A380021664C /* MainNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
 		CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC425A461BB870BB0021664C /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
 		CC425A491BB873E60021664C /* oldIntroViewSetup in Resources */ = {isa = PBXBuildFile; fileRef = CC425A481BB873E60021664C /* oldIntroViewSetup */; settings = {ASSET_TAGS = (); }; };
@@ -126,7 +125,6 @@
 		1AF1A2791ACA41E1006770D6 /* Tokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		1AF1A27B1ACA41E1006770D6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1AF4B8E41AED30E40007C526 /* Clothing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clothing.swift; sourceTree = "<group>"; };
-		CC425A401BB84A1A0021664C /* OpeningNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningNavigationController.swift; sourceTree = "<group>"; };
 		CC425A421BB84A380021664C /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		CC425A461BB870BB0021664C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		CC425A481BB873E60021664C /* oldIntroViewSetup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oldIntroViewSetup; sourceTree = "<group>"; };
@@ -345,7 +343,6 @@
 		CC425A4D1BB88A2E0021664C /* Containers */ = {
 			isa = PBXGroup;
 			children = (
-				CC425A401BB84A1A0021664C /* OpeningNavigationController.swift */,
 				CC425A4B1BB885530021664C /* MainTabBarController.swift */,
 			);
 			name = Containers;
@@ -504,7 +501,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC425A411BB84A1A0021664C /* OpeningNavigationController.swift in Sources */,
 				1A8CCC1F1AD05406001E3AF0 /* StackStruct.swift in Sources */,
 				CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */,
 				1AA3C5A21A460234008C732C /* DraggableView.swift in Sources */,
@@ -658,14 +654,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kenneth Kuo (U29WM43T3L)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Curate/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Curate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -680,15 +677,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kenneth Kuo (U29WM43T3L)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Curate/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Curate;
 				PRODUCT_NAME = "$(TARGET_NAME)";

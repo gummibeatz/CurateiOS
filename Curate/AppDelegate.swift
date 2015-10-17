@@ -33,12 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         
         //Setting up FBLoginView
         self.window = UIWindow()
-//        window!.rootViewController = FBLoginVC()
         self.window!.makeKeyAndVisible()
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.frame = UIScreen.mainScreen().bounds
+        window?.rootViewController = fbLoginVC
         
-                window?.rootViewController = fbLoginVC
         FBLoginView.self
         FBProfilePictureView.self
         
