@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PersonaScreen5sand6: UIView {
+class PersonaScreen: UIView {
     @IBOutlet weak var techPersona: UIImageView!
     @IBOutlet weak var stylishPersona: UIImageView!
     @IBOutlet weak var financePersona: UIImageView!

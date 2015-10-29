@@ -57,12 +57,19 @@
 		CC541A2D1BC0CA15004BAEB9 /* modelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A2C1BC0CA15004BAEB9 /* modelType.swift */; };
 		CC541A301BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC541A2E1BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib */; };
 		CC541A311BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC541A2F1BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib */; };
-		CC541A331BC0CE29004BAEB9 /* PersonaScreen5sand6.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A321BC0CE29004BAEB9 /* PersonaScreen5sand6.swift */; };
+		CC541A331BC0CE29004BAEB9 /* PersonaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */; };
+		CC7E71DC1BE2901C004478EF /* old persona view setup in Resources */ = {isa = PBXBuildFile; fileRef = CC7E71DB1BE2901C004478EF /* old persona view setup */; };
 		CC8691001BA2496500D5BEC7 /* PersonaOutfitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
 		CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */; };
 		CCE2D1C91BA09A1F008197F4 /* PersonaVCwithXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE2D1C81BA09A1F008197F4 /* PersonaVCwithXib.swift */; };
 		CCE2D1CB1BA0BE94008197F4 /* PersonaPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */; };
+		CCE96B331BE28E540093F93D /* PersonaScreen5S.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B301BE28E540093F93D /* PersonaScreen5S.xib */; };
+		CCE96B341BE28E540093F93D /* PersonaScreen6.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B311BE28E540093F93D /* PersonaScreen6.xib */; };
+		CCE96B351BE28E540093F93D /* PersonaScreen6P.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B321BE28E540093F93D /* PersonaScreen6P.xib */; };
+		CCE96B391BE28E800093F93D /* InfoPage1For5S.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B361BE28E800093F93D /* InfoPage1For5S.xib */; };
+		CCE96B3A1BE28E800093F93D /* InfoPage1For6.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B371BE28E800093F93D /* InfoPage1For6.xib */; };
+		CCE96B3B1BE28E800093F93D /* InfoPage1For6P.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B381BE28E800093F93D /* InfoPage1For6P.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,12 +139,19 @@
 		CC541A2C1BC0CA15004BAEB9 /* modelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelType.swift; sourceTree = "<group>"; };
 		CC541A2E1BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaScreen5sand6.xib; sourceTree = "<group>"; };
 		CC541A2F1BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaScreen6Plus.xib; sourceTree = "<group>"; };
-		CC541A321BC0CE29004BAEB9 /* PersonaScreen5sand6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaScreen5sand6.swift; sourceTree = "<group>"; };
+		CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaScreen.swift; sourceTree = "<group>"; };
+		CC7E71DB1BE2901C004478EF /* old persona view setup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "old persona view setup"; sourceTree = "<group>"; };
 		CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOutfitsView.swift; sourceTree = "<group>"; };
 		CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOverlayView.swift; sourceTree = "<group>"; };
 		CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaChoiceView.xib; sourceTree = "<group>"; };
 		CCE2D1C81BA09A1F008197F4 /* PersonaVCwithXib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaVCwithXib.swift; sourceTree = "<group>"; };
 		CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaPreferencesView.swift; sourceTree = "<group>"; };
+		CCE96B301BE28E540093F93D /* PersonaScreen5S.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonaScreen5S.xib; path = ../../CurateScreens/Test/PersonaScreen5S.xib; sourceTree = "<group>"; };
+		CCE96B311BE28E540093F93D /* PersonaScreen6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonaScreen6.xib; path = ../../CurateScreens/Test/PersonaScreen6.xib; sourceTree = "<group>"; };
+		CCE96B321BE28E540093F93D /* PersonaScreen6P.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonaScreen6P.xib; path = ../../CurateScreens/Test/PersonaScreen6P.xib; sourceTree = "<group>"; };
+		CCE96B361BE28E800093F93D /* InfoPage1For5S.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoPage1For5S.xib; path = ../../CurateScreens/Test/InfoPage1For5S.xib; sourceTree = "<group>"; };
+		CCE96B371BE28E800093F93D /* InfoPage1For6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoPage1For6.xib; path = ../../CurateScreens/Test/InfoPage1For6.xib; sourceTree = "<group>"; };
+		CCE96B381BE28E800093F93D /* InfoPage1For6P.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoPage1For6P.xib; path = ../../CurateScreens/Test/InfoPage1For6P.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,15 +362,37 @@
 			name = Containers;
 			sourceTree = "<group>";
 		};
+		CC7E71DD1BE29901004478EF /* personaScreens */ = {
+			isa = PBXGroup;
+			children = (
+				CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */,
+				CC541A2E1BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib */,
+				CCE96B301BE28E540093F93D /* PersonaScreen5S.xib */,
+				CCE96B311BE28E540093F93D /* PersonaScreen6.xib */,
+				CCE96B321BE28E540093F93D /* PersonaScreen6P.xib */,
+				CC541A2F1BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib */,
+			);
+			name = personaScreens;
+			sourceTree = "<group>";
+		};
+		CC7E71DE1BE29917004478EF /* infoPages */ = {
+			isa = PBXGroup;
+			children = (
+				CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */,
+				CCE96B371BE28E800093F93D /* InfoPage1For6.xib */,
+				CCE96B381BE28E800093F93D /* InfoPage1For6P.xib */,
+				CCE96B361BE28E800093F93D /* InfoPage1For5S.xib */,
+			);
+			name = infoPages;
+			sourceTree = "<group>";
+		};
 		CC8691011BA24ED800D5BEC7 /* openingViews */ = {
 			isa = PBXGroup;
 			children = (
-				CC541A2E1BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib */,
-				CC541A321BC0CE29004BAEB9 /* PersonaScreen5sand6.swift */,
-				CC541A2F1BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib */,
-				CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */,
-				CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */,
 				CC425A461BB870BB0021664C /* LaunchScreen.xib */,
+				CC7E71DD1BE29901004478EF /* personaScreens */,
+				CC7E71DE1BE29917004478EF /* infoPages */,
+				CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */,
 			);
 			name = openingViews;
 			sourceTree = "<group>";
@@ -375,6 +411,7 @@
 				CCE2D1C81BA09A1F008197F4 /* PersonaVCwithXib.swift */,
 				CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */,
 				CC425A481BB873E60021664C /* oldIntroViewSetup */,
+				CC7E71DB1BE2901C004478EF /* old persona view setup */,
 			);
 			name = OpeningViews;
 			sourceTree = "<group>";
@@ -472,18 +509,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCE96B3B1BE28E800093F93D /* InfoPage1For6P.xib in Resources */,
 				CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */,
 				1AA3C5B11A46035A008C732C /* tshirtIcon.jpg in Resources */,
 				1AA3C5A91A460316008C732C /* VNeck in Resources */,
 				CC541A301BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib in Resources */,
 				1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */,
+				CCE96B341BE28E540093F93D /* PersonaScreen6.xib in Resources */,
 				CC425A491BB873E60021664C /* oldIntroViewSetup in Resources */,
 				1A9C5D1D1B0E50E300B828D9 /* oldFunctions.txt in Resources */,
+				CCE96B331BE28E540093F93D /* PersonaScreen5S.xib in Resources */,
 				CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */,
+				CCE96B3A1BE28E800093F93D /* InfoPage1For6.xib in Resources */,
 				1A9C5D201B0E512D00B828D9 /* todo.txt in Resources */,
+				CCE96B351BE28E540093F93D /* PersonaScreen6P.xib in Resources */,
+				CCE96B391BE28E800093F93D /* InfoPage1For5S.xib in Resources */,
 				CC541A311BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib in Resources */,
 				1AA3C5811A4601B2008C732C /* Images.xcassets in Resources */,
 				1A9C5D221B0E6C7C00B828D9 /* majorBugs.txt in Resources */,
+				CC7E71DC1BE2901C004478EF /* old persona view setup in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +551,7 @@
 				1AA3C5A31A460234008C732C /* OverlayView.swift in Sources */,
 				1A5F4B921A93E22F000B9705 /* FBLoginVC.swift in Sources */,
 				1ACC8B101A58C82200093290 /* PropertiesBackView.swift in Sources */,
-				CC541A331BC0CE29004BAEB9 /* PersonaScreen5sand6.swift in Sources */,
+				CC541A331BC0CE29004BAEB9 /* PersonaScreen.swift in Sources */,
 				1A7B8AA21B5D4BA900C2D552 /* SingleOutfitVC.swift in Sources */,
 				1AA3C5A11A460234008C732C /* DraggableViewBackground.swift in Sources */,
 				1A8CCC211AD05F72001E3AF0 /* Outfit.swift in Sources */,

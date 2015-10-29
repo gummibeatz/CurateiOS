@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PersonaScreen5sand6" customModule="Curate" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PersonaScreen" customModule="Curate" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <userGuides>
@@ -87,29 +86,6 @@ stealth mode?</string>
                     <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="16"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Stylish Persona" translatesAutoresizingMaskIntoConstraints="NO" id="j7J-nM-FaS">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="j7J-nM-FaS" secondAttribute="height" multiplier="121:159" id="M4R-ow-gFX"/>
-                        <constraint firstAttribute="width" secondItem="j7J-nM-FaS" secondAttribute="height" multiplier="100:133" id="WKX-Zk-Hxc"/>
-                        <constraint firstAttribute="width" secondItem="j7J-nM-FaS" secondAttribute="height" multiplier="121:149" id="fUw-mj-RGw"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="M4R-ow-gFX"/>
-                            <exclude reference="WKX-Zk-Hxc"/>
-                            <exclude reference="fUw-mj-RGw"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=compact">
-                        <mask key="constraints">
-                            <exclude reference="M4R-ow-gFX"/>
-                            <exclude reference="WKX-Zk-Hxc"/>
-                            <include reference="fUw-mj-RGw"/>
-                        </mask>
-                    </variation>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfD-Zh-b5i">
                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                     <animations/>
@@ -164,6 +140,29 @@ for you?</string>
                             <exclude reference="HgG-Jp-rMK"/>
                             <exclude reference="RaC-Uc-IDn"/>
                             <exclude reference="ddU-Wz-niW"/>
+                        </mask>
+                    </variation>
+                </imageView>
+                <imageView tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Stylish Persona" translatesAutoresizingMaskIntoConstraints="NO" id="j7J-nM-FaS">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="j7J-nM-FaS" secondAttribute="height" multiplier="121:159" id="M4R-ow-gFX"/>
+                        <constraint firstAttribute="width" secondItem="j7J-nM-FaS" secondAttribute="height" multiplier="100:133" id="WKX-Zk-Hxc"/>
+                        <constraint firstAttribute="width" secondItem="j7J-nM-FaS" secondAttribute="height" multiplier="121:149" id="fUw-mj-RGw"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="M4R-ow-gFX"/>
+                            <exclude reference="WKX-Zk-Hxc"/>
+                            <exclude reference="fUw-mj-RGw"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <exclude reference="M4R-ow-gFX"/>
+                            <exclude reference="WKX-Zk-Hxc"/>
+                            <include reference="fUw-mj-RGw"/>
                         </mask>
                     </variation>
                 </imageView>
@@ -242,12 +241,12 @@ for you?</string>
                     <exclude reference="rhp-Hu-9xN"/>
                     <exclude reference="gjD-lS-087"/>
                     <exclude reference="9Z8-Hx-1Bm"/>
-                    <exclude reference="j7J-nM-FaS"/>
                     <exclude reference="ZfD-Zh-b5i"/>
                     <exclude reference="Qey-3R-x3B"/>
                     <exclude reference="SAY-5h-GjJ"/>
                     <exclude reference="5iK-8D-niq"/>
                     <exclude reference="FgM-83-LeN"/>
+                    <exclude reference="j7J-nM-FaS"/>
                 </mask>
                 <mask key="constraints">
                     <exclude reference="EtN-FD-Vrh"/>
@@ -310,12 +309,12 @@ for you?</string>
                     <include reference="rhp-Hu-9xN"/>
                     <include reference="gjD-lS-087"/>
                     <include reference="9Z8-Hx-1Bm"/>
-                    <include reference="j7J-nM-FaS"/>
                     <include reference="ZfD-Zh-b5i"/>
                     <include reference="Qey-3R-x3B"/>
                     <include reference="SAY-5h-GjJ"/>
                     <include reference="5iK-8D-niq"/>
                     <include reference="FgM-83-LeN"/>
+                    <include reference="j7J-nM-FaS"/>
                 </mask>
                 <mask key="constraints">
                     <include reference="EtN-FD-Vrh"/>
@@ -373,10 +372,10 @@ for you?</string>
                 </mask>
             </variation>
             <connections>
-                <outlet property="financePersona" destination="FgM-83-LeN" id="FhZ-k4-j7t"/>
-                <outlet property="hipsterPersona" destination="rhp-Hu-9xN" id="3Vs-ur-2dV"/>
-                <outlet property="stylishPersona" destination="j7J-nM-FaS" id="4lU-1P-Q4N"/>
-                <outlet property="techPersona" destination="gjD-lS-087" id="m81-m2-kaU"/>
+                <outlet property="financePersona" destination="FgM-83-LeN" id="pj8-z5-Fge"/>
+                <outlet property="hipsterPersona" destination="rhp-Hu-9xN" id="bN6-Oc-4cw"/>
+                <outlet property="stylishPersona" destination="j7J-nM-FaS" id="7Y8-p8-5nA"/>
+                <outlet property="techPersona" destination="gjD-lS-087" id="AAf-wP-L6Q"/>
             </connections>
         </view>
     </objects>

@@ -82,24 +82,8 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
                     self.view.removeFromSuperview()
                     let mainTabBarController = MainTabBarController()
                     appDelegate.window!.rootViewController = mainTabBarController
-//                    appDelegate.window!.rootViewController = appDelegate.navigationController
-//                    appDelegate.setupMeasurementsButton()
             })
-//            let delay = 1 * Double(NSEC_PER_SEC)
-//            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-//            dispatch_after(time, dispatch_get_main_queue()) {
-//                UIView.transitionWithView(appDelegate.window!, duration: 2,
-//                    options: UIViewAnimationOptions.TransitionCrossDissolve,
-//                    animations: {
-//                        self.introView.alpha = 0
-//                        println("animating")
-//                        
-//                    }, completion: {
-//                        animationFinished in
-//                        appDelegate.window!.rootViewController = appDelegate.navigationController
-//                        appDelegate.setupMeasurementsButton()
-//                })
-//            }
+
         } else {
             self.view.insertSubview(loginView, belowSubview: self.introView)
             UIView.animateWithDuration(2, delay: 1, options: [], animations: {
