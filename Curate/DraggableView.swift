@@ -22,8 +22,6 @@ let SCALE_MAX: CGFloat = 0.93 //%%% upper bar for how much the card shrinks. Hig
 let ROTATION_MAX: CGFloat = 1 //%%% the maximum rotation allowed in radians.  Higher = card can keep rotating longer
 let ROTATION_STRENGTH: CGFloat = 320 //%%% strength of rotation. Higher = weaker rotation
 let ROTATION_ANGLE: CGFloat = CGFloat(M_PI)/8 //%%% Higher = stronger rotation angle
-let CARD_HEIGHT: CGFloat = 350 //%%% height of the draggable card
-let CARD_WIDTH: CGFloat = 290  //%%% width of the draggable card
 
 class DraggableView: UIView {
     
@@ -43,7 +41,10 @@ class DraggableView: UIView {
         super.init(frame: frame)
         self.setupView()
         self.backgroundColor = UIColor.whiteColor()
-        information = UIImageView(frame: CGRectMake(0, 0, CGFloat(CARD_WIDTH-20), CGFloat(CARD_HEIGHT-20)))
+        
+        let cardHeight: CGFloat = self.frame.height //%%% height of the draggable card
+        let cardWidth: CGFloat = self.frame.width  //%%% width of the draggable card
+        information = UIImageView(frame: CGRectMake(0, 0, CGFloat(cardWidth-20), CGFloat(cardHeight-20)))
         
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: Selector("beingDragged:"))

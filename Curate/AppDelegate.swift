@@ -206,7 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         if coordinator == nil {
             return nil
         }
-        var managedObjectContext = NSManagedObjectContext()
+        let managedObjectContext = NSManagedObjectContext()
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()

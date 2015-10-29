@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "CheckButton.png",
+      "filename" : "HeartButton.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "CheckButton-1.png",
       "scale" : "2x"
     },
     {

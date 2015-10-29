@@ -348,7 +348,6 @@ class MeasurementsVC: UIViewController {
                 curateAuthToken in
                 postUser(curateAuthToken, preferencesDict: preferencesDict)
             })
-            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             self.okButton!.removeFromSuperview()
 //            appDelegate.window!.rootViewController = appDelegate.navigationController
 //            appDelegate.setupMeasurementsButton()

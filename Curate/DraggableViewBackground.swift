@@ -13,8 +13,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     //declare constants
     let MAX_BUFFER_SIZE = 2 //%%% max number of cards loaded at any given time, must be greater than 1
-    let CARD_HEIGHT: CGFloat = 350 //%%% height of the draggable card
-    let CARD_WIDTH: CGFloat = 290  //%%% width of the draggable card
+    let CARD_HEIGHT: CGFloat = (SCREENWIDTH - SCREENWIDTH/20)*350/290 //%%% height of the draggable card
+    let CARD_WIDTH: CGFloat = SCREENWIDTH - SCREENWIDTH/20  //%%% width of the draggable card
     let RIGHT_SWIPE: Int = 0
     let LEFT_SWIPE: Int = 1
     
@@ -160,26 +160,38 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     func setupView(){
         self.backgroundColor = UIColor(red: 0.92, green: 0.93, blue: 0.95, alpha: 1) //the gray background colors
-        let xButton = UIButton(frame: CGRect(x: self.frame.width/4 - 70, y: self.frame.height - 120, width: 59, height: 59))
-//        let haveButton = UIButton(frame:CGRect(x: self.frame.width/2 - 70, y: self.frame.height - 120, width: 59, height: 59))
-        let undoButton = UIButton(frame: CGRect(x: self.frame.width/2 - 29.5, y: self.frame.height - 120, width: 59, height: 59))
-        let checkButton = UIButton(frame: CGRect(x: self.frame.width - 70, y: self.frame.height - 120, width: 59, height: 59))
         
+        let TAB_BAR_HEIGHT: CGFloat = 49
+        
+        let buttonYPosition:CGFloat = self.frame.height - TAB_BAR_HEIGHT - 80
+        
+        let bigButtonWidth: CGFloat = 59
+        let smallButtonWidth: CGFloat = 49
+        
+        let undoButton = UIButton(frame: CGRect(x: self.frame.width/2 - bigButtonWidth-smallButtonWidth - 20
+            , y: buttonYPosition, width: smallButtonWidth, height: smallButtonWidth))
+        let xButton = UIButton(frame: CGRect(x: self.frame.width/2 - 59 - 10, y: buttonYPosition, width: bigButtonWidth, height: bigButtonWidth))
+        let checkButton = UIButton(frame: CGRect(x: self.frame.width/2 + 10, y: buttonYPosition, width: bigButtonWidth, height: bigButtonWidth))
+        let likeButton = UIButton(frame: CGRect(x: self.frame.width/2 + bigButtonWidth + 20, y: buttonYPosition, width: smallButtonWidth, height: smallButtonWidth))
+
+
 
         xButton.setImage(UIImage(named: "xButton"), forState: .Normal)
 //        haveButton.setImage(UIImage(named: "haveButton"), forState: .Normal)
         undoButton.setImage(UIImage(named: "undoButton"), forState: .Normal)
         checkButton.setImage(UIImage(named: "checkButton"), forState: .Normal)
+        likeButton.setImage(UIImage(named: "HeartButton"), forState: .Normal)
         
         
         xButton.addTarget(self, action: "swipeLeft", forControlEvents: .TouchUpInside)
 //        haveButton.addTarget(self, action: "doubleTapped", forControlEvents: .TouchUpInside)
         checkButton.addTarget(self, action: "swipeRight", forControlEvents: .TouchUpInside)
         undoButton.addTarget(self, action: "undoAction", forControlEvents: .TouchUpInside)
+//        likeButton.addTarget(self, action: "doubleTapped", forControlEvents: .TouchUpInside)
         
         
         self.addSubview(xButton)
-//        self.addSubview(haveButton)
+        self.addSubview(likeButton)
         self.addSubview(undoButton)
         self.addSubview(checkButton)
     }

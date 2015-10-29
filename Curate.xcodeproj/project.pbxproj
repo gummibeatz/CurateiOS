@@ -50,14 +50,14 @@
 		1AF1A27D1ACA41E1006770D6 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A2791ACA41E1006770D6 /* Tokens.swift */; };
 		1AF1A27F1ACA41E1006770D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A27B1ACA41E1006770D6 /* User.swift */; };
 		1AF4B8E51AED30E40007C526 /* Clothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B8E41AED30E40007C526 /* Clothing.swift */; };
-		CC425A431BB84A380021664C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A421BB84A380021664C /* MainNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
-		CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC425A461BB870BB0021664C /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
-		CC425A491BB873E60021664C /* oldIntroViewSetup in Resources */ = {isa = PBXBuildFile; fileRef = CC425A481BB873E60021664C /* oldIntroViewSetup */; settings = {ASSET_TAGS = (); }; };
-		CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A4B1BB885530021664C /* MainTabBarController.swift */; settings = {ASSET_TAGS = (); }; };
-		CC541A2D1BC0CA15004BAEB9 /* modelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A2C1BC0CA15004BAEB9 /* modelType.swift */; settings = {ASSET_TAGS = (); }; };
-		CC541A301BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC541A2E1BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib */; settings = {ASSET_TAGS = (); }; };
-		CC541A311BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC541A2F1BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib */; settings = {ASSET_TAGS = (); }; };
-		CC541A331BC0CE29004BAEB9 /* PersonaScreen5sand6.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A321BC0CE29004BAEB9 /* PersonaScreen5sand6.swift */; settings = {ASSET_TAGS = (); }; };
+		CC425A431BB84A380021664C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A421BB84A380021664C /* MainNavigationController.swift */; };
+		CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC425A461BB870BB0021664C /* LaunchScreen.xib */; };
+		CC425A491BB873E60021664C /* oldIntroViewSetup in Resources */ = {isa = PBXBuildFile; fileRef = CC425A481BB873E60021664C /* oldIntroViewSetup */; };
+		CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A4B1BB885530021664C /* MainTabBarController.swift */; };
+		CC541A2D1BC0CA15004BAEB9 /* modelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A2C1BC0CA15004BAEB9 /* modelType.swift */; };
+		CC541A301BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC541A2E1BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib */; };
+		CC541A311BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC541A2F1BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib */; };
+		CC541A331BC0CE29004BAEB9 /* PersonaScreen5sand6.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A321BC0CE29004BAEB9 /* PersonaScreen5sand6.swift */; };
 		CC8691001BA2496500D5BEC7 /* PersonaOutfitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
 		CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */; };
@@ -589,6 +589,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch *.xcode* *.xcassets (*) .DS_Store CVS .svn .git .hg *.pbproj *.frameworks *.pbxproj";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -635,6 +636,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch *.xcode* *.xcassets (*) .DS_Store CVS .svn .git .hg *.pbproj *.frameworks *.pbxproj";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
