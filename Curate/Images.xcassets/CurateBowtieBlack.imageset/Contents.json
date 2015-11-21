@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "Original Logo Black Background.png"
+      "filename" : "Original Logo Black Background.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

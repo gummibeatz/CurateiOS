@@ -7,12 +7,15 @@
 import UIKit
 import CoreData
 
-class FBLoginVC: UIViewController, FBLoginViewDelegate {
+class LoginVC: UIViewController, FBLoginViewDelegate {
     
     var authToken = String()
     var introView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height))
     
     var viewControllers:[UIViewController] = []
+    var fbLogin: UIButton!
+    var curateLogin: UIButton!
+    var pageControl: UIPageControl = UIPageControl()
     
     lazy var pageController: UIPageViewController = {
         let pageController = UIPageViewController(transitionStyle: UIPageViewControllerTransitionStyle.Scroll, navigationOrientation: .Horizontal , options: nil)
@@ -44,30 +47,9 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let loginView: FBLoginView = FBLoginView()
-        loginView.center = CGPoint(x: UIScreen.mainScreen().bounds.width/2, y: UIScreen.mainScreen().bounds.height - loginView.frame.height/2)
-        
-        let pageControllerFrame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height - loginView.frame.height)
-        
-        viewControllers = [viewController1,viewController2, viewController3]
-        self.pageController.view.frame = pageControllerFrame
-        
-        self.pageController.setViewControllers([viewControllers[0]], direction: .Forward, animated: false, completion: nil)
-        
-        self.pageController.dataSource = self
-        self.pageController.delegate = self
-        
-        self.addChildViewController(self.pageController)
-        self.view.addSubview(self.pageController.view)
-        
-        self.view.backgroundColor = UIColor.darkGrayColor()
-        
-        self.pageController.didMoveToParentViewController(self)
-        
-        
-        
+        setupLoginViews()
+        setupPageViewController(loginOffset: fbLogin.bounds.height + curateLogin.bounds.height)
         setupIntroView()
-    
         
         if(FBSession.activeSession().isOpen) {
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -85,7 +67,7 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
             })
 
         } else {
-            self.view.insertSubview(loginView, belowSubview: self.introView)
+            self.view.insertSubview(fbLogin, belowSubview: self.introView)
             UIView.animateWithDuration(2, delay: 1, options: [], animations: {
                 self.introView.alpha = 0
                 }, completion: {
@@ -93,6 +75,47 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
                     self.introView.removeFromSuperview()
             })
         }
+    }
+    func setupLoginViews() {
+        let buttonHeight: CGFloat = 50
+        let curateString = NSAttributedString(string: "Curate Login")
+        curateLogin = UIButton(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - buttonHeight * 2, width: UIScreen.mainScreen().bounds.width, height: buttonHeight))
+        curateLogin.setAttributedTitle(curateString, forState: .Normal)
+        curateLogin.backgroundColor = UIColor.whiteColor()
+        
+        fbLogin = UIButton(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - buttonHeight, width: UIScreen.mainScreen().bounds.width
+            , height: buttonHeight))
+        let fbString = NSAttributedString(string: "FB Login")
+        fbLogin.setAttributedTitle(fbString, forState: .Normal)
+        fbLogin.addTarget(self, action: "fbLoginTouched", forControlEvents: .TouchUpInside)
+        fbLogin.backgroundColor = UIColor.blueColor()
+        
+        
+        self.view.addSubview(curateLogin)
+        self.view.addSubview(fbLogin)
+    }
+    
+    func setupPageViewController(loginOffset loginOffset: CGFloat) {
+        viewControllers = [viewController1,viewController2, viewController3]
+        self.pageController.view.frame = self.view.frame
+        
+        self.pageController.setViewControllers([viewControllers[0]], direction: .Forward, animated: false, completion: nil)
+        
+        self.pageController.dataSource = self
+        self.pageController.delegate = self
+        self.addChildViewController(self.pageController)
+        self.view.insertSubview(self.pageController.view, belowSubview: curateLogin)
+        
+        self.pageControl.numberOfPages = viewControllers.count
+        self.pageControl.frame = CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - loginOffset - 30, width: UIScreen.mainScreen().bounds.width, height: 10)
+        self.pageControl.tintColor = UIColor.whiteColor()
+        self.pageController.didMoveToParentViewController(self)
+        self.view.addSubview(self.pageControl)
+    }
+   
+    func fbLoginTouched() {
+        print("fbLoginTapped")
+        FBSession.openActiveSessionWithAllowLoginUI(true)
     }
     
     func setupIntroView() {
@@ -156,7 +179,7 @@ class FBLoginVC: UIViewController, FBLoginViewDelegate {
     
 }
 
-extension FBLoginVC: UIPageViewControllerDelegate {
+extension LoginVC: UIPageViewControllerDelegate {
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
         return self.viewControllers.count
     }
@@ -164,9 +187,14 @@ extension FBLoginVC: UIPageViewControllerDelegate {
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
     }
+    
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if !completed {return}
+        self.pageControl.currentPage = viewControllers.indexOf(pageViewController.viewControllers!.last!)!
+    }
 }
 
-extension FBLoginVC: UIPageViewControllerDataSource {
+extension LoginVC: UIPageViewControllerDataSource {
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         var index = viewController.view.tag
         index--
@@ -175,7 +203,6 @@ extension FBLoginVC: UIPageViewControllerDataSource {
         if(index < 0) {
             return nil
         }
-        
         return self.viewControllerAtIndex(index)
     }
     
@@ -187,7 +214,6 @@ extension FBLoginVC: UIPageViewControllerDataSource {
         if(index >= viewControllers.count) {
             return nil
         }
-        
         return self.viewControllerAtIndex(index)
     }
 }

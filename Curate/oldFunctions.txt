@@ -64,3 +64,28 @@ saveCardsIndex()
 //            println("doubleTapped")
 //        }
 //    }
+
+=================================
+        // Setting up segmented view control
+//        let viewControllers: NSArray = self.segmentViewControllers()
+//
+//        self.segmentsController.setTheNavigationController(navigationController)
+//        self.segmentsController.setTheViewControllers(viewControllers)
+//        let titles: NSArray = ["WardrobeBuilder", "OutfitBuilder", "Outfits"]
+//        self.segmentedControl = UISegmentedControl(items: titles as [AnyObject])
+//        self.segmentedControl.addTarget(self.segmentsController, action: "indexDidChangeForSegmentedControl:", forControlEvents: UIControlEvents.ValueChanged)
+//        
+//        self.segmentedControl.setWidth(50, forSegmentAtIndex: 0)
+//        self.segmentedControl.setWidth(50, forSegmentAtIndex: 1)
+//        self.segmentedControl.setWidth(50, forSegmentAtIndex: 2)
+//        
+//        
+//        self.segmentedControl.tintColor = UIColor.grayColor()
+//        
+//        self.segmentedControl.setImage(RBResizeImage(UIImage(named: "Swipe")!, targetSize: CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal) , forSegmentAtIndex: 0)
+//        self.segmentedControl.setImage(RBResizeImage(UIImage(named: "Wardrobe")!, targetSize: CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 1)
+//        self.segmentedControl.setImage(RBResizeImage(UIImage(named: "Outfit")!, targetSize: CGSize(width: 30, height: 30)).imageWithRenderingMode(.AlwaysOriginal), forSegmentAtIndex: 2)
+//        
+//        
+//        self.firstUserExperience()
+        
