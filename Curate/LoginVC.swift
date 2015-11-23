@@ -52,6 +52,8 @@ class LoginVC: UIViewController {
         setupLoginViews()
         setupPageViewController(loginOffset: fbLogin.bounds.height + curateLogin.bounds.height)
         setupIntroView()
+    
+        print("FBSDK accessToken = \(FBSDKAccessToken.currentAccessToken())")
 
         if(FBSDKAccessToken.currentAccessToken() != nil) {
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -117,11 +119,14 @@ class LoginVC: UIViewController {
    
     func fbLoginTouched() {
         print("fbLoginTapped")
+        
         FBSDKLoginManager().logInWithReadPermissions(["public_profile"], fromViewController: self, handler: {
             (result:FBSDKLoginManagerLoginResult!, error: NSError?) in
+            print(result)
             if (error != nil) {
                 print("error")
-            } else if (result.isCancelled) {
+            }
+            if (result.isCancelled) {
                 print("Fblogin canceled")
             } else {
                 print("FBLogin success")

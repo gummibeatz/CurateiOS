@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FBSDKLoginKit
 
 class PersonaVC: UIViewController, RecommendationVCDelegate {
     
@@ -27,6 +28,7 @@ class PersonaVC: UIViewController, RecommendationVCDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("FBSDK access token = \(FBSDKAccessToken.currentAccessToken().tokenString)")
         self.view = personaChoiceView
         setupPersonaGestures()
     }

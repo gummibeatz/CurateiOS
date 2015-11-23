@@ -12,7 +12,7 @@ import CoreLocation
 import FBSDKCoreKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLocationManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     
     var screenToCheck = PersonaVC()
     
@@ -32,13 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        //Setting up FBLoginView
         self.window = UIWindow()
         self.window!.makeKeyAndVisible()
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.frame = UIScreen.mainScreen().bounds
 //        window?.rootViewController = screenToCheck
         window?.rootViewController = fbLoginVC
+       
+        // MARK: FB login setup
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         //setting up locationmanager
         locationManager.delegate = self
@@ -113,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         print("in application FB")
         self.window?.rootViewController = self.personaController
         self.fbLoginVC.resignFirstResponder()
-        return true
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -201,7 +203,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
 }
 
 //MARK: Delegates CLLocationManager
-extension AppDelegate {
+extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         locationManager.startUpdatingLocation()
         self.location = (locations.last! as CLLocation)
