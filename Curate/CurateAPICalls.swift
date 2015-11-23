@@ -290,6 +290,7 @@ func getCurateAuthToken(fbAuthToken: String,completionHandler:(curateAuthToken:S
 
 // accesses FB API and
 // gets fbAuthToken and stores it into the field Tokens.fbAuthToken
+/*
 func getFbAuthToken() -> String {
     var fbAuthToken = String()
     if (FBSession.activeSession().isOpen) {
@@ -305,6 +306,7 @@ func getFbAuthToken() -> String {
     }
     return "not logged into FB"
 }
+*/
 
 // user sends 2 properties of article to be matched. color and main category style
 // receives dictionary with main category of original article and color pairings

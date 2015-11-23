@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class PersonaOutfitsView: UIView {
     override init(frame: CGRect) {

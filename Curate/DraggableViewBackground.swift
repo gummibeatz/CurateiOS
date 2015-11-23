@@ -299,7 +299,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         saveClothingArticle(clothingArticle, imageData: UIImageJPEGRepresentation(card.information.image!, 0.5)!)
         
         //gonna start formating dict to pass to postwardrobe
-        let fbAuthToken = getFbAuthToken()
+        let fbAuthToken = "change later"
+//        let fbAuthToken = getFbAuthToken()
         let wardrobeDict: NSMutableDictionary = NSMutableDictionary()
         var ownedTops:[Top] = readCustomObjArrayFromUserDefaults("ownedTops") as! [Top]
         var ownedBottoms:[Bottom] = readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]

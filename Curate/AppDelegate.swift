@@ -8,11 +8,13 @@
 
 import UIKit
 import CoreData
+import CoreLocation
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLocationManagerDelegate {
     
-    var screenToCheck = LoginVC()
+    var screenToCheck = PersonaVC()
     
     var window: UIWindow?
     var measurementsVC: MeasurementsVC?
@@ -35,11 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         self.window!.makeKeyAndVisible()
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.frame = UIScreen.mainScreen().bounds
+//        window?.rootViewController = screenToCheck
         window?.rootViewController = fbLoginVC
-        window?.rootViewController = screenToCheck
-        
-        FBLoginView.self
-        FBProfilePictureView.self
         
         //setting up locationmanager
         locationManager.delegate = self
@@ -69,11 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         return viewControllers
     }
 
-//    func firstUserExperience() {
-//        self.segmentedControl.selectedSegmentIndex = WARDROBEBUILDERINDEX
-//        self.segmentsController.indexDidChangeForSegmentedControl(self.segmentedControl)
-//    }
-//
     func editButtonTapped() {
         print("editButtonTappedDelegated in AppDelegate")
 //        self.segmentedControl.selectedSegmentIndex = OUTFITBUILDERINDEX
@@ -111,8 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         // Logs 'install' and 'app activate' App Events.
-        FBAppEvents.activateApp()
-
+        FBSDKAppEvents.activateApp()
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
@@ -120,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
         print("in application FB")
         self.window?.rootViewController = self.personaController
         self.fbLoginVC.resignFirstResponder()
-        return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
+        return true
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -204,22 +197,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate, CLLoca
             }
         }
     }
-
-    // MARK: - FB STUFF
-    
-//    func applicationDidBecomeActive(application: UIApplication) {
-//    
-//        // Logs 'install' and 'app activate' App Events.
-//        FBAppEvents.activateApp()
-//
-//    }
-//    
-//    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String, annotation: AnyObject?) -> Bool {
-//        println("in application FB")
-//        self.window?.rootViewController = self.measurementsController
-//        self.fbLoginVC.resignFirstResponder()
-//        return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
-//    }
 
 }
 

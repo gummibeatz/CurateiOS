@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 var SCREENWIDTH = UIScreen.mainScreen().bounds.width
 var SCREENHEIGHT = UIScreen.mainScreen().bounds.height

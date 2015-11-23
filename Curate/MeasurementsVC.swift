@@ -64,7 +64,7 @@ class MeasurementsVC: UIViewController {
         //scrollview edits end
         
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.fbLoginVC.setFBAuthToken()
+//        appDelegate.fbLoginVC.setFBAuthToken()
         
         setupLabels()
         setupToolBar()
@@ -343,7 +343,8 @@ class MeasurementsVC: UIViewController {
             preferencesDict.setValue(shirtSizeTextField.text, forKey: "shirt_size")
             preferencesDict.setValue(preferredShirtFitTextField.text, forKey: "preferred_shirt_fit")
             preferencesDict.setValue(shoeSizeTextField.text, forKey: "shoe_size")
-            let fbAuthToken = getFbAuthToken()
+//            let fbAuthToken = getFbAuthToken()
+            let fbAuthToken = "change later"
             getCurateAuthToken(fbAuthToken, completionHandler: {
                 curateAuthToken in
                 postUser(curateAuthToken, preferencesDict: preferencesDict)

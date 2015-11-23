@@ -6,8 +6,10 @@
 
 import UIKit
 import CoreData
+import FBSDKCoreKit
+import FBSDKLoginKit
 
-class LoginVC: UIViewController, FBLoginViewDelegate {
+class LoginVC: UIViewController {
     
     var authToken = String()
     var introView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height))
@@ -50,10 +52,10 @@ class LoginVC: UIViewController, FBLoginViewDelegate {
         setupLoginViews()
         setupPageViewController(loginOffset: fbLogin.bounds.height + curateLogin.bounds.height)
         setupIntroView()
-        
-        if(FBSession.activeSession().isOpen) {
+
+        if(FBSDKAccessToken.currentAccessToken() != nil) {
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            self.authToken = FBSession.activeSession().accessTokenData.accessToken
+            self.authToken = FBSDKAccessToken.currentAccessToken().tokenString
             print(self.authToken)
             
             UIView.animateWithDuration(2, delay: 1, options: [], animations: {
@@ -115,7 +117,16 @@ class LoginVC: UIViewController, FBLoginViewDelegate {
    
     func fbLoginTouched() {
         print("fbLoginTapped")
-        FBSession.openActiveSessionWithAllowLoginUI(true)
+        FBSDKLoginManager().logInWithReadPermissions(["public_profile"], fromViewController: self, handler: {
+            (result:FBSDKLoginManagerLoginResult!, error: NSError?) in
+            if (error != nil) {
+                print("error")
+            } else if (result.isCancelled) {
+                print("Fblogin canceled")
+            } else {
+                print("FBLogin success")
+            }
+        })
     }
     
     func setupIntroView() {
@@ -141,36 +152,13 @@ class LoginVC: UIViewController, FBLoginViewDelegate {
     }
     
     func setFBAuthToken() {
-        if FBSession.activeSession().isOpen {
-            authToken = FBSession.activeSession().accessTokenData.accessToken
+        if  FBSDKAccessToken.currentAccessToken() != nil {
+            authToken = FBSDKAccessToken.currentAccessToken().tokenString
         } else {
-            print("FBSession state = \(FBSession.activeSession().state)")
+            print("in set FBAuthToken and cannot login")
         }
         
     }
-    
-    // Facebook Delegate Methods
-    
-    func loginViewShowingLoggedInUser(loginView : FBLoginView!) {
-        print("User Logged In")
-    }
-    
-    func loginViewFetchedUserInfo(loginView : FBLoginView!, user: FBGraphUser) {
-        print("User: \(user)")
-        print("User ID: \(user.objectID)")
-        print("User Name: \(user.name)")
-        let userEmail = user.objectForKey("email") as! String
-        print("User Email: \(userEmail)")
-    }
-    
-    func loginViewShowingLoggedOutUser(loginView : FBLoginView!) {
-        print("User Logged Out")
-    }
-    
-    func loginView(loginView : FBLoginView!, handleError:NSError) {
-        print("Error: \(handleError.localizedDescription)")
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
