@@ -9,16 +9,8 @@
 import UIKit
 import Foundation
 
-protocol CurateSignInViewDelegate {
-    func backButtonTapped()
-}
-
 class CurateSignInView: UIView {
-    @IBOutlet weak var backButton: UIButton! {
-        didSet {
-            backButton.addTarget(self, action: "backButtonTapped", forControlEvents: .TouchUpInside )
-        }
-    }
+    @IBOutlet weak var backButton: UIButton!
 
     @IBOutlet weak var passwordTextField: UITextField! {
         didSet {
@@ -38,16 +30,11 @@ class CurateSignInView: UIView {
         }
     }
     
-    var delegate: CurateSignInViewDelegate?
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         print("being called in the coder")
     }
     
-    func backButtonTapped() {
-        delegate?.backButtonTapped()
-    }
 }
 
 extension CurateSignInView: UITextFieldDelegate {

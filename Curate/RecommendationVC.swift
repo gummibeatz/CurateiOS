@@ -99,9 +99,6 @@ class RecommendationVC: UIViewController {
             delegate?.dismissRecommendationView()
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.window!.rootViewController = MainTabBarController()
-//            appDelegate.window!.rootViewController = appDelegate.navigationController
-            
-//            appDelegate.setupMeasurementsButton()
         default:
             print("no cases match")
         }

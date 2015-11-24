@@ -10,74 +10,108 @@ import Foundation
 import UIKit
 import FBSDKLoginKit
 
-class PersonaVC: UIViewController, RecommendationVCDelegate {
+class PersonaVC: UIViewController {
     
-    let hipsterTag = 1
-    let techTag = 2
-    let stylishTag = 3
-    let financeTag = 4
+    var personaTag:Int?
+    var activeLayer: CALayer?
+    
+    let hipsterTag = 0
+    let techTag = 1
+    let stylishTag = 2
+    let financeTag = 3
     
     let heightOffset: CGFloat = SCREENHEIGHT/7
     let personaWidth: CGFloat = SCREENWIDTH/2
     let personaHeight: CGFloat = SCREENHEIGHT/2 - SCREENHEIGHT/7
     let labelHeight: CGFloat = 50
+    let viewFrames: CGRect = CGRect(x: 0, y: UIScreen.mainScreen().bounds.height/8, width: UIScreen.mainScreen().bounds.width, height: 7*UIScreen.mainScreen().bounds.height/8)
     
-    lazy var personaChoiceView: PersonaScreen = {
-        return self.loadViewFromNibNamed("PersonaScreen5S") as! PersonaScreen
+    lazy var personaView: PersonaView = {
+       return NSBundle.mainBundle().loadNibNamed("PersonaView", owner: self, options: nil).last as! PersonaView
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("FBSDK access token = \(FBSDKAccessToken.currentAccessToken().tokenString)")
-        self.view = personaChoiceView
+        
+        personaView = NSBundle.mainBundle().loadNibNamed("PersonaView", owner: self, options: nil).last as! PersonaView
+        setupBackground()
+        personaView.frame = viewFrames
+        self.view.addSubview(personaView)
         setupPersonaGestures()
+    }
+    
+    func setupBackground() {
+        let backgroundView = UIImageView(frame: self.view.bounds)
+        backgroundView.image = UIImage(named: "personaViewBG")
+        self.view.addSubview(backgroundView)
     }
     
     func setupPersonaGestures() {
         let hipsterGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "personaTapped:")
-        personaChoiceView.hipsterPersona.addGestureRecognizer(hipsterGesture)
+        personaView.hipsterPersona.addGestureRecognizer(hipsterGesture)
         let techGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "personaTapped:")
-        personaChoiceView.techPersona.addGestureRecognizer(techGesture)
+        personaView.techPersona.addGestureRecognizer(techGesture)
         let financeGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "personaTapped:")
-        personaChoiceView.financePersona.addGestureRecognizer(financeGesture)
+        personaView.financePersona.addGestureRecognizer(financeGesture)
         let stylishGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "personaTapped:")
-        personaChoiceView.stylishPersona.addGestureRecognizer(stylishGesture)
-    }
-    
-    func loadViewFromNibNamed(nibName: String) -> UIView {
-        let bundle = NSBundle.mainBundle()
-        let nib = UINib(nibName: nibName, bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil).last as! UIView
-        return view
+        personaView.stylishPersona.addGestureRecognizer(stylishGesture)
     }
     
     func personaTapped(sender: UIGestureRecognizer) {
-        print("tapped")
-        let recommendationVC: RecommendationVC = RecommendationVC()
-        switch (sender.view!.tag) {
-        case hipsterTag:
-            print("hipster tapped")
-            recommendationVC.personaImage = UIImage(named: "Hipster Persona")
-        case techTag:
-            print("tech tapped")
-            recommendationVC.personaImage = UIImage(named: "Tech Persona")
-        case stylishTag:
-            print("stylish tapped")
-            recommendationVC.personaImage = UIImage(named: "Stylish Persona")
-        case financeTag:
-            print("finance tapped")
-            recommendationVC.personaImage = UIImage(named: "Finance Persona")
-        default:
-            print("error no tags match tapped view")
-        }
-        recommendationVC.delegate = self
-        self.presentViewController(recommendationVC, animated: false, completion: nil)
+        print("persona tapped")
+        personaTag = sender.view!.tag
+        print(sender.view!.frame.size)
+        removeActiveLayer()
+        drawDashedBorderAroundView(sender.view!)
     }
-}
-
-extension PersonaVC {
-    func dismissRecommendationView() {
-        print("dismissRecommendationView")
-        self.dismissViewControllerAnimated(true, completion: nil)
+    
+    func removeActiveLayer() {
+        if activeLayer != nil {
+            activeLayer!.removeFromSuperlayer()
+        }
+    }
+    
+    //http://lukagabric.com/cashapelayer-example-round-corners-view-with-dashed-line-border/
+    func drawDashedBorderAroundView(view:UIView) {
+        print(view.frame)
+        
+        let cornerRadius:CGFloat = 10
+        let borderWidth:CGFloat = 2
+        let dashPattern1: NSNumber = 8
+        let dashPattern2: NSNumber = 8
+        let lineColor = UIColor(red: 97/255.0, green: 160/255.0, blue: 232/255.0, alpha: 1)
+        let pi: CGFloat = CGFloat(M_PI)
+        let pi_2: CGFloat = CGFloat(M_PI_2)
+        let frameHeight: CGFloat = 200 + 35
+        let frameWidth: CGFloat = 150
+        
+        
+        let frame = view.frame
+        let shapeLayer = CAShapeLayer()
+        let path = CGPathCreateMutable()
+        CGPathMoveToPoint(path, nil, 0 , heightOffset + frameHeight - cornerRadius)
+        CGPathAddLineToPoint(path, nil, 0, heightOffset + cornerRadius)
+        CGPathAddArc(path, nil, cornerRadius, heightOffset + cornerRadius , cornerRadius, pi, -pi_2, false)
+        CGPathAddLineToPoint(path, nil, frameWidth - cornerRadius, heightOffset)
+        CGPathAddArc(path, nil, frameWidth - cornerRadius, heightOffset + cornerRadius, cornerRadius, -pi_2, 0, false)
+        CGPathAddLineToPoint(path, nil, frameWidth, heightOffset + frameHeight - cornerRadius)
+        CGPathAddArc(path, nil, frameWidth - cornerRadius, heightOffset + frameHeight - cornerRadius , cornerRadius, 0, pi_2, false)
+        CGPathAddLineToPoint(path, nil, cornerRadius, heightOffset + frameHeight)
+        CGPathAddArc(path, nil, cornerRadius, heightOffset + frameHeight - cornerRadius, cornerRadius, pi_2, pi, false)
+        shapeLayer.path = path
+        
+        shapeLayer.setValue(false, forKey: "isCircle")
+        shapeLayer.backgroundColor = UIColor.clearColor().CGColor
+        shapeLayer.frame = frame
+        shapeLayer.masksToBounds = false
+        shapeLayer.fillColor = UIColor.clearColor().CGColor
+        shapeLayer.strokeColor = lineColor.CGColor
+        shapeLayer.lineWidth = borderWidth
+        shapeLayer.lineDashPattern = [dashPattern1, dashPattern2]
+        shapeLayer.lineCap = kCALineCapRound
+        
+        activeLayer = shapeLayer
+        self.view.layer.addSublayer(shapeLayer)
+        view.layer.cornerRadius = cornerRadius
     }
 }

@@ -144,6 +144,7 @@ class LoginVC: UIViewController {
                 print("Fblogin canceled")
             } else {
                 print("FBLogin success")
+                print("FBSDK Login token = \(FBSDKAccessToken.currentAccessToken().tokenString)")
             }
         })
     }

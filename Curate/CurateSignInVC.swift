@@ -24,13 +24,10 @@ class CurateSignInVC: UIViewController {
     func setupView() {
         let curateSignIn = NSBundle.mainBundle().loadNibNamed("CurateSignInView", owner: self, options: nil).last as! CurateSignInView
         curateSignIn.frame = self.view.frame
-        curateSignIn.delegate = self
+        curateSignIn.backButton.addTarget(self, action: "backButtonTapped", forControlEvents: .TouchUpInside)
         self.view.addSubview(curateSignIn)
-        
     }
-}
-
-extension CurateSignInVC: CurateSignInViewDelegate {
+    
     func backButtonTapped() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
