@@ -50,6 +50,8 @@
 		1AF1A27F1ACA41E1006770D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A27B1ACA41E1006770D6 /* User.swift */; };
 		1AF4B8E51AED30E40007C526 /* Clothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B8E41AED30E40007C526 /* Clothing.swift */; };
 		B9A469B6EB7B375CD6BC98CD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2925E794297EF8931E097BAC /* Pods.framework */; };
+		CC191BF41C03D3760094DF8D /* CurateSignInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC191BF31C03D3760094DF8D /* CurateSignInView.xib */; };
+		CC191BF81C03DA4F0094DF8D /* CurateSignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC191BF71C03DA4F0094DF8D /* CurateSignInVC.swift */; };
 		CC425A431BB84A380021664C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A421BB84A380021664C /* MainNavigationController.swift */; };
 		CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC425A461BB870BB0021664C /* LaunchScreen.xib */; };
 		CC425A491BB873E60021664C /* oldIntroViewSetup in Resources */ = {isa = PBXBuildFile; fileRef = CC425A481BB873E60021664C /* oldIntroViewSetup */; };
@@ -61,6 +63,7 @@
 		CC7E71DC1BE2901C004478EF /* old persona view setup in Resources */ = {isa = PBXBuildFile; fileRef = CC7E71DB1BE2901C004478EF /* old persona view setup */; };
 		CC8691001BA2496500D5BEC7 /* PersonaOutfitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
+		CCBA6FB41C04159F00B39A31 /* CurateSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */; };
 		CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */; };
 		CCE2D1C91BA09A1F008197F4 /* PersonaVCwithXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE2D1C81BA09A1F008197F4 /* PersonaVCwithXib.swift */; };
 		CCE2D1CB1BA0BE94008197F4 /* PersonaPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */; };
@@ -132,6 +135,8 @@
 		1AF4B8E41AED30E40007C526 /* Clothing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clothing.swift; sourceTree = "<group>"; };
 		2925E794297EF8931E097BAC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A47A0C6710326D0FC8AB7A93 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CC191BF31C03D3760094DF8D /* CurateSignInView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurateSignInView.xib; sourceTree = "<group>"; };
+		CC191BF71C03DA4F0094DF8D /* CurateSignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurateSignInVC.swift; sourceTree = "<group>"; };
 		CC425A421BB84A380021664C /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		CC425A461BB870BB0021664C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		CC425A481BB873E60021664C /* oldIntroViewSetup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oldIntroViewSetup; sourceTree = "<group>"; };
@@ -143,6 +148,7 @@
 		CC7E71DB1BE2901C004478EF /* old persona view setup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "old persona view setup"; sourceTree = "<group>"; };
 		CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOutfitsView.swift; sourceTree = "<group>"; };
 		CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOverlayView.swift; sourceTree = "<group>"; };
+		CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurateSignInView.swift; sourceTree = "<group>"; };
 		CCE2D1C61BA087F3008197F4 /* PersonaChoiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaChoiceView.xib; sourceTree = "<group>"; };
 		CCE2D1C81BA09A1F008197F4 /* PersonaVCwithXib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaVCwithXib.swift; sourceTree = "<group>"; };
 		CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaPreferencesView.swift; sourceTree = "<group>"; };
@@ -366,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				1A5F4B911A93E22F000B9705 /* LoginVC.swift */,
+				CC191BF71C03DA4F0094DF8D /* CurateSignInVC.swift */,
 				1A046E311B7265A900D25AE5 /* RecommendationVC.swift */,
 				1A046E2B1B725B9900D25AE5 /* PersonaVC.swift */,
 				1AA3C59E1A460234008C732C /* MeasurementsVC.swift */,
@@ -404,6 +411,8 @@
 				CC7E71DD1BE29901004478EF /* personaScreens */,
 				CC7E71DE1BE29917004478EF /* infoPages */,
 				CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */,
+				CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */,
+				CC191BF31C03D3760094DF8D /* CurateSignInView.xib */,
 			);
 			name = openingViews;
 			sourceTree = "<group>";
@@ -535,6 +544,7 @@
 				CCE2D1C71BA087F3008197F4 /* PersonaChoiceView.xib in Resources */,
 				CCE96B3A1BE28E800093F93D /* InfoPage1For6.xib in Resources */,
 				1A9C5D201B0E512D00B828D9 /* todo.txt in Resources */,
+				CC191BF41C03D3760094DF8D /* CurateSignInView.xib in Resources */,
 				CCE96B351BE28E540093F93D /* PersonaScreen6P.xib in Resources */,
 				CCE96B391BE28E800093F93D /* InfoPage1For5S.xib in Resources */,
 				CC541A311BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib in Resources */,
@@ -607,6 +617,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A8CCC1F1AD05406001E3AF0 /* StackStruct.swift in Sources */,
+				CC191BF81C03DA4F0094DF8D /* CurateSignInVC.swift in Sources */,
 				CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */,
 				1AA3C5A21A460234008C732C /* DraggableView.swift in Sources */,
 				1AA3C5A31A460234008C732C /* OverlayView.swift in Sources */,
@@ -645,6 +656,7 @@
 				1A046E321B7265A900D25AE5 /* RecommendationVC.swift in Sources */,
 				1A8CCC1C1ACB22F3001E3AF0 /* ReadWriteCalls.swift in Sources */,
 				CC8691001BA2496500D5BEC7 /* PersonaOutfitsView.swift in Sources */,
+				CCBA6FB41C04159F00B39A31 /* CurateSignInView.swift in Sources */,
 				1AF1A27D1ACA41E1006770D6 /* Tokens.swift in Sources */,
 				1A7B8AA41B5EB44A00C2D552 /* EditClothingView.swift in Sources */,
 				1AF1A27F1ACA41E1006770D6 /* User.swift in Sources */,

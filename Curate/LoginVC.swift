@@ -26,22 +26,28 @@ class LoginVC: UIViewController {
     
     lazy var viewController1: UIViewController = {
         let vc = UIViewController()
-        vc.view.backgroundColor = UIColor.blueColor()
         vc.view.tag = 0
+        let bgView = UIImageView(frame: self.view.frame)
+        bgView.image = UIImage(named: "closet1")
+        vc.view.addSubview(bgView)
         return vc
         }()
     
     lazy var viewController2: UIViewController = {
         let vc = UIViewController()
-        vc.view.backgroundColor = UIColor.redColor()
+        let bgView = UIImageView(frame: self.view.frame)
+        bgView.image = UIImage(named: "closet2")
+        vc.view.addSubview(bgView)
         vc.view.tag = 1
         return vc
         }()
     
     lazy var viewController3: UIViewController = {
         let vc = UIViewController()
-        vc.view.backgroundColor = UIColor.greenColor()
+        let bgView = UIImageView(frame: self.view.frame)
+        bgView.image = UIImage(named: "closet3")
         vc.view.tag = 2
+        vc.view.addSubview(bgView)
         return vc
         }()
     
@@ -49,7 +55,7 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        setupLoginViews()
+        setupLoginButtons()
         setupPageViewController(loginOffset: fbLogin.bounds.height + curateLogin.bounds.height)
         setupIntroView()
     
@@ -80,20 +86,21 @@ class LoginVC: UIViewController {
             })
         }
     }
-    func setupLoginViews() {
+    func setupLoginButtons() {
         let buttonHeight: CGFloat = 50
-        let curateString = NSAttributedString(string: "Curate Login")
+        let curateString = NSAttributedString(string: "LOG IN")
         curateLogin = UIButton(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - buttonHeight * 2, width: UIScreen.mainScreen().bounds.width, height: buttonHeight))
         curateLogin.setAttributedTitle(curateString, forState: .Normal)
-        curateLogin.backgroundColor = UIColor.whiteColor()
+        curateLogin.addTarget(self, action: "curateLoginTouched", forControlEvents: .TouchUpInside)
+        curateLogin.backgroundColor = UIColor(colorLiteralRed: 243/255.0, green: 243/255.0, blue: 243/255.0, alpha: 1.0)
         
         fbLogin = UIButton(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - buttonHeight, width: UIScreen.mainScreen().bounds.width
             , height: buttonHeight))
-        let fbString = NSAttributedString(string: "FB Login")
+        let fbAttributes =  [ NSForegroundColorAttributeName: UIColor.whiteColor() ]
+        let fbString = NSAttributedString(string: "SIGN IN", attributes: fbAttributes)
         fbLogin.setAttributedTitle(fbString, forState: .Normal)
         fbLogin.addTarget(self, action: "fbLoginTouched", forControlEvents: .TouchUpInside)
-        fbLogin.backgroundColor = UIColor.blueColor()
-        
+        fbLogin.backgroundColor = UIColor(colorLiteralRed: 54/255.0, green: 107/255.0, blue: 166/255.0, alpha: 1.0)
         
         self.view.addSubview(curateLogin)
         self.view.addSubview(fbLogin)
@@ -115,6 +122,13 @@ class LoginVC: UIViewController {
         self.pageControl.tintColor = UIColor.whiteColor()
         self.pageController.didMoveToParentViewController(self)
         self.view.addSubview(self.pageControl)
+    }
+    
+    func curateLoginTouched() {
+        print("curateLoginTapped")
+        let curateSignInVC = CurateSignInVC()
+        self.presentViewController(curateSignInVC, animated: true, completion: nil)
+        self.didMoveToParentViewController(self)
     }
    
     func fbLoginTouched() {
