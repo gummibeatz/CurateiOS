@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 
-var SCREENWIDTH = UIScreen.mainScreen().bounds.width
-var SCREENHEIGHT = UIScreen.mainScreen().bounds.height
+let SCREENWIDTH = UIScreen.mainScreen().bounds.width
+let SCREENHEIGHT = UIScreen.mainScreen().bounds.height
+
+//colors
+let curateBlue = UIColor(red: 27/255.0, green: 161/255.0, blue: 253/255.0, alpha: 1)
 
 
 //don't know where to put this. figure it out later

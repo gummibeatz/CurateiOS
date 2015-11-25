@@ -175,7 +175,9 @@
                     <variation key="heightClass=regular-widthClass=compact" constant="50"/>
                 </constraint>
                 <constraint firstAttribute="trailing" secondItem="6FQ-7Z-s3y" secondAttribute="trailing" constant="40" id="9sC-F1-Umw"/>
-                <constraint firstItem="Qgm-2v-Fuf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="G6h-S7-Sxs"/>
+                <constraint firstItem="Qgm-2v-Fuf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="G6h-S7-Sxs">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
                 <constraint firstItem="Qgm-2v-Fuf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Sbj-tX-VOr"/>
                 <constraint firstAttribute="trailing" secondItem="6FQ-7Z-s3y" secondAttribute="trailing" constant="142" id="TB2-Ti-jdI">
                     <variation key="heightClass=regular-widthClass=compact" constant="40"/>

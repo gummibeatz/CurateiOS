@@ -14,12 +14,11 @@ import FBSDKCoreKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     
-    var screenToCheck = PersonaVC()
+//    var screenToCheck = onBoardingVC()
     
     var window: UIWindow?
-    var measurementsVC: MeasurementsVC?
-    var personaController: PersonaVC?
-    var fbLoginVC: LoginVC = LoginVC()
+    var personaController: onBoardingVC?
+    var loginVC: LoginVC = LoginVC()
     var measurementsButton: UIButton = UIButton()
     
     let WARDROBEBUILDERINDEX = 0
@@ -36,8 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         self.window!.makeKeyAndVisible()
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.frame = UIScreen.mainScreen().bounds
-        window?.rootViewController = screenToCheck
-//        window?.rootViewController = fbLoginVC
+//        window?.rootViewController = screenToCheck
+        window?.rootViewController = loginVC
        
         // MARK: FB login setup
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -51,9 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
             print("CLauthorizationstatus location services enabled")
             locationManager.startUpdatingLocation()
         }
-        
-        personaController = PersonaVC()
-        measurementsVC = MeasurementsVC()
+        personaController = onBoardingVC()
         
         return true
     }
@@ -83,12 +80,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         self.window?.addSubview(measurementsButton)
     }
 
-    func measurementsButtonTapped() {
-        print("measurementsButtonTapped")
-        self.measurementsButton.removeFromSuperview()
-        window?.rootViewController = self.measurementsVC
-    }
-
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -114,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         //         -- MARK FB stuff
         print("in application FB")
         self.window?.rootViewController = self.personaController
-        self.fbLoginVC.resignFirstResponder()
+        self.loginVC.resignFirstResponder()
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
