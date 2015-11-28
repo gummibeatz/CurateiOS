@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
 //    var screenToCheck = onBoardingVC()
     
     var window: UIWindow?
-    var personaController: onBoardingVC?
+    var screenToCheck = onBoardingVC()
+    
     var loginVC: LoginVC = LoginVC()
     var measurementsButton: UIButton = UIButton()
     
@@ -35,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         self.window!.makeKeyAndVisible()
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.frame = UIScreen.mainScreen().bounds
-//        window?.rootViewController = screenToCheck
-        window?.rootViewController = loginVC
+        window?.rootViewController = screenToCheck
+//        window?.rootViewController = loginVC
        
         // MARK: FB login setup
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -50,8 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
             print("CLauthorizationstatus location services enabled")
             locationManager.startUpdatingLocation()
         }
-        personaController = onBoardingVC()
-        
         return true
     }
 
@@ -104,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         //         -- MARK FB stuff
         print("in application FB")
-        self.window?.rootViewController = self.personaController
+        self.window?.rootViewController = onBoardingVC()
         self.loginVC.resignFirstResponder()
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
@@ -200,8 +199,6 @@ extension AppDelegate: CLLocationManagerDelegate {
         self.location = (locations.last! as CLLocation)
 //                println("in did update location")
         //        println("(\(lat),\(long)")
-        
-        
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

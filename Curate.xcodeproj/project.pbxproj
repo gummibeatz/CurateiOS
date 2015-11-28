@@ -47,25 +47,25 @@
 		B9A469B6EB7B375CD6BC98CD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2925E794297EF8931E097BAC /* Pods.framework */; };
 		CC191BF41C03D3760094DF8D /* CurateSignInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC191BF31C03D3760094DF8D /* CurateSignInView.xib */; };
 		CC191BF81C03DA4F0094DF8D /* CurateSignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC191BF71C03DA4F0094DF8D /* CurateSignInVC.swift */; };
+		CC1CB27A1C08E91D00083F78 /* TickView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1CB2791C08E91D00083F78 /* TickView.xib */; };
+		CC1CB27E1C09076F00083F78 /* FlexiblePagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1CB27D1C09076F00083F78 /* FlexiblePagingScrollView.swift */; };
+		CC2CFE841C08D0D100F3E8CF /* TickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2CFE831C08D0D100F3E8CF /* TickView.swift */; };
 		CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC425A461BB870BB0021664C /* LaunchScreen.xib */; };
 		CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A4B1BB885530021664C /* MainTabBarController.swift */; };
 		CC541A2D1BC0CA15004BAEB9 /* modelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A2C1BC0CA15004BAEB9 /* modelType.swift */; };
 		CC541A301BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC541A2E1BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib */; };
 		CC541A311BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC541A2F1BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib */; };
 		CC541A331BC0CE29004BAEB9 /* PersonaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */; };
-		CC8691001BA2496500D5BEC7 /* PersonaOutfitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
 		CCA3E6E11C04E01700B97BF1 /* PersonaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA3E6E01C04E01700B97BF1 /* PersonaView.swift */; };
 		CCA3E6E31C04E02500B97BF1 /* PersonaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCA3E6E21C04E02500B97BF1 /* PersonaView.xib */; };
 		CCBA6FB41C04159F00B39A31 /* CurateSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */; };
+		CCBEC8841C064E500052F99F /* onBoardingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCBEC8831C064E500052F99F /* onBoardingView.xib */; };
+		CCBEC8861C0650A50052F99F /* onBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBEC8851C0650A50052F99F /* onBoardingView.swift */; };
 		CCC0034D1C06117C00B60646 /* CustomDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0034C1C06117C00B60646 /* CustomDraw.swift */; };
-		CCE2D1CB1BA0BE94008197F4 /* PersonaPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */; };
 		CCE96B331BE28E540093F93D /* PersonaScreen5S.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B301BE28E540093F93D /* PersonaScreen5S.xib */; };
 		CCE96B341BE28E540093F93D /* PersonaScreen6.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B311BE28E540093F93D /* PersonaScreen6.xib */; };
 		CCE96B351BE28E540093F93D /* PersonaScreen6P.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B321BE28E540093F93D /* PersonaScreen6P.xib */; };
-		CCE96B391BE28E800093F93D /* InfoPage1For5S.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B361BE28E800093F93D /* InfoPage1For5S.xib */; };
-		CCE96B3A1BE28E800093F93D /* InfoPage1For6.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B371BE28E800093F93D /* InfoPage1For6.xib */; };
-		CCE96B3B1BE28E800093F93D /* InfoPage1For6P.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B381BE28E800093F93D /* InfoPage1For6P.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,25 +124,25 @@
 		A47A0C6710326D0FC8AB7A93 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CC191BF31C03D3760094DF8D /* CurateSignInView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurateSignInView.xib; sourceTree = "<group>"; };
 		CC191BF71C03DA4F0094DF8D /* CurateSignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurateSignInVC.swift; sourceTree = "<group>"; };
+		CC1CB2791C08E91D00083F78 /* TickView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TickView.xib; sourceTree = "<group>"; };
+		CC1CB27D1C09076F00083F78 /* FlexiblePagingScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexiblePagingScrollView.swift; sourceTree = "<group>"; };
+		CC2CFE831C08D0D100F3E8CF /* TickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickView.swift; sourceTree = "<group>"; };
 		CC425A461BB870BB0021664C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		CC425A4B1BB885530021664C /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CC541A2C1BC0CA15004BAEB9 /* modelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelType.swift; sourceTree = "<group>"; };
 		CC541A2E1BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaScreen5sand6.xib; sourceTree = "<group>"; };
 		CC541A2F1BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaScreen6Plus.xib; sourceTree = "<group>"; };
 		CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaScreen.swift; sourceTree = "<group>"; };
-		CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOutfitsView.swift; sourceTree = "<group>"; };
 		CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOverlayView.swift; sourceTree = "<group>"; };
 		CCA3E6E01C04E01700B97BF1 /* PersonaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaView.swift; sourceTree = "<group>"; };
 		CCA3E6E21C04E02500B97BF1 /* PersonaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaView.xib; sourceTree = "<group>"; };
 		CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurateSignInView.swift; sourceTree = "<group>"; };
+		CCBEC8831C064E500052F99F /* onBoardingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = onBoardingView.xib; sourceTree = "<group>"; };
+		CCBEC8851C0650A50052F99F /* onBoardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = onBoardingView.swift; sourceTree = "<group>"; };
 		CCC0034C1C06117C00B60646 /* CustomDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDraw.swift; sourceTree = "<group>"; };
-		CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaPreferencesView.swift; sourceTree = "<group>"; };
 		CCE96B301BE28E540093F93D /* PersonaScreen5S.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonaScreen5S.xib; path = ../../CurateScreens/Test/PersonaScreen5S.xib; sourceTree = "<group>"; };
 		CCE96B311BE28E540093F93D /* PersonaScreen6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonaScreen6.xib; path = ../../CurateScreens/Test/PersonaScreen6.xib; sourceTree = "<group>"; };
 		CCE96B321BE28E540093F93D /* PersonaScreen6P.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonaScreen6P.xib; path = ../../CurateScreens/Test/PersonaScreen6P.xib; sourceTree = "<group>"; };
-		CCE96B361BE28E800093F93D /* InfoPage1For5S.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoPage1For5S.xib; path = ../../CurateScreens/Test/InfoPage1For5S.xib; sourceTree = "<group>"; };
-		CCE96B371BE28E800093F93D /* InfoPage1For6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoPage1For6.xib; path = ../../CurateScreens/Test/InfoPage1For6.xib; sourceTree = "<group>"; };
-		CCE96B381BE28E800093F93D /* InfoPage1For6P.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoPage1For6P.xib; path = ../../CurateScreens/Test/InfoPage1For6P.xib; sourceTree = "<group>"; };
 		FDB270E9A04F45431F14CF9A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -364,26 +364,18 @@
 			name = personaScreens;
 			sourceTree = "<group>";
 		};
-		CC7E71DE1BE29917004478EF /* infoPages */ = {
-			isa = PBXGroup;
-			children = (
-				CCE2D1CA1BA0BE94008197F4 /* PersonaPreferencesView.swift */,
-				CCE96B371BE28E800093F93D /* InfoPage1For6.xib */,
-				CCE96B381BE28E800093F93D /* InfoPage1For6P.xib */,
-				CCE96B361BE28E800093F93D /* InfoPage1For5S.xib */,
-			);
-			name = infoPages;
-			sourceTree = "<group>";
-		};
 		CC8691011BA24ED800D5BEC7 /* openingViews */ = {
 			isa = PBXGroup;
 			children = (
 				CC425A461BB870BB0021664C /* LaunchScreen.xib */,
 				CC7E71DD1BE29901004478EF /* personaScreens */,
-				CC7E71DE1BE29917004478EF /* infoPages */,
-				CC8690FF1BA2496500D5BEC7 /* PersonaOutfitsView.swift */,
 				CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */,
 				CC191BF31C03D3760094DF8D /* CurateSignInView.xib */,
+				CC1CB27D1C09076F00083F78 /* FlexiblePagingScrollView.swift */,
+				CC2CFE831C08D0D100F3E8CF /* TickView.swift */,
+				CC1CB2791C08E91D00083F78 /* TickView.xib */,
+				CCBEC8851C0650A50052F99F /* onBoardingView.swift */,
+				CCBEC8831C064E500052F99F /* onBoardingView.xib */,
 			);
 			name = openingViews;
 			sourceTree = "<group>";
@@ -459,7 +451,7 @@
 				TargetAttributes = {
 					1AA3C5701A4601B2008C732C = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = JJVKDT7MQK;
+						DevelopmentTeam = KN74692XKF;
 					};
 					1AA3C5851A4601B2008C732C = {
 						CreatedOnToolsVersion = 6.0;
@@ -492,18 +484,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCA3E6E31C04E02500B97BF1 /* PersonaView.xib in Resources */,
-				CCE96B3B1BE28E800093F93D /* InfoPage1For6P.xib in Resources */,
+				CC1CB27A1C08E91D00083F78 /* TickView.xib in Resources */,
 				CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */,
 				1AA3C5B11A46035A008C732C /* tshirtIcon.jpg in Resources */,
 				1AA3C5A91A460316008C732C /* VNeck in Resources */,
 				CC541A301BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib in Resources */,
 				1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */,
+				CCBEC8841C064E500052F99F /* onBoardingView.xib in Resources */,
 				CCE96B341BE28E540093F93D /* PersonaScreen6.xib in Resources */,
 				CCE96B331BE28E540093F93D /* PersonaScreen5S.xib in Resources */,
-				CCE96B3A1BE28E800093F93D /* InfoPage1For6.xib in Resources */,
 				CC191BF41C03D3760094DF8D /* CurateSignInView.xib in Resources */,
 				CCE96B351BE28E540093F93D /* PersonaScreen6P.xib in Resources */,
-				CCE96B391BE28E800093F93D /* InfoPage1For5S.xib in Resources */,
 				CC541A311BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib in Resources */,
 				1AA3C5811A4601B2008C732C /* Images.xcassets in Resources */,
 			);
@@ -582,6 +573,7 @@
 				CC541A331BC0CE29004BAEB9 /* PersonaScreen.swift in Sources */,
 				1A7B8AA21B5D4BA900C2D552 /* SingleOutfitVC.swift in Sources */,
 				1AA3C5A11A460234008C732C /* DraggableViewBackground.swift in Sources */,
+				CC2CFE841C08D0D100F3E8CF /* TickView.swift in Sources */,
 				1A8CCC211AD05F72001E3AF0 /* Outfit.swift in Sources */,
 				1AA3C5A41A460234008C732C /* OutfitsVC.swift in Sources */,
 				1A12D9031A6EE18400DA3617 /* OutfitCell.swift in Sources */,
@@ -589,7 +581,6 @@
 				1A8CCC271AD0601C001E3AF0 /* Bottom.swift in Sources */,
 				1A046E2C1B725B9900D25AE5 /* onBoardingVC.swift in Sources */,
 				1ACC8B111A58C82200093290 /* PropertiesFrontView.swift in Sources */,
-				CCE2D1CB1BA0BE94008197F4 /* PersonaPreferencesView.swift in Sources */,
 				1AC9AC4B1AF2E9470090E108 /* AddOutfitView.swift in Sources */,
 				1AA3C5771A4601B2008C732C /* AppDelegate.swift in Sources */,
 				1AA3C5A01A460234008C732C /* WardrobeBuilderVC.swift in Sources */,
@@ -601,14 +592,15 @@
 				1AA3C57A1A4601B2008C732C /* Curate.xcdatamodeld in Sources */,
 				1AF1A27C1ACA41E1006770D6 /* Indexes.swift in Sources */,
 				1A12D9011A6EE16000DA3617 /* OutfitsContainerVC.swift in Sources */,
+				CCBEC8861C0650A50052F99F /* onBoardingView.swift in Sources */,
 				CC541A2D1BC0CA15004BAEB9 /* modelType.swift in Sources */,
 				1AA3C5A71A460234008C732C /* OutfitBuilderVC.swift in Sources */,
 				1A8CCC1A1ACB1E77001E3AF0 /* Top.swift in Sources */,
 				CCA3E6E11C04E01700B97BF1 /* PersonaView.swift in Sources */,
 				1A96E9A81A58C67E00C23C0E /* PropertiesViewVC.swift in Sources */,
 				1AF4B8E51AED30E40007C526 /* Clothing.swift in Sources */,
+				CC1CB27E1C09076F00083F78 /* FlexiblePagingScrollView.swift in Sources */,
 				1A8CCC1C1ACB22F3001E3AF0 /* ReadWriteCalls.swift in Sources */,
-				CC8691001BA2496500D5BEC7 /* PersonaOutfitsView.swift in Sources */,
 				CCBA6FB41C04159F00B39A31 /* CurateSignInView.swift in Sources */,
 				1AF1A27D1ACA41E1006770D6 /* Tokens.swift in Sources */,
 				1A7B8AA41B5EB44A00C2D552 /* EditClothingView.swift in Sources */,
@@ -727,7 +719,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kenneth Kuo (U29WM43T3L)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -737,7 +729,7 @@
 				INFOPLIST_FILE = Curate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Curate;
+				PRODUCT_BUNDLE_IDENTIFIER = CurateNYC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -751,7 +743,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kenneth Kuo (U29WM43T3L)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -762,7 +754,7 @@
 				INFOPLIST_FILE = Curate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Curate;
+				PRODUCT_BUNDLE_IDENTIFIER = CurateNYC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
