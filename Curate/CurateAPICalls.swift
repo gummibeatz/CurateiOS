@@ -172,11 +172,11 @@ func getSwipeBatch(user: User, completionHandler:(swipeBatch:Array<Array<Clothin
 //    return formatter.stringFromNumber(NSNumber(integer: num))!
 //}
 
-func getImageData(imagePath: String) -> NSData {
+func getImageData(imagePath: String) -> NSData? {
     print(imagePath)
     let url = NSURL(string: imagePath)
     let data = NSData(contentsOfURL: url!)
-    return data!
+    return data
 }
 
 // chooses and returns the batchID that corresponds to the user preferences
@@ -276,6 +276,8 @@ func getCurateAuthToken(fbAuthToken: String,completionHandler:(curateAuthToken:S
                     completionHandler(curateAuthToken: authentication_token)
                 } else {
                     print("error no curateAuthToken given")
+                    print("setting to default authtoken")
+                    completionHandler(curateAuthToken: "zMXvd7qaBn_rB3vWs7UL")
                 }
             } catch {
                 print(" task error")
@@ -287,26 +289,6 @@ func getCurateAuthToken(fbAuthToken: String,completionHandler:(curateAuthToken:S
         
     }
 }
-
-// accesses FB API and
-// gets fbAuthToken and stores it into the field Tokens.fbAuthToken
-/*
-func getFbAuthToken() -> String {
-    var fbAuthToken = String()
-    if (FBSession.activeSession().isOpen) {
-        fbAuthToken = FBSession.activeSession().accessTokenData.accessToken
-        //manually overridden
-        // added in because APP ID and secret aren't set to CurateAnalytics but are set to loginTest
-        
-//        fbAuthToken = "CAAKsfqnOlxMBAKsZC08WBPRpG8s8MOQx99kZAeb5TnvCtftPOFZCieBatdjSDuZAljZBHnNcgwE2DBa0Fh9gHUyHsHGKTGIoa8DzI9a82290GUBDbMSd26rIgnvytNUpThT3q1AFGOZCevZBMhVW9eydizPW0aPL9xPqu1DZAQiOMWNPR0PuGMYmL5ZBFRrAUCgN2iXzGd9qdugnbZAaYXveEThrZAnT5vW6aqsqziqqKFIywZDZD"
-        
-        return fbAuthToken
-    } else {
-        print("not logged into FB")
-    }
-    return "not logged into FB"
-}
-*/
 
 // user sends 2 properties of article to be matched. color and main category style
 // receives dictionary with main category of original article and color pairings

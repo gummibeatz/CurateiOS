@@ -111,6 +111,8 @@ class onBoardingVC: UIViewController {
     
     func loadNextView() {
         if activeViewIdx! + 1 >= onBoardingViews.count {
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.window?.rootViewController = MainTabBarController()
             return
         }
         let nextView = onBoardingViews[activeViewIdx! + 1]

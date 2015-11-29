@@ -17,14 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
 //    var screenToCheck = onBoardingVC()
     
     var window: UIWindow?
-    var screenToCheck = onBoardingVC()
+//    var screenToCheck = onBoardingVC()
     
     var loginVC: LoginVC = LoginVC()
     var measurementsButton: UIButton = UIButton()
-    
-    let WARDROBEBUILDERINDEX = 0
-    let OUTFITBUILDERINDEX = 1
-    let OUTFITSINDEX = 2
     
     var location = CLLocation()
     let locationManager = CLLocationManager()
@@ -36,8 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         self.window!.makeKeyAndVisible()
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.frame = UIScreen.mainScreen().bounds
-        window?.rootViewController = screenToCheck
-//        window?.rootViewController = loginVC
+//        window?.rootViewController = screenToCheck
+        window?.rootViewController = loginVC
        
         // MARK: FB login setup
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -54,29 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         return true
     }
 
-    
-    func segmentViewControllers() -> NSArray {
-        let myVC1 = WardrobeBuilderVC()
-        let myVC2 = OutfitBuilderContainerVC()
-        let myVC3 = OutfitsContainerVC()
-        
-        myVC3.setOutfitsVCDelegate(self)
-        
-        let viewControllers: NSArray = NSArray(objects: myVC1, myVC2, myVC3)
-        return viewControllers
-    }
-
     func editButtonTapped() {
         print("editButtonTappedDelegated in AppDelegate")
 //        self.segmentedControl.selectedSegmentIndex = OUTFITBUILDERINDEX
 //        self.segmentsController.indexDidChangeForSegmentedControl(self.segmentedControl)
-    }
-
-    func setupMeasurementsButton() {
-        measurementsButton = UIButton(frame: CGRect(x: 17, y: 30, width: 22, height: 22))
-        measurementsButton.addTarget(self, action: "measurementsButtonTapped", forControlEvents: .TouchUpInside)
-        measurementsButton.setImage(UIImage(named: "menuButton"), forState: .Normal)
-        self.window?.addSubview(measurementsButton)
     }
 
     func applicationWillResignActive(application: UIApplication) {

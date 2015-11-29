@@ -201,14 +201,18 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     //    feel free to get rid of it (eg: if you are building cards from data from the internet)
     
     func createDraggableViewWithDataAtIndex(index:Int) -> DraggableView{
-        let imageData: NSData = getImageData((clothingCardLabels.objectAtIndex(index) as! Clothing).url!)
+        let imageData: NSData? = getImageData((clothingCardLabels.objectAtIndex(index) as! Clothing).url!)
         
         let draggableView: DraggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 30, width: CARD_WIDTH, height: CARD_HEIGHT))
         print(clothingCardLabels.objectAtIndex(index))
         
         
         dispatch_async(dispatch_get_main_queue(), {
-            draggableView.information.image = UIImage(data: imageData)
+            if imageData != nil {
+                draggableView.information.image = UIImage(data: imageData!)
+            } else {
+                draggableView.information.image = UIImage(named: "stockPerson")!
+            }
             })
         
         draggableView.delegate = self
