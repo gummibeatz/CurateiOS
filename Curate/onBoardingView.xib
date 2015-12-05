@@ -123,13 +123,13 @@
                 <mask key="constraints">
                     <exclude reference="Dnu-As-yS1"/>
                     <exclude reference="qf8-cf-X39"/>
-                    <exclude reference="bBP-1t-BPY"/>
-                    <exclude reference="ptj-Le-o3b"/>
-                    <exclude reference="dNg-Q0-tdv"/>
                     <exclude reference="9S3-aM-HeF"/>
                     <exclude reference="Rqx-K7-Z70"/>
                     <exclude reference="XVe-ap-EZn"/>
                     <exclude reference="bI5-hN-whz"/>
+                    <exclude reference="bBP-1t-BPY"/>
+                    <exclude reference="ptj-Le-o3b"/>
+                    <exclude reference="dNg-Q0-tdv"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -142,13 +142,13 @@
                 <mask key="constraints">
                     <include reference="Dnu-As-yS1"/>
                     <include reference="qf8-cf-X39"/>
-                    <include reference="bBP-1t-BPY"/>
-                    <include reference="ptj-Le-o3b"/>
-                    <include reference="dNg-Q0-tdv"/>
                     <include reference="9S3-aM-HeF"/>
                     <include reference="Rqx-K7-Z70"/>
                     <include reference="XVe-ap-EZn"/>
                     <include reference="bI5-hN-whz"/>
+                    <include reference="bBP-1t-BPY"/>
+                    <include reference="ptj-Le-o3b"/>
+                    <include reference="dNg-Q0-tdv"/>
                 </mask>
             </variation>
             <connections>

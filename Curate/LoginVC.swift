@@ -88,7 +88,7 @@ class LoginVC: UIViewController {
     }
     func setupLoginButtons() {
         let buttonHeight: CGFloat = 50
-        let curateString = NSAttributedString(string: "LOG IN")
+        let curateString = NSAttributedString(string: "Connect with email")
         curateLogin = UIButton(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - buttonHeight * 2, width: UIScreen.mainScreen().bounds.width, height: buttonHeight))
         curateLogin.setAttributedTitle(curateString, forState: .Normal)
         curateLogin.addTarget(self, action: "curateLoginTouched", forControlEvents: .TouchUpInside)
@@ -97,7 +97,7 @@ class LoginVC: UIViewController {
         fbLogin = UIButton(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - buttonHeight, width: UIScreen.mainScreen().bounds.width
             , height: buttonHeight))
         let fbAttributes =  [ NSForegroundColorAttributeName: UIColor.whiteColor() ]
-        let fbString = NSAttributedString(string: "SIGN IN", attributes: fbAttributes)
+        let fbString = NSAttributedString(string: "Connect with Facebook", attributes: fbAttributes)
         fbLogin.setAttributedTitle(fbString, forState: .Normal)
         fbLogin.addTarget(self, action: "fbLoginTouched", forControlEvents: .TouchUpInside)
         fbLogin.backgroundColor = UIColor(colorLiteralRed: 54/255.0, green: 107/255.0, blue: 166/255.0, alpha: 1.0)
