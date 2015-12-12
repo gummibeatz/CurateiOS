@@ -20,6 +20,7 @@ func writeCustomObjArraytoUserDefaults(objectArray: [NSObject], fileName: String
     let data: NSData = NSKeyedArchiver.archivedDataWithRootObject(objectArray)
     userDefaults.setObject(data, forKey: fileName)
     userDefaults.synchronize()
+    print("write success")
 }
 
 

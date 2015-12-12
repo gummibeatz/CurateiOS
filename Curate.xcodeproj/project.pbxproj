@@ -66,6 +66,8 @@
 		CCE96B331BE28E540093F93D /* PersonaScreen5S.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B301BE28E540093F93D /* PersonaScreen5S.xib */; };
 		CCE96B341BE28E540093F93D /* PersonaScreen6.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B311BE28E540093F93D /* PersonaScreen6.xib */; };
 		CCE96B351BE28E540093F93D /* PersonaScreen6P.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE96B321BE28E540093F93D /* PersonaScreen6P.xib */; };
+		CCE9BB291C1CB040005A6705 /* WeightScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE9BB271C1CB040005A6705 /* WeightScaleView.swift */; };
+		CCE9BB2A1C1CB040005A6705 /* SpinningWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE9BB281C1CB040005A6705 /* SpinningWheelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +145,8 @@
 		CCE96B301BE28E540093F93D /* PersonaScreen5S.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonaScreen5S.xib; path = ../../CurateScreens/Test/PersonaScreen5S.xib; sourceTree = "<group>"; };
 		CCE96B311BE28E540093F93D /* PersonaScreen6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonaScreen6.xib; path = ../../CurateScreens/Test/PersonaScreen6.xib; sourceTree = "<group>"; };
 		CCE96B321BE28E540093F93D /* PersonaScreen6P.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonaScreen6P.xib; path = ../../CurateScreens/Test/PersonaScreen6P.xib; sourceTree = "<group>"; };
+		CCE9BB271C1CB040005A6705 /* WeightScaleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightScaleView.swift; sourceTree = "<group>"; };
+		CCE9BB281C1CB040005A6705 /* SpinningWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinningWheelView.swift; sourceTree = "<group>"; };
 		FDB270E9A04F45431F14CF9A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -376,6 +380,8 @@
 				CC1CB2791C08E91D00083F78 /* TickView.xib */,
 				CCBEC8851C0650A50052F99F /* onBoardingView.swift */,
 				CCBEC8831C064E500052F99F /* onBoardingView.xib */,
+				CCE9BB271C1CB040005A6705 /* WeightScaleView.swift */,
+				CCE9BB281C1CB040005A6705 /* SpinningWheelView.swift */,
 			);
 			name = openingViews;
 			sourceTree = "<group>";
@@ -569,11 +575,13 @@
 				1AA3C5A21A460234008C732C /* DraggableView.swift in Sources */,
 				1AA3C5A31A460234008C732C /* OverlayView.swift in Sources */,
 				1A5F4B921A93E22F000B9705 /* LoginVC.swift in Sources */,
+				CCE9BB291C1CB040005A6705 /* WeightScaleView.swift in Sources */,
 				1ACC8B101A58C82200093290 /* PropertiesBackView.swift in Sources */,
 				CC541A331BC0CE29004BAEB9 /* PersonaScreen.swift in Sources */,
 				1A7B8AA21B5D4BA900C2D552 /* SingleOutfitVC.swift in Sources */,
 				1AA3C5A11A460234008C732C /* DraggableViewBackground.swift in Sources */,
 				CC2CFE841C08D0D100F3E8CF /* TickView.swift in Sources */,
+				CCE9BB2A1C1CB040005A6705 /* SpinningWheelView.swift in Sources */,
 				1A8CCC211AD05F72001E3AF0 /* Outfit.swift in Sources */,
 				1AA3C5A41A460234008C732C /* OutfitsVC.swift in Sources */,
 				1A12D9031A6EE18400DA3617 /* OutfitCell.swift in Sources */,

@@ -59,12 +59,14 @@ class LoginVC: UIViewController {
         setupPageViewController(loginOffset: fbLogin.bounds.height + curateLogin.bounds.height)
         setupIntroView()
     
+        
         print("FBSDK accessToken = \(FBSDKAccessToken.currentAccessToken())")
-
-        if(FBSDKAccessToken.currentAccessToken() != nil) {
+        print("curate authtoken = ")
+        
+        let hasToken = readCustomObjArrayFromUserDefaults("curateAuthToken").count > 0
+        
+        if(hasToken) {
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            self.authToken = FBSDKAccessToken.currentAccessToken().tokenString
-            print(self.authToken)
             
             UIView.animateWithDuration(2, delay: 1, options: [], animations: {
                 self.introView.alpha = 0
@@ -145,6 +147,10 @@ class LoginVC: UIViewController {
             } else {
                 print("FBLogin success")
                 print("FBSDK Login token = \(FBSDKAccessToken.currentAccessToken().tokenString)")
+                getCurateAuthToken(FBSDKAccessToken.currentAccessToken().tokenString, completionHandler: {
+                    curateAuthToken in
+                    writeCustomObjArraytoUserDefaults([curateAuthToken], fileName: "curateAuthToken")
+                })
             }
         })
     }

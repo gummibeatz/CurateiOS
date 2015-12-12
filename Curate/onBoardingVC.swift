@@ -34,11 +34,11 @@ class onBoardingVC: UIViewController {
                                      "How do you like your fit?",
     
                                     ]
-    let viewImages: [UIImage] = [UIImage(named: "silhouette")!,
-                                 UIImage(named: "brannock")!,
-                                 UIImage(named: "silhouette")!,
-                                 UIImage(named: "silhouette")!,
-                                 UIImage(named: "silhouette")!,
+    let viewImages: [UIImage] = [UIImage(named: "Little Man")!,
+                                 UIImage(named: "Shoe Thing")!,
+                                 UIImage(named: "Pant Size")!,
+                                 UIImage(named: "Pant Fit")!,
+                                 UIImage(named: "Little Man")!,
                                 ]
     
     let heightOffset: CGFloat = SCREENHEIGHT/7
@@ -124,7 +124,17 @@ class onBoardingVC: UIViewController {
             self.progressBar.setProgress(Float(self.activeViewIdx!) / Float(self.onBoardingViews.count), animated: true)
         })
         activeViewIdx = activeViewIdx! + 1
-        setupMeasurementView(nextView as! onBoardingView)
+        if activeViewIdx < onBoardingViews.count - 1 {
+            setupMeasurementView(nextView as! onBoardingView)
+        } else {
+            setupWeightView()
+        }
+    }
+    
+    func setupWeightView() {
+        let xOffset: CGFloat = 50
+        let weightView = WeightScaleView(frame: CGRect(x: -xOffset, y: SCREENHEIGHT/3, width: SCREENWIDTH + 2 * xOffset, height: SCREENHEIGHT))
+        self.view.addSubview(weightView)
     }
     
     func setupMeasurementView(view: onBoardingView) {
