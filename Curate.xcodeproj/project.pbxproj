@@ -57,6 +57,7 @@
 		CC541A311BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC541A2F1BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib */; };
 		CC541A331BC0CE29004BAEB9 /* PersonaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
+		CC87E7CE1C1D003E00CD923D /* CircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87E7CD1C1D003E00CD923D /* CircleLabel.swift */; };
 		CCA3E6E11C04E01700B97BF1 /* PersonaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA3E6E01C04E01700B97BF1 /* PersonaView.swift */; };
 		CCA3E6E31C04E02500B97BF1 /* PersonaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCA3E6E21C04E02500B97BF1 /* PersonaView.xib */; };
 		CCBA6FB41C04159F00B39A31 /* CurateSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */; };
@@ -136,6 +137,7 @@
 		CC541A2F1BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaScreen6Plus.xib; sourceTree = "<group>"; };
 		CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaScreen.swift; sourceTree = "<group>"; };
 		CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOverlayView.swift; sourceTree = "<group>"; };
+		CC87E7CD1C1D003E00CD923D /* CircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLabel.swift; sourceTree = "<group>"; };
 		CCA3E6E01C04E01700B97BF1 /* PersonaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaView.swift; sourceTree = "<group>"; };
 		CCA3E6E21C04E02500B97BF1 /* PersonaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaView.xib; sourceTree = "<group>"; };
 		CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurateSignInView.swift; sourceTree = "<group>"; };
@@ -372,16 +374,11 @@
 			isa = PBXGroup;
 			children = (
 				CC425A461BB870BB0021664C /* LaunchScreen.xib */,
-				CC7E71DD1BE29901004478EF /* personaScreens */,
 				CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */,
 				CC191BF31C03D3760094DF8D /* CurateSignInView.xib */,
-				CC1CB27D1C09076F00083F78 /* FlexiblePagingScrollView.swift */,
-				CC2CFE831C08D0D100F3E8CF /* TickView.swift */,
-				CC1CB2791C08E91D00083F78 /* TickView.xib */,
-				CCBEC8851C0650A50052F99F /* onBoardingView.swift */,
-				CCBEC8831C064E500052F99F /* onBoardingView.xib */,
-				CCE9BB271C1CB040005A6705 /* WeightScaleView.swift */,
-				CCE9BB281C1CB040005A6705 /* SpinningWheelView.swift */,
+				CC7E71DD1BE29901004478EF /* personaScreens */,
+				CC87E7CB1C1CFF9400CD923D /* WeightScale */,
+				CC87E7CC1C1CFFA900CD923D /* onBoarding */,
 			);
 			name = openingViews;
 			sourceTree = "<group>";
@@ -392,6 +389,28 @@
 				CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */,
 			);
 			name = wardrobeBuilderViews;
+			sourceTree = "<group>";
+		};
+		CC87E7CB1C1CFF9400CD923D /* WeightScale */ = {
+			isa = PBXGroup;
+			children = (
+				CCE9BB271C1CB040005A6705 /* WeightScaleView.swift */,
+				CC87E7CD1C1D003E00CD923D /* CircleLabel.swift */,
+				CCE9BB281C1CB040005A6705 /* SpinningWheelView.swift */,
+			);
+			name = WeightScale;
+			sourceTree = "<group>";
+		};
+		CC87E7CC1C1CFFA900CD923D /* onBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				CC1CB27D1C09076F00083F78 /* FlexiblePagingScrollView.swift */,
+				CC2CFE831C08D0D100F3E8CF /* TickView.swift */,
+				CC1CB2791C08E91D00083F78 /* TickView.xib */,
+				CCBEC8851C0650A50052F99F /* onBoardingView.swift */,
+				CCBEC8831C064E500052F99F /* onBoardingView.xib */,
+			);
+			name = onBoarding;
 			sourceTree = "<group>";
 		};
 		CCE2D1C51BA0849A008197F4 /* Views */ = {
@@ -582,6 +601,7 @@
 				1AA3C5A11A460234008C732C /* DraggableViewBackground.swift in Sources */,
 				CC2CFE841C08D0D100F3E8CF /* TickView.swift in Sources */,
 				CCE9BB2A1C1CB040005A6705 /* SpinningWheelView.swift in Sources */,
+				CC87E7CE1C1D003E00CD923D /* CircleLabel.swift in Sources */,
 				1A8CCC211AD05F72001E3AF0 /* Outfit.swift in Sources */,
 				1AA3C5A41A460234008C732C /* OutfitsVC.swift in Sources */,
 				1A12D9031A6EE18400DA3617 /* OutfitCell.swift in Sources */,
