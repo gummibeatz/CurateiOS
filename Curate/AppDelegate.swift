@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
 //    var screenToCheck = onBoardingVC()
     
     var window: UIWindow?
-    var screenToCheck = onBoardingVC()
+//    var screenToCheck = onBoardingVC()
     
     var loginVC: LoginVC = LoginVC()
     var measurementsButton: UIButton = UIButton()
@@ -32,8 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         self.window!.makeKeyAndVisible()
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.frame = UIScreen.mainScreen().bounds
-        window?.rootViewController = screenToCheck
-//        window?.rootViewController = loginVC
+//        window?.rootViewController = screenToCheck
+        window?.rootViewController = loginVC
        
         // MARK: FB login setup
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

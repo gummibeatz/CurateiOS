@@ -66,6 +66,8 @@ class LoginVC: UIViewController {
         let hasToken = readCustomObjArrayFromUserDefaults("curateAuthToken").count > 0
         
         if(hasToken) {
+            let bufferView = DraggableViewBackground(frame: self.view.frame)
+            self.view.insertSubview(bufferView, belowSubview: self.introView)
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             UIView.animateWithDuration(2, delay: 1, options: [], animations: {
