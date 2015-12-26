@@ -18,15 +18,15 @@ class FlexiblePagingScrollView: UIView {
         }
         set {
             let width = SCREENWIDTH / CGFloat(newValue)
-            let x = SCREENWIDTH/2 - width / 2.0
+            let x = SCREENWIDTH/2 - width
             scrollView.frame = CGRect(x: x, y: 0, width: width, height: self.frame.height)
+//            scrollView.contentInset = UIEdgeInsets(top: 0, left: width/2, bottom: 0, right: width/2)
             print(scrollView.frame)
         }
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        print("from decoder")
         scrollView = UIScrollView()
         scrollView.contentSize = CGSize(width: SCREENWIDTH * 10, height: self.frame.height)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

@@ -12,6 +12,7 @@ import Foundation
 class WeightScaleView: UIView {
     
     var containerView: SpinningWheelView!
+    var label: CircleLabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,13 +29,20 @@ class WeightScaleView: UIView {
         containerView = SpinningWheelView(frame: CGRect(x: (self.frame.width - length) / 2, y: (self.frame.height - length) / 2, width: length, height: length),  numberOfSections: 3)
         containerView.backgroundColor = UIColor.clearColor()
         let panningGesture = UIPanGestureRecognizer(target: self, action: "rotate:")
+        setupWheelImage()
         containerView.addGestureRecognizer(panningGesture)
-        
         self.addSubview(containerView!)
     }
     
+    func setupWheelImage(){
+        let imageView = UIImageView()
+        imageView.frame = self.containerView.frame
+        imageView.image = UIImage(named: "WeightWheelFull")
+        self.addSubview(imageView)
+    }
+    
     func setupLabel() {
-        let label = CircleLabel(frame: CGRect(x: 0, y: 0, width: containerView.bounds.width/2.5, height: containerView.bounds.height/2.5))
+        label = CircleLabel(frame: CGRect(x: 0, y: 0, width: containerView.bounds.width/2.5, height: containerView.bounds.height/2.5))
         label.center = containerView.center
         
         let attributes = [NSFontAttributeName : UIFont(name: "Arial-BoldMT", size: 24)!, NSForegroundColorAttributeName : UIColor.whiteColor()]
@@ -52,18 +60,18 @@ class WeightScaleView: UIView {
     func rotate(sender: UIPanGestureRecognizer) {
         let velocity: CGPoint = sender.velocityInView(self)
         let location: CGPoint = sender.locationInView(self)
-        let angle: CGFloat = getAngle(location: location, velocity: velocity)
+        let angle: CGFloat = getRotationAngle(location: location, velocity: velocity)
         
         let t = CGAffineTransformRotate(containerView.transform, angle)
         containerView.transform = t
         if abs(angle) > 0.1 {
             finishRotation(angle)
-            
         }
         print("rotating at speed \(angle)")
+        updateLabelWithAngle(angle)
     }
     
-    func getAngle(location location: CGPoint, velocity: CGPoint) -> CGFloat {
+    func getRotationAngle(location location: CGPoint, velocity: CGPoint) -> CGFloat {
         //quadrant 1
         let angle: CGFloat = sqrt(velocity.x * velocity.x + velocity.y * velocity.y)/4500
         print(location)
@@ -76,6 +84,10 @@ class WeightScaleView: UIView {
         return (x * velocity.y - y * velocity.x > 0) ? angle : angle * -1
     }
     
+    func getAngleOffset() -> CGFloat {
+        return atan2(containerView.transform.b, containerView.transform.a)
+    }
+    
     func finishRotation(xV: CGFloat) {
         UIView.animateWithDuration(0.7, delay: 0, options: [UIViewAnimationOptions.CurveEaseOut , UIViewAnimationOptions.AllowUserInteraction] , animations: {
             let t = CGAffineTransformRotate(self.containerView.transform, xV)
@@ -83,5 +95,12 @@ class WeightScaleView: UIView {
             }, completion: nil)
     }
     
+    func updateLabelWithAngle(angle:CGFloat) {
+        let attributes = [NSFontAttributeName : UIFont(name: "Arial-BoldMT", size: 24)!, NSForegroundColorAttributeName : UIColor.whiteColor()]
+        let lbString = NSAttributedString(string: " lbs", attributes: attributes)
+        let text = NSMutableAttributedString(string: String(angle), attributes: attributes)
+        text.appendAttributedString(lbString)
+        label.attributedText = text
+    }
 }
 

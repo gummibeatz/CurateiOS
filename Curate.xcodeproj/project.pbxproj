@@ -377,7 +377,6 @@
 				CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */,
 				CC191BF31C03D3760094DF8D /* CurateSignInView.xib */,
 				CC7E71DD1BE29901004478EF /* personaScreens */,
-				CC87E7CB1C1CFF9400CD923D /* WeightScale */,
 				CC87E7CC1C1CFFA900CD923D /* onBoarding */,
 			);
 			name = openingViews;
@@ -404,6 +403,7 @@
 		CC87E7CC1C1CFFA900CD923D /* onBoarding */ = {
 			isa = PBXGroup;
 			children = (
+				CC87E7CB1C1CFF9400CD923D /* WeightScale */,
 				CC1CB27D1C09076F00083F78 /* FlexiblePagingScrollView.swift */,
 				CC2CFE831C08D0D100F3E8CF /* TickView.swift */,
 				CC1CB2791C08E91D00083F78 /* TickView.xib */,

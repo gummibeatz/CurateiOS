@@ -14,6 +14,11 @@ class SpinningWheelView: UIControl {
     init(frame: CGRect, numberOfSections: Int) {
         super.init(frame: frame)
         print("spinning wheel view frame is \(frame)")
+        let imageView = UIImageView()
+        imageView.frame = CGRect(x: 0, y: 0, width: min(frame.width, frame.height), height: min(frame.width,frame.height))
+        imageView.center = CGPoint(x: frame.width/2, y: frame.height/2)
+        imageView.image = UIImage(named: "WeightWheelFull")
+        self.addSubview(imageView)
     }
     
     required init?(coder aDecoder: NSCoder) {

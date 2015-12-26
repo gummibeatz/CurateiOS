@@ -21,11 +21,11 @@ class onBoardingVC: UIViewController {
     let stylishTag = 2
     let financeTag = 3
     
-    let scrollViewImages: [UIImage] = [UIImage(named: "ruler")!,
-                                       UIImage(named: "ruler")!,
-                                       UIImage(named: "ruler")!,
-                                       UIImage(named: "ruler")!,
-                                       UIImage(named: "ruler")!,
+    let scrollViewImages: [UIImage] = [UIImage(named: "HeightRulerFull")!,
+                                       UIImage(named: "FeetSizeRulerFull")!,
+                                       UIImage(named: "WaistRulerFull")!,
+                                       UIImage(named: "InseamRulerFull")!,
+                                       UIImage(named: "PantsFitRulerFull")!,
                                         ]
     let viewLabelTitles: [String] = ["What's your vertical?",
                                      "How big are your feet?",
@@ -138,6 +138,16 @@ class onBoardingVC: UIViewController {
     }
     
     func setupMeasurementView(view: onBoardingView) {
+        //setting up for individual onboarding
+        switch activeViewIdx! {
+        case 1:
+            view.setupScrollView(contentWidth: SCREENWIDTH * 2, pages: 6)
+        case 2:
+            view.setupScrollView(contentWidth: SCREENWIDTH * 3, pages: 6)
+        default:
+            break
+        }
+        
         view.setScrollViewImage(scrollViewImages[activeViewIdx! - 1])
         view.labelTitle.text = viewLabelTitles[activeViewIdx! - 1]
         view.centerImageView.image = viewImages[activeViewIdx! - 1]

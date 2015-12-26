@@ -15,7 +15,6 @@ class onBoardingView: UIView {
     
     @IBOutlet weak var flexiblePagingScrollView: FlexiblePagingScrollView!{
         didSet{
-            flexiblePagingScrollView.pages = 5
             flexiblePagingScrollView.scrollView.delegate = self
             flexiblePagingScrollView.scrollView.decelerationRate = UIScrollViewDecelerationRateFast
         }
@@ -23,9 +22,7 @@ class onBoardingView: UIView {
     
     @IBOutlet weak var tickView: TickView! {
         didSet {
-            print(tickView.subviews.count)
             tickView.measurementLabel.text = String(pagingIdx)
-            print(tickView.measurementLabel.text)
         }
     }
     
@@ -36,9 +33,14 @@ class onBoardingView: UIView {
     }
     
     func setScrollViewImage(image: UIImage) {
-        let imageView = UIImageView(frame: CGRect(origin: CGPoint.zero, size: flexiblePagingScrollView.scrollView.contentSize))
+        let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y: 0), size: flexiblePagingScrollView.scrollView.contentSize))
         imageView.image = image
         flexiblePagingScrollView.scrollView.addSubview(imageView)
+    }
+
+    func setupScrollView(contentWidth width: CGFloat, pages: Int) {
+        flexiblePagingScrollView.scrollView.contentSize.width = width
+        flexiblePagingScrollView.pages = pages
     }
 }
 
