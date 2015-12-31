@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import FBSDKLoginKit
 
-class onBoardingVC: UIViewController {
+class OnBoardingVC: UIViewController {
     
     var personaTag:Int?
     var activeLayer: CALayer?
@@ -23,22 +23,25 @@ class onBoardingVC: UIViewController {
     
     let scrollViewImages: [UIImage] = [UIImage(named: "HeightRulerFull")!,
                                        UIImage(named: "FeetSizeRulerFull")!,
-                                       UIImage(named: "WaistRulerFull")!,
+                                       UIImage(named: "ShirtFitRulerFull")!,
+                                       UIImage(named: "ShirtSizeRulerFull")!,
                                        UIImage(named: "InseamRulerFull")!,
                                        UIImage(named: "PantsFitRulerFull")!,
                                         ]
     let viewLabelTitles: [String] = ["What's your vertical?",
                                      "How big are your feet?",
-                                     "What's your waist?",
+                                     "What's your shirt fit?",
+                                     "What's your shirt size?",
                                      "How do you fit in them jeans?",
                                      "How do you like your fit?",
     
                                     ]
     let viewImages: [UIImage] = [UIImage(named: "Little Man")!,
                                  UIImage(named: "Shoe Thing")!,
-                                 UIImage(named: "Pant Size")!,
+                                 UIImage(named: "Shirt")!,
+                                 UIImage(named: "Shirt")!,
                                  UIImage(named: "Pant Fit")!,
-                                 UIImage(named: "Little Man")!,
+                                 UIImage(named: "Pant Fit")!,
                                 ]
     
     let heightOffset: CGFloat = SCREENHEIGHT/7
@@ -48,11 +51,12 @@ class onBoardingVC: UIViewController {
     lazy var onBoardingViews: [UIView] = {
         var views = [UIView]()
         views.append(NSBundle.mainBundle().loadNibNamed("PersonaView", owner: self, options: nil).last as! PersonaView)
-        views.append(NSBundle.mainBundle().loadNibNamed("onBoardingView", owner: self, options: nil).last as! onBoardingView)
-        views.append(NSBundle.mainBundle().loadNibNamed("onBoardingView", owner: self, options: nil).last as! onBoardingView)
-        views.append(NSBundle.mainBundle().loadNibNamed("onBoardingView", owner: self, options: nil).last as! onBoardingView)
-        views.append(NSBundle.mainBundle().loadNibNamed("onBoardingView", owner: self, options: nil).last as! onBoardingView)
-        views.append(NSBundle.mainBundle().loadNibNamed("onBoardingView", owner: self, options: nil).last as! onBoardingView)
+        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
+        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
+        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
+        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
+        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
+        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
         return views
     }()
     
@@ -110,7 +114,7 @@ class onBoardingVC: UIViewController {
     }
     
     func loadNextView() {
-        if activeViewIdx! + 1 >= onBoardingViews.count {
+        if activeViewIdx! + 1 > onBoardingViews.count {
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.window?.rootViewController = MainTabBarController()
             return
@@ -125,7 +129,7 @@ class onBoardingVC: UIViewController {
         })
         activeViewIdx = activeViewIdx! + 1
         if activeViewIdx < onBoardingViews.count - 1 {
-            setupMeasurementView(nextView as! onBoardingView)
+            setupMeasurementView(nextView as! OnBoardingView)
         } else {
             setupWeightView()
         }
@@ -137,23 +141,37 @@ class onBoardingVC: UIViewController {
         self.view.addSubview(weightView)
     }
     
-    func setupMeasurementView(view: onBoardingView) {
+    func setupMeasurementView(onBoardingView: OnBoardingView) {
         //setting up for individual onboarding
         switch activeViewIdx! {
         case 1:
-            view.setupScrollView(contentWidth: SCREENWIDTH * 2, pages: 6)
+            // height
+            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 90, totalPages: 90)
         case 2:
-            view.setupScrollView(contentWidth: SCREENWIDTH * 3, pages: 6)
+            // feet size
+            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 9, totalPages: 18)
+        case 3:
+            // shirt fit
+            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 4, totalPages: 4)
+        case 4:
+            // shirt size
+            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 4, totalPages: 6)
+        case 5:
+            // inseam
+            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 6, totalPages: 9)
+        case 6:
+            // pants fit
+            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 3, totalPages: 4)
         default:
             break
         }
         
-        view.setScrollViewImage(scrollViewImages[activeViewIdx! - 1])
-        view.labelTitle.text = viewLabelTitles[activeViewIdx! - 1]
-        view.centerImageView.image = viewImages[activeViewIdx! - 1]
+        onBoardingView.setScrollViewImage(scrollViewImages[activeViewIdx! - 1])
+        onBoardingView.labelTitle.text = viewLabelTitles[activeViewIdx! - 1]
+        onBoardingView.centerImageView.image = viewImages[activeViewIdx! - 1]
         let tapGesture = UITapGestureRecognizer(target: self, action: "loadNextView")
-        view.centerImageView.addGestureRecognizer(tapGesture)
-        view.centerImageView.userInteractionEnabled = true
+        onBoardingView.centerImageView.addGestureRecognizer(tapGesture)
+        onBoardingView.centerImageView.userInteractionEnabled = true
     }
     
     func removeActiveLayer() {

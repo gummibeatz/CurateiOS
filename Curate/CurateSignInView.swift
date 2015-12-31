@@ -11,22 +11,24 @@ import Foundation
 
 class CurateSignInView: UIView {
     @IBOutlet weak var backButton: UIButton!
-
     @IBOutlet weak var passwordTextField: UITextField! {
         didSet {
             passwordTextField.delegate = self
         }
     }
-    
     @IBOutlet weak var emailTextField: UITextField! {
         didSet {
             emailTextField.delegate = self
         }
     }
-    
-    @IBOutlet weak var loginTextView: UIView! {
+    @IBOutlet weak var loginContainerView: UIView! {
         didSet {
-            loginTextView.layer.cornerRadius = 8
+            loginContainerView.layer.cornerRadius = 8
+        }
+    }
+    @IBOutlet weak var logInButton: UIButton! {
+        didSet {
+            logInButton.layer.cornerRadius = 3
         }
     }
     

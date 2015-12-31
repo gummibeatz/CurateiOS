@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class onBoardingView: UIView {
+class OnBoardingView: UIView {
     @IBOutlet weak var centerImageView: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
     
@@ -38,13 +38,12 @@ class onBoardingView: UIView {
         flexiblePagingScrollView.scrollView.addSubview(imageView)
     }
 
-    func setupScrollView(contentWidth width: CGFloat, pages: Int) {
-        flexiblePagingScrollView.scrollView.contentSize.width = width
+    func setupScrollView(pages pages: Int) {
         flexiblePagingScrollView.pages = pages
     }
 }
 
-extension onBoardingView: UIScrollViewDelegate {
+extension OnBoardingView: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         pagingIdx = Int(scrollView.contentOffset.x / scrollView.frame.width)
         tickView.measurementLabel.text = String(pagingIdx)

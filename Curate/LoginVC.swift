@@ -130,8 +130,8 @@ class LoginVC: UIViewController {
     
     func curateLoginTouched() {
         print("curateLoginTapped")
-        let curateSignInVC = CurateSignInVC()
-        self.presentViewController(curateSignInVC, animated: true, completion: nil)
+        let curateLoginTabBarController = CurateLoginTabBarController()
+        self.presentViewController(curateLoginTabBarController, animated: true, completion: nil)
         self.didMoveToParentViewController(self)
     }
    

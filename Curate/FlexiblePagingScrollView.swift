@@ -11,24 +11,18 @@ import UIKit
 class FlexiblePagingScrollView: UIView {
     
     var scrollView: UIScrollView!
-    
     var pages: Int {
         get {
-            return Int(self.frame.width / scrollView.frame.width)
+            return self.pages
         }
         set {
-            let width = SCREENWIDTH / CGFloat(newValue)
-            let x = SCREENWIDTH/2 - width
-            scrollView.frame = CGRect(x: x, y: 0, width: width, height: self.frame.height)
-//            scrollView.contentInset = UIEdgeInsets(top: 0, left: width/2, bottom: 0, right: width/2)
-            print(scrollView.frame)
+            self.scrollView.contentSize = CGSize(width: self.scrollView.frame.width * CGFloat(newValue), height: self.scrollView.frame.height)
         }
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         scrollView = UIScrollView()
-        scrollView.contentSize = CGSize(width: SCREENWIDTH * 10, height: self.frame.height)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         scrollView.pagingEnabled = true
         scrollView.clipsToBounds = false
@@ -37,5 +31,12 @@ class FlexiblePagingScrollView: UIView {
     
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
         return self.pointInside(point, withEvent: event) ? scrollView : nil
+    }
+    
+    func setupFrameWith(pagesPerFrame pagesPerFrame:CGFloat, totalPages:CGFloat) {
+        let width = SCREENWIDTH / pagesPerFrame
+        let x = SCREENWIDTH/2 - width
+        scrollView.frame = CGRect(x: x, y: 0, width: width, height: self.frame.height)
+        scrollView.contentSize = CGSize(width: width * totalPages, height: self.frame.height)
     }
 }

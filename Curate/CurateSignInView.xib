@@ -126,11 +126,6 @@
                     <state key="normal" title="Log In">
                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="3"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -205,8 +200,9 @@
             </variation>
             <connections>
                 <outlet property="backButton" destination="SmR-QP-SIo" id="Lex-f7-3ui"/>
-                <outlet property="emailTextField" destination="o1i-db-efc" id="LaD-90-YmX"/>
-                <outlet property="loginTextView" destination="rTS-7G-f1i" id="NEj-kJ-Y7M"/>
+                <outlet property="emailTextField" destination="o1i-db-efc" id="oS0-f9-XZr"/>
+                <outlet property="logInButton" destination="QVD-c4-ad1" id="Lho-NK-KaV"/>
+                <outlet property="loginContainerView" destination="rTS-7G-f1i" id="SJF-0P-Hse"/>
                 <outlet property="passwordTextField" destination="XOC-sl-wTC" id="TlR-rG-PVo"/>
             </connections>
         </view>

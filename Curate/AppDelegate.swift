@@ -14,7 +14,7 @@ import FBSDKCoreKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     
-    var screenToCheck = onBoardingVC()
+    var screenToCheck = OnBoardingVC()
     
     var window: UIWindow?
     
@@ -79,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         //         -- MARK FB stuff
         print("in application FB")
-        self.window?.rootViewController = onBoardingVC()
+        self.window?.rootViewController = OnBoardingVC()
         self.loginVC.resignFirstResponder()
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
