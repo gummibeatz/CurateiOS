@@ -75,9 +75,9 @@ func getBatchIndex() -> Indexes {
     return indexes!
 }
 
-func hasBatchIndex() ->Bool {
+func hasBatchIndex() -> Bool {
     let fetchRequest = NSFetchRequest(entityName: "Indexes")
-    let count = managedObjectContext?.countForFetchRequest(fetchRequest, error: nil)
-    print("Indexes = \(count!)")
+    let count = managedObjectContext!.countForFetchRequest(fetchRequest, error: nil)
+    print("Indexes = \(count)")
     return (count != 0) ? true:false
 }

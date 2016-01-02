@@ -24,6 +24,7 @@ class User: NSManagedObject {
 
     //maybe need to change store as "User" to store as unique name to actual user take it as an input
     class func createInManagedObjectContext(moc: NSManagedObjectContext, preferences: NSDictionary) -> User {
+        
         let newUser = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: moc) as! User
         let null: String = ""
         

@@ -29,16 +29,8 @@ class WeightScaleView: UIView {
         containerView = SpinningWheelView(frame: CGRect(x: (self.frame.width - length) / 2, y: (self.frame.height - length) / 2, width: length, height: length),  numberOfSections: 3)
         containerView.backgroundColor = UIColor.clearColor()
         let panningGesture = UIPanGestureRecognizer(target: self, action: "rotate:")
-        setupWheelImage()
         containerView.addGestureRecognizer(panningGesture)
         self.addSubview(containerView!)
-    }
-    
-    func setupWheelImage(){
-        let imageView = UIImageView()
-        imageView.frame = self.containerView.frame
-        imageView.image = UIImage(named: "WeightWheelFull")
-        self.addSubview(imageView)
     }
     
     func setupLabel() {

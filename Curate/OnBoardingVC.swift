@@ -57,6 +57,7 @@ class OnBoardingVC: UIViewController {
         views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
         views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
         views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
+        views.append(self.createWeightScaleView())
         return views
     }()
     
@@ -67,11 +68,35 @@ class OnBoardingVC: UIViewController {
         progressBar.frame = CGRect(x: SCREENWIDTH/4, y: SCREENHEIGHT/14, width: SCREENWIDTH/2, height: 20)
         return progressBar
     }()
+    
+    lazy var backLabel: UILabel = {
+        let backLabel = UILabel(frame: CGRect(x: 10, y: SCREENHEIGHT/16, width: 50, height: 15))
+        backLabel.text = "Back"
+        backLabel.textColor = UIColor.lightTextColor()
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: "backButtonTapped")
+        backLabel.addGestureRecognizer(gestureRecognizer)
+        backLabel.userInteractionEnabled = true
+        return backLabel
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
        
         setupBackground()
+        setupPersonaView()
+    }
+    
+    func setupBackground() {
+        //adding background picture
+        let backgroundView = UIImageView(frame: self.view.bounds)
+        backgroundView.image = UIImage(named: "personaViewBG")
+        
+        self.view.addSubview(backgroundView)
+        self.view.addSubview(progressBar)
+        self.view.addSubview(backLabel)
+    }
+    
+    func setupPersonaView() {
         let personaView = onBoardingViews.first!
         personaView.frame = viewFrame
         activeViewIdx = 0
@@ -79,14 +104,26 @@ class OnBoardingVC: UIViewController {
         self.view.addSubview(personaView)
     }
     
-    func setupBackground() {
-        //adding background picture
-        let backgroundView = UIImageView(frame: self.view.bounds)
-        backgroundView.image = UIImage(named: "personaViewBG")
-        self.view.addSubview(backgroundView)
-        
-        //adding progress bar
-        self.view.addSubview(progressBar)
+    func backButtonTapped() {
+        if activeViewIdx! == 0 {
+            print("at first index")
+            return
+        } else {
+            activeViewIdx! -= 1
+            let nextView = onBoardingViews[activeViewIdx!]
+            nextView.frame = viewFrame
+            self.removeActiveLayer()
+            UIView.transitionFromView( onBoardingViews[activeViewIdx! + 1], toView: nextView, duration: 0.5, options: .TransitionCrossDissolve, completion: {
+                completionHandler in
+                print("animation transitioned")
+                self.progressBar.setProgress(Float(self.activeViewIdx!) / Float(self.onBoardingViews.count), animated: true)
+            })
+            if activeViewIdx == 0 {
+                setupPersonaView()
+            } else {
+                setupMeasurementView(nextView as! OnBoardingView)
+            }
+        }
     }
     
     func setupPersonaTargets(personaView: PersonaView) {
@@ -114,31 +151,39 @@ class OnBoardingVC: UIViewController {
     }
     
     func loadNextView() {
-        if activeViewIdx! + 1 > onBoardingViews.count {
+        activeViewIdx! += 1
+        if activeViewIdx! == onBoardingViews.count {
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.window?.rootViewController = MainTabBarController()
             return
-        }
-        let nextView = onBoardingViews[activeViewIdx! + 1]
-        nextView.frame = viewFrame
-        self.removeActiveLayer()
-        UIView.transitionFromView( onBoardingViews[activeViewIdx!], toView: nextView, duration: 0.5, options: .TransitionCrossDissolve, completion: {
-            completionHandler in
-            print("animation transitioned")
-            self.progressBar.setProgress(Float(self.activeViewIdx!) / Float(self.onBoardingViews.count), animated: true)
-        })
-        activeViewIdx = activeViewIdx! + 1
-        if activeViewIdx < onBoardingViews.count - 1 {
-            setupMeasurementView(nextView as! OnBoardingView)
         } else {
-            setupWeightView()
+            let nextView = onBoardingViews[activeViewIdx!]
+            nextView.frame = viewFrame
+            self.removeActiveLayer()
+            UIView.transitionFromView( onBoardingViews[activeViewIdx! - 1], toView: nextView, duration: 0.5, options: .TransitionCrossDissolve, completion: {
+                completionHandler in
+                print("animation transitioned")
+                self.progressBar.setProgress(Float(self.activeViewIdx!) / Float(self.onBoardingViews.count), animated: true)
+            })
+            if activeViewIdx < onBoardingViews.count - 1 {
+                setupMeasurementView(nextView as! OnBoardingView)
+            }
+            
         }
     }
     
-    func setupWeightView() {
-        let xOffset: CGFloat = 50
-        let weightView = WeightScaleView(frame: CGRect(x: -xOffset, y: SCREENHEIGHT/3, width: SCREENWIDTH + 2 * xOffset, height: SCREENHEIGHT))
-        self.view.addSubview(weightView)
+    func createWeightScaleView() -> WeightScaleView {
+        let weightView = WeightScaleView(frame: viewFrame)
+        let tapGesture = UITapGestureRecognizer(target: self, action: "wheelLabelTapped")
+        weightView.label.addGestureRecognizer(tapGesture)
+        weightView.label.userInteractionEnabled = true
+        return weightView
+    }
+    
+    func wheelLabelTapped() {
+        print("wheelLabelTapped")
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window?.rootViewController = MainTabBarController()
     }
     
     func setupMeasurementView(onBoardingView: OnBoardingView) {
