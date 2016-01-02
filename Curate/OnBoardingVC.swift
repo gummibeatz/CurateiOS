@@ -26,12 +26,14 @@ class OnBoardingVC: UIViewController {
                                        UIImage(named: "ShirtFitRulerFull")!,
                                        UIImage(named: "ShirtSizeRulerFull")!,
                                        UIImage(named: "InseamRulerFull")!,
+                                       UIImage(named: "InseamRulerFull")!,
                                        UIImage(named: "PantsFitRulerFull")!,
                                         ]
     let viewLabelTitles: [String] = ["What's your vertical?",
                                      "How big are your feet?",
                                      "What's your shirt fit?",
                                      "What's your shirt size?",
+                                     "What's your waist size?",
                                      "How do you fit in them jeans?",
                                      "How do you like your fit?",
     
@@ -40,6 +42,7 @@ class OnBoardingVC: UIViewController {
                                  UIImage(named: "Shoe Thing")!,
                                  UIImage(named: "Shirt")!,
                                  UIImage(named: "Shirt")!,
+                                 UIImage(named: "Pant Fit")!,
                                  UIImage(named: "Pant Fit")!,
                                  UIImage(named: "Pant Fit")!,
                                 ]
@@ -51,6 +54,7 @@ class OnBoardingVC: UIViewController {
     lazy var onBoardingViews: [UIView] = {
         var views = [UIView]()
         views.append(NSBundle.mainBundle().loadNibNamed("PersonaView", owner: self, options: nil).last as! PersonaView)
+        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
         views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
         views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
         views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
@@ -213,9 +217,12 @@ class OnBoardingVC: UIViewController {
             // shirt size
             onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 4, totalPages: 6)
         case 5:
-            // inseam
+            // waist size
             onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 6, totalPages: 9)
         case 6:
+            // inseam
+            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 6, totalPages: 9)
+        case 7:
             // pants fit
             onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 3, totalPages: 4)
         default:
