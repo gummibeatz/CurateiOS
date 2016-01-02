@@ -13,10 +13,20 @@ class OnBoardingView: UIView {
     @IBOutlet weak var centerImageView: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
     
+    @IBOutlet weak var blueLine: UIView! {
+        didSet {
+            blueLine.backgroundColor = curateBlue
+            blueLine.layer.shadowOffset = CGSize(width: 1, height: 1)
+            blueLine.layer.shadowColor = UIColor.darkGrayColor().CGColor
+            blueLine.layer.shadowOpacity = 1.0
+        }
+    }
+    
     @IBOutlet weak var flexiblePagingScrollView: FlexiblePagingScrollView!{
         didSet{
             flexiblePagingScrollView.scrollView.delegate = self
             flexiblePagingScrollView.scrollView.decelerationRate = UIScrollViewDecelerationRateFast
+            flexiblePagingScrollView.backgroundColor = UIColor.whiteColor()
         }
     }
     

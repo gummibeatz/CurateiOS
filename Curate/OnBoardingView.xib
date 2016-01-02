@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="onBoardingView" customModule="Curate" customModuleProvider="target"/>
@@ -19,18 +20,42 @@
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Up5-Nc-XfD" customClass="FlexiblePagingScrollView" customModule="Curate" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9o1-1I-m55" userLabel="BlueLine">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <color key="backgroundColor" red="0.3803921569" green="0.62745098040000002" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="9o1-1I-m55" secondAttribute="trailing" id="8Kk-mJ-A72"/>
                         <constraint firstAttribute="height" constant="100" id="eCH-uo-YsZ"/>
+                        <constraint firstItem="9o1-1I-m55" firstAttribute="top" secondItem="Up5-Nc-XfD" secondAttribute="top" id="ffp-9y-fbD"/>
+                        <constraint firstItem="9o1-1I-m55" firstAttribute="leading" secondItem="Up5-Nc-XfD" secondAttribute="leading" id="fgl-Qd-xUm"/>
+                        <constraint firstItem="9o1-1I-m55" firstAttribute="height" secondItem="Up5-Nc-XfD" secondAttribute="height" multiplier="1:20" id="iTn-sC-vLN"/>
                     </constraints>
                     <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="9o1-1I-m55"/>
+                        </mask>
                         <mask key="constraints">
                             <exclude reference="eCH-uo-YsZ"/>
+                            <exclude reference="8Kk-mJ-A72"/>
+                            <exclude reference="ffp-9y-fbD"/>
+                            <exclude reference="fgl-Qd-xUm"/>
+                            <exclude reference="iTn-sC-vLN"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="subviews">
+                            <include reference="9o1-1I-m55"/>
+                        </mask>
                         <mask key="constraints">
                             <include reference="eCH-uo-YsZ"/>
+                            <include reference="8Kk-mJ-A72"/>
+                            <include reference="ffp-9y-fbD"/>
+                            <include reference="fgl-Qd-xUm"/>
+                            <include reference="iTn-sC-vLN"/>
                         </mask>
                     </variation>
                 </view>
@@ -147,6 +172,7 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="blueLine" destination="9o1-1I-m55" id="vc7-3h-Zpm"/>
                 <outlet property="centerImageView" destination="heW-6q-Dmi" id="CtG-2t-1CG"/>
                 <outlet property="flexiblePagingScrollView" destination="Up5-Nc-XfD" id="L8B-AG-2hK"/>
                 <outlet property="labelTitle" destination="Jku-aR-A6f" id="etc-k4-aeT"/>
