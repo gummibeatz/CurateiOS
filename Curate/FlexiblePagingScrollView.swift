@@ -38,5 +38,7 @@ class FlexiblePagingScrollView: UIView {
         let x = SCREENWIDTH/2 - width
         scrollView.frame = CGRect(x: x, y: 0, width: width, height: self.frame.height)
         scrollView.contentSize = CGSize(width: width * totalPages, height: self.frame.height)
+        // doesn't allow you to scroll to the last item
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -1 * width)
     }
 }

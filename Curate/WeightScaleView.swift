@@ -13,11 +13,13 @@ class WeightScaleView: UIView {
     
     var containerView: SpinningWheelView!
     var label: CircleLabel!
+    var lbValues = [Int]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupContainerView()
         setupLabel()
+        setupLbValues()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,7 +41,7 @@ class WeightScaleView: UIView {
         
         let attributes = [NSFontAttributeName : UIFont(name: "Arial-BoldMT", size: 24)!, NSForegroundColorAttributeName : UIColor.whiteColor()]
         let lbString = NSAttributedString(string: " lbs", attributes: attributes)
-        let text = NSMutableAttributedString(string: "20", attributes: attributes)
+        let text = NSMutableAttributedString(string: "111", attributes: attributes)
         text.appendAttributedString(lbString)
         
         
@@ -49,6 +51,11 @@ class WeightScaleView: UIView {
         self.addSubview(label)
     }
     
+    func setupLbValues() {
+        lbValues += 111...239
+        lbValues += 100...110
+    }
+    
     func rotate(sender: UIPanGestureRecognizer) {
         let velocity: CGPoint = sender.velocityInView(self)
         let location: CGPoint = sender.locationInView(self)
@@ -56,11 +63,11 @@ class WeightScaleView: UIView {
         
         let t = CGAffineTransformRotate(containerView.transform, angle)
         containerView.transform = t
+        updateLabelWithAngle(getAngleOffset())
         if abs(angle) > 0.1 {
             finishRotation(angle)
         }
         print("rotating at speed \(angle)")
-        updateLabelWithAngle(angle)
     }
     
     func getRotationAngle(location location: CGPoint, velocity: CGPoint) -> CGFloat {
@@ -77,20 +84,42 @@ class WeightScaleView: UIView {
     }
     
     func getAngleOffset() -> CGFloat {
-        return atan2(containerView.transform.b, containerView.transform.a)
+        let angleOffset = atan2(containerView.transform.b, containerView.transform.a)
+        print("angleOffset = \(angleOffset)")
+        return angleOffset
     }
     
     func finishRotation(xV: CGFloat) {
         UIView.animateWithDuration(0.7, delay: 0, options: [UIViewAnimationOptions.CurveEaseOut , UIViewAnimationOptions.AllowUserInteraction] , animations: {
             let t = CGAffineTransformRotate(self.containerView.transform, xV)
             self.containerView.transform = t
-            }, completion: nil)
+            }, completion: {
+                completion in
+                self.updateLabelWithAngle(self.getAngleOffset())
+        })
     }
     
     func updateLabelWithAngle(angle:CGFloat) {
+        let increment = π/70
+        var finalValue = "0"
+        if angle >= 0 {
+            for(var i = 0; i < 70; i++) {
+                if angle >= increment * CGFloat(i) && angle < increment * CGFloat(i+1) {
+                    finalValue = String(lbValues[lbValues.count - 1 - i])
+                    break
+                }
+            }
+        } else {
+            for(var i = -70; i < 0; i++) {
+                if angle >= increment * CGFloat(i) && angle < increment * CGFloat(i+1) {
+                    finalValue = String(lbValues[(lbValues.count - (i + 140))])
+                    break
+                }
+            }
+        }
         let attributes = [NSFontAttributeName : UIFont(name: "Arial-BoldMT", size: 24)!, NSForegroundColorAttributeName : UIColor.whiteColor()]
         let lbString = NSAttributedString(string: " lbs", attributes: attributes)
-        let text = NSMutableAttributedString(string: String(angle), attributes: attributes)
+        let text = NSMutableAttributedString(string: finalValue, attributes: attributes)
         text.appendAttributedString(lbString)
         label.attributedText = text
     }

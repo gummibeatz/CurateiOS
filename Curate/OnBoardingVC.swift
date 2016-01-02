@@ -76,6 +76,7 @@ class OnBoardingVC: UIViewController {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: "backButtonTapped")
         backLabel.addGestureRecognizer(gestureRecognizer)
         backLabel.userInteractionEnabled = true
+        backLabel.alpha = 0
         return backLabel
     }()
 
@@ -120,6 +121,7 @@ class OnBoardingVC: UIViewController {
             })
             if activeViewIdx == 0 {
                 setupPersonaView()
+                backLabel.alpha = 0
             } else {
                 setupMeasurementView(nextView as! OnBoardingView)
             }
@@ -152,6 +154,7 @@ class OnBoardingVC: UIViewController {
     
     func loadNextView() {
         activeViewIdx! += 1
+        backLabel.alpha = 1
         if activeViewIdx! == onBoardingViews.count {
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.window?.rootViewController = MainTabBarController()
@@ -167,17 +170,25 @@ class OnBoardingVC: UIViewController {
             })
             if activeViewIdx < onBoardingViews.count - 1 {
                 setupMeasurementView(nextView as! OnBoardingView)
+            } else {
+                setupWeightScaleView(nextView as! WeightScaleView)
             }
             
         }
     }
     
     func createWeightScaleView() -> WeightScaleView {
-        let weightView = WeightScaleView(frame: viewFrame)
+        let weightView = WeightScaleView(frame: CGRect(x: 0, y: 0, width: SCREENWIDTH * 1.5, height: SCREENWIDTH * 1.5))
         let tapGesture = UITapGestureRecognizer(target: self, action: "wheelLabelTapped")
         weightView.label.addGestureRecognizer(tapGesture)
         weightView.label.userInteractionEnabled = true
         return weightView
+    }
+    
+    func setupWeightScaleView(weightScaleView: WeightScaleView) {
+        weightScaleView.layer.masksToBounds = false
+        weightScaleView.frame = CGRect(x: (SCREENWIDTH - SCREENWIDTH*1.5)/2, y: SCREENHEIGHT - 100, width: SCREENWIDTH*1.5, height: SCREENWIDTH*1.5)
+        weightScaleView.center = CGPoint(x: SCREENWIDTH/2, y: SCREENHEIGHT - 100)
     }
     
     func wheelLabelTapped() {

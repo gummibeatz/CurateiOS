@@ -90,13 +90,13 @@
                             <exclude reference="8TI-Tr-cFR"/>
                             <exclude reference="LsX-Q9-Z8g"/>
                             <exclude reference="kiC-iU-0L6"/>
-                            <exclude reference="1WG-4M-65c"/>
-                            <exclude reference="EDF-Og-Cqn"/>
-                            <exclude reference="fLY-Qq-6Rk"/>
                             <exclude reference="EiU-Hr-S07"/>
                             <exclude reference="Pbf-O1-zG5"/>
                             <exclude reference="RA8-ba-gAW"/>
                             <exclude reference="o5H-sK-bkN"/>
+                            <exclude reference="1WG-4M-65c"/>
+                            <exclude reference="EDF-Og-Cqn"/>
+                            <exclude reference="fLY-Qq-6Rk"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
@@ -110,13 +110,13 @@
                             <include reference="8TI-Tr-cFR"/>
                             <include reference="LsX-Q9-Z8g"/>
                             <include reference="kiC-iU-0L6"/>
-                            <include reference="1WG-4M-65c"/>
-                            <include reference="EDF-Og-Cqn"/>
-                            <include reference="fLY-Qq-6Rk"/>
                             <include reference="EiU-Hr-S07"/>
                             <include reference="Pbf-O1-zG5"/>
                             <include reference="RA8-ba-gAW"/>
                             <include reference="o5H-sK-bkN"/>
+                            <include reference="1WG-4M-65c"/>
+                            <include reference="EDF-Og-Cqn"/>
+                            <include reference="fLY-Qq-6Rk"/>
                         </mask>
                     </variation>
                 </view>
@@ -132,9 +132,6 @@
                     <state key="normal" title="Back">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                        <rect key="frame" x="177" y="720" width="46" height="30"/>
-                    </variation>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -164,6 +161,12 @@
                     <exclude reference="jdT-zV-UJX"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="fh4-1p-axP"/>
+                    <exclude reference="g3F-kz-ZgW"/>
+                    <exclude reference="kXw-D7-0iA"/>
+                    <exclude reference="kg2-to-E7M"/>
+                    <exclude reference="bM6-kd-ex8"/>
+                    <exclude reference="nX1-Wi-d2A"/>
                     <exclude reference="A7M-wB-j6D"/>
                     <exclude reference="oQa-nP-74Y"/>
                     <exclude reference="q7Z-d7-1Z4"/>
@@ -172,12 +175,6 @@
                     <exclude reference="Ms4-Wd-IhD"/>
                     <exclude reference="eMf-sE-aN2"/>
                     <exclude reference="qMC-qA-AUF"/>
-                    <exclude reference="fh4-1p-axP"/>
-                    <exclude reference="g3F-kz-ZgW"/>
-                    <exclude reference="kXw-D7-0iA"/>
-                    <exclude reference="kg2-to-E7M"/>
-                    <exclude reference="bM6-kd-ex8"/>
-                    <exclude reference="nX1-Wi-d2A"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -188,6 +185,12 @@
                     <include reference="jdT-zV-UJX"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="fh4-1p-axP"/>
+                    <include reference="g3F-kz-ZgW"/>
+                    <include reference="kXw-D7-0iA"/>
+                    <include reference="kg2-to-E7M"/>
+                    <include reference="bM6-kd-ex8"/>
+                    <include reference="nX1-Wi-d2A"/>
                     <include reference="A7M-wB-j6D"/>
                     <include reference="oQa-nP-74Y"/>
                     <include reference="q7Z-d7-1Z4"/>
@@ -196,12 +199,6 @@
                     <include reference="Ms4-Wd-IhD"/>
                     <include reference="eMf-sE-aN2"/>
                     <include reference="qMC-qA-AUF"/>
-                    <include reference="fh4-1p-axP"/>
-                    <include reference="g3F-kz-ZgW"/>
-                    <include reference="kXw-D7-0iA"/>
-                    <include reference="kg2-to-E7M"/>
-                    <include reference="bM6-kd-ex8"/>
-                    <include reference="nX1-Wi-d2A"/>
                 </mask>
             </variation>
             <connections>
