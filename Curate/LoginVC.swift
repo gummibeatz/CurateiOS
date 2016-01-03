@@ -55,6 +55,9 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        //figure out where to put this later
+        User.createInManagedObjectContext(managedObjectContext!, preferences: NSDictionary())
+        
         setupLoginButtons()
         setupPageViewController(loginOffset: fbLogin.bounds.height + curateLogin.bounds.height)
         setupIntroView()

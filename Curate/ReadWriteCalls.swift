@@ -23,7 +23,6 @@ func writeCustomObjArraytoUserDefaults(objectArray: [NSObject], fileName: String
     print("write success")
 }
 
-
 func readCustomObjArrayFromUserDefaults(fileName: String) -> [NSObject] {
     let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     if let data: NSData = userDefaults.objectForKey(fileName) as? NSData {

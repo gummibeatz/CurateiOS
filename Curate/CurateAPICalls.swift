@@ -290,6 +290,49 @@ func getCurateAuthToken(fbAuthToken: String,completionHandler:(curateAuthToken:S
     }
 }
 
+func getCurateAuthToken(email: String, password: String, isLogin: Bool, completionHandler: (curateAuthToken: String) -> ()) {
+    // setting up request
+    print("============== in getCurateAuthToken =========")
+    let request = isLogin ? NSMutableURLRequest(URL: NSURL(string:  baseURL + "/api/v1/user/login")!) : NSMutableURLRequest(URL: NSURL(string:  baseURL + "/api/v1/user/new")!)
+    
+    request.HTTPMethod = "POST"
+    let postDict = ["email":email, "password":password] as Dictionary<String, String>
+    
+    do {
+        guard let json: NSData = try NSJSONSerialization.dataWithJSONObject(postDict, options: .PrettyPrinted) else {
+            throw APIErrors.DictError
+        }
+        request.HTTPBody = json
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let finalRequest: NSURLRequest = request
+        //performing the request
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(finalRequest) {(data, response, error) in
+            print("error=\(error)")
+            do {
+                guard let jsonResult:NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as? NSDictionary  else {
+                    throw APIErrors.DictError
+                }
+                
+                if let authentication_token: String = jsonResult["curate_auth_token"] as? String {
+                    print("curateAuthToken given")
+                    print("curateAuthToken = \(authentication_token)")
+                    completionHandler(curateAuthToken: authentication_token)
+                } else {
+                    print("error no curateAuthToken given")
+                    completionHandler(curateAuthToken: "no_token")
+                }
+            } catch {
+                print(" task error")
+            }
+
+        }
+        task.resume()
+    } catch {
+        
+    }
+}
+
 // user sends 2 properties of article to be matched. color and main category style
 // receives dictionary with main category of original article and color pairings
 func getMatches(curateAuthToken: String, base_clothing: String, completionHandler:(matchDict: NSDictionary) -> ()) {
