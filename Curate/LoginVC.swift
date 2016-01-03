@@ -27,33 +27,26 @@ class LoginVC: UIViewController {
     lazy var viewController1: UIViewController = {
         let vc = UIViewController()
         vc.view.tag = 0
-        let bgView = UIImageView(frame: self.view.frame)
-        bgView.image = UIImage(named: "closet1")
+        let bgView = UIImageView(frame: CGRect(x: 40, y: 50, width: SCREENWIDTH-80, height: SCREENHEIGHT - 200))
+        bgView.image = UIImage(named: "Tutorial Swipe")
         vc.view.addSubview(bgView)
         return vc
         }()
     
     lazy var viewController2: UIViewController = {
         let vc = UIViewController()
-        let bgView = UIImageView(frame: self.view.frame)
-        bgView.image = UIImage(named: "closet2")
+        let bgView = UIImageView(frame: CGRect(x: 40, y: 50, width: SCREENWIDTH-80, height: SCREENHEIGHT - 200))
+        bgView.image = UIImage(named: "Tutorial Wardrobe")
         vc.view.addSubview(bgView)
         vc.view.tag = 1
-        return vc
-        }()
-    
-    lazy var viewController3: UIViewController = {
-        let vc = UIViewController()
-        let bgView = UIImageView(frame: self.view.frame)
-        bgView.image = UIImage(named: "closet3")
-        vc.view.tag = 2
-        vc.view.addSubview(bgView)
         return vc
         }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.view.backgroundColor = UIColor.lightGrayColor()
         
         //figure out where to put this later
         User.createInManagedObjectContext(managedObjectContext!, preferences: NSDictionary())
@@ -114,7 +107,7 @@ class LoginVC: UIViewController {
     }
     
     func setupPageViewController(loginOffset loginOffset: CGFloat) {
-        viewControllers = [viewController1,viewController2, viewController3]
+        viewControllers = [viewController1,viewController2]
         self.pageController.view.frame = self.view.frame
         
         self.pageController.setViewControllers([viewControllers[0]], direction: .Forward, animated: false, completion: nil)
@@ -126,7 +119,8 @@ class LoginVC: UIViewController {
         
         self.pageControl.numberOfPages = viewControllers.count
         self.pageControl.frame = CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - loginOffset - 30, width: UIScreen.mainScreen().bounds.width, height: 10)
-        self.pageControl.tintColor = UIColor.whiteColor()
+        self.pageControl.tintColor = curateBlue
+        self.pageControl.pageIndicatorTintColor = curateBlue
         self.pageController.didMoveToParentViewController(self)
         self.view.addSubview(self.pageControl)
     }

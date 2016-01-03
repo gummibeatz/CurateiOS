@@ -42,10 +42,10 @@ class OnBoardingVC: UIViewController {
                                     ]
     let viewImages: [UIImage] = [UIImage(named: "Little Man")!,
                                  UIImage(named: "Shoe Thing")!,
-                                 UIImage(named: "Shirt")!,
-                                 UIImage(named: "Shirt")!,
-                                 UIImage(named: "Pant Fit")!,
-                                 UIImage(named: "Pant Fit")!,
+                                 UIImage(named: "Shirt Fit")!,
+                                 UIImage(named: "Shirt Fit")!,
+                                 UIImage(named: "Pants Waist")!,
+                                 UIImage(named: "Pants Inseam")!,
                                  UIImage(named: "Pant Fit")!,
                                 ]
     
