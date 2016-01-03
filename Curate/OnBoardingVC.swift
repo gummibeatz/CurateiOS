@@ -16,6 +16,8 @@ class OnBoardingVC: UIViewController {
     var activeLayer: CALayer?
     var activeViewIdx: Int?
     
+    var user: User!
+    
     let hipsterTag = 0
     let techTag = 1
     let stylishTag = 2
@@ -86,7 +88,8 @@ class OnBoardingVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        user = User.createInManagedObjectContext(managedObjectContext!, preferences: NSDictionary())
+        
         setupBackground()
         setupPersonaView()
     }
@@ -157,6 +160,37 @@ class OnBoardingVC: UIViewController {
     }
     
     func loadNextView() {
+        if activeViewIdx! > 0 {
+            let labelText = (onBoardingViews[activeViewIdx!] as! OnBoardingView).tickView.measurementLabel.text!
+            switch activeViewIdx! {
+            case 1:
+                //height
+                user.height = labelText
+            case 2:
+                //feet
+                user.shoeSize = labelText
+            case 3:
+                //shirt fit
+                user.preferredShirtFit = labelText
+            case 4:
+                //shirt sizes
+                user.shirtSize = labelText
+            case 5:
+                //waist sizes
+                user.waistSize = labelText
+            case 6:
+                //inseam sizes
+                user.inseam = labelText
+            case 7:
+                //pant sizes
+                user.preferredPantsFit = labelText
+            case 8:
+                //weight
+                user.weight = labelText
+            default:
+                print("no cases were matched")
+            }
+        }
         activeViewIdx! += 1
         backLabel.alpha = 1
         if activeViewIdx! == onBoardingViews.count {
@@ -197,16 +231,33 @@ class OnBoardingVC: UIViewController {
     
     func wheelLabelTapped() {
         print("wheelLabelTapped")
+        let userPreferences = createUserPreferencesDictionary()
+        let curateAuthToken = readCustomObjArrayFromUserDefaults("curateAuthToken").first! as! String
+        postUser(curateAuthToken, preferencesDict: userPreferences)
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.window?.rootViewController = MainTabBarController()
     }
     
+    func createUserPreferencesDictionary() -> NSDictionary {
+        let userPreferences = NSMutableDictionary()
+        userPreferences.setObject(user.height, forKey: "height")
+        userPreferences.setObject(user.shoeSize, forKey: "shoe_size")
+        userPreferences.setObject(user.preferredShirtFit, forKey: "preferred_shirt_fit")
+        userPreferences.setObject(user.shirtSize, forKey: "preferred_shirt_size")
+        userPreferences.setObject(user.waistSize, forKey: "waist_size")
+        userPreferences.setObject(user.inseam, forKey: "inseam")
+        userPreferences.setObject(user.preferredPantsFit, forKey: "preferred_pants_fit")
+        userPreferences.setObject(user.weight, forKey: "weight")
+        return userPreferences
+    }
+    
     func setupMeasurementView(onBoardingView: OnBoardingView) {
         //setting up for individual onboarding
+        onBoardingView.tag = activeViewIdx!
         switch activeViewIdx! {
         case 1:
             // height
-            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 90, totalPages: 90)
+            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 47, totalPages: 47)
         case 2:
             // feet size
             onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 9, totalPages: 18)
@@ -235,6 +286,7 @@ class OnBoardingVC: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: "loadNextView")
         onBoardingView.centerImageView.addGestureRecognizer(tapGesture)
         onBoardingView.centerImageView.userInteractionEnabled = true
+        onBoardingView.setInitialTickViewText()
     }
     
     func removeActiveLayer() {
