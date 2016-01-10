@@ -15,7 +15,7 @@ class OnBoardingView: UIView {
     
     @IBOutlet weak var blueLine: UIView! {
         didSet {
-            blueLine.backgroundColor = curateBlue
+            blueLine.backgroundColor = UIColor.curateBlueColor()
             blueLine.layer.shadowOffset = CGSize(width: 1, height: 1)
             blueLine.layer.shadowColor = UIColor.darkGrayColor().CGColor
             blueLine.layer.shadowOpacity = 1.0

@@ -52,6 +52,7 @@
 		CC2CFE841C08D0D100F3E8CF /* TickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2CFE831C08D0D100F3E8CF /* TickView.swift */; };
 		CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC425A461BB870BB0021664C /* LaunchScreen.xib */; };
 		CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A4B1BB885530021664C /* MainTabBarController.swift */; };
+		CC4899781C42E05900A6A5B1 /* CurateColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4899771C42E05900A6A5B1 /* CurateColors.swift */; };
 		CC541A2D1BC0CA15004BAEB9 /* modelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A2C1BC0CA15004BAEB9 /* modelType.swift */; };
 		CC541A301BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC541A2E1BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib */; };
 		CC541A311BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC541A2F1BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib */; };
@@ -136,6 +137,7 @@
 		CC2CFE831C08D0D100F3E8CF /* TickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickView.swift; sourceTree = "<group>"; };
 		CC425A461BB870BB0021664C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		CC425A4B1BB885530021664C /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		CC4899771C42E05900A6A5B1 /* CurateColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurateColors.swift; sourceTree = "<group>"; };
 		CC541A2C1BC0CA15004BAEB9 /* modelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelType.swift; sourceTree = "<group>"; };
 		CC541A2E1BC0CD6B004BAEB9 /* PersonaScreen5sand6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaScreen5sand6.xib; sourceTree = "<group>"; };
 		CC541A2F1BC0CD6B004BAEB9 /* PersonaScreen6Plus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaScreen6Plus.xib; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 			children = (
 				1AA3C5761A4601B2008C732C /* AppDelegate.swift */,
 				1A8CCC1D1ACB2832001E3AF0 /* GlobalFunctions */,
+				CC4899761C42E00B00A6A5B1 /* Extensions */,
 				CCE2D1C51BA0849A008197F4 /* Views */,
 				1AA3C5B21A460376008C732C /* ViewControllers */,
 				1AF1A2751ACA4042006770D6 /* DataModelsAndStructures */,
@@ -351,6 +354,14 @@
 				CC425A4B1BB885530021664C /* MainTabBarController.swift */,
 			);
 			name = Containers;
+			sourceTree = "<group>";
+		};
+		CC4899761C42E00B00A6A5B1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CC4899771C42E05900A6A5B1 /* CurateColors.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		CC5C1A041C00D7880080696F /* openingViewControllers */ = {
@@ -488,7 +499,7 @@
 				TargetAttributes = {
 					1AA3C5701A4601B2008C732C = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = KN74692XKF;
+						DevelopmentTeam = JJVKDT7MQK;
 					};
 					1AA3C5851A4601B2008C732C = {
 						CreatedOnToolsVersion = 6.0;
@@ -611,6 +622,7 @@
 				1ACC8B101A58C82200093290 /* PropertiesBackView.swift in Sources */,
 				CC541A331BC0CE29004BAEB9 /* PersonaScreen.swift in Sources */,
 				1A7B8AA21B5D4BA900C2D552 /* SingleOutfitVC.swift in Sources */,
+				CC4899781C42E05900A6A5B1 /* CurateColors.swift in Sources */,
 				CCFA3A8F1C306D1200762B0E /* CurateLoginTabBarController.swift in Sources */,
 				CCFA3A911C306D6C00762B0E /* CurateSignUpVC.swift in Sources */,
 				1AA3C5A11A460234008C732C /* DraggableViewBackground.swift in Sources */,
@@ -773,7 +785,7 @@
 				INFOPLIST_FILE = Curate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CurateNYC;
+				PRODUCT_BUNDLE_IDENTIFIER = Curate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -798,7 +810,7 @@
 				INFOPLIST_FILE = Curate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CurateNYC;
+				PRODUCT_BUNDLE_IDENTIFIER = Curate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";

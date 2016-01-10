@@ -35,7 +35,7 @@ class SpinningWheelView: UIControl {
         path.moveToPoint(CGPoint(x: rect.width/2 - borderWidth, y: rect.height - borderWidth))
         path.addArcWithCenter(center, radius: min(rect.height/2, rect.width/2) - borderWidth, startAngle: 0, endAngle: 2 * π, clockwise: true)
         path.closePath()
-        curateBlue.setStroke()
+        UIColor.curateBlueColor().setStroke()
         UIColor.whiteColor().setFill()
         
         path.lineWidth = borderWidth

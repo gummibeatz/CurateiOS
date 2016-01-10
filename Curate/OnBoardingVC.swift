@@ -49,8 +49,6 @@ class OnBoardingVC: UIViewController {
                                  UIImage(named: "Pant Fit")!,
                                 ]
     
-    let heightOffset: CGFloat = SCREENHEIGHT/7
-    
     let viewFrame: CGRect = CGRect(x: 0, y: SCREENHEIGHT/8, width: SCREENWIDTH, height: 7*SCREENHEIGHT/8)
     
     lazy var onBoardingViews: [UIView] = {
@@ -70,7 +68,7 @@ class OnBoardingVC: UIViewController {
     lazy var progressBar: UIProgressView = {
         let progressBar = UIProgressView(progressViewStyle: .Default)
         progressBar.trackTintColor = UIColor.blackColor()
-        progressBar.progressTintColor = curateBlue
+        progressBar.progressTintColor = UIColor.curateBlueColor()
         progressBar.frame = CGRect(x: SCREENWIDTH/4, y: SCREENHEIGHT/14, width: SCREENWIDTH/2, height: 20)
         return progressBar
     }()
@@ -148,9 +146,10 @@ class OnBoardingVC: UIViewController {
     }
     
     func personaTouched(sender: UIButton) {
+        let heightOffset = SCREENWIDTH/7
         print("persona touched")
         removeActiveLayer()
-        activeLayer = createDashedBorderAroundView(sender, heightOffset: heightOffset, borderColor: curateBlue)
+        activeLayer = createDashedBorderAroundView(sender, heightOffset: heightOffset, borderColor: UIColor.curateBlueColor())
         self.view.layer.addSublayer(activeLayer!)
     }
     

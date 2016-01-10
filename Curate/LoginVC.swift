@@ -119,8 +119,8 @@ class LoginVC: UIViewController {
         
         self.pageControl.numberOfPages = viewControllers.count
         self.pageControl.frame = CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - loginOffset - 30, width: UIScreen.mainScreen().bounds.width, height: 10)
-        self.pageControl.tintColor = curateBlue
-        self.pageControl.pageIndicatorTintColor = curateBlue
+        self.pageControl.tintColor = UIColor.curateBlueColor()
+        self.pageControl.pageIndicatorTintColor = UIColor.curateBlueColor()
         self.pageController.didMoveToParentViewController(self)
         self.view.addSubview(self.pageControl)
     }

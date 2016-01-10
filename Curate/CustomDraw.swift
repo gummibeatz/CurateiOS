@@ -19,8 +19,8 @@ func createDashedBorderAroundView(view:UIView, heightOffset: CGFloat, borderColo
         let dashPattern2: NSNumber = 8
         let pi: CGFloat = CGFloat(M_PI)
         let pi_2: CGFloat = CGFloat(M_PI_2)
-        let frameHeight: CGFloat = 200 + 35
-        let frameWidth: CGFloat = 150
+        let frameHeight: CGFloat = view.frame.height
+        let frameWidth: CGFloat = view.frame.width
         
         let frame = view.frame
         let shapeLayer = CAShapeLayer()

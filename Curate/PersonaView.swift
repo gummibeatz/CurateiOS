@@ -17,4 +17,8 @@ class PersonaView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    func drawDashedBorderAroundPersona(persona: UIButton) {
+        createDashedBorderAroundView(persona, heightOffset: 0, borderColor: UIColor.curateBlueColor())
+    }
 }

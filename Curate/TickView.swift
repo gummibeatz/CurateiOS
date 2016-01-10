@@ -54,8 +54,8 @@ class TickView: UIView {
         path.closePath()
         path.lineWidth = borderWidth
         
-        curateDarkGrey.setFill()
-        curateBlue.setStroke()
+        UIColor.curateDarkGrayColor().setFill()
+        UIColor.curateBlueColor().setStroke()
         path.fill()
         path.stroke()
     }
