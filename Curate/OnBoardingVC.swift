@@ -146,10 +146,10 @@ class OnBoardingVC: UIViewController {
     }
     
     func personaTouched(sender: UIButton) {
-        let heightOffset = SCREENWIDTH/7
+        let heightOffset = SCREENHEIGHT/8
         print("persona touched")
         removeActiveLayer()
-        activeLayer = createDashedBorderAroundView(sender, heightOffset: heightOffset, borderColor: UIColor.curateBlueColor())
+        activeLayer = (onBoardingViews.first as! PersonaView).drawDashedBorderAroundPersona(sender, borderColor: UIColor.curateBlueColor(), heightOffset: heightOffset)
         self.view.layer.addSublayer(activeLayer!)
     }
     

@@ -168,29 +168,29 @@
                     <exclude reference="V4y-M2-Q71"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="96M-fd-8qo"/>
+                    <exclude reference="c6j-jj-rws"/>
+                    <exclude reference="y34-Zn-2lB"/>
+                    <exclude reference="9sC-F1-Umw"/>
+                    <exclude reference="kWd-0D-Bte"/>
                     <exclude reference="aT8-UR-qC7"/>
                     <exclude reference="fDU-bN-f4k"/>
                     <exclude reference="vIG-SM-C7F"/>
                     <exclude reference="w8L-eL-pgf"/>
-                    <exclude reference="G6h-S7-Sxs"/>
-                    <exclude reference="Sbj-tX-VOr"/>
-                    <exclude reference="9sC-F1-Umw"/>
-                    <exclude reference="kWd-0D-Bte"/>
-                    <exclude reference="27H-9p-hg6"/>
-                    <exclude reference="zac-yo-8SU"/>
-                    <exclude reference="1Ej-yI-znk"/>
-                    <exclude reference="1Mn-Oh-qc6"/>
-                    <exclude reference="96M-fd-8qo"/>
-                    <exclude reference="c6j-jj-rws"/>
-                    <exclude reference="y34-Zn-2lB"/>
                     <exclude reference="1Fj-Gr-EFq"/>
                     <exclude reference="21Y-Cx-A3Z"/>
                     <exclude reference="pGr-Q9-LTV"/>
                     <exclude reference="yph-Ke-APE"/>
                     <exclude reference="7A8-pw-14R"/>
                     <exclude reference="oU4-BR-OUo"/>
+                    <exclude reference="G6h-S7-Sxs"/>
+                    <exclude reference="Sbj-tX-VOr"/>
+                    <exclude reference="27H-9p-hg6"/>
+                    <exclude reference="zac-yo-8SU"/>
                     <exclude reference="73D-qS-rLZ"/>
                     <exclude reference="8Vd-bi-yZY"/>
+                    <exclude reference="1Ej-yI-znk"/>
+                    <exclude reference="1Mn-Oh-qc6"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -206,33 +206,35 @@
                     <include reference="V4y-M2-Q71"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="96M-fd-8qo"/>
+                    <include reference="c6j-jj-rws"/>
+                    <include reference="y34-Zn-2lB"/>
+                    <include reference="9sC-F1-Umw"/>
+                    <include reference="kWd-0D-Bte"/>
                     <include reference="aT8-UR-qC7"/>
                     <include reference="fDU-bN-f4k"/>
                     <include reference="vIG-SM-C7F"/>
                     <include reference="w8L-eL-pgf"/>
-                    <include reference="G6h-S7-Sxs"/>
-                    <include reference="Sbj-tX-VOr"/>
-                    <include reference="9sC-F1-Umw"/>
-                    <include reference="kWd-0D-Bte"/>
-                    <include reference="27H-9p-hg6"/>
-                    <include reference="zac-yo-8SU"/>
-                    <include reference="1Ej-yI-znk"/>
-                    <include reference="1Mn-Oh-qc6"/>
-                    <include reference="96M-fd-8qo"/>
-                    <include reference="c6j-jj-rws"/>
-                    <include reference="y34-Zn-2lB"/>
                     <include reference="1Fj-Gr-EFq"/>
                     <include reference="21Y-Cx-A3Z"/>
                     <include reference="pGr-Q9-LTV"/>
                     <include reference="yph-Ke-APE"/>
                     <include reference="7A8-pw-14R"/>
                     <include reference="oU4-BR-OUo"/>
+                    <include reference="G6h-S7-Sxs"/>
+                    <include reference="Sbj-tX-VOr"/>
+                    <include reference="27H-9p-hg6"/>
+                    <include reference="zac-yo-8SU"/>
                     <include reference="73D-qS-rLZ"/>
                     <include reference="8Vd-bi-yZY"/>
+                    <include reference="1Ej-yI-znk"/>
+                    <include reference="1Mn-Oh-qc6"/>
                 </mask>
             </variation>
             <connections>
+                <outlet property="buttonLabelConstraint" destination="oU4-BR-OUo" id="vta-Td-xD0"/>
                 <outlet property="financePersona" destination="3GL-Va-XCT" id="Cur-W3-kbb"/>
+                <outlet property="financerLabel" destination="xZz-mP-m8r" id="afb-UA-r3R"/>
                 <outlet property="hipsterPersona" destination="V4y-M2-Q71" id="JsM-ZT-ZKc"/>
                 <outlet property="stylishPersona" destination="Xqh-9O-BvZ" id="hFs-c8-ci6"/>
                 <outlet property="techPersona" destination="6FQ-7Z-s3y" id="YMu-VC-VY7"/>
