@@ -27,7 +27,15 @@ class LoginVC: UIViewController {
     lazy var viewController1: UIViewController = {
         let vc = UIViewController()
         vc.view.tag = 0
+        
         let bgView = UIImageView(frame: CGRect(x: 40, y: 50, width: SCREENWIDTH-80, height: SCREENHEIGHT - 200))
+        print(UIDevice().modelName)
+        
+        bgView.frame = CGRect(x: 75, y: 50, width: SCREENWIDTH-150, height: SCREENHEIGHT-200)
+        if UIDevice().modelName.containsString("iPad") {
+            bgView.frame = CGRect(x: 75, y: 50, width: SCREENWIDTH-150, height: SCREENHEIGHT-200)
+            print("i'm an ipad")
+        }
         bgView.image = UIImage(named: "Tutorial Swipe")
         vc.view.addSubview(bgView)
         return vc
@@ -36,6 +44,13 @@ class LoginVC: UIViewController {
     lazy var viewController2: UIViewController = {
         let vc = UIViewController()
         let bgView = UIImageView(frame: CGRect(x: 40, y: 50, width: SCREENWIDTH-80, height: SCREENHEIGHT - 200))
+        print(UIDevice().modelName)
+        
+        bgView.frame = CGRect(x: 75, y: 50, width: SCREENWIDTH-150, height: SCREENHEIGHT-200)
+        if UIDevice().modelName.containsString("iPad") {
+            bgView.frame = CGRect(x: 75, y: 50, width: SCREENWIDTH-150, height: SCREENHEIGHT-200)
+            print("i'm an ipad")
+        }
         bgView.image = UIImage(named: "Tutorial Wardrobe")
         vc.view.addSubview(bgView)
         vc.view.tag = 1

@@ -13,8 +13,15 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     //declare constants
     let MAX_BUFFER_SIZE = 2 //%%% max number of cards loaded at any given time, must be greater than 1
-    let CARD_HEIGHT: CGFloat = (SCREENWIDTH - SCREENWIDTH/20)*350/290 //%%% height of the draggable card
-    let CARD_WIDTH: CGFloat = SCREENWIDTH - SCREENWIDTH/20  //%%% width of the draggable card
+    var CARD_HEIGHT: CGFloat = {
+        if UIDevice().modelName.containsString("iPad") {return 350/1.3}
+        return (SCREENWIDTH - SCREENWIDTH / 20 )  * 350 / 290 //%%% height of the draggable card
+    }()
+    
+    let CARD_WIDTH: CGFloat = {
+       if UIDevice().modelName.containsString("iPad") {return 290/1.3}
+       return SCREENWIDTH - SCREENWIDTH/20  //%%% width of the draggable card
+    }()
     let RIGHT_SWIPE: Int = 0
     let LEFT_SWIPE: Int = 1
     

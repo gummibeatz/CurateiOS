@@ -53,7 +53,7 @@
 		CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC425A461BB870BB0021664C /* LaunchScreen.xib */; };
 		CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A4B1BB885530021664C /* MainTabBarController.swift */; };
 		CC4899781C42E05900A6A5B1 /* CurateColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4899771C42E05900A6A5B1 /* CurateColors.swift */; };
-		CC541A2D1BC0CA15004BAEB9 /* modelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A2C1BC0CA15004BAEB9 /* modelType.swift */; };
+		CC541A2D1BC0CA15004BAEB9 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A2C1BC0CA15004BAEB9 /* ModelType.swift */; };
 		CC541A331BC0CE29004BAEB9 /* PersonaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
 		CC87E7CE1C1D003E00CD923D /* CircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87E7CD1C1D003E00CD923D /* CircleLabel.swift */; };
@@ -132,7 +132,7 @@
 		CC425A461BB870BB0021664C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		CC425A4B1BB885530021664C /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CC4899771C42E05900A6A5B1 /* CurateColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurateColors.swift; sourceTree = "<group>"; };
-		CC541A2C1BC0CA15004BAEB9 /* modelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelType.swift; sourceTree = "<group>"; };
+		CC541A2C1BC0CA15004BAEB9 /* ModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaScreen.swift; sourceTree = "<group>"; };
 		CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOverlayView.swift; sourceTree = "<group>"; };
 		CC87E7CD1C1D003E00CD923D /* CircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLabel.swift; sourceTree = "<group>"; };
@@ -197,7 +197,6 @@
 				1AF1A2721ACA3FFF006770D6 /* CurateAPICalls.swift */,
 				1AEC45591B4B8E4C009D8D9A /* WeatherAPICalls.swift */,
 				1A046E2D1B725CAE00D25AE5 /* globalConstants.swift */,
-				CC541A2C1BC0CA15004BAEB9 /* modelType.swift */,
 			);
 			name = GlobalFunctions;
 			sourceTree = "<group>";
@@ -346,6 +345,7 @@
 		CC4899761C42E00B00A6A5B1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CC541A2C1BC0CA15004BAEB9 /* ModelType.swift */,
 				CC4899771C42E05900A6A5B1 /* CurateColors.swift */,
 			);
 			name = Extensions;
@@ -616,7 +616,7 @@
 				1AF1A27C1ACA41E1006770D6 /* Indexes.swift in Sources */,
 				1A12D9011A6EE16000DA3617 /* OutfitsContainerVC.swift in Sources */,
 				CCBEC8861C0650A50052F99F /* OnBoardingView.swift in Sources */,
-				CC541A2D1BC0CA15004BAEB9 /* modelType.swift in Sources */,
+				CC541A2D1BC0CA15004BAEB9 /* ModelType.swift in Sources */,
 				CCFA3A8D1C30649A00762B0E /* CurateSignUpView.swift in Sources */,
 				1AA3C5A71A460234008C732C /* OutfitBuilderVC.swift in Sources */,
 				1A8CCC1A1ACB1E77001E3AF0 /* Top.swift in Sources */,
