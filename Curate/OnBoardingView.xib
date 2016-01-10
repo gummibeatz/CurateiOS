@@ -64,25 +64,17 @@
                     <constraints>
                         <constraint firstAttribute="width" secondItem="heW-6q-Dmi" secondAttribute="height" multiplier="237:209" id="VAc-yT-T4x"/>
                         <constraint firstAttribute="height" constant="209" id="hdY-Y7-mY3"/>
-                        <constraint firstAttribute="width" constant="240" id="oYV-tB-6ZA">
-                            <variation key="heightClass=regular-widthClass=compact" constant="200"/>
-                        </constraint>
-                        <constraint firstAttribute="width" secondItem="heW-6q-Dmi" secondAttribute="height" multiplier="15:8" id="q11-Qf-l4k"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="VAc-yT-T4x"/>
                             <exclude reference="hdY-Y7-mY3"/>
-                            <exclude reference="oYV-tB-6ZA"/>
-                            <exclude reference="q11-Qf-l4k"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
                         <mask key="constraints">
                             <include reference="VAc-yT-T4x"/>
                             <include reference="hdY-Y7-mY3"/>
-                            <exclude reference="oYV-tB-6ZA"/>
-                            <exclude reference="q11-Qf-l4k"/>
                         </mask>
                     </variation>
                 </imageView>
@@ -119,6 +111,9 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="ord-84-ryV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="heW-6q-Dmi" secondAttribute="bottom" constant="285.5" id="38r-ng-8cz">
+                    <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                </constraint>
                 <constraint firstAttribute="bottom" secondItem="Up5-Nc-XfD" secondAttribute="bottom" id="9S3-aM-HeF"/>
                 <constraint firstItem="Jku-aR-A6f" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Dnu-As-yS1"/>
                 <constraint firstItem="Up5-Nc-XfD" firstAttribute="top" secondItem="ord-84-ryV" secondAttribute="bottom" constant="-62" id="Rqx-K7-Z70">
@@ -143,13 +138,14 @@
                 <mask key="constraints">
                     <exclude reference="Dnu-As-yS1"/>
                     <exclude reference="qf8-cf-X39"/>
+                    <exclude reference="bBP-1t-BPY"/>
+                    <exclude reference="ptj-Le-o3b"/>
+                    <exclude reference="38r-ng-8cz"/>
+                    <exclude reference="dNg-Q0-tdv"/>
                     <exclude reference="9S3-aM-HeF"/>
                     <exclude reference="Rqx-K7-Z70"/>
                     <exclude reference="XVe-ap-EZn"/>
                     <exclude reference="bI5-hN-whz"/>
-                    <exclude reference="bBP-1t-BPY"/>
-                    <exclude reference="ptj-Le-o3b"/>
-                    <exclude reference="dNg-Q0-tdv"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -162,13 +158,14 @@
                 <mask key="constraints">
                     <include reference="Dnu-As-yS1"/>
                     <include reference="qf8-cf-X39"/>
+                    <include reference="bBP-1t-BPY"/>
+                    <include reference="ptj-Le-o3b"/>
+                    <include reference="38r-ng-8cz"/>
+                    <include reference="dNg-Q0-tdv"/>
                     <include reference="9S3-aM-HeF"/>
                     <include reference="Rqx-K7-Z70"/>
                     <include reference="XVe-ap-EZn"/>
                     <include reference="bI5-hN-whz"/>
-                    <include reference="bBP-1t-BPY"/>
-                    <include reference="ptj-Le-o3b"/>
-                    <include reference="dNg-Q0-tdv"/>
                 </mask>
             </variation>
             <connections>
