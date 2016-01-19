@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Pants Waist.png",
+      "filename" : "Pants Waist-1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Pants Waist-2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Pants Waist-3x.png",
       "scale" : "3x"
     }
   ],
