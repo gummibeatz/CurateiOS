@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "WaistRulerFull.png",
+      "filename" : "Waist Size Ruler-1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Waist Size Ruler-2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Waist Size Ruler-3x.png",
       "scale" : "3x"
     }
   ],
