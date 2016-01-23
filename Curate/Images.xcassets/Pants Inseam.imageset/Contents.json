@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Pants Inseam.png",
+      "filename" : "Pants Inseam-1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Pants Inseam-2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Pants Inseam-3x.png",
       "scale" : "3x"
     }
   ],

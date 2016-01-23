@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "Tech Persona.png"
+      "filename" : "Tech Persona-1x.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Tech Persona-2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Tech Persona-3x.png",
       "scale" : "3x"
     }
   ],
