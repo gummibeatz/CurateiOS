@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class OnBoardingView: UIView {
+    var rulerImage: UIImage?
+    
     @IBOutlet weak var centerImageView: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
     
@@ -37,11 +39,13 @@ class OnBoardingView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    func setScrollViewImage(image: UIImage) {
-        let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y: 0), size: flexiblePagingScrollView.scrollView.contentSize))
-        imageView.image = image
-        flexiblePagingScrollView.scrollView.addSubview(imageView)
+   
+    // - MARK hacky fix. make this nicer
+    func setScrollViewImage(withHeight height: CGFloat) {
+        flexiblePagingScrollView.scrollViewImageView.frame = CGRect(origin: CGPoint(x: 0,y: 0), size: CGSize(width: flexiblePagingScrollView.scrollView.contentSize.width, height:height))
+        flexiblePagingScrollView.scrollViewImageView.image = rulerImage
+        print(rulerImage)
+        print(flexiblePagingScrollView.scrollViewImageView.frame)
     }
     
     func setInitialTickViewText() {
@@ -70,10 +74,6 @@ class OnBoardingView: UIView {
         default:
             tickView.measurementLabel.text = String(pagingIdx)
         }
-    }
-
-    func setupScrollView(pages pages: Int) {
-        flexiblePagingScrollView.pages = pages
     }
     
     //MARK - tickView Arrays

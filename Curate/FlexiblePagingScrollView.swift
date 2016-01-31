@@ -10,15 +10,8 @@ import UIKit
 
 class FlexiblePagingScrollView: UIView {
     
+    var scrollViewImageView = UIImageView()
     var scrollView: UIScrollView!
-    var pages: Int {
-        get {
-            return self.pages
-        }
-        set {
-            self.scrollView.contentSize = CGSize(width: self.scrollView.frame.width * CGFloat(newValue), height: self.scrollView.frame.height)
-        }
-    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -27,6 +20,7 @@ class FlexiblePagingScrollView: UIView {
         scrollView.pagingEnabled = true
         scrollView.clipsToBounds = false
         self.addSubview(scrollView)
+        scrollView.addSubview(scrollViewImageView)
     }
     
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {

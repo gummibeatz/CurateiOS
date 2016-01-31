@@ -159,6 +159,37 @@ class OnBoardingVC: UIViewController {
     }
     
     func loadNextView() {
+        saveUserAttributes()
+        activeViewIdx! += 1
+        backLabel.alpha = 1
+        if activeViewIdx! == onBoardingViews.count {
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.window?.rootViewController = MainTabBarController()
+            return
+        } else {
+            let nextView = onBoardingViews[activeViewIdx!]
+            nextView.frame = viewFrame
+            self.removeActiveLayer()
+            if self.activeViewIdx < self.onBoardingViews.count - 1 {
+                self.setupMeasurementView(nextView as! OnBoardingView)
+            } else {
+                self.setupWeightScaleView(nextView as! WeightScaleView)
+            }
+            UIView.transitionFromView( onBoardingViews[activeViewIdx! - 1], toView: nextView, duration: 0.5, options: .TransitionCrossDissolve, completion: {
+                completionHandler in
+                print("animation transitioned")
+                self.progressBar.setProgress(Float(self.activeViewIdx!) / Float(self.onBoardingViews.count), animated: true)
+                
+                if self.activeViewIdx < self.onBoardingViews.count - 1 {
+                    let onBoardingView = nextView as! OnBoardingView
+                    print("after transitioning view, the height is =\(onBoardingView.flexiblePagingScrollView.frame.height)")
+                    onBoardingView.setScrollViewImage(withHeight: onBoardingView.flexiblePagingScrollView.frame.height)
+                }
+            })
+        }
+    }
+    
+    func saveUserAttributes() {
         if activeViewIdx! > 0 {
             let labelText = (onBoardingViews[activeViewIdx!] as! OnBoardingView).tickView.measurementLabel.text!
             switch activeViewIdx! {
@@ -189,28 +220,6 @@ class OnBoardingVC: UIViewController {
             default:
                 print("no cases were matched")
             }
-        }
-        activeViewIdx! += 1
-        backLabel.alpha = 1
-        if activeViewIdx! == onBoardingViews.count {
-            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.window?.rootViewController = MainTabBarController()
-            return
-        } else {
-            let nextView = onBoardingViews[activeViewIdx!]
-            nextView.frame = viewFrame
-            self.removeActiveLayer()
-            UIView.transitionFromView( onBoardingViews[activeViewIdx! - 1], toView: nextView, duration: 0.5, options: .TransitionCrossDissolve, completion: {
-                completionHandler in
-                print("animation transitioned")
-                self.progressBar.setProgress(Float(self.activeViewIdx!) / Float(self.onBoardingViews.count), animated: true)
-            })
-            if activeViewIdx < onBoardingViews.count - 1 {
-                setupMeasurementView(nextView as! OnBoardingView)
-            } else {
-                setupWeightScaleView(nextView as! WeightScaleView)
-            }
-            
         }
     }
     
@@ -279,7 +288,7 @@ class OnBoardingVC: UIViewController {
             break
         }
         
-        onBoardingView.setScrollViewImage(scrollViewImages[activeViewIdx! - 1])
+        onBoardingView.rulerImage = scrollViewImages[activeViewIdx! - 1]
         onBoardingView.labelTitle.text = viewLabelTitles[activeViewIdx! - 1]
         onBoardingView.centerImageView.image = viewImages[activeViewIdx! - 1]
         let tapGesture = UITapGestureRecognizer(target: self, action: "loadNextView")
