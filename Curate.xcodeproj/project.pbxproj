@@ -62,6 +62,7 @@
 		CCBA6FB41C04159F00B39A31 /* CurateSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */; };
 		CCBEC8841C064E500052F99F /* OnBoardingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCBEC8831C064E500052F99F /* OnBoardingView.xib */; };
 		CCBEC8861C0650A50052F99F /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBEC8851C0650A50052F99F /* OnBoardingView.swift */; };
+		CCE9410E1C5EA60E008833BE /* OnBoardingViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE9410D1C5EA60E008833BE /* OnBoardingViewProperties.swift */; };
 		CCE9BB291C1CB040005A6705 /* WeightScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE9BB271C1CB040005A6705 /* WeightScaleView.swift */; };
 		CCE9BB2A1C1CB040005A6705 /* SpinningWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE9BB281C1CB040005A6705 /* SpinningWheelView.swift */; };
 		CCFA3A8B1C30647D00762B0E /* CurateSignUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCFA3A8A1C30647D00762B0E /* CurateSignUpView.xib */; };
@@ -141,6 +142,7 @@
 		CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurateSignInView.swift; sourceTree = "<group>"; };
 		CCBEC8831C064E500052F99F /* OnBoardingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnBoardingView.xib; sourceTree = "<group>"; };
 		CCBEC8851C0650A50052F99F /* OnBoardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
+		CCE9410D1C5EA60E008833BE /* OnBoardingViewProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingViewProperties.swift; sourceTree = "<group>"; };
 		CCE9BB271C1CB040005A6705 /* WeightScaleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightScaleView.swift; sourceTree = "<group>"; };
 		CCE9BB281C1CB040005A6705 /* SpinningWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinningWheelView.swift; sourceTree = "<group>"; };
 		CCFA3A8A1C30647D00762B0E /* CurateSignUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurateSignUpView.xib; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				1AF1A2781ACA41E1006770D6 /* Indexes.swift */,
 				1AF1A2791ACA41E1006770D6 /* Tokens.swift */,
 				1AF1A27B1ACA41E1006770D6 /* User.swift */,
+				CCE9410D1C5EA60E008833BE /* OnBoardingViewProperties.swift */,
 				1A8CCC201AD05F72001E3AF0 /* Outfit.swift */,
 				1AF4B8E41AED30E40007C526 /* Clothing.swift */,
 				1A8CCC191ACB1E77001E3AF0 /* Top.swift */,
@@ -581,6 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A8CCC1F1AD05406001E3AF0 /* StackStruct.swift in Sources */,
+				CCE9410E1C5EA60E008833BE /* OnBoardingViewProperties.swift in Sources */,
 				CC191BF81C03DA4F0094DF8D /* CurateSignInVC.swift in Sources */,
 				CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */,
 				1AA3C5A21A460234008C732C /* DraggableView.swift in Sources */,

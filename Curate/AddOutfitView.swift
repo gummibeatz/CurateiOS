@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Curate. All rights reserved.
 //
 
+/*
+
 import Foundation
 import UIKit
 
@@ -163,3 +165,4 @@ extension AddOutfitView {
         return false
     }
 }
+*/

@@ -18,36 +18,15 @@ class OnBoardingVC: UIViewController {
     
     var user: User!
     
-    let hipsterTag = 0
-    let techTag = 1
-    let stylishTag = 2
-    let financeTag = 3
+    let onBoardingViewProperties: [OnBoardingViewProperties] = [OnBoardingViewProperties.createHeightProperties(),
+                                                                OnBoardingViewProperties.createFeetSizeProperties(),
+                                                                OnBoardingViewProperties.createShirtFitProperties(),
+                                                                OnBoardingViewProperties.createShirtSizeProperties(),
+                                                                OnBoardingViewProperties.createWaistSizeProperties(),
+                                                                OnBoardingViewProperties.createInseamProperties(),
+                                                                OnBoardingViewProperties.createPantsFitProperties()
+                                                            ]
     
-    let scrollViewImages: [UIImage] = [UIImage(named: "HeightRulerFull")!,
-                                       UIImage(named: "FeetSizeRulerFull")!,
-                                       UIImage(named: "ShirtFitRulerFull")!,
-                                       UIImage(named: "ShirtSizeRulerFull")!,
-                                       UIImage(named: "InseamRulerFull")!,
-                                       UIImage(named: "InseamRulerFull")!,
-                                       UIImage(named: "PantsFitRulerFull")!,
-                                        ]
-    let viewLabelTitles: [String] = ["What's your vertical?",
-                                     "How big are your feet?",
-                                     "What's your shirt fit?",
-                                     "What's your shirt size?",
-                                     "What's your waist size?",
-                                     "How do you fit in them jeans?",
-                                     "How do you like your fit?",
-    
-                                    ]
-    let viewImages: [UIImage] = [UIImage(named: "Little Man")!,
-                                 UIImage(named: "Shoe Thing")!,
-                                 UIImage(named: "Shirt Fit")!,
-                                 UIImage(named: "Shirt Fit")!,
-                                 UIImage(named: "Pants Waist")!,
-                                 UIImage(named: "Pants Inseam")!,
-                                 UIImage(named: "Pant Fit")!,
-                                ]
     
     let viewFrame: CGRect = CGRect(x: 0, y: SCREENHEIGHT/8, width: SCREENWIDTH, height: 7*SCREENHEIGHT/8)
     
@@ -261,36 +240,11 @@ class OnBoardingVC: UIViewController {
     
     func setupMeasurementView(onBoardingView: OnBoardingView) {
         //setting up for individual onboarding
-        onBoardingView.tag = activeViewIdx!
-        switch activeViewIdx! {
-        case 1:
-            // height
-            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 47, totalPages: 47)
-        case 2:
-            // feet size
-            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 9, totalPages: 18)
-        case 3:
-            // shirt fit
-            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 4, totalPages: 4)
-        case 4:
-            // shirt size
-            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 4, totalPages: 6)
-        case 5:
-            // waist size
-            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 6, totalPages: 9)
-        case 6:
-            // inseam
-            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 6, totalPages: 9)
-        case 7:
-            // pants fit
-            onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: 3, totalPages: 4)
-        default:
-            break
-        }
+        onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: onBoardingViewProperties[activeViewIdx! - 1].scrollViewPagesPerFrame, totalPages: onBoardingViewProperties[activeViewIdx! - 1].scrollViewTotalPages)
         
-        onBoardingView.rulerImage = scrollViewImages[activeViewIdx! - 1]
-        onBoardingView.labelTitle.text = viewLabelTitles[activeViewIdx! - 1]
-        onBoardingView.centerImageView.image = viewImages[activeViewIdx! - 1]
+        onBoardingView.rulerImage = onBoardingViewProperties[activeViewIdx! - 1].scrollViewImage
+        onBoardingView.labelTitle.text = onBoardingViewProperties[activeViewIdx! - 1].viewLabelTitle
+        onBoardingView.centerImageView.image = onBoardingViewProperties[activeViewIdx! - 1].centerPieceImage
         let tapGesture = UITapGestureRecognizer(target: self, action: "loadNextView")
         onBoardingView.centerImageView.addGestureRecognizer(tapGesture)
         onBoardingView.centerImageView.userInteractionEnabled = true

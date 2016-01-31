@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Curate. All rights reserved.
 //
 
+
 import UIKit
 import CoreLocation
 import Foundation
@@ -14,9 +15,9 @@ protocol OutfitBuilderVCDelegate {
     func pickerViewWasTapped(image: UIImage)
 }
 
-class OutfitBuilderVC: UIViewController, AddOutfitViewDelegate {
+class OutfitBuilderVC: UIViewController {
     
-    var addOutfitView: AddOutfitView?
+//    var addOutfitView: AddOutfitView?
     var scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds)
     var addedPickers:[Bool] = [Bool](count: 7, repeatedValue: false)
     
@@ -49,7 +50,6 @@ class OutfitBuilderVC: UIViewController, AddOutfitViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loading view for outfitBuilder")
-//        let fbAuthToken = getFBAuthToken()
         let fbAuthToken = "change later"
         getCurateAuthToken(fbAuthToken, completionHandler: {
             curateAuthtoken in
@@ -257,10 +257,7 @@ class OutfitBuilderVC: UIViewController, AddOutfitViewDelegate {
         outfit.longSleeveShirt = longSleeveShirtPickerData[longSleeveShirtPicker.selectedRowInComponent(0)].fileName
         outfit.shortSleeveShirt = shortSleeveShirtPickerData[shortSleeveShirtPicker.selectedRowInComponent(0)].fileName
         outfit.bottoms = bottomsPickerData[bottomsPicker.selectedRowInComponent(0)].fileName
-        self.addOutfitView = AddOutfitView(frame: CGRect(x: 20, y: 100, width: SCREENWIDTH-40, height: UIScreen.mainScreen().bounds.height - 150), outfit: outfit)
-        addOutfitView?.delegate = self
         self.view.addSubview(blurEffectView)
-        self.view.addSubview(self.addOutfitView!)
     }
     
     func pickerViewSingleTapGestureRecognized(sender: UITapGestureRecognizer) {
@@ -489,7 +486,6 @@ class OutfitBuilderVC: UIViewController, AddOutfitViewDelegate {
 
     func dismissOutfitView() {
         self.blurEffectView.removeFromSuperview()
-        self.addOutfitView?.removeFromSuperview()
     }
 
 }
@@ -593,5 +589,4 @@ extension OutfitBuilderVC: UIPickerViewDelegate {
         return tmpView
     }
 }
-
 
