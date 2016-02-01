@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Height Ruler-1x.png",
+      "filename" : "Test.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Height Ruler-2x.png",
+      "filename" : "Test-1.png",
       "scale" : "2x"
     },
     {

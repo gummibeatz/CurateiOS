@@ -29,8 +29,8 @@ struct OnBoardingViewProperties {
         properties.scrollViewImage = UIImage(named: "HeightRulerFull")!
         properties.centerPieceImage = UIImage(named: "Little Man")!
         properties.viewLabelTitle = "What's your vertical?"
-        properties.scrollViewPagesPerFrame = 47
-        properties.scrollViewTotalPages = 47
+        properties.scrollViewPagesPerFrame = 7
+        properties.scrollViewTotalPages = 42
         return properties
     }
     

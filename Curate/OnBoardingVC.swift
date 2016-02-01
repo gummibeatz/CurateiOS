@@ -73,10 +73,15 @@ class OnBoardingVC: UIViewController {
     
     func setupBackground() {
         //adding background picture
-        let backgroundView = UIImageView(frame: self.view.bounds)
-        backgroundView.image = UIImage(named: "personaViewBG")
+//        let backgroundView = UIImageView(frame: self.view.bounds)
+//        backgroundView.image = UIImage(named: "personaViewBG")
+//        
+//        self.view.addSubview(backgroundView)
+        let gradient = CAGradientLayer()
+        gradient.frame = self.view.bounds
+        gradient.colors = [UIColor.blackColor().CGColor, UIColor.grayColor().CGColor]
+        self.view.layer.insertSublayer(gradient, atIndex: 0)
         
-        self.view.addSubview(backgroundView)
         self.view.addSubview(progressBar)
         self.view.addSubview(backLabel)
     }
