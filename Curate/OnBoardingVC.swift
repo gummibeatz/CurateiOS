@@ -72,16 +72,7 @@ class OnBoardingVC: UIViewController {
     }
     
     func setupBackground() {
-        //adding background picture
-//        let backgroundView = UIImageView(frame: self.view.bounds)
-//        backgroundView.image = UIImage(named: "personaViewBG")
-//        
-//        self.view.addSubview(backgroundView)
-        let gradient = CAGradientLayer()
-        gradient.frame = self.view.bounds
-        gradient.colors = [UIColor.blackColor().CGColor, UIColor.grayColor().CGColor]
-        self.view.layer.insertSublayer(gradient, atIndex: 0)
-        
+        self.view.backgroundColor = UIColor.lightGrayColor()
         self.view.addSubview(progressBar)
         self.view.addSubview(backLabel)
     }
@@ -111,6 +102,9 @@ class OnBoardingVC: UIViewController {
             if activeViewIdx == 0 {
                 setupPersonaView()
                 backLabel.alpha = 0
+                if let _ = self.view.layer.sublayers?.first as? CAGradientLayer {
+                    self.view.layer.sublayers?.removeFirst()
+                }
             } else {
                 setupMeasurementView(nextView as! OnBoardingView)
             }
@@ -133,12 +127,16 @@ class OnBoardingVC: UIViewController {
         let heightOffset = SCREENHEIGHT/8
         print("persona touched")
         removeActiveLayer()
-        activeLayer = (onBoardingViews.first as! PersonaView).drawDashedBorderAroundPersona(sender, borderColor: UIColor.curateBlueColor(), heightOffset: heightOffset)
+        activeLayer = (onBoardingViews.first as! PersonaView).drawDashedBorderAroundPersona(sender, borderColor: UIColor.blackColor(), heightOffset: heightOffset)
         self.view.layer.addSublayer(activeLayer!)
     }
     
     func personaSelected(sender: UIButton) {
         personaTag = sender.tag
+        let gradient = CAGradientLayer()
+        gradient.frame = self.view.bounds
+        gradient.colors = [UIColor.blackColor().CGColor, UIColor.lightGrayColor().CGColor]
+        self.view.layer.insertSublayer(gradient, atIndex: 0)
         loadNextView()
     }
     
