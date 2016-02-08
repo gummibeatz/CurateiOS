@@ -250,12 +250,10 @@ class OnBoardingVC: UIViewController {
             startBuffer: onBoardingViewProperty.startBuffer,
             endBuffer: onBoardingViewProperty.endBuffer)
         
-        dispatch_async(dispatch_get_main_queue(), {
-            onBoardingView.rulerImage = self.onBoardingViewProperties[self.activeViewIdx! - 1].scrollViewImage
-            print("scrollViewimage set")
-        })
-        onBoardingView.labelTitle.text = onBoardingViewProperties[activeViewIdx! - 1].viewLabelTitle
-        onBoardingView.centerImageView.image = onBoardingViewProperties[activeViewIdx! - 1].centerPieceImage
+        onBoardingView.tickLabels = onBoardingViewProperty.tickLabels
+        onBoardingView.rulerImage = onBoardingViewProperty.scrollViewImage
+        onBoardingView.labelTitle.text = onBoardingViewProperty.viewLabelTitle
+        onBoardingView.centerImageView.image = onBoardingViewProperty.centerPieceImage
         let tapGesture = UITapGestureRecognizer(target: self, action: "loadNextView")
         onBoardingView.centerImageView.addGestureRecognizer(tapGesture)
         onBoardingView.centerImageView.userInteractionEnabled = true
