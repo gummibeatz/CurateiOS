@@ -22,6 +22,7 @@ class FlexiblePagingScrollView: UIView {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         self.addSubview(scrollView)
+        scrollViewImageView.contentMode = .ScaleToFill
         scrollView.addSubview(scrollViewImageView)
     }
     
@@ -29,12 +30,12 @@ class FlexiblePagingScrollView: UIView {
         return self.pointInside(point, withEvent: event) ? scrollView : nil
     }
     
-    func setupFrameWith(pagesPerFrame pagesPerFrame:CGFloat, totalPages:CGFloat) {
+    func setupFrameWith(pagesPerFrame pagesPerFrame:CGFloat, totalPages:CGFloat, startBuffer: CGFloat, endBuffer: CGFloat) {
         let width = SCREENWIDTH / pagesPerFrame
         let x = SCREENWIDTH/2 - width
         scrollView.frame = CGRect(x: x, y: 0, width: width, height: self.frame.height)
         scrollView.contentSize = CGSize(width: width * totalPages, height: self.frame.height)
         // doesn't allow you to scroll to the last item
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -1 * width)
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: -1 * width * startBuffer, bottom: 0, right: -1 * endBuffer * width)
     }
 }

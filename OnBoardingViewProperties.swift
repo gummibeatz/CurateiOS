@@ -15,6 +15,8 @@ struct OnBoardingViewProperties {
     var viewLabelTitle: String
     var scrollViewPagesPerFrame: CGFloat
     var scrollViewTotalPages: CGFloat
+    var startBuffer: CGFloat
+    var endBuffer: CGFloat
     
     init() {
         self.scrollViewImage = UIImage()
@@ -22,6 +24,8 @@ struct OnBoardingViewProperties {
         self.viewLabelTitle = ""
         self.scrollViewPagesPerFrame = 0
         self.scrollViewTotalPages = 0
+        self.startBuffer = 0
+        self.endBuffer = 0
     }
     
     static func createHeightProperties() -> OnBoardingViewProperties {
@@ -29,8 +33,10 @@ struct OnBoardingViewProperties {
         properties.scrollViewImage = UIImage(named: "HeightRulerFull")!
         properties.centerPieceImage = UIImage(named: "Little Man")!
         properties.viewLabelTitle = "What's your vertical?"
-        properties.scrollViewPagesPerFrame = 7
-        properties.scrollViewTotalPages = 42
+        properties.scrollViewPagesPerFrame = 11*17/3.0
+        properties.scrollViewTotalPages = 11*17
+        properties.startBuffer = 11*6 - 1
+        properties.endBuffer = 11*6
         return properties
     }
     
@@ -39,8 +45,10 @@ struct OnBoardingViewProperties {
         properties.scrollViewImage = UIImage(named: "FeetSizeRulerFull")!
         properties.centerPieceImage = UIImage(named: "Shoe Thing")!
         properties.viewLabelTitle = "How big are your feet?"
-        properties.scrollViewPagesPerFrame = 9
-        properties.scrollViewTotalPages = 18
+        properties.scrollViewPagesPerFrame = 34/3.0
+        properties.scrollViewTotalPages = 34
+        properties.startBuffer = 5
+        properties.endBuffer = 4
         return properties
     }
     
@@ -49,8 +57,10 @@ struct OnBoardingViewProperties {
         properties.scrollViewImage = UIImage(named: "ShirtFitRulerFull")!
         properties.centerPieceImage = UIImage(named: "Shirt Fit")!
         properties.viewLabelTitle = "What's your shirt fit?"
-        properties.scrollViewPagesPerFrame = 4
-        properties.scrollViewTotalPages = 6
+        properties.scrollViewPagesPerFrame = 17/3.0
+        properties.scrollViewTotalPages = 17
+        properties.startBuffer = 5
+        properties.endBuffer = 8
         return properties
     }
     
@@ -59,8 +69,10 @@ struct OnBoardingViewProperties {
         properties.scrollViewImage = UIImage(named: "ShirtSizeRulerFull")!
         properties.centerPieceImage = UIImage(named: "Pants Waist")!
         properties.viewLabelTitle = "What's your shirt size?"
-        properties.scrollViewPagesPerFrame = 4
-        properties.scrollViewTotalPages = 6
+        properties.scrollViewPagesPerFrame = 17/3.0
+        properties.scrollViewTotalPages = 17
+        properties.startBuffer = 5
+        properties.endBuffer = 7
         return properties
     }
     
@@ -69,8 +81,10 @@ struct OnBoardingViewProperties {
         properties.scrollViewImage = UIImage(named: "InseamRulerFull")!
         properties.centerPieceImage = UIImage(named: "Pants Inseam")!
         properties.viewLabelTitle = "What's your waist size?"
-        properties.scrollViewPagesPerFrame = 6
-        properties.scrollViewTotalPages = 9
+        properties.scrollViewPagesPerFrame = 17/3.0
+        properties.scrollViewTotalPages = 17
+        properties.startBuffer = 2
+        properties.endBuffer = 2
         return properties
     }
     
@@ -79,8 +93,10 @@ struct OnBoardingViewProperties {
         properties.scrollViewImage = UIImage(named: "InseamRulerFull")!
         properties.centerPieceImage = UIImage(named: "Little Man")!
         properties.viewLabelTitle = "How do you fit in them jeans?"
-        properties.scrollViewPagesPerFrame = 6
-        properties.scrollViewTotalPages = 9
+        properties.scrollViewPagesPerFrame = 17/3.0
+        properties.scrollViewTotalPages = 17
+        properties.startBuffer = 2
+        properties.endBuffer = 2
         return properties
     }
     
@@ -89,8 +105,10 @@ struct OnBoardingViewProperties {
         properties.scrollViewImage = UIImage(named: "PantsFitRulerFull")!
         properties.centerPieceImage = UIImage(named: "Pant Fit")!
         properties.viewLabelTitle = "How do you like your fit?"
-        properties.scrollViewPagesPerFrame = 3
-        properties.scrollViewTotalPages = 4
+        properties.scrollViewPagesPerFrame = 17/3.0
+        properties.scrollViewTotalPages = 17
+        properties.startBuffer = 5
+        properties.endBuffer = 8
         return properties
     }
 }

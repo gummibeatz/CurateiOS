@@ -243,9 +243,17 @@ class OnBoardingVC: UIViewController {
     
     func setupMeasurementView(onBoardingView: OnBoardingView) {
         //setting up for individual onboarding
-        onBoardingView.flexiblePagingScrollView.setupFrameWith(pagesPerFrame: onBoardingViewProperties[activeViewIdx! - 1].scrollViewPagesPerFrame, totalPages: onBoardingViewProperties[activeViewIdx! - 1].scrollViewTotalPages)
+        let onBoardingViewProperty = onBoardingViewProperties[activeViewIdx! - 1]
+        onBoardingView.flexiblePagingScrollView.setupFrameWith(
+            pagesPerFrame: onBoardingViewProperty.scrollViewPagesPerFrame,
+            totalPages: onBoardingViewProperty.scrollViewTotalPages,
+            startBuffer: onBoardingViewProperty.startBuffer,
+            endBuffer: onBoardingViewProperty.endBuffer)
         
-        onBoardingView.rulerImage = onBoardingViewProperties[activeViewIdx! - 1].scrollViewImage
+        dispatch_async(dispatch_get_main_queue(), {
+            onBoardingView.rulerImage = self.onBoardingViewProperties[self.activeViewIdx! - 1].scrollViewImage
+            print("scrollViewimage set")
+        })
         onBoardingView.labelTitle.text = onBoardingViewProperties[activeViewIdx! - 1].viewLabelTitle
         onBoardingView.centerImageView.image = onBoardingViewProperties[activeViewIdx! - 1].centerPieceImage
         let tapGesture = UITapGestureRecognizer(target: self, action: "loadNextView")
