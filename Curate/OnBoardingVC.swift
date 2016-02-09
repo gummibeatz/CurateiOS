@@ -251,13 +251,13 @@ class OnBoardingVC: UIViewController {
             endBuffer: onBoardingViewProperty.endBuffer)
         
         onBoardingView.tickLabels = onBoardingViewProperty.tickLabels
+        onBoardingView.startOffset = Int(onBoardingViewProperty.startBuffer)
         onBoardingView.rulerImage = onBoardingViewProperty.scrollViewImage
         onBoardingView.labelTitle.text = onBoardingViewProperty.viewLabelTitle
         onBoardingView.centerImageView.image = onBoardingViewProperty.centerPieceImage
         let tapGesture = UITapGestureRecognizer(target: self, action: "loadNextView")
         onBoardingView.centerImageView.addGestureRecognizer(tapGesture)
         onBoardingView.centerImageView.userInteractionEnabled = true
-        onBoardingView.setInitialTickViewText()
     }
     
     func removeActiveLayer() {

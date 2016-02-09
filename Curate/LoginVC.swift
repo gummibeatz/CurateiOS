@@ -32,9 +32,8 @@ class LoginVC: UIViewController {
         print(UIDevice().modelName)
         
         bgView.frame = CGRect(x: 75, y: 50, width: SCREENWIDTH-150, height: SCREENHEIGHT-200)
-        if UIDevice().modelName.containsString("iPad") {
+        if UIDevice().modelName.containsString("iPad") && !UIDevice().modelName.containsString("Pro") {
             bgView.frame = CGRect(x: 75, y: 50, width: SCREENWIDTH-150, height: SCREENHEIGHT-200)
-            print("i'm an ipad")
         }
         bgView.image = UIImage(named: "Tutorial Swipe")
         vc.view.addSubview(bgView)
@@ -47,9 +46,8 @@ class LoginVC: UIViewController {
         print(UIDevice().modelName)
         
         bgView.frame = CGRect(x: 75, y: 50, width: SCREENWIDTH-150, height: SCREENHEIGHT-200)
-        if UIDevice().modelName.containsString("iPad") {
+        if UIDevice().modelName.containsString("iPad") && !UIDevice().modelName.containsString("Pro") {
             bgView.frame = CGRect(x: 75, y: 50, width: SCREENWIDTH-150, height: SCREENHEIGHT-200)
-            print("i'm an ipad")
         }
         bgView.image = UIImage(named: "Tutorial Wardrobe")
         vc.view.addSubview(bgView)

@@ -12,6 +12,7 @@ import UIKit
 class OnBoardingView: UIView {
     var rulerImage: UIImage?
     var tickLabels: [String]?
+    var startOffset: Int?
     
     @IBOutlet weak var centerImageView: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
@@ -35,11 +36,12 @@ class OnBoardingView: UIView {
     
     @IBOutlet weak var tickView: TickView!
     
-    var pagingIdx: Int = 0
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        startOffset = 0
+        tickLabels = ["0"]
     }
+    
    
     // - MARK hacky fix. make this nicer
     func setScrollViewImage(withHeight height: CGFloat) {
@@ -51,15 +53,21 @@ class OnBoardingView: UIView {
         print(flexiblePagingScrollView.scrollViewImageView.layer)
     }
     
-    func setInitialTickViewText() {
-        tickView.measurementLabel.text = String(pagingIdx)
+    func pagingIdx(scrollView: UIScrollView) -> Int {
+        var pagingIdx = Int(round(scrollView.contentOffset.x/scrollView.frame.width)) - startOffset!
+        if pagingIdx < 0 {
+            pagingIdx = 0
+        } else if pagingIdx >= tickLabels!.count {
+            pagingIdx = tickLabels!.count - 1
+        }
+        return pagingIdx
     }
+    
 }
 
 extension OnBoardingView: UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        pagingIdx = Int(round(scrollView.contentOffset.x/scrollView.frame.width))
-        tickView.measurementLabel.text = String(pagingIdx)
+        tickView.measurementLabel.text = tickLabels?[(pagingIdx(scrollView))]
     }
     
 }
