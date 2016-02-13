@@ -42,7 +42,6 @@ class OnBoardingView: UIView {
         tickLabels = ["0"]
     }
     
-   
     // - MARK hacky fix. make this nicer
     func setScrollViewImage(withHeight height: CGFloat) {
         flexiblePagingScrollView.scrollViewImageView.frame = CGRect(origin: CGPoint(x: 0,y: 0), size: CGSize(width: flexiblePagingScrollView.scrollView.contentSize.width, height:height))
@@ -63,11 +62,14 @@ class OnBoardingView: UIView {
         return pagingIdx
     }
     
+    func setInitialTickLabel() {
+        tickView.measurementLabel.text = tickLabels?[pagingIdx(flexiblePagingScrollView.scrollView)]
+    }
+    
 }
 
 extension OnBoardingView: UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
         tickView.measurementLabel.text = tickLabels?[(pagingIdx(scrollView))]
     }
-    
 }

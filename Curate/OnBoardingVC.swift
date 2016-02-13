@@ -258,6 +258,7 @@ class OnBoardingVC: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: "loadNextView")
         onBoardingView.centerImageView.addGestureRecognizer(tapGesture)
         onBoardingView.centerImageView.userInteractionEnabled = true
+        onBoardingView.setInitialTickLabel()
     }
     
     func removeActiveLayer() {
