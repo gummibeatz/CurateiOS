@@ -59,7 +59,7 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.view.backgroundColor = UIColor.lightGrayColor()
+        self.view.backgroundColor = UIColor.whiteColor()
         
         //figure out where to put this later
         User.createInManagedObjectContext(managedObjectContext!, preferences: NSDictionary())
@@ -101,19 +101,26 @@ class LoginVC: UIViewController {
     }
     func setupLoginButtons() {
         let buttonHeight: CGFloat = 50
-        let curateString = NSAttributedString(string: "Connect with email")
-        curateLogin = UIButton(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - buttonHeight * 2, width: UIScreen.mainScreen().bounds.width, height: buttonHeight))
-        curateLogin.setAttributedTitle(curateString, forState: .Normal)
+        let buttonCornerRadius: CGFloat = 5.0
+        let buttonBorderWidth: CGFloat = 3.0
+        
+        
+        curateLogin = UIButton(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - 2 * buttonHeight, width: UIScreen.mainScreen().bounds.width, height: buttonHeight))
         curateLogin.addTarget(self, action: "curateLoginTouched", forControlEvents: .TouchUpInside)
-        curateLogin.backgroundColor = UIColor(colorLiteralRed: 243/255.0, green: 243/255.0, blue: 243/255.0, alpha: 1.0)
+        curateLogin.setTitle("Connect with Email", forState: .Normal)
+        curateLogin.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        curateLogin.layer.borderWidth = buttonBorderWidth
+        curateLogin.layer.borderColor = UIColor.blackColor().CGColor
+        curateLogin.layer.cornerRadius = buttonCornerRadius
         
         fbLogin = UIButton(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - buttonHeight, width: UIScreen.mainScreen().bounds.width
             , height: buttonHeight))
-        let fbAttributes =  [ NSForegroundColorAttributeName: UIColor.whiteColor() ]
-        let fbString = NSAttributedString(string: "Connect with Facebook", attributes: fbAttributes)
-        fbLogin.setAttributedTitle(fbString, forState: .Normal)
         fbLogin.addTarget(self, action: "fbLoginTouched", forControlEvents: .TouchUpInside)
-        fbLogin.backgroundColor = UIColor(colorLiteralRed: 54/255.0, green: 107/255.0, blue: 166/255.0, alpha: 1.0)
+        fbLogin.setTitle("Connect with Facebook", forState: .Normal)
+        fbLogin.setTitleColor(UIColor.curateBlueColor(), forState: .Normal)
+        fbLogin.layer.borderWidth = buttonBorderWidth
+        fbLogin.layer.borderColor = UIColor.curateBlueColor().CGColor
+        fbLogin.layer.cornerRadius = buttonCornerRadius
         
         self.view.addSubview(curateLogin)
         self.view.addSubview(fbLogin)
@@ -132,8 +139,8 @@ class LoginVC: UIViewController {
         
         self.pageControl.numberOfPages = viewControllers.count
         self.pageControl.frame = CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - loginOffset - 30, width: UIScreen.mainScreen().bounds.width, height: 10)
-        self.pageControl.tintColor = UIColor.curateBlueColor()
-        self.pageControl.pageIndicatorTintColor = UIColor.curateBlueColor()
+        self.pageControl.currentPageIndicatorTintColor = UIColor.curateBlueColor()
+        self.pageControl.pageIndicatorTintColor = UIColor.darkGrayColor()
         self.pageController.didMoveToParentViewController(self)
         self.view.addSubview(self.pageControl)
     }
