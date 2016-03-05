@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OutfitsVCDelegate {
         self.window!.makeKeyAndVisible()
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.frame = UIScreen.mainScreen().bounds
-//        window?.rootViewController = screenToCheck
-        window?.rootViewController = loginVC
+        window?.rootViewController = screenToCheck
+//        window?.rootViewController = loginVC
        
         // MARK: FB login setup
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

@@ -16,6 +16,7 @@ class TickView: UIView {
     @IBOutlet weak var measurementLabel: UILabel! {
         didSet {
             print("measurement label set")
+            measurementLabel.textColor = UIColor.blackColor()
         }
     }
 
@@ -43,7 +44,7 @@ class TickView: UIView {
     }
     
     override func drawRect(rect: CGRect) {
-        let borderWidth: CGFloat = CGFloat(10)
+        let borderWidth: CGFloat = CGFloat(5)
         let startAngle = 5 * π / 8
         let endAngle = 3 * π / 8
         let circleCenter = CGPoint(x: rect.width/2, y: 4*rect.height/9)
@@ -54,8 +55,8 @@ class TickView: UIView {
         path.closePath()
         path.lineWidth = borderWidth
         
-        UIColor.curateDarkGrayColor().setFill()
-        UIColor.curateBlueColor().setStroke()
+        UIColor.whiteColor().setFill()
+        UIColor.blackColor().setStroke()
         path.fill()
         path.stroke()
     }

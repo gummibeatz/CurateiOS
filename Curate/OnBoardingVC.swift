@@ -55,7 +55,7 @@ class OnBoardingVC: UIViewController {
     lazy var backLabel: UILabel = {
         let backLabel = UILabel(frame: CGRect(x: 10, y: SCREENHEIGHT/16, width: 50, height: 15))
         backLabel.text = "Back"
-        backLabel.textColor = UIColor.lightTextColor()
+        backLabel.textColor = UIColor.blackColor()
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: "backButtonTapped")
         backLabel.addGestureRecognizer(gestureRecognizer)
         backLabel.userInteractionEnabled = true
@@ -72,7 +72,7 @@ class OnBoardingVC: UIViewController {
     }
     
     func setupBackground() {
-        self.view.backgroundColor = UIColor.lightGrayColor()
+        self.view.backgroundColor = UIColor.whiteColor()
         self.view.addSubview(progressBar)
         self.view.addSubview(backLabel)
     }
@@ -135,7 +135,7 @@ class OnBoardingVC: UIViewController {
         personaTag = sender.tag
         let gradient = CAGradientLayer()
         gradient.frame = self.view.bounds
-        gradient.colors = [UIColor.blackColor().CGColor, UIColor.lightGrayColor().CGColor]
+        gradient.colors = [UIColor.whiteColor().CGColor]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
         loadNextView()
     }
