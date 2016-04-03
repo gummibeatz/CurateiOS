@@ -58,6 +58,7 @@
 		CC541A331BC0CE29004BAEB9 /* PersonaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
 		CC87E7CE1C1D003E00CD923D /* CircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87E7CD1C1D003E00CD923D /* CircleLabel.swift */; };
+		CC8C281C1CB1BFD80081309D /* CarouselCompressedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8C281B1CB1BFD80081309D /* CarouselCompressedTableViewCell.xib */; };
 		CC9A1EE41CB159FE00696C41 /* CarouselTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9A1EE21CB159FE00696C41 /* CarouselTableViewCell.swift */; };
 		CC9A1EE51CB159FE00696C41 /* CarouselCompressedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9A1EE31CB159FE00696C41 /* CarouselCompressedTableViewCell.swift */; };
 		CC9A1EEE1CB15CD300696C41 /* LLOutfitBuilderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9A1EED1CB15CD300696C41 /* LLOutfitBuilderVC.swift */; };
@@ -142,6 +143,7 @@
 		CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaScreen.swift; sourceTree = "<group>"; };
 		CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOverlayView.swift; sourceTree = "<group>"; };
 		CC87E7CD1C1D003E00CD923D /* CircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLabel.swift; sourceTree = "<group>"; };
+		CC8C281B1CB1BFD80081309D /* CarouselCompressedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselCompressedTableViewCell.xib; sourceTree = "<group>"; };
 		CC9A1EE21CB159FE00696C41 /* CarouselTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselTableViewCell.swift; sourceTree = "<group>"; };
 		CC9A1EE31CB159FE00696C41 /* CarouselCompressedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselCompressedTableViewCell.swift; sourceTree = "<group>"; };
 		CC9A1EED1CB15CD300696C41 /* LLOutfitBuilderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLOutfitBuilderVC.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 			children = (
 				CC9A1EE21CB159FE00696C41 /* CarouselTableViewCell.swift */,
 				CC9A1EE31CB159FE00696C41 /* CarouselCompressedTableViewCell.swift */,
+				CC8C281B1CB1BFD80081309D /* CarouselCompressedTableViewCell.xib */,
 				CC4B2A501CB19134003C571F /* CarouselTableViewCell.xib */,
 			);
 			name = outfitBuilderViews;
@@ -538,6 +541,7 @@
 				CCBEC8841C064E500052F99F /* OnBoardingView.xib in Resources */,
 				CC191BF41C03D3760094DF8D /* CurateSignInView.xib in Resources */,
 				CCFA3A8B1C30647D00762B0E /* CurateSignUpView.xib in Resources */,
+				CC8C281C1CB1BFD80081309D /* CarouselCompressedTableViewCell.xib in Resources */,
 				1AA3C5811A4601B2008C732C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,7 +11,7 @@ import UIKit
 
 extension UIColor {
     class func curateBlueColor() -> UIColor {
-        return UIColor(red: 27/255.0, green: 161/255.0, blue: 253/255.0, alpha: 1)
+        return UIColor(red: 164/255.0, green: 205/255.0, blue: 255/255.0, alpha: 1)
     }
    
     class func curateDarkGrayColor() -> UIColor {
