@@ -64,7 +64,7 @@ class DraggableView: UIView {
     }
     
     func setupView(){
-        self.layer.cornerRadius = 4
+        self.layer.cornerRadius = 0
         self.layer.shadowRadius = 3
         self.layer.shadowOpacity = 0.2
         self.layer.shadowOffset = CGSizeMake(1, 1)

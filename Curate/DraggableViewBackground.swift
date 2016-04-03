@@ -174,7 +174,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     }
     
     func setupView(){
-        self.backgroundColor = UIColor(red: 0.92, green: 0.93, blue: 0.95, alpha: 1) //the gray background colors
+        self.backgroundColor = UIColor.whiteColor()
         
         let TAB_BAR_HEIGHT: CGFloat = 49
         
@@ -183,11 +183,11 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         let bigButtonWidth: CGFloat = 59
         let smallButtonWidth: CGFloat = 49
         
-        let undoButton = UIButton(frame: CGRect(x: self.frame.width/2 - bigButtonWidth-smallButtonWidth - 20
-            , y: buttonYPosition, width: smallButtonWidth, height: smallButtonWidth))
-        let xButton = UIButton(frame: CGRect(x: self.frame.width/2 - 59 - 10, y: buttonYPosition, width: bigButtonWidth, height: bigButtonWidth))
-        let checkButton = UIButton(frame: CGRect(x: self.frame.width/2 + 10, y: buttonYPosition, width: bigButtonWidth, height: bigButtonWidth))
-        let likeButton = UIButton(frame: CGRect(x: self.frame.width/2 + bigButtonWidth + 20, y: buttonYPosition, width: smallButtonWidth, height: smallButtonWidth))
+        let xButton = UIButton(frame: CGRect(x: self.frame.width/2 - bigButtonWidth-smallButtonWidth - 40
+            , y: buttonYPosition, width: bigButtonWidth, height: bigButtonWidth))
+        let undoButton = UIButton(frame: CGRect(x: self.frame.width/2 - smallButtonWidth/2, y: buttonYPosition, width: smallButtonWidth, height: smallButtonWidth))
+        let checkButton = UIButton(frame: CGRect(x: self.frame.width/2 + bigButtonWidth+smallButtonWidth - 20, y: buttonYPosition, width: bigButtonWidth, height: bigButtonWidth))
+//        let likeButton = UIButton(frame: CGRect(x: self.frame.width/2 + bigButtonWidth + 20, y: buttonYPosition, width: smallButtonWidth, height: smallButtonWidth))
 
 
 
@@ -195,7 +195,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
 //        haveButton.setImage(UIImage(named: "haveButton"), forState: .Normal)
         undoButton.setImage(UIImage(named: "undoButton"), forState: .Normal)
         checkButton.setImage(UIImage(named: "checkButton"), forState: .Normal)
-        likeButton.setImage(UIImage(named: "HeartButton"), forState: .Normal)
+//        likeButton.setImage(UIImage(named: "HeartButton"), forState: .Normal)
         
         
         xButton.addTarget(self, action: "swipeLeft", forControlEvents: .TouchUpInside)
@@ -206,7 +206,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         
         
         self.addSubview(xButton)
-        self.addSubview(likeButton)
+//        self.addSubview(likeButton)
         self.addSubview(undoButton)
         self.addSubview(checkButton)
     }
