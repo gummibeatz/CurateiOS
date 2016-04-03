@@ -68,6 +68,10 @@ class LLOutfitViewController: UIViewController, UITableViewDataSource, UITableVi
         })
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return isDropped.count
@@ -85,11 +89,31 @@ class LLOutfitViewController: UIViewController, UITableViewDataSource, UITableVi
             
         } else {
             cell = NSBundle.mainBundle().loadNibNamed("CarouselTableViewCell", owner: self, options: nil).first as? UITableViewCell
-            var carouselCell = cell as! CarouselTableViewCell
-            carouselCell.items = jacketPickerData
+            let carouselCell = cell as! CarouselTableViewCell
+            setCarouselItems(carouselCell, index: indexPath.section)
+            carouselCell.carousel.reloadData()
         }
         cell!.tag = indexPath.section
         return cell!
+    }
+    
+    func setCarouselItems(cell: CarouselTableViewCell, index: Int) {
+        switch index {
+        case 0:
+            cell.items = jacketPickerData
+        case 1:
+            cell.items = lightLayerPickerData
+        case 2:
+            cell.items = collaredShirtPickerData
+        case 3:
+            cell.items = longSleeveShirtPickerData
+        case 4:
+            cell.items = shortSleeveShirtPickerData
+        case 5:
+            cell.items = bottomsPickerData
+        default:
+            print("no case matched")
+        }
     }
     
     func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {

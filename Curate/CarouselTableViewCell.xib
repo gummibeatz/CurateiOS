@@ -2,41 +2,43 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CarouselTableViewCell" customModule="Curate" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="462" height="228"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQz-0u-BNA">
-                    <rect key="frame" x="0.0" y="0.0" width="462" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9D-Wj-DMa" customClass="iCarousel">
-                    <rect key="frame" x="0.0" y="21" width="462" height="207"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <accessibility key="accessibilityConfiguration" identifier="carouselCell"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="qQz-0u-BNA" secondAttribute="trailing" id="Cxc-YB-bEe"/>
-                <constraint firstAttribute="bottom" secondItem="D9D-Wj-DMa" secondAttribute="bottom" id="M2i-sH-HXV"/>
-                <constraint firstItem="D9D-Wj-DMa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="X4q-RQ-fOp"/>
-                <constraint firstAttribute="trailing" secondItem="D9D-Wj-DMa" secondAttribute="trailing" id="aot-gZ-HeF"/>
-                <constraint firstItem="D9D-Wj-DMa" firstAttribute="top" secondItem="qQz-0u-BNA" secondAttribute="bottom" id="iID-QS-mSh"/>
-                <constraint firstItem="qQz-0u-BNA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nB8-Ml-twu"/>
-                <constraint firstItem="qQz-0u-BNA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pkg-TH-adY"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="192" id="Fdq-j9-mON" customClass="CarouselTableViewCell" customModule="Curate" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="435" height="192"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fdq-j9-mON" id="9tP-mH-c8E">
+                <rect key="frame" x="0.0" y="0.0" width="435" height="191.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1d-ck-lEA">
+                        <rect key="frame" x="8" y="8" width="419" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRR-NY-5fK" customClass="iCarousel">
+                        <rect key="frame" x="0.0" y="29" width="435" height="162.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="hRR-NY-5fK" secondAttribute="bottom" id="6bn-dQ-yp8"/>
+                    <constraint firstItem="hRR-NY-5fK" firstAttribute="leading" secondItem="9tP-mH-c8E" secondAttribute="leading" id="8fZ-Nj-gYy"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="g1d-ck-lEA" secondAttribute="trailing" id="F31-Tn-3BX"/>
+                    <constraint firstItem="hRR-NY-5fK" firstAttribute="top" secondItem="g1d-ck-lEA" secondAttribute="bottom" id="MR9-Mf-iTh"/>
+                    <constraint firstItem="g1d-ck-lEA" firstAttribute="top" secondItem="9tP-mH-c8E" secondAttribute="topMargin" id="aIU-qF-PXh"/>
+                    <constraint firstItem="g1d-ck-lEA" firstAttribute="leading" secondItem="9tP-mH-c8E" secondAttribute="leadingMargin" id="b2o-QK-GDT"/>
+                    <constraint firstAttribute="trailing" secondItem="hRR-NY-5fK" secondAttribute="trailing" id="l8X-52-umr"/>
+                </constraints>
+            </tableViewCellContentView>
             <connections>
-                <outlet property="carousel" destination="D9D-Wj-DMa" id="lP6-01-jFy"/>
+                <outlet property="carousel" destination="hRR-NY-5fK" id="yyK-U6-URN"/>
             </connections>
-            <point key="canvasLocation" x="211" y="65"/>
-        </view>
+            <point key="canvasLocation" x="209.5" y="71"/>
+        </tableViewCell>
     </objects>
 </document>

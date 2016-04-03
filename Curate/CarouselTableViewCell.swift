@@ -22,7 +22,7 @@ class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDele
         }
     }
     
-    var items = [AnyObject]()
+    var items = [Clothing]()
     var delegate: CarouselTableViewCellDelegate?
     
     override func awakeFromNib() {
@@ -50,6 +50,7 @@ class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDele
     
     // MARK: - iCarousel Data Source
     func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
+        print("number of items in carousel = \(items.count)")
         return items.count
     }
     
@@ -75,7 +76,7 @@ class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDele
         //in the wrong place in the carousel
         itemView.clipsToBounds = true
         itemView.contentMode = .ScaleAspectFit
-        itemView.image = UIImage(named: "shirt")
+        itemView.image = UIImage(data: items[index].imageData!)
         itemView.frame = CGRect(x:0, y:0, width:100, height:100)
         //        itemView.layer.borderColor = UIColor(red: 166.0/255, green: 206.0/255, blue: 253.0/255, alpha: 1.0).CGColor
         itemView.layer.borderColor = UIColor.blackColor().CGColor
