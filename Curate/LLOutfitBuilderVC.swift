@@ -53,6 +53,9 @@ class LLOutfitViewController: UIViewController, UITableViewDataSource, UITableVi
         true,
         true,
         true,
+        true,
+        true,
+        true,
         true
     ]
     
@@ -70,11 +73,18 @@ class LLOutfitViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        jacketPickerData = readCustomObjArrayFromUserDefaults("ownedJackets") as! [Top]
+        lightLayerPickerData = readCustomObjArrayFromUserDefaults("ownedLightLayers") as! [Top]
+        collaredShirtPickerData = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as! [Top]
+        longSleeveShirtPickerData = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts") as! [Top]
+        shortSleeveShirtPickerData = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as! [Top]
+        bottomsPickerData = readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return isDropped.count
+        return 6
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
