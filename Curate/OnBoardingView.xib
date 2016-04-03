@@ -12,9 +12,9 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your vertical?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jku-aR-A6f">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your vertical?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jku-aR-A6f">
                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -121,12 +121,14 @@
                 </constraint>
                 <constraint firstItem="Up5-Nc-XfD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XVe-ap-EZn"/>
                 <constraint firstItem="heW-6q-Dmi" firstAttribute="top" secondItem="Jku-aR-A6f" secondAttribute="bottom" constant="195.5" id="bBP-1t-BPY">
-                    <variation key="heightClass=regular-widthClass=compact" constant="75"/>
+                    <variation key="heightClass=regular-widthClass=compact" constant="72"/>
                 </constraint>
                 <constraint firstAttribute="trailing" secondItem="Up5-Nc-XfD" secondAttribute="trailing" id="bI5-hN-whz"/>
                 <constraint firstItem="ord-84-ryV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dNg-Q0-tdv"/>
                 <constraint firstItem="heW-6q-Dmi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ptj-Le-o3b"/>
                 <constraint firstItem="Jku-aR-A6f" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qf8-cf-X39"/>
+                <constraint firstItem="Jku-aR-A6f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="s89-nN-CGz"/>
+                <constraint firstAttribute="trailing" secondItem="Jku-aR-A6f" secondAttribute="trailing" constant="30" id="uCT-0q-FUW"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
@@ -138,14 +140,16 @@
                 <mask key="constraints">
                     <exclude reference="Dnu-As-yS1"/>
                     <exclude reference="qf8-cf-X39"/>
-                    <exclude reference="9S3-aM-HeF"/>
-                    <exclude reference="Rqx-K7-Z70"/>
-                    <exclude reference="XVe-ap-EZn"/>
-                    <exclude reference="bI5-hN-whz"/>
+                    <exclude reference="s89-nN-CGz"/>
+                    <exclude reference="uCT-0q-FUW"/>
                     <exclude reference="bBP-1t-BPY"/>
                     <exclude reference="ptj-Le-o3b"/>
                     <exclude reference="38r-ng-8cz"/>
                     <exclude reference="dNg-Q0-tdv"/>
+                    <exclude reference="9S3-aM-HeF"/>
+                    <exclude reference="Rqx-K7-Z70"/>
+                    <exclude reference="XVe-ap-EZn"/>
+                    <exclude reference="bI5-hN-whz"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -158,14 +162,16 @@
                 <mask key="constraints">
                     <include reference="Dnu-As-yS1"/>
                     <include reference="qf8-cf-X39"/>
-                    <include reference="9S3-aM-HeF"/>
-                    <include reference="Rqx-K7-Z70"/>
-                    <include reference="XVe-ap-EZn"/>
-                    <include reference="bI5-hN-whz"/>
+                    <include reference="s89-nN-CGz"/>
+                    <include reference="uCT-0q-FUW"/>
                     <include reference="bBP-1t-BPY"/>
                     <include reference="ptj-Le-o3b"/>
                     <include reference="38r-ng-8cz"/>
                     <include reference="dNg-Q0-tdv"/>
+                    <include reference="9S3-aM-HeF"/>
+                    <include reference="Rqx-K7-Z70"/>
+                    <include reference="XVe-ap-EZn"/>
+                    <include reference="bI5-hN-whz"/>
                 </mask>
             </variation>
             <connections>

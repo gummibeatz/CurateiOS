@@ -51,10 +51,7 @@ class OnBoardingView: UIView {
     func setScrollViewImage(withHeight height: CGFloat) {
         flexiblePagingScrollView.scrollViewImageView.frame = CGRect(origin: CGPoint(x: 0,y: 0), size: CGSize(width: flexiblePagingScrollView.scrollView.contentSize.width, height:height))
         flexiblePagingScrollView.scrollViewImageView.image = rulerImage
-        print(rulerImage)
-        print(flexiblePagingScrollView.scrollViewImageView.image)
-        print(flexiblePagingScrollView.scrollViewImageView.frame)
-        print(flexiblePagingScrollView.scrollViewImageView.layer)
+        
     }
     
     func pagingIdx(scrollView: UIScrollView) -> Int {

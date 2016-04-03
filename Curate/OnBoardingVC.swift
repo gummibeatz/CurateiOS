@@ -18,13 +18,13 @@ class OnBoardingVC: UIViewController {
     
     var user: User!
     
-    let onBoardingViewProperties: [OnBoardingViewProperties] = [OnBoardingViewProperties.createHeightProperties(),
-                                                                OnBoardingViewProperties.createFeetSizeProperties(),
-                                                                OnBoardingViewProperties.createShirtFitProperties(),
+    let onBoardingViewProperties: [OnBoardingViewProperties] = [
                                                                 OnBoardingViewProperties.createShirtSizeProperties(),
+                                                                OnBoardingViewProperties.createShirtFitProperties(),
                                                                 OnBoardingViewProperties.createWaistSizeProperties(),
                                                                 OnBoardingViewProperties.createInseamProperties(),
-                                                                OnBoardingViewProperties.createPantsFitProperties()
+                                                                OnBoardingViewProperties.createPantsFitProperties(),
+                                                                OnBoardingViewProperties.createFeetSizeProperties()
                                                             ]
     
     
@@ -33,14 +33,9 @@ class OnBoardingVC: UIViewController {
     lazy var onBoardingViews: [UIView] = {
         var views = [UIView]()
         views.append(NSBundle.mainBundle().loadNibNamed("PersonaView", owner: self, options: nil).last as! PersonaView)
-        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
-        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
-        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
-        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
-        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
-        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
-        views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
-        views.append(self.createWeightScaleView())
+        for i in self.onBoardingViewProperties {
+            views.append(NSBundle.mainBundle().loadNibNamed("OnBoardingView", owner: self, options: nil).last as! OnBoardingView)
+        }
         return views
     }()
     
@@ -152,17 +147,15 @@ class OnBoardingVC: UIViewController {
             let nextView = onBoardingViews[activeViewIdx!]
             nextView.frame = viewFrame
             self.removeActiveLayer()
-            if self.activeViewIdx < self.onBoardingViews.count - 1 {
+            if self.activeViewIdx < self.onBoardingViews.count {
                 self.setupMeasurementView(nextView as! OnBoardingView)
-            } else {
-                self.setupWeightScaleView(nextView as! WeightScaleView)
             }
             UIView.transitionFromView( onBoardingViews[activeViewIdx! - 1], toView: nextView, duration: 0.5, options: .TransitionCrossDissolve, completion: {
                 completionHandler in
                 print("animation transitioned")
                 self.progressBar.setProgress(Float(self.activeViewIdx!) / Float(self.onBoardingViews.count), animated: true)
                 
-                if self.activeViewIdx < self.onBoardingViews.count - 1 {
+                if self.activeViewIdx < self.onBoardingViews.count {
                     let onBoardingView = nextView as! OnBoardingView
                     print("after transitioning view, the height is =\(onBoardingView.flexiblePagingScrollView.frame.height)")
                     onBoardingView.setScrollViewImage(withHeight: onBoardingView.flexiblePagingScrollView.frame.height)
