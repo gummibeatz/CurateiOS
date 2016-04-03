@@ -120,57 +120,6 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         ownedCollaredShirts = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as? [Top]
         ownedLongSleeveShirts = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts") as? [Top]
         ownedShortSleeveShirts = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as? [Top]
-        
-        print("ownedBottoms = \(ownedBottoms)")
-        
-        if(ownedJackets!.count == 0) {
-            let emptyJacket = Top()
-            emptyJacket.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable")!)
-            emptyJacket.fileName = "NA"
-            emptyJacket.mainCategory = "Jacket"
-            ownedJackets!.append(emptyJacket)
-            writeCustomObjArraytoUserDefaults(ownedJackets!, fileName: "ownedJackets")
-        }
-        if(ownedLightLayers!.count == 0) {
-            let emptyLightLayer = Top()
-            emptyLightLayer.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable")!)
-            emptyLightLayer.fileName = "NA"
-            emptyLightLayer.mainCategory = "Light Layer"
-            ownedLightLayers!.append(emptyLightLayer)
-            writeCustomObjArraytoUserDefaults(ownedLightLayers!, fileName: "ownedLightLayers")
-        }
-        if(ownedCollaredShirts!.count == 0) {
-            let emptyCollaredShirt = Top()
-            emptyCollaredShirt.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable")!)
-            emptyCollaredShirt.fileName = "NA"
-            emptyCollaredShirt.mainCategory = "Collared Shirt"
-            ownedCollaredShirts!.append(emptyCollaredShirt)
-            writeCustomObjArraytoUserDefaults(ownedCollaredShirts!, fileName: "ownedCollaredShirts")
-        }
-        if(ownedLongSleeveShirts!.count == 0) {
-            let emptyLongSleeveShirt = Top()
-            emptyLongSleeveShirt.imageData = UIImagePNGRepresentation(UIImage(named: "notAvailable")!)
-            emptyLongSleeveShirt.fileName = "NA"
-            emptyLongSleeveShirt.mainCategory = "Long Sleeve Shirt"
-            ownedLongSleeveShirts!.append(emptyLongSleeveShirt)
-            writeCustomObjArraytoUserDefaults(ownedLongSleeveShirts!, fileName: "ownedLongSleeveShirts")
-        }
-        if(ownedShortSleeveShirts!.count == 0) {
-            let emptyShortSleeveShirt = Top()
-            emptyShortSleeveShirt.imageData = UIImagePNGRepresentation(UIImage(named: "notAvailable")!)
-            emptyShortSleeveShirt.fileName = "NA"
-            emptyShortSleeveShirt.mainCategory = "Short Sleeve Shirt"
-            ownedShortSleeveShirts!.append(emptyShortSleeveShirt)
-            writeCustomObjArraytoUserDefaults(ownedShortSleeveShirts!, fileName: "ownedShortSleeveShirts")
-        }
-        if(ownedBottoms!.count == 0) {
-            let emptyBottoms = Bottom()
-            emptyBottoms.imageData =  UIImagePNGRepresentation(UIImage(named: "notAvailable")!)
-            emptyBottoms.fileName = "NA"
-            emptyBottoms.mainCategory = "Chinos"
-            ownedBottoms!.append(emptyBottoms)
-            writeCustomObjArraytoUserDefaults(ownedBottoms!, fileName: "ownedBottoms")
-        }
     }
     
     func setupView(){

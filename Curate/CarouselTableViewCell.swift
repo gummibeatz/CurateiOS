@@ -17,7 +17,7 @@ class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDele
     
     @IBOutlet weak var carousel: iCarousel! {
         didSet{
-            carousel.backgroundColor = UIColor.clearColor()
+            carousel.backgroundColor = UIColor.whiteColor()
             carousel.perspective = -0.002
         }
     }
