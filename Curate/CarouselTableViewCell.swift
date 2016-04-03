@@ -7,18 +7,14 @@
 //
 
 import UIKit
+import iCarousel
+
 protocol CarouselTableViewCellDelegate {
     func toggleDropdown(idx: Int)
 }
 
 class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDelegate {
     
-    @IBOutlet weak var dropDownArrow: UIImageView! {
-        didSet {
-            let tapGesture = UITapGestureRecognizer(target: self, action: "dropDownTapped:")
-            dropDownArrow.addGestureRecognizer(tapGesture)
-        }
-    }
     @IBOutlet weak var carousel: iCarousel! {
         didSet{
             carousel.backgroundColor = UIColor.clearColor()
@@ -26,16 +22,14 @@ class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDele
         }
     }
     
-    var items: [Int] = [Int]()
+    var items = [AnyObject]()
     var delegate: CarouselTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.backgroundColor = UIColor(red: 230, green: 230, blue: 230, alpha: 0.2)
-        for i in 0...9 {
-            items.append(i)
-        }
+        self.backgroundColor = UIColor.whiteColor()
+        
         setupCarousel()
     }
     
@@ -83,7 +77,8 @@ class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDele
         itemView.contentMode = .ScaleAspectFit
         itemView.image = UIImage(named: "shirt")
         itemView.frame = CGRect(x:0, y:0, width:100, height:100)
-        itemView.layer.borderColor = UIColor.blueColor().CGColor
+        //        itemView.layer.borderColor = UIColor(red: 166.0/255, green: 206.0/255, blue: 253.0/255, alpha: 1.0).CGColor
+        itemView.layer.borderColor = UIColor.blackColor().CGColor
         return itemView
     }
     

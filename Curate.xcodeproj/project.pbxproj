@@ -53,14 +53,14 @@
 		CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC425A461BB870BB0021664C /* LaunchScreen.xib */; };
 		CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC425A4B1BB885530021664C /* MainTabBarController.swift */; };
 		CC4899781C42E05900A6A5B1 /* CurateColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4899771C42E05900A6A5B1 /* CurateColors.swift */; };
+		CC4B2A511CB19134003C571F /* CarouselTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC4B2A501CB19134003C571F /* CarouselTableViewCell.xib */; };
 		CC541A2D1BC0CA15004BAEB9 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A2C1BC0CA15004BAEB9 /* ModelType.swift */; };
 		CC541A331BC0CE29004BAEB9 /* PersonaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
 		CC87E7CE1C1D003E00CD923D /* CircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87E7CD1C1D003E00CD923D /* CircleLabel.swift */; };
 		CC9A1EE41CB159FE00696C41 /* CarouselTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9A1EE21CB159FE00696C41 /* CarouselTableViewCell.swift */; };
 		CC9A1EE51CB159FE00696C41 /* CarouselCompressedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9A1EE31CB159FE00696C41 /* CarouselCompressedTableViewCell.swift */; };
-		CC9A1EE71CB15A6F00696C41 /* CarouselTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC9A1EE61CB15A6F00696C41 /* CarouselTableViewCell.xib */; };
-		CC9A1EEC1CB15ABF00696C41 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9A1EEA1CB15ABF00696C41 /* iCarousel.m */; };
+		CC9A1EEE1CB15CD300696C41 /* LLOutfitBuilderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9A1EED1CB15CD300696C41 /* LLOutfitBuilderVC.swift */; };
 		CCA3E6E11C04E01700B97BF1 /* PersonaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA3E6E01C04E01700B97BF1 /* PersonaView.swift */; };
 		CCA3E6E31C04E02500B97BF1 /* PersonaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCA3E6E21C04E02500B97BF1 /* PersonaView.xib */; };
 		CCBA6FB41C04159F00B39A31 /* CurateSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */; };
@@ -137,16 +137,14 @@
 		CC425A461BB870BB0021664C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		CC425A4B1BB885530021664C /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CC4899771C42E05900A6A5B1 /* CurateColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurateColors.swift; sourceTree = "<group>"; };
+		CC4B2A501CB19134003C571F /* CarouselTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselTableViewCell.xib; sourceTree = "<group>"; };
 		CC541A2C1BC0CA15004BAEB9 /* ModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaScreen.swift; sourceTree = "<group>"; };
 		CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOverlayView.swift; sourceTree = "<group>"; };
 		CC87E7CD1C1D003E00CD923D /* CircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLabel.swift; sourceTree = "<group>"; };
 		CC9A1EE21CB159FE00696C41 /* CarouselTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselTableViewCell.swift; sourceTree = "<group>"; };
 		CC9A1EE31CB159FE00696C41 /* CarouselCompressedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselCompressedTableViewCell.swift; sourceTree = "<group>"; };
-		CC9A1EE61CB15A6F00696C41 /* CarouselTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselTableViewCell.xib; sourceTree = "<group>"; };
-		CC9A1EE91CB15ABF00696C41 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
-		CC9A1EEA1CB15ABF00696C41 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
-		CC9A1EEB1CB15ABF00696C41 /* Curate-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Curate-Bridging-Header.h"; sourceTree = "<group>"; };
+		CC9A1EED1CB15CD300696C41 /* LLOutfitBuilderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLOutfitBuilderVC.swift; sourceTree = "<group>"; };
 		CCA3E6E01C04E01700B97BF1 /* PersonaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaView.swift; sourceTree = "<group>"; };
 		CCA3E6E21C04E02500B97BF1 /* PersonaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaView.xib; sourceTree = "<group>"; };
 		CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurateSignInView.swift; sourceTree = "<group>"; };
@@ -253,9 +251,6 @@
 		1AA3C5741A4601B2008C732C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CC9A1EE91CB15ABF00696C41 /* iCarousel.h */,
-				CC9A1EEA1CB15ABF00696C41 /* iCarousel.m */,
-				CC9A1EEB1CB15ABF00696C41 /* Curate-Bridging-Header.h */,
 				1AA3C5751A4601B2008C732C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -316,9 +311,7 @@
 			children = (
 				1A96E9A51A58C66200C23C0E /* OutfitBuilderContainerVC.swift */,
 				1AA3C59F1A460234008C732C /* OutfitBuilderVC.swift */,
-				CC9A1EE61CB15A6F00696C41 /* CarouselTableViewCell.xib */,
-				CC9A1EE21CB159FE00696C41 /* CarouselTableViewCell.swift */,
-				CC9A1EE31CB159FE00696C41 /* CarouselCompressedTableViewCell.swift */,
+				CC9A1EED1CB15CD300696C41 /* LLOutfitBuilderVC.swift */,
 				1AC9AC4A1AF2E9470090E108 /* AddOutfitView.swift */,
 				1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */,
 				1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */,
@@ -429,9 +422,20 @@
 			name = onBoarding;
 			sourceTree = "<group>";
 		};
+		CC9A1EF01CB15D7C00696C41 /* outfitBuilderViews */ = {
+			isa = PBXGroup;
+			children = (
+				CC9A1EE21CB159FE00696C41 /* CarouselTableViewCell.swift */,
+				CC9A1EE31CB159FE00696C41 /* CarouselCompressedTableViewCell.swift */,
+				CC4B2A501CB19134003C571F /* CarouselTableViewCell.xib */,
+			);
+			name = outfitBuilderViews;
+			sourceTree = "<group>";
+		};
 		CCE2D1C51BA0849A008197F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CC9A1EF01CB15D7C00696C41 /* outfitBuilderViews */,
 				CC8691011BA24ED800D5BEC7 /* openingViews */,
 				CC8691021BA24EEB00D5BEC7 /* wardrobeBuilderViews */,
 			);
@@ -524,13 +528,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC4B2A511CB19134003C571F /* CarouselTableViewCell.xib in Resources */,
 				CCA3E6E31C04E02500B97BF1 /* PersonaView.xib in Resources */,
 				CC1CB27A1C08E91D00083F78 /* TickView.xib in Resources */,
 				CC425A471BB870BB0021664C /* LaunchScreen.xib in Resources */,
 				1AA3C5B11A46035A008C732C /* tshirtIcon.jpg in Resources */,
 				1AA3C5A91A460316008C732C /* VNeck in Resources */,
 				1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */,
-				CC9A1EE71CB15A6F00696C41 /* CarouselTableViewCell.xib in Resources */,
 				CCBEC8841C064E500052F99F /* OnBoardingView.xib in Resources */,
 				CC191BF41C03D3760094DF8D /* CurateSignInView.xib in Resources */,
 				CCFA3A8B1C30647D00762B0E /* CurateSignUpView.xib in Resources */,
@@ -611,6 +615,7 @@
 				CCE9BB291C1CB040005A6705 /* WeightScaleView.swift in Sources */,
 				1ACC8B101A58C82200093290 /* PropertiesBackView.swift in Sources */,
 				CC541A331BC0CE29004BAEB9 /* PersonaScreen.swift in Sources */,
+				CC9A1EEE1CB15CD300696C41 /* LLOutfitBuilderVC.swift in Sources */,
 				1A7B8AA21B5D4BA900C2D552 /* SingleOutfitVC.swift in Sources */,
 				CC4899781C42E05900A6A5B1 /* CurateColors.swift in Sources */,
 				CCFA3A8F1C306D1200762B0E /* CurateLoginTabBarController.swift in Sources */,
@@ -631,7 +636,6 @@
 				1AA3C5771A4601B2008C732C /* AppDelegate.swift in Sources */,
 				1AA3C5A01A460234008C732C /* WardrobeBuilderVC.swift in Sources */,
 				1AF1A2731ACA3FFF006770D6 /* CurateAPICalls.swift in Sources */,
-				CC9A1EEC1CB15ABF00696C41 /* iCarousel.m in Sources */,
 				1AA3C5971A46021A008C732C /* RBResizer.swift in Sources */,
 				1AEC455A1B4B8E4C009D8D9A /* WeatherAPICalls.swift in Sources */,
 				1A046E2E1B725CAE00D25AE5 /* globalConstants.swift in Sources */,
@@ -781,7 +785,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Curate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Curate/Curate-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -807,7 +811,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Curate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Curate/Curate-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Release;

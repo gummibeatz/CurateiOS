@@ -6,10 +6,37 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CarouselTableViewCell" customModule="Curate" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="462" height="228"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQz-0u-BNA">
+                    <rect key="frame" x="0.0" y="0.0" width="462" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9D-Wj-DMa" customClass="iCarousel">
+                    <rect key="frame" x="0.0" y="21" width="462" height="207"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <accessibility key="accessibilityConfiguration" identifier="carouselCell"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="qQz-0u-BNA" secondAttribute="trailing" id="Cxc-YB-bEe"/>
+                <constraint firstAttribute="bottom" secondItem="D9D-Wj-DMa" secondAttribute="bottom" id="M2i-sH-HXV"/>
+                <constraint firstItem="D9D-Wj-DMa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="X4q-RQ-fOp"/>
+                <constraint firstAttribute="trailing" secondItem="D9D-Wj-DMa" secondAttribute="trailing" id="aot-gZ-HeF"/>
+                <constraint firstItem="D9D-Wj-DMa" firstAttribute="top" secondItem="qQz-0u-BNA" secondAttribute="bottom" id="iID-QS-mSh"/>
+                <constraint firstItem="qQz-0u-BNA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nB8-Ml-twu"/>
+                <constraint firstItem="qQz-0u-BNA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pkg-TH-adY"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="carousel" destination="D9D-Wj-DMa" id="lP6-01-jFy"/>
+            </connections>
+            <point key="canvasLocation" x="211" y="65"/>
         </view>
     </objects>
 </document>

@@ -27,7 +27,7 @@ class MainTabBarController: UITabBarController {
         let wardrobeBuilderVC = WardrobeBuilderVC()
         wardrobeBuilderVC.tabBarItem = UITabBarItem(title: "Wardrobe Builder", image: RBResizeImage(UIImage(named: "Swipe")!, targetSize: iconSize), tag: 0)
         
-        let outfitBuilderVC = OutfitBuilderContainerVC()
+        let outfitBuilderVC = LLOutfitViewController()
         outfitBuilderVC.tabBarItem = UITabBarItem(title: "Outfit Builder", image: RBResizeImage(UIImage(named: "Outfit")!, targetSize: iconSize), tag: 1)
 
         self.viewControllers = [wardrobeBuilderVC, outfitBuilderVC]
