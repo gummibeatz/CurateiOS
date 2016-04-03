@@ -57,6 +57,10 @@
 		CC541A331BC0CE29004BAEB9 /* PersonaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */; };
 		CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */; };
 		CC87E7CE1C1D003E00CD923D /* CircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87E7CD1C1D003E00CD923D /* CircleLabel.swift */; };
+		CC9A1EE41CB159FE00696C41 /* CarouselTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9A1EE21CB159FE00696C41 /* CarouselTableViewCell.swift */; };
+		CC9A1EE51CB159FE00696C41 /* CarouselCompressedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9A1EE31CB159FE00696C41 /* CarouselCompressedTableViewCell.swift */; };
+		CC9A1EE71CB15A6F00696C41 /* CarouselTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC9A1EE61CB15A6F00696C41 /* CarouselTableViewCell.xib */; };
+		CC9A1EEC1CB15ABF00696C41 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9A1EEA1CB15ABF00696C41 /* iCarousel.m */; };
 		CCA3E6E11C04E01700B97BF1 /* PersonaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA3E6E01C04E01700B97BF1 /* PersonaView.swift */; };
 		CCA3E6E31C04E02500B97BF1 /* PersonaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCA3E6E21C04E02500B97BF1 /* PersonaView.xib */; };
 		CCBA6FB41C04159F00B39A31 /* CurateSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */; };
@@ -137,6 +141,12 @@
 		CC541A321BC0CE29004BAEB9 /* PersonaScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaScreen.swift; sourceTree = "<group>"; };
 		CC8691031BA2504200D5BEC7 /* PersonaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaOverlayView.swift; sourceTree = "<group>"; };
 		CC87E7CD1C1D003E00CD923D /* CircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLabel.swift; sourceTree = "<group>"; };
+		CC9A1EE21CB159FE00696C41 /* CarouselTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselTableViewCell.swift; sourceTree = "<group>"; };
+		CC9A1EE31CB159FE00696C41 /* CarouselCompressedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselCompressedTableViewCell.swift; sourceTree = "<group>"; };
+		CC9A1EE61CB15A6F00696C41 /* CarouselTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselTableViewCell.xib; sourceTree = "<group>"; };
+		CC9A1EE91CB15ABF00696C41 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		CC9A1EEA1CB15ABF00696C41 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		CC9A1EEB1CB15ABF00696C41 /* Curate-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Curate-Bridging-Header.h"; sourceTree = "<group>"; };
 		CCA3E6E01C04E01700B97BF1 /* PersonaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaView.swift; sourceTree = "<group>"; };
 		CCA3E6E21C04E02500B97BF1 /* PersonaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonaView.xib; sourceTree = "<group>"; };
 		CCBA6FB31C04159F00B39A31 /* CurateSignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurateSignInView.swift; sourceTree = "<group>"; };
@@ -243,6 +253,9 @@
 		1AA3C5741A4601B2008C732C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CC9A1EE91CB15ABF00696C41 /* iCarousel.h */,
+				CC9A1EEA1CB15ABF00696C41 /* iCarousel.m */,
+				CC9A1EEB1CB15ABF00696C41 /* Curate-Bridging-Header.h */,
 				1AA3C5751A4601B2008C732C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -303,6 +316,9 @@
 			children = (
 				1A96E9A51A58C66200C23C0E /* OutfitBuilderContainerVC.swift */,
 				1AA3C59F1A460234008C732C /* OutfitBuilderVC.swift */,
+				CC9A1EE61CB15A6F00696C41 /* CarouselTableViewCell.xib */,
+				CC9A1EE21CB159FE00696C41 /* CarouselTableViewCell.swift */,
+				CC9A1EE31CB159FE00696C41 /* CarouselCompressedTableViewCell.swift */,
 				1AC9AC4A1AF2E9470090E108 /* AddOutfitView.swift */,
 				1ACC8B0E1A58C82200093290 /* PropertiesBackView.swift */,
 				1ACC8B0F1A58C82200093290 /* PropertiesFrontView.swift */,
@@ -470,7 +486,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Kenneth Kuo";
 				TargetAttributes = {
@@ -514,6 +530,7 @@
 				1AA3C5B11A46035A008C732C /* tshirtIcon.jpg in Resources */,
 				1AA3C5A91A460316008C732C /* VNeck in Resources */,
 				1AA3C5B01A46035A008C732C /* measureTape.jpg in Resources */,
+				CC9A1EE71CB15A6F00696C41 /* CarouselTableViewCell.xib in Resources */,
 				CCBEC8841C064E500052F99F /* OnBoardingView.xib in Resources */,
 				CC191BF41C03D3760094DF8D /* CurateSignInView.xib in Resources */,
 				CCFA3A8B1C30647D00762B0E /* CurateSignUpView.xib in Resources */,
@@ -584,6 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A8CCC1F1AD05406001E3AF0 /* StackStruct.swift in Sources */,
+				CC9A1EE41CB159FE00696C41 /* CarouselTableViewCell.swift in Sources */,
 				CCE9410E1C5EA60E008833BE /* OnBoardingViewProperties.swift in Sources */,
 				CC191BF81C03DA4F0094DF8D /* CurateSignInVC.swift in Sources */,
 				CC425A4C1BB885530021664C /* MainTabBarController.swift in Sources */,
@@ -604,6 +622,7 @@
 				1A8CCC211AD05F72001E3AF0 /* Outfit.swift in Sources */,
 				1AA3C5A41A460234008C732C /* OutfitsVC.swift in Sources */,
 				1A12D9031A6EE18400DA3617 /* OutfitCell.swift in Sources */,
+				CC9A1EE51CB159FE00696C41 /* CarouselCompressedTableViewCell.swift in Sources */,
 				CC8691041BA2504200D5BEC7 /* PersonaOverlayView.swift in Sources */,
 				1A8CCC271AD0601C001E3AF0 /* Bottom.swift in Sources */,
 				1A046E2C1B725B9900D25AE5 /* OnBoardingVC.swift in Sources */,
@@ -612,6 +631,7 @@
 				1AA3C5771A4601B2008C732C /* AppDelegate.swift in Sources */,
 				1AA3C5A01A460234008C732C /* WardrobeBuilderVC.swift in Sources */,
 				1AF1A2731ACA3FFF006770D6 /* CurateAPICalls.swift in Sources */,
+				CC9A1EEC1CB15ABF00696C41 /* iCarousel.m in Sources */,
 				1AA3C5971A46021A008C732C /* RBResizer.swift in Sources */,
 				1AEC455A1B4B8E4C009D8D9A /* WeatherAPICalls.swift in Sources */,
 				1A046E2E1B725CAE00D25AE5 /* globalConstants.swift in Sources */,
@@ -747,6 +767,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -760,7 +781,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Curate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Curate/Curate-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -771,6 +792,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -785,7 +807,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Curate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Curate/Curate-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Release;
