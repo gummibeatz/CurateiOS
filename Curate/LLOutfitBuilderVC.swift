@@ -162,7 +162,181 @@ extension LLOutfitViewController: CarouselCompressedTableViewCellDelegate, Carou
         self.tableView.reloadSections(NSIndexSet(index: idx), withRowAnimation: UITableViewRowAnimation.Fade)
     }
     
-    func cellTapped() {
-        print("cell tapped")
+    func cellTapped(clothing: Clothing) {
+        let baseCategory = clothing.mainCategory
+        let baseClothing = clothing.fileName
+        
+        if (self.curateAuthToken != nil && baseClothing != nil) {
+            self.view.addSubview(blurEffectView)
+            getMatches(self.curateAuthToken!, base_clothing: baseClothing!, completionHandler: {
+                matchDict in
+                // remove blur view
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.blurEffectView.removeFromSuperview()
+                })
+                let message:String = matchDict.objectForKey("message") as! String
+                print(message)
+                if message == "Success" {
+                    print(matchDict)
+                    if let matches:[NSDictionary] = matchDict.objectForKey("matches") as? [NSDictionary] {
+                        print(matches)
+                        let currentMatch:NSDictionary = self.getNextMatch(matches)
+                        self.assembleOutfitFromMatch(currentMatch,baseCategory: baseCategory!)
+                    } else {
+                        let alert = UIAlertController(title: "Alert", message: "No outfits could be matched", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
+                } else {
+                    let alert = UIAlertController(title: "Alert", message: "No outfits, server error", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+            })
+        }
+    }
+    
+    func getNextMatch(matches:[NSDictionary]) -> NSDictionary {
+        if (self.previousMatch != matches) {
+            self.previousMatch = matches
+            self.previousMatchIndex = 0
+        }
+        //account for wrapping around
+        self.previousMatchIndex = (previousMatchIndex+1) % previousMatch.count
+        return previousMatch[previousMatchIndex-0]
+    }
+    
+    func assembleOutfitFromMatch(match: NSDictionary, baseCategory: String) {
+        var buffer: [[String]] = match.objectForKey("outfits") as! [[String]]
+        var outfit:[String] = buffer[0]
+//        var ownedPants: [Bottom] = readCustomObjArrayFromUserDefaults("ownedPants") as! [Bottom]
+        var changedPickers = [false, false, false, false, false, false]
+        
+        switch baseCategory {
+        case "jacket":
+            changedPickers[0] = true
+        case "light_layer":
+            changedPickers[1] = true
+        case "collared_shirt":
+            changedPickers[2] = true
+        case "long_sleeve_shirt":
+            changedPickers[3] = true
+        case "short_sleeve_shirt":
+            changedPickers[4] = true
+        default:
+            changedPickers[5] = true
+        }
+        
+        print("outfit is \(outfit)")
+        print("1 changedPickers =\(changedPickers)")
+        changePickerWithOutfitName(outfit[0], isBottom: true, changedPickers: &changedPickers)
+        print("2 changedPickers =\(changedPickers)")
+        if outfit[1] != "NA" {
+            changePickerWithOutfitName(outfit[1], isBottom: false, changedPickers: &changedPickers)
+        }
+        print("3 changedPickers =\(changedPickers)")
+        if outfit[2] != "NA" {
+            changePickerWithOutfitName(outfit[2], isBottom: false, changedPickers: &changedPickers)
+        }
+        
+        print("4 changedPickers = \(changedPickers)")
+        
+//        if changedPickers[0] == false { toggleDropdown(0) }
+//        if changedPickers[1] == false { toggleDropdown(0) }
+//        if changedPickers[2] == false { toggleDropdown(0) }
+//        if changedPickers[3] == false { toggleDropdown(0) }
+//        if changedPickers[4] == false { toggleDropdown(0) }
+    }
+    
+    func changePickerWithOutfitName(outfitName: String, isBottom: Bool, inout changedPickers: [Bool]) {
+        let mainCategory: String = getMainCategory(outfitName, isBottom: isBottom)
+        print("main Category = \(mainCategory)")
+        switch mainCategory {
+        case "jacket":
+            var ownedJackets = readCustomObjArrayFromUserDefaults("ownedJackets") as! [Top]
+            for (idx,jacket) in ownedJackets.enumerate() {
+                if(outfitName == jacket.fileName!) {
+                    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+                    let cell = tableView.cellForRowAtIndexPath(indexPath) as? CarouselTableViewCell
+                    cell?.carousel.scrollToItemAtIndex(idx, animated: true)
+                    changedPickers[0] = true
+                    break
+                }
+            }
+        case "light_layer":
+            var ownedLightLayers = readCustomObjArrayFromUserDefaults("ownedLightLayers") as! [Top]
+            for (idx,jacket) in ownedLightLayers.enumerate() {
+                if(outfitName == ownedLightLayers[idx].fileName!) {
+                    let indexPath = NSIndexPath(forRow: 0, inSection: 1)
+                    let cell = tableView.cellForRowAtIndexPath(indexPath) as? CarouselTableViewCell
+                    cell?.carousel.scrollToItemAtIndex(idx, animated: true)
+                    changedPickers[0] = true
+                    break
+                }
+            }
+        case "long_sleeve_shirt":
+            var ownedLongSleeveShirts = readCustomObjArrayFromUserDefaults("ownedLongSleeveShirts")as! [Top]
+            for (idx,jacket) in ownedLongSleeveShirts.enumerate() {
+                if(outfitName == ownedLongSleeveShirts[idx].fileName!) {
+                    let indexPath = NSIndexPath(forRow: 0, inSection: 2)
+                    let cell = tableView.cellForRowAtIndexPath(indexPath) as? CarouselTableViewCell
+                    cell?.carousel.scrollToItemAtIndex(idx, animated: true)
+                    changedPickers[0] = true
+                    break
+                }
+            }
+        case "collared_shirt":
+            var ownedCollaredShirts = readCustomObjArrayFromUserDefaults("ownedCollaredShirts") as! [Top]
+            for (idx,jacket) in ownedCollaredShirts.enumerate() {
+                if(outfitName == ownedCollaredShirts[idx].fileName!) {
+                    let indexPath = NSIndexPath(forRow: 0, inSection: 3)
+                    let cell = tableView.cellForRowAtIndexPath(indexPath) as? CarouselTableViewCell
+                    cell?.carousel.scrollToItemAtIndex(idx, animated: true)
+                    changedPickers[0] = true
+                    break
+                }
+            }
+        case "short_sleeve_shirt":
+            var ownedShortSleeveShirts = readCustomObjArrayFromUserDefaults("ownedShortSleeveShirts") as! [Top]
+            for (idx,jacket) in ownedShortSleeveShirts.enumerate() {
+                if(outfitName == ownedShortSleeveShirts[idx].fileName!) {
+                    let indexPath = NSIndexPath(forRow: 0, inSection: 4)
+                    let cell = tableView.cellForRowAtIndexPath(indexPath) as? CarouselTableViewCell
+                    cell?.carousel.scrollToItemAtIndex(idx, animated: true)
+                    changedPickers[0] = true
+                    break
+                }
+            }
+        default:
+            var ownedBottoms = readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]
+            for (idx,bottoms) in ownedBottoms.enumerate() {
+                if outfitName == bottoms.fileName {
+                    let indexPath = NSIndexPath(forRow: 0, inSection: 5)
+                    let cell = tableView.cellForRowAtIndexPath(indexPath) as? CarouselTableViewCell
+                    cell?.carousel.scrollToItemAtIndex(idx, animated: true)
+                    changedPickers[5] = true
+                    break
+                }
+            }
+        }
+    }
+    
+    func getMainCategory(fileName: String, isBottom: Bool) -> String{
+        if(isBottom) {
+            let ownedBottoms: [Bottom] = readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]
+            for bottom in ownedBottoms {
+                if bottom.fileName == fileName {
+                    return bottom.mainCategory!
+                }
+            }
+        } else {
+            let ownedTops: [Top] = readCustomObjArrayFromUserDefaults("ownedTops") as! [Top]
+            for top in ownedTops {
+                if top.fileName == fileName {
+                    return top.mainCategory!
+                }
+            }
+        }
+        return "NA"
     }
 }

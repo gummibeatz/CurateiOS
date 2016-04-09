@@ -11,7 +11,7 @@ import iCarousel
 
 protocol CarouselTableViewCellDelegate {
     func toggleDropdown(idx: Int)
-    func cellTapped()
+    func cellTapped(clothing: Clothing)
 }
 
 class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDelegate {
@@ -54,8 +54,8 @@ class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDele
     }
     
     func carouselDoubleTapped(sender: UITapGestureRecognizer) {
-        print("double tapped")
-        delegate?.cellTapped()
+        let clothing = items[carousel.currentItemIndex] 
+        delegate?.cellTapped(clothing)
     }
     
     // MARK: - iCarousel Data Source
