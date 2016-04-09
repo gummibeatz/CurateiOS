@@ -11,6 +11,7 @@ import iCarousel
 
 protocol CarouselTableViewCellDelegate {
     func toggleDropdown(idx: Int)
+    func cellTapped()
 }
 
 class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDelegate {
@@ -19,6 +20,9 @@ class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDele
         didSet{
             carousel.backgroundColor = UIColor.whiteColor()
             carousel.perspective = -0.002
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CarouselTableViewCell.carouselDoubleTapped(_:)))
+            gestureRecognizer.numberOfTapsRequired = 2
+            carousel.addGestureRecognizer(gestureRecognizer)
         }
     }
     
@@ -42,10 +46,16 @@ class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDele
         carousel.type = .Rotary
         carousel.delegate = self
         carousel.dataSource = self
+        carousel.multipleTouchEnabled = true
     }
     
     func dropDownTapped(sender: UIImageView) {
         delegate?.toggleDropdown(self.tag)
+    }
+    
+    func carouselDoubleTapped(sender: UITapGestureRecognizer) {
+        print("double tapped")
+        delegate?.cellTapped()
     }
     
     // MARK: - iCarousel Data Source

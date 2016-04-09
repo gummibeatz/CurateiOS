@@ -45,6 +45,9 @@ class LLOutfitViewController: UIViewController, UITableViewDataSource, UITableVi
         readCustomObjArrayFromUserDefaults("ownedBottoms") as! [Bottom]
     }()
     
+    var blurEffectView: UIVisualEffectView =  UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
+    
+    
     var curateAuthToken:String?
     var previousMatch: [NSDictionary] = [NSDictionary]()
     var previousMatchIndex: Int = 0
@@ -82,6 +85,7 @@ class LLOutfitViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.reloadData()
     }
     
+    
     // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 6
@@ -100,6 +104,7 @@ class LLOutfitViewController: UIViewController, UITableViewDataSource, UITableVi
         } else {
             cell = NSBundle.mainBundle().loadNibNamed("CarouselTableViewCell", owner: self, options: nil).first as? UITableViewCell
             let carouselCell = cell as! CarouselTableViewCell
+            carouselCell.delegate = self
             setCarouselItems(carouselCell, index: indexPath.section)
             carouselCell.carousel.reloadData()
         }
@@ -155,5 +160,9 @@ extension LLOutfitViewController: CarouselCompressedTableViewCellDelegate, Carou
     func toggleDropdown(idx: Int) {
         isDropped[idx] = !isDropped[idx]
         self.tableView.reloadSections(NSIndexSet(index: idx), withRowAnimation: UITableViewRowAnimation.Fade)
+    }
+    
+    func cellTapped() {
+        print("cell tapped")
     }
 }
