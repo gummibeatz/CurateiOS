@@ -27,7 +27,15 @@ class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDele
     }
     
     @IBOutlet weak var clothingCategoryLabel: UILabel!
-    @IBOutlet weak var downArrow: UIImageView!
+    
+    @IBOutlet weak var downArrow: UIImageView! {
+        didSet {
+            let tapGestureRecoginzer = UITapGestureRecognizer(target: self, action: #selector(CarouselTableViewCell.dropDownTapped(_:)))
+            downArrow.addGestureRecognizer(tapGestureRecoginzer)
+        }
+    }
+    
+    
     var items = [Clothing]()
     var delegate: CarouselTableViewCellDelegate?
     
@@ -52,6 +60,7 @@ class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDele
     }
     
     func dropDownTapped(sender: UIImageView) {
+        print("dropdowntapped")
         delegate?.toggleDropdown(self.tag)
     }
     

@@ -98,9 +98,9 @@ class LLOutfitViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
         if !isDropped[indexPath.section] {
-            cell = tableView.dequeueReusableCellWithIdentifier("carouselCellCompressed", forIndexPath: indexPath)
-            (cell as! CarouselCompressedTableViewCell).delegate = self
-            
+            cell = NSBundle.mainBundle().loadNibNamed("CarouselCompressedTableViewCell", owner: self, options: nil).first as? UITableViewCell
+            let compressedCell = cell as! CarouselCompressedTableViewCell
+            compressedCell.delegate = self
         } else {
             cell = NSBundle.mainBundle().loadNibNamed("CarouselTableViewCell", owner: self, options: nil).first as? UITableViewCell
             let carouselCell = cell as! CarouselTableViewCell

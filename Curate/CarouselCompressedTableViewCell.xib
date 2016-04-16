@@ -8,7 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="20" id="hS3-uK-g65" customClass="CarouselCompressedTableViewCell" customModule="Curate" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="carouselCellCompressed" rowHeight="20" id="hS3-uK-g65" customClass="CarouselCompressedTableViewCell" customModule="Curate" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="377" height="20"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hS3-uK-g65" id="XE5-24-y10">
@@ -32,7 +32,7 @@
                             <constraint firstItem="BVX-T9-K58" firstAttribute="leading" secondItem="2Lo-Uh-MpB" secondAttribute="leadingMargin" constant="20" id="QGN-hu-31P"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="EhA-eN-NhQ">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="EhA-eN-NhQ">
                         <rect key="frame" x="90" y="-2" width="23.5" height="23.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="EhA-eN-NhQ" secondAttribute="height" multiplier="1:1" id="BiX-Tn-tZh"/>
