@@ -241,11 +241,11 @@ extension LLOutfitViewController: CarouselCompressedTableViewCellDelegate, Carou
         
         print("4 changedPickers = \(changedPickers)")
         
-//        if changedPickers[0] == false { toggleDropdown(0) }
-//        if changedPickers[1] == false { toggleDropdown(0) }
-//        if changedPickers[2] == false { toggleDropdown(0) }
-//        if changedPickers[3] == false { toggleDropdown(0) }
-//        if changedPickers[4] == false { toggleDropdown(0) }
+        for i in (0..<changedPickers.count) {
+            if !changedPickers[i] {
+                isDropped[i] = false
+            }
+        }
     }
     
     func changePickerWithOutfitName(outfitName: String, isBottom: Bool, inout changedPickers: [Bool]) {

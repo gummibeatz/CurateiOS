@@ -270,10 +270,10 @@ func getCurateAuthToken(fbAuthToken: String,completionHandler:(curateAuthToken:S
                     throw APIErrors.DictError
                 }
                 
-                if let authentication_token: String = jsonResult["authentication_token"] as? String {
+                if let authenticationToken: String = jsonResult["authentication_token"] as? String {
                     print("curateAuthToken given")
-                    print("curateAuthToken = \(authentication_token)")
-                    completionHandler(curateAuthToken: authentication_token)
+                    print("curateAuthToken = \(authenticationToken)")
+                    completionHandler(curateAuthToken: authenticationToken)
                 } else {
                     print("error no curateAuthToken given")
                     print("setting to default authtoken")
