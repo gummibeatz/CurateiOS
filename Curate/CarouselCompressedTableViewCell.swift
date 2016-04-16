@@ -23,6 +23,7 @@ class CarouselCompressedTableViewCell: UITableViewCell {
         }
     }
     
+    @IBOutlet weak var clothingCategoryLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

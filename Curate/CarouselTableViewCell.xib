@@ -8,7 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="192" id="Fdq-j9-mON" customClass="CarouselTableViewCell" customModule="Curate" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="192" id="Fdq-j9-mON" customClass="CarouselTableViewCell" customModule="Curate" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="435" height="192"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fdq-j9-mON" id="9tP-mH-c8E">
@@ -64,11 +64,6 @@
             </connections>
             <point key="canvasLocation" x="209.5" y="71"/>
         </tableViewCell>
-        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="z2v-bz-hH0">
-            <rect key="frame" x="0.0" y="0.0" width="47" height="73"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <point key="canvasLocation" x="639.5" y="217.5"/>
-        </imageView>
     </objects>
     <resources>
         <image name="DownArrow" width="557" height="557"/>
