@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Little Man-1x.png",
+      "filename" : "Little Man-1x-2.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Little Man-2x.png",
+      "filename" : "Little Man-1x-1.png",
       "scale" : "2x"
     },
     {
