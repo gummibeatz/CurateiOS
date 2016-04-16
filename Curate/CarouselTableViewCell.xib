@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -27,10 +28,19 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownArrow" translatesAutoresizingMaskIntoConstraints="NO" id="agN-Fd-6li">
+                                <rect key="frame" x="82" y="0.0" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="agN-Fd-6li" secondAttribute="height" multiplier="1:1" id="O4k-JA-xMA"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" name="selectedTextBackgroundColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="agN-Fd-6li" secondAttribute="bottom" id="L85-Pd-BGT"/>
+                            <constraint firstItem="agN-Fd-6li" firstAttribute="leading" secondItem="Dfe-FK-ono" secondAttribute="trailing" constant="20" id="MtB-6v-Esg"/>
                             <constraint firstAttribute="bottom" secondItem="Dfe-FK-ono" secondAttribute="bottom" id="pJY-dk-vgJ"/>
+                            <constraint firstItem="agN-Fd-6li" firstAttribute="top" secondItem="V3B-Ve-oPW" secondAttribute="top" id="tVZ-Uv-O8H"/>
                             <constraint firstItem="Dfe-FK-ono" firstAttribute="top" secondItem="V3B-Ve-oPW" secondAttribute="top" id="wVS-oO-vd9"/>
                             <constraint firstItem="Dfe-FK-ono" firstAttribute="leading" secondItem="V3B-Ve-oPW" secondAttribute="leading" constant="20" id="z8E-db-PoW"/>
                             <constraint firstAttribute="height" constant="20" id="zFc-XW-959"/>
@@ -52,5 +62,13 @@
             </connections>
             <point key="canvasLocation" x="209.5" y="71"/>
         </tableViewCell>
+        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="z2v-bz-hH0">
+            <rect key="frame" x="0.0" y="0.0" width="47" height="73"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <point key="canvasLocation" x="639.5" y="217.5"/>
+        </imageView>
     </objects>
+    <resources>
+        <image name="DownArrow" width="557" height="557"/>
+    </resources>
 </document>
