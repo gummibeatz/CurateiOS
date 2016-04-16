@@ -26,6 +26,8 @@ class CarouselTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDele
         }
     }
     
+    @IBOutlet weak var clothingCategoryLabel: UILabel!
+    @IBOutlet weak var downArrow: UIImageView!
     var items = [Clothing]()
     var delegate: CarouselTableViewCellDelegate?
     

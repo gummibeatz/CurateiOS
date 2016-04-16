@@ -59,6 +59,8 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="carousel" destination="hRR-NY-5fK" id="yyK-U6-URN"/>
+                <outlet property="clothingCategoryLabel" destination="Dfe-FK-ono" id="svl-Lt-DsG"/>
+                <outlet property="downArrow" destination="agN-Fd-6li" id="dhM-Qn-uky"/>
             </connections>
             <point key="canvasLocation" x="209.5" y="71"/>
         </tableViewCell>
