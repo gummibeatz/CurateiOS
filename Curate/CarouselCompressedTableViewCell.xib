@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="377" height="19.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVX-T9-K58">
-                                <rect key="frame" x="28" y="-2" width="42" height="23.5"/>
+                                <rect key="frame" x="18" y="-2" width="42" height="23.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -29,11 +29,11 @@
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="BVX-T9-K58" secondAttribute="bottom" constant="-10" id="8t1-P7-bgu"/>
                             <constraint firstItem="BVX-T9-K58" firstAttribute="top" secondItem="2Lo-Uh-MpB" secondAttribute="topMargin" constant="-10" id="9UB-JG-c2N"/>
-                            <constraint firstItem="BVX-T9-K58" firstAttribute="leading" secondItem="2Lo-Uh-MpB" secondAttribute="leadingMargin" constant="20" id="QGN-hu-31P"/>
+                            <constraint firstItem="BVX-T9-K58" firstAttribute="leading" secondItem="2Lo-Uh-MpB" secondAttribute="leadingMargin" constant="10" id="QGN-hu-31P"/>
                         </constraints>
                     </view>
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="EhA-eN-NhQ">
-                        <rect key="frame" x="90" y="-2" width="23.5" height="23.5"/>
+                        <rect key="frame" x="80" y="-2" width="23.5" height="23.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="EhA-eN-NhQ" secondAttribute="height" multiplier="1:1" id="BiX-Tn-tZh"/>
                         </constraints>

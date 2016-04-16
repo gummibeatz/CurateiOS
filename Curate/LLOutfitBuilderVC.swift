@@ -145,7 +145,7 @@ class LLOutfitViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // MARK: - Table view delegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return isDropped[indexPath.section] ? 150 : 40
+        return isDropped[indexPath.section] ? 150 : 20
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
