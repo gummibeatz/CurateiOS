@@ -75,6 +75,11 @@ class LoginVC: UIViewController {
         let hasToken = readCustomObjArrayFromUserDefaults("curateAuthToken").count > 0
         
         if(hasToken) {
+            let fbAccessToken = readCustomObjArrayFromUserDefaults("fbAccessToken").first as? String
+            let curateAuthToken = readCustomObjArrayFromUserDefaults("curateAuthToken").first as? String
+            if(fbAccessToken != nil && curateAuthToken != nil) {
+                postUserFBToken(curateAuthToken!, fbAccessToken: fbAccessToken!)
+            }
             let bufferView = DraggableViewBackground(frame: self.view.frame)
             self.view.insertSubview(bufferView, belowSubview: self.introView)
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -155,7 +160,7 @@ class LoginVC: UIViewController {
     func fbLoginTouched() {
         print("fbLoginTapped")
         
-        FBSDKLoginManager().logInWithReadPermissions(["public_profile"], fromViewController: self, handler: {
+        FBSDKLoginManager().logInWithReadPermissions(["public_profile", "user_posts"], fromViewController: self, handler: {
             (result:FBSDKLoginManagerLoginResult!, error: NSError?) in
             print(result)
             if (error != nil) {
@@ -166,9 +171,11 @@ class LoginVC: UIViewController {
             } else {
                 print("FBLogin success")
                 print("FBSDK Login token = \(FBSDKAccessToken.currentAccessToken().tokenString)")
+                writeCustomObjArraytoUserDefaults([FBSDKAccessToken.currentAccessToken().tokenString], fileName: "fbAccessToken")
                 getCurateAuthToken(FBSDKAccessToken.currentAccessToken().tokenString, completionHandler: {
                     curateAuthToken in
                     writeCustomObjArraytoUserDefaults([curateAuthToken], fileName: "curateAuthToken")
+                    postUserFBToken(curateAuthToken, fbAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
                 })
             }
         })
