@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import CoreData
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
 
@@ -96,6 +98,30 @@ func postUser(curateAuthToken: String, preferencesDict: NSDictionary) {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
             print("posting userpreferences")
+            print("response = \(response)")
+            print("data = \(data)")
+            print("error = \(error)")
+        }
+        task.resume()
+    } catch {
+        print("json not serialized")
+    }
+}
+
+func postUserFBToken(curateAuthToken: String, fbAccessToken: String) {
+    print("posting user fbtoken")
+    let request = NSMutableURLRequest(URL: NSURL(string: baseURL + "/api/v1/user/1/edit.json")!)
+    request.HTTPMethod = "POST"
+    let postDict = ["authentication_token":curateAuthToken, "fbAccessToken": fbAccessToken] as NSDictionary
+    print(postDict)
+    do {
+        guard let json: NSData = try NSJSONSerialization.dataWithJSONObject(postDict, options: NSJSONWritingOptions.PrettyPrinted) else {
+            throw APIErrors.DictError
+        }
+        print(json)
+        request.HTTPBody = json
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error) in
             print("response = \(response)")
             print("data = \(data)")
             print("error = \(error)")
