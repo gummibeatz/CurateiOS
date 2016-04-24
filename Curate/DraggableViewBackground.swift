@@ -345,11 +345,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         wardrobeDict.setObject(topsArr , forKey: "tops")
         wardrobeDict.setObject(bottomsArr , forKey: "bottoms")
         wardrobeDict.setObject(clothingArticle.convertToDict(), forKey: "clothing")
-        getCurateAuthToken(fbAuthToken, completionHandler: {
-            curateAuthToken in
-            postWardrobe(curateAuthToken, wardrobeDict: wardrobeDict)
-        })
-        
+        let curateAuthToken = readCustomObjArrayFromUserDefaults("curateAuthToken").last as! String
+        postWardrobe(curateAuthToken, wardrobeDict: wardrobeDict)
         
         //formatting and posting wardrove finished
         
