@@ -365,7 +365,7 @@ func getMatches(curateAuthToken: String, base_clothing: String, completionHandle
     print("in getMatches")
     let fbase_clothing: String = base_clothing.stringByReplacingOccurrencesOfString("&", withString: "%26", options: NSStringCompareOptions.LiteralSearch, range: nil)
     
-    getWeather({
+    WeatherAPI.getWeather({
         currentTemp in
         let url: NSURL = NSURL(string: baseURL + "/api/v1/matches?authentication_token=\(curateAuthToken)&&temperature=\(currentTemp)&&base_clothing=\(fbase_clothing)")!
         print(url)
