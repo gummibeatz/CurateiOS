@@ -385,11 +385,8 @@ func getMatches(curateAuthToken: String, base_clothing: String, completionHandle
                 let matchDict: NSDictionary = ["message":"error"]
                 completionHandler(matchDict: matchDict)
             }
-
         }
         task.resume()
     })
-
-    
 }
 
